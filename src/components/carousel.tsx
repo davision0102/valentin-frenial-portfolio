@@ -105,7 +105,9 @@ export function Carousel({
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
-      className={className}
+      // flow-root : la marge négative de la piste (qui laisse de la place aux
+      // ombres) ne doit pas « manger » l'espace au-dessus et au-dessous.
+      className={cn('flow-root', className)}
     >
       <div
         ref={trackRef}

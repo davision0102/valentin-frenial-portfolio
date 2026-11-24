@@ -33,17 +33,16 @@ function ProjectPage() {
   ].filter((fact) => fact.value) // une info vide n'est pas affichée
 
   return (
-    <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 md:py-16">
+    <article className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
       <Link
-        to="/"
-        hash="projets"
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        to="/projets"
+        className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="size-4" />
         {p.back}
       </Link>
 
-      <header className="mt-8 animate-in duration-500 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
+      <header className="mt-8 max-w-4xl animate-in duration-500 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
         <ul className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <li
@@ -54,18 +53,18 @@ function ProjectPage() {
             </li>
           ))}
         </ul>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+        <h1 className="mt-4 text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
           {project.title}
         </h1>
-        <p className="mt-4 text-lg text-pretty text-muted-foreground">
+        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
           {project.summary}
         </p>
       </header>
 
       <Carousel
         label={p.gallery}
-        className="mt-10"
-        itemClassName="basis-[90%] sm:basis-[80%]"
+        className="mt-10 sm:mt-12"
+        itemClassName="basis-[90%] md:basis-[75%]"
       >
         {(media?.images ?? []).map((image, i) => (
           <figure key={image.file}>
@@ -82,64 +81,70 @@ function ProjectPage() {
         ))}
       </Carousel>
 
-      {project.note && (
-        <p className="mt-6 flex items-start gap-2 text-sm text-muted-foreground">
-          <Lock className="mt-0.5 size-4 shrink-0" />
-          {project.note}
-        </p>
+      {(project.note || media?.link) && (
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+          {project.note && (
+            <p className="flex items-start gap-2 text-sm text-muted-foreground">
+              <Lock className="mt-0.5 size-4 shrink-0" />
+              {project.note}
+            </p>
+          )}
+          {media?.link && (
+            <a
+              href={media.link}
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ variant: 'outline' })}
+            >
+              {p.link}
+              <ArrowUpRight data-icon="inline-end" />
+            </a>
+          )}
+        </div>
       )}
 
-      {media?.link && (
-        <a
-          href={media.link}
-          target="_blank"
-          rel="noreferrer"
-          className={cn(buttonVariants({ variant: 'outline' }), 'mt-6')}
-        >
-          {p.link}
-          <ArrowUpRight data-icon="inline-end" />
-        </a>
-      )}
+      {/* Fiche à gauche (collante sur grand écran), récit à droite. */}
+      <div className="mt-16 grid gap-12 sm:mt-24 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-16">
+        <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 lg:sticky lg:top-24 lg:grid-cols-1">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt className="text-sm text-muted-foreground">{fact.label}</dt>
+              <dd className="mt-1 font-medium">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
 
-      <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 rounded-3xl border border-border p-6">
-        {facts.map((fact) => (
-          <div key={fact.label}>
-            <dt className="text-xs text-muted-foreground">{fact.label}</dt>
-            <dd className="mt-1 text-sm font-medium">{fact.value}</dd>
-          </div>
-        ))}
-      </dl>
+        <div className="grid gap-12 sm:gap-16">
+          <Block title={p.challenge} text={project.challenge} />
+          <Block title={p.solution} text={project.solution} />
 
-      <div className="mt-14 grid gap-12">
-        <Block title={p.challenge} text={project.challenge} />
-        <Block title={p.solution} text={project.solution} />
-
-        {project.results.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              {p.results}
-            </h2>
-            <dl className="mt-6 grid gap-4 sm:grid-cols-3">
-              {project.results.map((result) => (
-                <div
-                  key={result.label}
-                  className="rounded-3xl bg-secondary/60 p-6"
-                >
-                  <dt className="sr-only">{result.label}</dt>
-                  <dd className="font-heading text-4xl font-semibold tracking-tight text-brand">
-                    {result.value}
-                  </dd>
-                  <dd className="mt-2 text-sm text-muted-foreground">
-                    {result.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        )}
+          {project.results.length > 0 && (
+            <section className="border-t border-border pt-6">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                {p.results}
+              </h2>
+              <dl className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-[repeat(auto-fit,minmax(11rem,1fr))]">
+                {project.results.map((result) => (
+                  <div
+                    key={result.label}
+                    className="rounded-3xl bg-secondary/60 p-6"
+                  >
+                    <dt className="sr-only">{result.label}</dt>
+                    <dd className="font-heading text-4xl font-semibold tracking-tight text-brand">
+                      {result.value}
+                    </dd>
+                    <dd className="mt-2 text-sm text-muted-foreground">
+                      {result.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
+        </div>
       </div>
 
-      <nav className="mt-20 border-t border-border pt-8">
+      <nav className="mt-16 border-t border-border pt-8 sm:mt-24">
         <p className="text-sm text-muted-foreground">{p.next}</p>
         <Link
           to="/projets/$slug"
@@ -159,9 +164,11 @@ function ProjectPage() {
 
 function Block({ title, text }: { title: string; text: string }) {
   return (
-    <section>
-      <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-      <p className="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+    <section className="border-t border-border pt-6">
+      <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        {title}
+      </h2>
+      <p className="mt-4 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground">
         {text}
       </p>
     </section>

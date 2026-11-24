@@ -34,6 +34,20 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 - Textes : jamais en dur ; chaque texte dans `fr.ts` **et** `en.ts`, lu avec `useI18n()`.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 
+## Espacements (identiques sur toutes les pages)
+
+| Élément                         | Classes                                                             |
+| ------------------------------- | ------------------------------------------------------------------- |
+| Conteneur (pages, pied de page) | `mx-auto max-w-6xl px-4 sm:px-6`                                    |
+| Haut de page (1er bloc)         | `pt-12 sm:pt-20`                                                    |
+| Bas de page (dernier bloc)      | `pb-16 sm:pb-24`                                                    |
+| Section                         | `py-16 sm:py-24` (pas de double espace entre deux sections)         |
+| Titre de section → contenu      | `mt-10 sm:mt-12`                                                    |
+| Sous-parties dans une section   | `gap-12 sm:gap-16`                                                  |
+| Bloc lié au précédent           | `mt-6` (mention, lien, sous-titre → carrousel)                      |
+| Titre de page (h1)              | `text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] tracking-[-0.045em]` |
+| Titre de section (h2)           | `text-3xl sm:text-4xl tracking-tight`                               |
+
 ## Avant de dire qu'une tâche est finie
 
 `npm run lint`, `npm test` et `npm run build` doivent passer.
