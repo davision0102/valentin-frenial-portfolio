@@ -1,0 +1,28 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+import { I18nProvider } from './i18n/provider'
+import './index.css'
+
+const router = createRouter({
+  routeTree,
+  // Chemin de base fourni par Vite (`/` en local, `/<depot>/` sur GitHub Pages)
+  basepath: import.meta.env.BASE_URL,
+  defaultPreload: 'intent',
+  scrollRestoration: true,
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <I18nProvider>
+      <RouterProvider router={router} />
+    </I18nProvider>
+  </React.StrictMode>,
+)
