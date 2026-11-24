@@ -43,6 +43,8 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 | Bas de page (dernier bloc)      | `pb-16 sm:pb-24`                                                    |
 | Section                         | `py-16 sm:py-24` (pas de double espace entre deux sections)         |
 | Titre de section → contenu      | `mt-10 sm:mt-12`                                                    |
+| Sous-parties dans une section   | `gap-12 sm:gap-16`                                                  |
+| Bloc lié au précédent           | `mt-6` (mention, lien, sous-titre → carrousel)                      |
 | Titre de page (h1)              | `text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] tracking-[-0.045em]` |
 | Titre de section (h2)           | `text-3xl sm:text-4xl tracking-tight`                               |
 

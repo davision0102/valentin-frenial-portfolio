@@ -34,92 +34,96 @@ function ProjectPage() {
 
   return (
     <article className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
-      <div className="max-w-4xl">
-        <Link
-          to="/projets"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4" />
-          {p.back}
-        </Link>
+      <Link
+        to="/projets"
+        className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="size-4" />
+        {p.back}
+      </Link>
 
-        <header className="mt-8 animate-in duration-500 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
-          <ul className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <li
-                key={tag}
-                className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-          <h1 className="mt-4 text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-            {project.title}
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
-            {project.summary}
-          </p>
-        </header>
-
-        <Carousel
-          label={p.gallery}
-          className="mt-10 sm:mt-12"
-          itemClassName="basis-[90%] sm:basis-[80%]"
-        >
-          {(media?.images ?? []).map((image, i) => (
-            <figure key={image.file}>
-              <ProjectVisual
-                image={image}
-                alt={project.gallery[i] ?? project.title}
-                eager={i === 0}
-                className="aspect-[16/9] rounded-3xl border border-border"
-              />
-              <figcaption className="mt-3 text-sm text-muted-foreground">
-                {project.gallery[i]}
-              </figcaption>
-            </figure>
+      <header className="mt-8 max-w-4xl animate-in duration-500 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
+        <ul className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand"
+            >
+              {tag}
+            </li>
           ))}
-        </Carousel>
+        </ul>
+        <h1 className="mt-4 text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+          {project.title}
+        </h1>
+        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
+          {project.summary}
+        </p>
+      </header>
 
-        {project.note && (
-          <p className="mt-6 flex items-start gap-2 text-sm text-muted-foreground">
-            <Lock className="mt-0.5 size-4 shrink-0" />
-            {project.note}
-          </p>
-        )}
+      <Carousel
+        label={p.gallery}
+        className="mt-10 sm:mt-12"
+        itemClassName="basis-[90%] md:basis-[75%]"
+      >
+        {(media?.images ?? []).map((image, i) => (
+          <figure key={image.file}>
+            <ProjectVisual
+              image={image}
+              alt={project.gallery[i] ?? project.title}
+              eager={i === 0}
+              className="aspect-[16/9] rounded-3xl border border-border"
+            />
+            <figcaption className="mt-3 text-sm text-muted-foreground">
+              {project.gallery[i]}
+            </figcaption>
+          </figure>
+        ))}
+      </Carousel>
 
-        {media?.link && (
-          <a
-            href={media.link}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(buttonVariants({ variant: 'outline' }), 'mt-6')}
-          >
-            {p.link}
-            <ArrowUpRight data-icon="inline-end" />
-          </a>
-        )}
+      {(project.note || media?.link) && (
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+          {project.note && (
+            <p className="flex items-start gap-2 text-sm text-muted-foreground">
+              <Lock className="mt-0.5 size-4 shrink-0" />
+              {project.note}
+            </p>
+          )}
+          {media?.link && (
+            <a
+              href={media.link}
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ variant: 'outline' })}
+            >
+              {p.link}
+              <ArrowUpRight data-icon="inline-end" />
+            </a>
+          )}
+        </div>
+      )}
 
-        <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 rounded-3xl border border-border p-6 sm:mt-12">
+      {/* Fiche à gauche (collante sur grand écran), récit à droite. */}
+      <div className="mt-16 grid gap-12 sm:mt-24 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-16">
+        <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 lg:sticky lg:top-24 lg:grid-cols-1">
           {facts.map((fact) => (
             <div key={fact.label}>
-              <dt className="text-xs text-muted-foreground">{fact.label}</dt>
-              <dd className="mt-1 text-sm font-medium">{fact.value}</dd>
+              <dt className="text-sm text-muted-foreground">{fact.label}</dt>
+              <dd className="mt-1 font-medium">{fact.value}</dd>
             </div>
           ))}
         </dl>
 
-        <div className="mt-16 grid gap-16 sm:mt-24">
+        <div className="grid gap-12 sm:gap-16">
           <Block title={p.challenge} text={project.challenge} />
           <Block title={p.solution} text={project.solution} />
 
           {project.results.length > 0 && (
-            <section>
+            <section className="border-t border-border pt-6">
               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
                 {p.results}
               </h2>
-              <dl className="mt-6 grid gap-4 sm:grid-cols-3">
+              <dl className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-[repeat(auto-fit,minmax(11rem,1fr))]">
                 {project.results.map((result) => (
                   <div
                     key={result.label}
@@ -138,33 +142,33 @@ function ProjectPage() {
             </section>
           )}
         </div>
-
-        <nav className="mt-16 border-t border-border pt-8 sm:mt-24">
-          <p className="text-sm text-muted-foreground">{p.next}</p>
-          <Link
-            to="/projets/$slug"
-            params={{ slug: next.slug }}
-            className={cn(
-              buttonVariants({ variant: 'ghost' }),
-              'mt-1 -ml-2.5 h-auto px-2.5 py-1.5 text-xl font-semibold tracking-tight',
-            )}
-          >
-            {next.title}
-            <ArrowRight data-icon="inline-end" />
-          </Link>
-        </nav>
       </div>
+
+      <nav className="mt-16 border-t border-border pt-8 sm:mt-24">
+        <p className="text-sm text-muted-foreground">{p.next}</p>
+        <Link
+          to="/projets/$slug"
+          params={{ slug: next.slug }}
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'mt-1 -ml-2.5 h-auto px-2.5 py-1.5 text-xl font-semibold tracking-tight',
+          )}
+        >
+          {next.title}
+          <ArrowRight data-icon="inline-end" />
+        </Link>
+      </nav>
     </article>
   )
 }
 
 function Block({ title, text }: { title: string; text: string }) {
   return (
-    <section>
+    <section className="border-t border-border pt-6">
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+      <p className="mt-4 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground">
         {text}
       </p>
     </section>
