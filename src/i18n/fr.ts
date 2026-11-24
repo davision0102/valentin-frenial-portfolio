@@ -245,20 +245,6 @@ export const fr = {
       results: [],
     },
   ],
-  reel: {
-    label: 'Bobine des projets',
-    open: 'Ouvrir le projet',
-    play: 'Lecture',
-    pause: 'Pause',
-    previous: 'Clip précédent',
-    next: 'Clip suivant',
-    hint: 'Cliquez sur un clip pour le prévisualiser, ou utilisez les flèches du clavier.',
-    tracks: {
-      learning: 'E-learning',
-      design: 'Design',
-      skills: 'Savoir-faire',
-    },
-  },
   carousel: {
     previous: 'Précédent',
     next: 'Suivant',

@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { site } from '@/config/site'
 
-/** Marque : les initiales dans une pastille, avec un petit point « enregistrement ». */
+/** Marque : les initiales dans une pastille, avec un petit point « en ligne ». */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <span
@@ -12,7 +12,7 @@ export function LogoMark({ className }: { className?: string }) {
       )}
     >
       {site.initials}
-      <span className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 border-background bg-playhead" />
+      <span className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 border-background bg-brand" />
     </span>
   )
 }

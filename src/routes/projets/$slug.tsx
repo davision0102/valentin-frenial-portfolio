@@ -114,7 +114,7 @@ function ProjectPage() {
       )}
 
       <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:gap-20">
-        {/* Fiche technique, comme l'ardoise d'un tournage. */}
+        {/* Fiche du projet. */}
         <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 lg:sticky lg:top-28 lg:grid-cols-1">
           {facts.map((fact) => (
             <div key={fact.label}>
@@ -174,7 +174,7 @@ function ProjectPage() {
         </div>
       </div>
 
-      {/* Clip suivant */}
+      {/* Projet suivant */}
       <nav className="mt-24">
         <Link
           to="/projets/$slug"

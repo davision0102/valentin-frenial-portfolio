@@ -237,16 +237,6 @@ export const en: Dictionary = {
       results: [],
     },
   ],
-  reel: {
-    label: 'Project reel',
-    open: 'Open project',
-    play: 'Play',
-    pause: 'Pause',
-    previous: 'Previous clip',
-    next: 'Next clip',
-    hint: 'Click a clip to preview it, or use the arrow keys.',
-    tracks: { learning: 'E-learning', design: 'Design', skills: 'Skills' },
-  },
   carousel: {
     previous: 'Previous',
     next: 'Next',
