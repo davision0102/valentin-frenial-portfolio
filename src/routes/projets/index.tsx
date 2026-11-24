@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowUpRight } from 'lucide-react'
+import { CategoryBadge } from '@/components/project-card'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useI18n } from '@/i18n/context'
@@ -107,15 +108,11 @@ function ProjectTile({ project }: { project: Project }) {
             className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:group-hover:scale-100"
           />
         )}
-        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium glass">
-          <span
-            className={cn(
-              'size-1.5 rounded-full',
-              learning ? 'bg-track-learning' : 'bg-track-design',
-            )}
-          />
-          {learning ? t.projectsPage.learning : t.projectsPage.design}
-        </span>
+        <CategoryBadge
+          category={project.category}
+          label={learning ? t.projectsPage.learning : t.projectsPage.design}
+          className="absolute top-3 left-3"
+        />
         <span
           aria-hidden="true"
           className="absolute right-3 bottom-3 grid size-10 translate-y-1 place-items-center rounded-full opacity-0 glass transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100"

@@ -12,10 +12,16 @@ export const en: Dictionary = {
   },
   languages: { fr: 'Français', en: 'English' },
   theme: {
+    dark: 'Dark mode',
+    light: 'Light mode',
     toDark: 'Switch to dark theme',
     toLight: 'Switch to light theme',
   },
   footer: {
+    lead: 'Find me elsewhere',
+    email: 'Send an email',
+    cv: 'My CV as PDF',
+    backToTop: 'Back to top',
     role: 'Digital learning project manager',
   },
   home: {

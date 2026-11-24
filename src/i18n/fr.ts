@@ -14,10 +14,16 @@ export const fr = {
   },
   languages: { fr: 'Français', en: 'English' },
   theme: {
+    dark: 'Mode sombre',
+    light: 'Mode clair',
     toDark: 'Passer en thème sombre',
     toLight: 'Passer en thème clair',
   },
   footer: {
+    lead: 'Me retrouver ailleurs',
+    email: 'Écrire un e-mail',
+    cv: 'Mon CV en PDF',
+    backToTop: 'Retour en haut',
     role: 'Chef de projet digital e-learning',
   },
   home: {
