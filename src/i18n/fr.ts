@@ -11,6 +11,8 @@ export const fr = {
     about: 'À propos',
     contact: 'Me contacter',
     language: 'Langue',
+    openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
   },
   languages: { fr: 'Français', en: 'English' },
   theme: {

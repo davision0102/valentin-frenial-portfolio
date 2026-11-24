@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { Menu, X } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { Logo } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
@@ -16,8 +18,17 @@ export const Route = createRootRoute({
 const navLinkClass =
   'rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground'
 
+/** Liens du menu : les sections de la page d'accueil. */
+const sections = [
+  { hash: 'projets', key: 'projects' },
+  { hash: 'a-propos', key: 'about' },
+  { hash: 'contact', key: 'contact' },
+] as const
+
 function RootLayout() {
   const { t } = useI18n()
+  // Menu du téléphone (sur grand écran, les liens sont toujours visibles).
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <div className="flex min-h-svh flex-col">
@@ -42,7 +53,7 @@ function RootLayout() {
             <Link
               to="/"
               hash="a-propos"
-              className={cn(navLinkClass, 'max-md:hidden')}
+              className={cn(navLinkClass, 'max-sm:hidden')}
             >
               {t.nav.about}
             </Link>
@@ -58,8 +69,44 @@ function RootLayout() {
             </Link>
             <ThemeToggle />
             <LanguageSwitch />
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-controls="menu-mobile"
+              aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+              className={cn(
+                buttonVariants({ variant: 'ghost', size: 'icon' }),
+                'ml-1 sm:hidden',
+              )}
+            >
+              {menuOpen ? <X /> : <Menu />}
+            </button>
           </nav>
         </div>
+
+        {menuOpen && (
+          <nav
+            id="menu-mobile"
+            onKeyDown={(event) => event.key === 'Escape' && setMenuOpen(false)}
+            className="animate-in border-t border-border/60 px-4 pt-2 pb-4 duration-200 fade-in slide-in-from-top-1 motion-reduce:animate-none sm:hidden"
+          >
+            <ul className="grid gap-1">
+              {sections.map((section) => (
+                <li key={section.hash}>
+                  <Link
+                    to="/"
+                    hash={section.hash}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-2xl px-3 py-3 text-lg font-medium transition-colors hover:bg-secondary"
+                  >
+                    {t.nav[section.key]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </header>
 
       <main className="flex-1">

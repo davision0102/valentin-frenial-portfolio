@@ -215,7 +215,7 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6"
+      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
     >
       <SectionHeading eyebrow={p.eyebrow} title={p.title} text={p.text} />
 
@@ -292,7 +292,7 @@ function Services() {
 
   return (
     <section className="border-y border-border/60 bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <SectionHeading eyebrow={s.eyebrow} title={s.title} />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -326,7 +326,7 @@ function About() {
   return (
     <section
       id="a-propos"
-      className="mx-auto grid max-w-6xl scroll-mt-20 gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2"
+      className="mx-auto grid max-w-6xl scroll-mt-20 gap-14 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2"
     >
       <div>
         <SectionHeading eyebrow={a.eyebrow} title={a.title} />
@@ -363,9 +363,9 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-24 sm:px-6"
+      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
     >
-      <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-8 py-16 text-center text-background sm:px-16">
+      <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 text-center text-background sm:px-8 sm:px-16 sm:py-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand/40 blur-3xl"
