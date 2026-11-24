@@ -79,8 +79,9 @@ export const en: Dictionary = {
       title: 'Teach, yes. Bore, never.',
       paragraphs: [
         'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
-        'At Nexans and during my work-study years at Chanel, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
+        'At Nexans, then at Chanel, first as a work-study student and then on staff, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
       ],
+      moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },
     contact: {
@@ -235,6 +236,44 @@ export const en: Dictionary = {
       results: [],
     },
   ],
+  aboutPage: {
+    greetings: ['Hello', 'Bonjour', 'Hola'],
+    intro: 'I’m Valentin.',
+    role: 'Learning project manager and designer',
+    profile: [
+      'I design digital training that is intuitive, engaging and built around the people who take it.',
+      'Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
+    ],
+    downloadCv: 'Download my CV',
+    contact: 'Get in touch',
+    valuesTitle: 'How I work',
+    values: [
+      {
+        title: 'Start with the learners',
+        text: 'I analyse their needs before designing anything: good training is useful first.',
+      },
+      {
+        title: 'Make the complex simple',
+        text: 'With HR, Finance or CSR teams, I turn technical content into clear, visual learning paths.',
+      },
+      {
+        title: 'Measure to improve',
+        text: 'I track results and learner engagement to make every module better.',
+      },
+    ],
+    storyTitle: 'My story, in short',
+    story:
+      'Trained at EEMI in digital project management and art direction, I learned the ropes as a work-study student at Nexans, then at Chanel, where I designed training for artisans around the world. Today I also work as a freelancer with Valenteint Studio.',
+    offTitle: 'Outside work',
+    off: [
+      { title: 'Languages', text: 'French, English and Spanish' },
+      { title: 'Travel', text: 'Travelling and discovering new cultures' },
+      { title: 'Sport', text: 'Sports, a real passion of mine' },
+    ],
+    ctaTitle: 'Want to know more?',
+    ctaText:
+      'My whole journey fits on one page: download my CV or drop me a line.',
+  },
   carousel: {
     previous: 'Previous',
     next: 'Next',

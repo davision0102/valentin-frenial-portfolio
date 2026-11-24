@@ -81,8 +81,9 @@ export const fr = {
       title: 'Former, oui. Ennuyer, jamais.',
       paragraphs: [
         'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
-        'Chez Nexans et pendant mon alternance chez Chanel, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
+        'Chez Nexans puis chez Chanel, en alternance puis en poste, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
       ],
+      moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },
     contact: {
@@ -243,6 +244,44 @@ export const fr = {
       results: [],
     },
   ],
+  aboutPage: {
+    greetings: ['Bonjour', 'Hello', 'Hola'],
+    intro: 'moi c’est Valentin.',
+    role: 'Chef de projet Learning et designer',
+    profile: [
+      'Je conçois des formations digitales intuitives, engageantes et pensées pour celles et ceux qui les suivent.',
+      'Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
+    ],
+    downloadCv: 'Télécharger mon CV',
+    contact: 'Me contacter',
+    valuesTitle: 'Ma façon de travailler',
+    values: [
+      {
+        title: 'Partir des apprenants',
+        text: 'J’analyse leurs besoins avant de concevoir quoi que ce soit : une formation réussie est d’abord utile.',
+      },
+      {
+        title: 'Rendre le complexe simple',
+        text: 'Avec les équipes RH, Finance ou RSE, je transforme des contenus techniques en parcours clairs et visuels.',
+      },
+      {
+        title: 'Mesurer pour progresser',
+        text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
+      },
+    ],
+    storyTitle: 'Mon histoire, en bref',
+    story:
+      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes en alternance chez Nexans, puis chez Chanel, où j’ai conçu des formations pour des artisans dans le monde entier. Aujourd’hui, je travaille aussi en indépendant avec Valenteint Studio.',
+    offTitle: 'En dehors du travail',
+    off: [
+      { title: 'Langues', text: 'Français, anglais et espagnol' },
+      { title: 'Voyages', text: 'Voyager et découvrir de nouvelles cultures' },
+      { title: 'Sport', text: 'Les sports, un vrai centre d’intérêt' },
+    ],
+    ctaTitle: 'Envie d’en savoir plus ?',
+    ctaText:
+      'Tout mon parcours tient sur une page : téléchargez mon CV ou écrivez-moi.',
+  },
   carousel: {
     previous: 'Précédent',
     next: 'Suivant',

@@ -7,7 +7,7 @@ export function LogoMark({ className }: { className?: string }) {
     <span
       aria-hidden="true"
       className={cn(
-        'relative grid size-10 shrink-0 place-items-center rounded-full bg-foreground font-heading text-xs font-semibold text-background',
+        'relative grid size-9 shrink-0 place-items-center rounded-full bg-foreground font-heading text-[11px] font-semibold text-background',
         className,
       )}
     >
@@ -19,9 +19,9 @@ export function LogoMark({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn('inline-flex items-center gap-2.5', className)}>
+    <span className={cn('inline-flex items-center gap-2', className)}>
       <LogoMark />
-      <span className="font-heading text-base font-semibold tracking-tight whitespace-nowrap sm:text-lg">
+      <span className="font-heading text-[15px] font-semibold tracking-tight whitespace-nowrap">
         {site.name}
       </span>
     </span>

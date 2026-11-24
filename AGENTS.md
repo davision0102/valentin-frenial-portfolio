@@ -25,7 +25,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 | Textes (français et anglais) | `src/i18n/fr.ts` et `src/i18n/en.ts`          |
 | Images et liens des projets  | `public/projets/` et `src/config/projects.ts` |
 | Couleurs, polices            | `src/index.css`                               |
-| Photo du haut de page        | `public/valentin.jpg`                         |
+| Photo du haut de page        | `public/valentin.png`                         |
 
 ## Règles
 

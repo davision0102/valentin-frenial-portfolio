@@ -18,11 +18,11 @@ export const Route = createRootRoute({
 const navLinkClass =
   'rounded-full px-3 py-1.5 text-sm text-foreground/75 transition-colors hover:bg-foreground/5 hover:text-foreground'
 
-/** Liens du menu : les sections de la page d'accueil. */
+/** Liens du menu mobile : sections de l'accueil et page À propos. */
 const sections = [
-  { hash: 'projets', key: 'projects' },
-  { hash: 'a-propos', key: 'about' },
-  { hash: 'contact', key: 'contact' },
+  { to: '/', hash: 'projets', key: 'projects' },
+  { to: '/a-propos', hash: undefined, key: 'about' },
+  { to: '/', hash: 'contact', key: 'contact' },
 ] as const
 
 function RootLayout() {
@@ -31,10 +31,19 @@ function RootLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex min-h-svh flex-col">
+    <div className="relative isolate flex min-h-svh flex-col">
+      {/* Halos de couleur derrière le haut de chaque page, barre comprise,
+          avec un fondu vers le bas : pas de coupure sous l'en-tête. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[56rem] overflow-hidden [mask-image:linear-gradient(to_bottom,black_45%,transparent)]"
+      >
+        <div className="absolute -top-48 -left-32 size-[38rem] rounded-full bg-brand/22 blur-[120px]" />
+        <div className="absolute -top-24 -right-32 size-[32rem] rounded-full bg-track-design/18 blur-[120px]" />
+      </div>
       {/* Barre de verre flottante, le contenu défile dessous. */}
       <header className="sticky top-3 z-40 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-6">
-        <div className="flex h-14 items-center justify-between gap-3 rounded-full pr-2 pl-2 glass">
+        <div className="flex h-12 items-center justify-between gap-3 rounded-full pr-1.5 pl-1.5 glass">
           <Link
             to="/"
             aria-label={`${site.name}, ${t.nav.homeLabel}`}
@@ -51,22 +60,16 @@ function RootLayout() {
             >
               {t.nav.projects}
             </Link>
-            <Link
-              to="/"
-              hash="a-propos"
-              className={cn(navLinkClass, 'max-sm:hidden')}
-            >
+            <Link to="/a-propos" className={cn(navLinkClass, 'max-sm:hidden')}>
               {t.nav.about}
             </Link>
             <Link
               to="/"
               hash="contact"
-              className="mx-1 inline-flex h-9 items-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-transform active:scale-[0.97] max-sm:hidden"
+              className="ml-1 inline-flex h-9 items-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-transform active:scale-[0.97] max-sm:hidden"
             >
               {t.nav.contact}
             </Link>
-            <ThemeToggle />
-            <LanguageSwitch />
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
@@ -91,9 +94,9 @@ function RootLayout() {
           >
             <ul className="grid">
               {sections.map((section) => (
-                <li key={section.hash}>
+                <li key={section.key}>
                   <Link
-                    to="/"
+                    to={section.to}
                     hash={section.hash}
                     onClick={() => setMenuOpen(false)}
                     className="block rounded-2xl px-4 py-3 text-lg font-medium transition-colors hover:bg-foreground/5"
@@ -103,6 +106,10 @@ function RootLayout() {
                 </li>
               ))}
             </ul>
+            <div className="mt-1 flex items-center justify-between border-t border-border px-2 pt-3 pb-1">
+              <ThemeToggle />
+              <LanguageSwitch />
+            </div>
           </nav>
         )}
       </header>
@@ -116,7 +123,7 @@ function RootLayout() {
           <p>
             © {new Date().getFullYear()} {site.name} · {t.footer.role}
           </p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <a href={`mailto:${site.email}`} className="hover:text-foreground">
               {site.email}
             </a>
@@ -128,6 +135,11 @@ function RootLayout() {
             >
               LinkedIn
             </a>
+            <span aria-hidden="true" className="h-4 w-px bg-border" />
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <LanguageSwitch />
+            </div>
           </div>
         </div>
       </footer>
