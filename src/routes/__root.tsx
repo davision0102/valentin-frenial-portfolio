@@ -61,7 +61,7 @@ function RootLayout() {
         <Outlet />
       </main>
 
-      <footer className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+      <footer className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col items-start justify-between gap-2 border-t border-border py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
           <p>
             © {new Date().getFullYear()} {site.name} · {t.footer.role}

@@ -8,7 +8,7 @@ export function NotFound() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-6xl flex-col items-center px-4 py-28 text-center sm:px-6">
+    <section className="mx-auto flex max-w-6xl flex-col items-center px-4 pt-12 pb-16 text-center sm:px-6 sm:pt-20 sm:pb-24">
       <p className="font-heading text-8xl font-semibold tracking-tight text-brand/30 sm:text-9xl">
         404
       </p>

@@ -124,7 +124,7 @@ function Values() {
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           {a.valuesTitle}
         </h2>
-        <ul className="mt-10 grid gap-4 md:grid-cols-3">
+        <ul className="mt-10 grid gap-4 sm:mt-12 md:grid-cols-3">
           {a.values.map((value, i) => {
             const Icon = valueIcons[i]
             return (
@@ -155,7 +155,7 @@ function Story() {
   const a = t.aboutPage
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
+    <section className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 sm:py-24">
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
         {a.storyTitle}
       </h2>
@@ -175,7 +175,7 @@ function OffWork() {
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
         {a.offTitle}
       </h2>
-      <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+      <ul className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3">
         {a.off.map((item, i) => {
           const Icon = offIcons[i]
           return (

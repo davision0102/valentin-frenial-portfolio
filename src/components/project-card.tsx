@@ -26,7 +26,7 @@ export function ProjectCard({
     >
       {cover && (
         <ProjectVisual
-          image={cover}
+          image={{ ...cover, fit: 'contain' }}
           alt={project.gallery[0]}
           className="aspect-[16/9] border-b border-border"
         />

@@ -45,7 +45,7 @@ function Hero() {
     <section>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <div className="min-w-0">
-          <h1 className="text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+          <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
             {h.hello} {site.name.split(' ')[0]}.
             <span className="block text-muted-foreground">{h.role}</span>
           </h1>
@@ -102,12 +102,12 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
+      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
     >
       <SectionHeading title={p.title} text={p.text} />
 
       {groups.map((group) => (
-        <div key={group.category} className="mt-14">
+        <div key={group.category} className="mt-10 sm:mt-12">
           <h3 className="text-xl font-semibold tracking-tight">
             {group.title}
           </h3>
@@ -127,7 +127,7 @@ function Projects() {
 
       <Link
         to="/projets"
-        className="group mt-12 inline-flex items-center gap-2 font-medium text-brand"
+        className="group mt-10 inline-flex items-center gap-2 font-medium text-brand sm:mt-12"
       >
         {p.seeAll}
         <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -145,7 +145,7 @@ function Services() {
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <SectionHeading title={s.title} />
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {s.items.map(({ title, text }, i) => {
             const Icon = serviceIcons[i]
             return (
@@ -176,7 +176,7 @@ function About() {
   return (
     <section
       id="a-propos"
-      className="mx-auto grid max-w-6xl scroll-mt-20 gap-14 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2"
+      className="mx-auto grid max-w-6xl scroll-mt-20 gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16"
     >
       <div>
         <SectionHeading title={a.title} />
@@ -222,7 +222,7 @@ function Contact() {
       id="contact"
       className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
     >
-      <div className="relative overflow-hidden rounded-[2rem] bg-spotlight px-6 py-12 text-center text-white sm:px-8 sm:px-16 sm:py-16">
+      <div className="relative overflow-hidden rounded-[2rem] bg-spotlight px-6 py-12 text-center text-white sm:px-16 sm:py-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand/40 blur-3xl"
