@@ -1,5 +1,6 @@
 import { Children, useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
@@ -126,9 +127,8 @@ export function Carousel({
       </div>
 
       {scrollable && (
-        <div className="mt-5 flex items-center gap-4">
-          {/* Barre segmentée : un segment par visuel, comme une mini timeline. */}
-          <div className="flex flex-1 items-center gap-1">
+        <div className="mt-6 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-1.5">
             {items.map((_, i) => (
               <button
                 key={i}
@@ -136,41 +136,36 @@ export function Carousel({
                 onClick={() => goTo(i)}
                 aria-label={t.carousel.goTo(i + 1)}
                 aria-current={i === active}
-                className="group flex h-6 flex-1 items-center"
-              >
-                <span
-                  className={cn(
-                    'h-1.5 w-full rounded-full transition-colors duration-300',
-                    i === active
-                      ? 'bg-foreground'
-                      : 'bg-foreground/15 group-hover:bg-foreground/30',
-                  )}
-                />
-              </button>
+                className={cn(
+                  'h-2 rounded-full transition-all duration-300',
+                  i === active
+                    ? 'w-6 bg-brand'
+                    : 'w-2 bg-border hover:bg-muted-foreground/50',
+                )}
+              />
             ))}
           </div>
-          <span className="font-mono text-xs text-muted-foreground tabular-nums">
-            {active + 1} / {items.length}
-          </span>
-          <div className="flex gap-1.5">
-            <button
-              type="button"
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full"
               onClick={() => step(-1)}
               disabled={atStart}
               aria-label={t.carousel.previous}
-              className="grid size-10 place-items-center rounded-full glass transition-[transform,opacity] active:scale-[0.92] disabled:opacity-40"
             >
-              <ChevronLeft className="size-4" />
-            </button>
-            <button
-              type="button"
+              <ChevronLeft />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full"
               onClick={() => step(1)}
               disabled={atEnd}
               aria-label={t.carousel.next}
-              className="grid size-10 place-items-center rounded-full glass transition-[transform,opacity] active:scale-[0.92] disabled:opacity-40"
             >
-              <ChevronRight className="size-4" />
-            </button>
+              <ChevronRight />
+            </Button>
           </div>
         </div>
       )}
