@@ -94,10 +94,6 @@ function Hero() {
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
-  const groups = [
-    { category: 'learning', title: p.learning },
-    { category: 'design', title: p.design },
-  ]
 
   return (
     <section
@@ -106,24 +102,17 @@ function Projects() {
     >
       <SectionHeading title={p.title} text={p.text} />
 
-      {groups.map((group) => (
-        <div key={group.category} className="mt-10 sm:mt-12">
-          <h3 className="text-xl font-semibold tracking-tight">
-            {group.title}
-          </h3>
-          <Carousel
-            label={group.title}
-            className="mt-6"
-            itemClassName="basis-[85%] sm:basis-[60%] md:basis-[45%]"
-          >
-            {t.projects
-              .filter((project) => project.category === group.category)
-              .map((project) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))}
-          </Carousel>
-        </div>
-      ))}
+      {/* Tous les projets dans un seul carrousel ; l'étiquette de chaque carte
+          indique s'il s'agit d'e-learning ou de design. */}
+      <Carousel
+        label={p.title}
+        className="mt-10 sm:mt-12"
+        itemClassName="basis-[85%] sm:basis-[60%] md:basis-[45%]"
+      >
+        {t.projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
+      </Carousel>
 
       <Link
         to="/projets"

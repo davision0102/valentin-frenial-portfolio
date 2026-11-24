@@ -1,8 +1,10 @@
 import { Link } from '@tanstack/react-router'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, GraduationCap, Palette } from 'lucide-react'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
+import { useI18n } from '@/i18n/context'
 import type { Dictionary } from '@/i18n/fr'
+import { cn } from '@/lib/utils'
 
 type Project = Dictionary['projects'][number]
 
@@ -15,6 +17,7 @@ export function ProjectCard({
   /** Niveau du titre : h4 dans les carrousels de l'accueil, h2 sur /projets. */
   heading?: 'h2' | 'h3' | 'h4'
 }) {
+  const { t } = useI18n()
   const cover = getProjectMedia(project.slug)?.images[0]
   const meta = [project.client, project.year].filter(Boolean).join(' · ')
 
@@ -24,13 +27,24 @@ export function ProjectCard({
       params={{ slug: project.slug }}
       className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
     >
-      {cover && (
-        <ProjectVisual
-          image={{ ...cover, fit: 'contain' }}
-          alt={project.gallery[0]}
-          className="aspect-[16/9] border-b border-border"
+      <div className="relative border-b border-border">
+        {cover && (
+          <ProjectVisual
+            image={{ ...cover, fit: 'contain' }}
+            alt={project.gallery[0]}
+            className="aspect-[16/9]"
+          />
+        )}
+        <CategoryBadge
+          category={project.category}
+          label={
+            project.category === 'learning'
+              ? t.projectsPage.learning
+              : t.projectsPage.design
+          }
+          className="absolute top-3 left-3"
         />
-      )}
+      </div>
       <div className="p-6">
         <p className="text-xs font-medium text-muted-foreground">{meta}</p>
         <Heading className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
@@ -52,5 +66,31 @@ export function ProjectCard({
         </ul>
       </div>
     </Link>
+  )
+}
+
+/** Étiquette pleine : E-learning (bleu) ou Design (lilas), posée sur un visuel. */
+export function CategoryBadge({
+  category,
+  label,
+  className,
+}: {
+  category: string
+  label: string
+  className?: string
+}) {
+  const learning = category === 'learning'
+  const Icon = learning ? GraduationCap : Palette
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-track-foreground shadow-sm',
+        learning ? 'bg-track-learning' : 'bg-track-design',
+        className,
+      )}
+    >
+      <Icon className="size-3.5" aria-hidden="true" />
+      {label}
+    </span>
   )
 }

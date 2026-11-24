@@ -1,11 +1,12 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { Mail } from 'lucide-react'
+import { ArrowUp, ArrowUpRight, Download, Mail } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { cn } from '@/lib/utils'
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -14,6 +15,10 @@ export const Route = createRootRoute({
 
 const navLinkClass =
   'rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground [&.active]:bg-foreground/8 [&.active]:text-foreground'
+
+/** Bouton coloré du pied de page (LinkedIn, e-mail, CV). */
+const footerButton =
+  'inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-[transform,background-color] duration-200 hover:-translate-y-0.5 active:scale-[0.97] motion-reduce:hover:translate-y-0'
 
 function RootLayout() {
   const { t } = useI18n()
@@ -62,28 +67,76 @@ function RootLayout() {
       </main>
 
       <footer className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-2 border-t border-border py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
+        {/* Les trois façons de le retrouver, en boutons de couleur. */}
+        <div className="border-t border-border py-16 text-center sm:py-20">
+          <p className="text-sm text-muted-foreground">{t.footer.lead}</p>
+          <ul className="mt-5 flex flex-wrap justify-center gap-3">
+            <li>
+              <a
+                href={site.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(
+                  footerButton,
+                  'bg-brand/15 text-brand hover:bg-brand/25',
+                )}
+              >
+                LinkedIn
+                <ArrowUpRight className="size-4" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${site.email}`}
+                className={cn(
+                  footerButton,
+                  'bg-track-design/15 text-track-design hover:bg-track-design/25',
+                )}
+              >
+                {t.footer.email}
+                <Mail className="size-4" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+                download
+                className={cn(
+                  footerButton,
+                  'bg-track-skill/15 text-track-skill hover:bg-track-skill/25',
+                )}
+              >
+                {t.footer.cv}
+                <Download className="size-4" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex flex-col items-center gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:flex-row sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name} · {t.footer.role}
+            © {new Date().getFullYear()} {site.name}
           </p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <a href={`mailto:${site.email}`} className="hover:text-foreground">
-              {site.email}
-            </a>
-            <a
-              href={site.linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-foreground"
-            >
-              LinkedIn
-            </a>
-            <span aria-hidden="true" className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-1">
-              <ThemeToggle />
-              <LanguageSwitch />
-            </div>
+          <div className="flex items-center gap-1">
+            <ThemeToggle showLabel />
+            <LanguageSwitch />
           </div>
+          <button
+            type="button"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                  .matches
+                  ? 'auto'
+                  : 'smooth',
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 transition-colors hover:text-foreground"
+          >
+            {t.footer.backToTop}
+            <ArrowUp className="size-4" />
+          </button>
         </div>
       </footer>
     </div>
