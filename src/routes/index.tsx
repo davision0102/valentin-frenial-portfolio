@@ -2,7 +2,6 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   ArrowDown,
   ArrowRight,
-  ArrowUpRight,
   Clapperboard,
   ClipboardList,
   GraduationCap,
@@ -10,9 +9,8 @@ import {
   Palette,
 } from 'lucide-react'
 import { Portrait } from '@/components/portrait'
-import { ProjectVisual } from '@/components/project-visual'
+import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
-import { getProjectMedia } from '@/config/projects'
 import { buttonVariants } from '@/components/ui/button'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
@@ -126,52 +124,15 @@ function Projects() {
           </Carousel>
         </div>
       ))}
+
+      <Link
+        to="/projets"
+        className="group mt-12 inline-flex items-center gap-2 font-medium text-brand"
+      >
+        {p.seeAll}
+        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+      </Link>
     </section>
-  )
-}
-
-function ProjectCard({
-  project,
-}: {
-  project: ReturnType<typeof useI18n>['t']['projects'][number]
-}) {
-  const cover = getProjectMedia(project.slug)?.images[0]
-  const meta = [project.client, project.year].filter(Boolean).join(' · ')
-
-  return (
-    <Link
-      to="/projets/$slug"
-      params={{ slug: project.slug }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
-    >
-      {cover && (
-        <ProjectVisual
-          image={cover}
-          alt={project.gallery[0]}
-          className="aspect-[16/9] border-b border-border"
-        />
-      )}
-      <div className="p-6">
-        <p className="text-xs font-medium text-muted-foreground">{meta}</p>
-        <h4 className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
-          {project.title}
-          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
-        </h4>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {project.summary}
-        </p>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Link>
   )
 }
 

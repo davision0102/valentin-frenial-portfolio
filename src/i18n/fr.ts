@@ -11,8 +11,6 @@ export const fr = {
     about: 'À propos',
     contact: 'Me contacter',
     language: 'Langue',
-    openMenu: 'Ouvrir le menu',
-    closeMenu: 'Fermer le menu',
   },
   languages: { fr: 'Français', en: 'English' },
   theme: {
@@ -55,6 +53,7 @@ export const fr = {
       learning: 'Projets e-learning',
       design: 'Projets design',
       open: 'Voir le projet',
+      seeAll: 'Voir tous les projets',
     },
     services: {
       title: 'De l’idée de formation au module en ligne.',
@@ -300,6 +299,16 @@ export const fr = {
       results: [],
     },
   ],
+  projectsPage: {
+    title: 'Mes projets',
+    intro:
+      'Des formations digitales pour Nexans et Chanel, et des projets de design, de la vidéo au print.',
+    filtersLabel: 'Filtrer les projets',
+    all: 'Tous',
+    learning: 'E-learning',
+    design: 'Design',
+    count: (n: number) => (n > 1 ? `${n} projets` : `${n} projet`),
+  },
   aboutPage: {
     greetings: ['Bonjour', 'Hello', 'Hola'],
     intro: 'moi c’est Valentin.',

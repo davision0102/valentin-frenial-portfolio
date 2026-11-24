@@ -9,8 +9,6 @@ export const en: Dictionary = {
     about: 'About',
     contact: 'Get in touch',
     language: 'Language',
-    openMenu: 'Open menu',
-    closeMenu: 'Close menu',
   },
   languages: { fr: 'Français', en: 'English' },
   theme: {
@@ -53,6 +51,7 @@ export const en: Dictionary = {
       learning: 'E-learning projects',
       design: 'Design projects',
       open: 'View project',
+      seeAll: 'See all projects',
     },
     services: {
       title: 'From a training idea to a live online module.',
@@ -292,6 +291,16 @@ export const en: Dictionary = {
       results: [],
     },
   ],
+  projectsPage: {
+    title: 'My projects',
+    intro:
+      'Digital training for Nexans and Chanel, plus design projects, from video to print.',
+    filtersLabel: 'Filter projects',
+    all: 'All',
+    learning: 'E-learning',
+    design: 'Design',
+    count: (n: number) => (n > 1 ? `${n} projects` : `${n} project`),
+  },
   aboutPage: {
     greetings: ['Hello', 'Bonjour', 'Hola'],
     intro: 'I’m Valentin.',
