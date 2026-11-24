@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ébauche : caché des moteurs de recherche. À retirer au lancement (et public/robots.txt). -->
+    <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
       content="Portfolio de Valentin Frenial, chef de projet digital e-learning : serious games, parcours blended, micro-learning."
@@ -11,12 +13,12 @@
     <title>Valentin Frenial · Chef de projet digital e-learning</title>
     <meta
       name="theme-color"
-      content="#eceef3"
+      content="#121a33"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#0f1013"
+      content="#121a33"
       media="(prefers-color-scheme: dark)"
     />
 
@@ -44,9 +46,8 @@
       // Applique le thème avant le premier rendu pour éviter un flash.
       try {
         const saved = localStorage.getItem('theme')
-        const dark = saved
-          ? saved === 'dark'
-          : matchMedia('(prefers-color-scheme: dark)').matches
+        // Bleu nuit par défaut, sauf si le visiteur a choisi le thème clair.
+        const dark = saved ? saved === 'dark' : true
         if (dark) document.documentElement.classList.add('dark')
         document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
       } catch {}

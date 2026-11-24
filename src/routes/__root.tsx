@@ -35,7 +35,7 @@ function RootLayout() {
     <AmbientProvider>
       <div className="flex min-h-svh flex-col">
         {/* Bandeau d'ébauche : à supprimer quand le contenu est définitif. */}
-        <p className="bg-foreground px-4 py-2 text-center text-xs font-medium text-background">
+        <p className="bg-spotlight px-4 py-2 text-center text-xs font-medium text-white">
           {t.draft.text}
         </p>
 

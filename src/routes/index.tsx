@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   ArrowDown,
@@ -46,7 +47,8 @@ function Hero() {
 
   return (
     <section className="mx-auto max-w-5xl px-4 pt-16 pb-12 text-center sm:px-6 sm:pt-24 sm:pb-16">
-      <h1 className="mx-auto text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+      <HeroPhoto />
+      <h1 className="mx-auto mt-8 text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
         {h.hello} {site.name.split(' ')[0]}.
         <span className="block text-muted-foreground">{h.role}</span>
       </h1>
@@ -79,6 +81,36 @@ function Hero() {
         ))}
       </ul>
     </section>
+  )
+}
+
+/**
+ * Photo de Valentin. Déposer le fichier dans public/valentin.jpg : il
+ * s'affiche tout seul. En attendant, ce sont ses initiales.
+ */
+function HeroPhoto() {
+  const { t } = useI18n()
+  const [missing, setMissing] = useState(false)
+
+  return (
+    <div className="mx-auto grid size-32 place-items-center rounded-full p-1.5 glass sm:size-36">
+      {missing ? (
+        <span
+          role="img"
+          aria-label={t.home.hero.photoAlt}
+          className="grid size-full place-items-center rounded-full bg-spotlight font-heading text-4xl font-semibold tracking-[-0.03em] text-white"
+        >
+          {site.initials}
+        </span>
+      ) : (
+        <img
+          src={`${import.meta.env.BASE_URL}valentin.jpg`}
+          alt={t.home.hero.photoAlt}
+          onError={() => setMissing(true)}
+          className="size-full rounded-full object-cover"
+        />
+      )}
+    </div>
   )
 }
 
@@ -255,13 +287,11 @@ function Contact() {
       id="contact"
       className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 sm:px-6 sm:pb-24"
     >
-      <div className="rounded-[2rem] bg-foreground px-6 py-16 text-center text-background sm:px-16 sm:py-24">
+      <div className="rounded-[2rem] bg-spotlight px-6 py-16 text-center text-white sm:px-16 sm:py-24">
         <h2 className="mx-auto max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl">
           {c.title}
         </h2>
-        <p className="mx-auto mt-5 max-w-md text-lg text-background/70">
-          {c.text}
-        </p>
+        <p className="mx-auto mt-5 max-w-md text-lg text-white/70">{c.text}</p>
         <dl className="mx-auto mt-12 grid max-w-md gap-3 text-left">
           <CreditLine label="E-mail">
             <a
@@ -285,7 +315,7 @@ function Contact() {
         <div className="mt-12 flex flex-wrap justify-center gap-2.5">
           <a
             href={`mailto:${site.email}`}
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-background px-5 text-sm font-medium text-foreground transition-transform active:scale-[0.97]"
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-spotlight transition-transform active:scale-[0.97]"
           >
             <Mail className="size-4" />
             {c.email}
@@ -294,7 +324,7 @@ function Contact() {
             href={site.linkedinUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium text-background ring-1 ring-background/25 transition-[transform,background-color] hover:bg-background/10 active:scale-[0.97]"
+            className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium text-white ring-1 ring-white/30 transition-[transform,background-color] hover:bg-white/10 active:scale-[0.97]"
           >
             {c.linkedin}
             <ArrowRight className="size-4" />
@@ -314,11 +344,8 @@ function CreditLine({
 }) {
   return (
     <div className="grid grid-cols-[1fr_auto_1fr] items-baseline gap-4">
-      <dt className="text-right text-sm text-background/60">{label}</dt>
-      <span
-        aria-hidden="true"
-        className="size-1 rounded-full bg-background/40"
-      />
+      <dt className="text-right text-sm text-white/60">{label}</dt>
+      <span aria-hidden="true" className="size-1 rounded-full bg-white/40" />
       <dd className="truncate font-medium">{children}</dd>
     </div>
   )

@@ -7,7 +7,8 @@ Format ouvert : https://agents.md
 
 Le public visé comprend des designers et des personnes qui ne codent pas : explique simplement ce que tu fais, sans jargon, et propose de vérifier le rendu dans le navigateur.
 
-Ce site est le portfolio de Valentin Frenial, chef de projet digital e-learning : une page d'accueil (présentation, projets en carrousel, savoir-faire, contact) et une page par projet (`/projets/<slug>`).
+Ce site est un portfolio personnel : une page d'accueil (présentation, projets en carrousel, savoir-faire, contact) et une page par projet (`/projets/<slug>`).
+Confidentialité : ne rien ajouter au README, ne pas versionner les notes de travail (PRODUCT.md, DESIGN.md, `.impeccable/`).
 Les textes des projets sont dans `src/i18n/`, leurs images dans `public/projets/` et la liste des images dans `src/config/projects.ts`.
 Le nom et les liens du projet sont centralisés dans `src/config/site.ts`. Le site est bilingue (français et anglais, sélecteur FR / EN dans l'en-tête) : tous les textes visibles sont dans `src/i18n/fr.ts` et `src/i18n/en.ts`.
 

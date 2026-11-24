@@ -1,9 +1,8 @@
 {
   "name": "valentin-frenial-portfolio",
-  "description": "Portfolio de Valentin Frenial, chef de projet digital e-learning.",
   "private": true,
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "type": "module",
   "scripts": {
     "dev": "vite",

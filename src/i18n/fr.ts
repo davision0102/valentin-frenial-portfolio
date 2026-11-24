@@ -27,6 +27,7 @@ export const fr = {
   },
   home: {
     hero: {
+      photoAlt: 'Photo de Valentin Frenial',
       hello: 'Bonjour, moi c’est',
       role: 'Chef de projet digital e-learning.',
       pitch:

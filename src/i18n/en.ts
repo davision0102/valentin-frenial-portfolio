@@ -25,6 +25,7 @@ export const en: Dictionary = {
   },
   home: {
     hero: {
+      photoAlt: 'Photo of Valentin Frenial',
       hello: 'Hi, I’m',
       role: 'Digital learning project manager.',
       pitch:
