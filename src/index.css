@@ -2,13 +2,19 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 @import '@fontsource-variable/inter';
-@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: 'Bricolage Grotesque Variable', var(--font-sans);
+  --font-heading: 'Geist Variable', var(--font-sans);
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --color-track-learning: var(--track-learning);
+  --color-track-design: var(--track-design);
+  --color-track-skill: var(--track-skill);
+  --color-playhead: var(--playhead);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -52,30 +58,31 @@
 }
 
 :root {
-  --background: oklch(0.985 0.003 160);
-  --foreground: oklch(0.2 0.012 160);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.012 160);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.012 160);
-  --primary: oklch(0.22 0.012 160);
-  --primary-foreground: oklch(0.985 0.003 160);
-  --secondary: oklch(0.955 0.006 160);
-  --secondary-foreground: oklch(0.22 0.012 160);
-  --muted: oklch(0.955 0.006 160);
-  --muted-foreground: oklch(0.5 0.012 160);
-  --accent: oklch(0.955 0.006 160);
-  --accent-foreground: oklch(0.22 0.012 160);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.91 0.008 160);
-  --input: oklch(0.91 0.008 160);
-  --ring: oklch(0.52 0.09 165);
+  /* Lumière du jour : fond gris froid, encre presque noire. */
+  --background: oklch(0.955 0.006 265);
+  --foreground: oklch(0.17 0.008 265);
+  --card: oklch(0.99 0.002 265);
+  --card-foreground: oklch(0.17 0.008 265);
+  --popover: oklch(0.99 0.002 265);
+  --popover-foreground: oklch(0.17 0.008 265);
+  --primary: oklch(0.17 0.008 265);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.92 0.008 265);
+  --secondary-foreground: oklch(0.17 0.008 265);
+  --muted: oklch(0.92 0.008 265);
+  --muted-foreground: oklch(0.46 0.014 265);
+  --accent: oklch(0.92 0.008 265);
+  --accent-foreground: oklch(0.17 0.008 265);
+  --destructive: oklch(0.6 0.22 27);
+  --border: oklch(0.17 0.008 265 / 11%);
+  --input: oklch(0.17 0.008 265 / 14%);
+  --ring: oklch(0.52 0.2 280);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.875rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -84,29 +91,42 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --brand: oklch(0.52 0.09 165);
+  /* Couleurs des pistes, d'après la palette système d'Apple. */
+  --brand: oklch(0.5 0.2 280);
   --brand-foreground: oklch(0.99 0 0);
+  --track-learning: oklch(0.55 0.2 280);
+  --track-design: oklch(0.75 0.17 60);
+  --track-skill: oklch(0.7 0.18 150);
+  --playhead: oklch(0.63 0.23 28);
+  /* Verre : fond translucide, arête claire, ombre douce. */
+  --glass: oklch(1 0 0 / 58%);
+  --glass-thick: oklch(1 0 0 / 70%);
+  --glass-edge: oklch(1 0 0 / 75%);
+  --glass-shadow:
+    0 1px 2px oklch(0.2 0.02 265 / 6%),
+    0 18px 50px -18px oklch(0.2 0.04 265 / 28%);
+  --ambient-opacity: 0.55;
 }
 
 .dark {
-  --background: oklch(0.17 0.008 160);
-  --foreground: oklch(0.96 0.006 160);
-  --card: oklch(0.21 0.01 160);
-  --card-foreground: oklch(0.96 0.006 160);
-  --popover: oklch(0.21 0.01 160);
-  --popover-foreground: oklch(0.96 0.006 160);
-  --primary: oklch(0.95 0.006 160);
-  --primary-foreground: oklch(0.2 0.012 160);
-  --secondary: oklch(0.27 0.012 160);
-  --secondary-foreground: oklch(0.96 0.006 160);
-  --muted: oklch(0.27 0.012 160);
-  --muted-foreground: oklch(0.72 0.012 160);
-  --accent: oklch(0.27 0.012 160);
-  --accent-foreground: oklch(0.96 0.006 160);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --background: oklch(0.15 0.006 265);
+  --foreground: oklch(0.96 0.004 265);
+  --card: oklch(0.2 0.008 265);
+  --card-foreground: oklch(0.96 0.004 265);
+  --popover: oklch(0.2 0.008 265);
+  --popover-foreground: oklch(0.96 0.004 265);
+  --primary: oklch(0.96 0.004 265);
+  --primary-foreground: oklch(0.15 0.006 265);
+  --secondary: oklch(0.26 0.01 265);
+  --secondary-foreground: oklch(0.96 0.004 265);
+  --muted: oklch(0.26 0.01 265);
+  --muted-foreground: oklch(0.74 0.012 265);
+  --accent: oklch(0.26 0.01 265);
+  --accent-foreground: oklch(0.96 0.004 265);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 11%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.8 0.09 165);
+  --ring: oklch(0.72 0.15 280);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -120,8 +140,54 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --brand: oklch(0.8 0.09 165);
-  --brand-foreground: oklch(0.17 0.008 160);
+  --brand: oklch(0.74 0.14 280);
+  --brand-foreground: oklch(0.15 0.006 265);
+  --track-learning: oklch(0.62 0.19 280);
+  --track-design: oklch(0.78 0.16 62);
+  --track-skill: oklch(0.76 0.18 150);
+  --playhead: oklch(0.68 0.22 27);
+  --glass: oklch(0.24 0.01 265 / 55%);
+  --glass-thick: oklch(0.22 0.01 265 / 70%);
+  --glass-edge: oklch(1 0 0 / 14%);
+  --glass-shadow:
+    0 1px 2px oklch(0 0 0 / 30%), 0 22px 60px -20px oklch(0 0 0 / 60%);
+  --ambient-opacity: 0.42;
+}
+
+/* Panneau de verre (chrome : en-tête, écran, timeline). Plus la surface est
+   grande, plus le verre est épais. Jamais de verre posé sur du verre. */
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 0 0 1px oklch(1 0 0 / 6%),
+    var(--glass-shadow);
+}
+@utility glass-thick {
+  background: var(--glass-thick);
+  backdrop-filter: blur(40px) saturate(190%);
+  -webkit-backdrop-filter: blur(40px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 0 0 1px oklch(1 0 0 / 6%),
+    var(--glass-shadow);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass: var(--card);
+    --glass-thick: var(--card);
+    --ambient-opacity: 0.2;
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --glass: var(--card);
+    --glass-thick: var(--card);
+    --border: oklch(0.17 0.008 265 / 40%);
+  }
 }
 
 @layer base {
@@ -136,10 +202,17 @@
   }
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     @apply font-heading text-balance;
   }
   ::selection {
     @apply bg-brand/25;
+  }
+  html {
+    scrollbar-color: oklch(0.5 0.02 265 / 40%) transparent;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 }

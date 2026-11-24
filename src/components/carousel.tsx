@@ -1,6 +1,5 @@
 import { Children, useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
@@ -30,6 +29,8 @@ export function Carousel({
   const [active, setActive] = useState(0)
   const [atStart, setAtStart] = useState(true)
   const [atEnd, setAtEnd] = useState(false)
+  // Faux quand tous les éléments tiennent à l'écran : pas de flèches ni de points.
+  const [scrollable, setScrollable] = useState(false)
   /** Position visée pendant une animation, pour enchaîner les clics. */
   const targetRef = useRef<number | null>(null)
 
@@ -44,6 +45,7 @@ export function Carousel({
       targetRef.current = null
     }
     const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2
+    setScrollable(track.scrollWidth > track.clientWidth + 2)
     setAtStart(track.scrollLeft <= 2)
     setAtEnd(end)
     // Élément le plus proche du bord gauche ; le dernier quand on est au bout.
@@ -123,9 +125,10 @@ export function Carousel({
         ))}
       </div>
 
-      {items.length > 1 && (
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5">
+      {scrollable && (
+        <div className="mt-5 flex items-center gap-4">
+          {/* Barre segmentée : un segment par visuel, comme une mini timeline. */}
+          <div className="flex flex-1 items-center gap-1">
             {items.map((_, i) => (
               <button
                 key={i}
@@ -133,36 +136,41 @@ export function Carousel({
                 onClick={() => goTo(i)}
                 aria-label={t.carousel.goTo(i + 1)}
                 aria-current={i === active}
-                className={cn(
-                  'h-2 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
-                  i === active
-                    ? 'w-6 bg-brand'
-                    : 'w-2 bg-border hover:bg-muted-foreground/50',
-                )}
-              />
+                className="group flex h-6 flex-1 items-center"
+              >
+                <span
+                  className={cn(
+                    'h-1.5 w-full rounded-full transition-colors duration-300',
+                    i === active
+                      ? 'bg-foreground'
+                      : 'bg-foreground/15 group-hover:bg-foreground/30',
+                  )}
+                />
+              </button>
             ))}
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
+          <span className="font-mono text-xs text-muted-foreground tabular-nums">
+            {active + 1} / {items.length}
+          </span>
+          <div className="flex gap-1.5">
+            <button
+              type="button"
               onClick={() => step(-1)}
               disabled={atStart}
               aria-label={t.carousel.previous}
+              className="grid size-10 place-items-center rounded-full glass transition-[transform,opacity] active:scale-[0.92] disabled:opacity-40"
             >
-              <ChevronLeft />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
+              <ChevronLeft className="size-4" />
+            </button>
+            <button
+              type="button"
               onClick={() => step(1)}
               disabled={atEnd}
               aria-label={t.carousel.next}
+              className="grid size-10 place-items-center rounded-full glass transition-[transform,opacity] active:scale-[0.92] disabled:opacity-40"
             >
-              <ChevronRight />
-            </Button>
+              <ChevronRight className="size-4" />
+            </button>
           </div>
         </div>
       )}

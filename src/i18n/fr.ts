@@ -27,7 +27,6 @@ export const fr = {
   },
   home: {
     hero: {
-      intro: 'Learning portfolio',
       hello: 'Bonjour, moi c’est',
       role: 'Chef de projet digital e-learning.',
       pitch:
@@ -35,33 +34,31 @@ export const fr = {
       seeProjects: 'Voir mes projets',
       contactMe: 'Me contacter',
       stats: [
-        { value: '12', label: 'langues pour un même projet' },
-        { value: '6', label: 'modules livrés en 1 mois' },
-        { value: '14', label: 'vidéos métier tournées et montées' },
+        {
+          value: '12',
+          label: 'langues pour un même projet',
+          short: '12 langues',
+        },
+        {
+          value: '6',
+          label: 'modules livrés en 1 mois',
+          short: '6 modules en 1 mois',
+        },
+        {
+          value: '14',
+          label: 'vidéos métier tournées et montées',
+          short: '14 vidéos',
+        },
       ],
-      card: {
-        label: 'Module en cours',
-        title: 'Concevoir un parcours qui donne envie',
-        progress: 'Progression du module',
-        lessons: [
-          'Comprendre le besoin',
-          'Scénariser',
-          'Produire les contenus',
-          'Déployer et mesurer',
-        ],
-        done: 'Terminé',
-        current: 'En cours',
-      },
     },
     projects: {
-      eyebrow: 'Portfolio',
       title: 'Mes projets',
       text: 'Des formations pour des milliers d’apprenants, et quelques projets de design en bonus.',
       learning: 'Projets e-learning',
       design: 'Projets design',
+      open: 'Voir le projet',
     },
     services: {
-      eyebrow: 'Ce que je fais',
       title: 'De l’idée de formation au module en ligne.',
       items: [
         {
@@ -83,7 +80,6 @@ export const fr = {
       ],
     },
     about: {
-      eyebrow: 'À propos',
       title: 'Former, oui. Ennuyer, jamais.',
       paragraphs: [
         'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
@@ -249,6 +245,20 @@ export const fr = {
       results: [],
     },
   ],
+  reel: {
+    label: 'Bobine des projets',
+    open: 'Ouvrir le projet',
+    play: 'Lecture',
+    pause: 'Pause',
+    previous: 'Clip précédent',
+    next: 'Clip suivant',
+    hint: 'Cliquez sur un clip pour le prévisualiser, ou utilisez les flèches du clavier.',
+    tracks: {
+      learning: 'E-learning',
+      design: 'Design',
+      skills: 'Savoir-faire',
+    },
+  },
   carousel: {
     previous: 'Précédent',
     next: 'Suivant',

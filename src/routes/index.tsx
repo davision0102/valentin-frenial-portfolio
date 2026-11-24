@@ -3,18 +3,15 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  Check,
   Clapperboard,
   ClipboardList,
   GraduationCap,
   Mail,
   Palette,
-  Play,
 } from 'lucide-react'
-import { Carousel } from '@/components/carousel'
 import { ProjectVisual } from '@/components/project-visual'
+import { Reel } from '@/components/reel'
 import { getProjectMedia } from '@/config/projects'
-import { buttonVariants } from '@/components/ui/button'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
@@ -35,7 +32,7 @@ function HomePage() {
       <Projects />
       <Services />
       <About />
-      <Contact />
+      <Credits />
     </>
   )
 }
@@ -43,246 +40,120 @@ function HomePage() {
 function Hero() {
   const { t } = useI18n()
   const h = t.home.hero
+  const [first, ...rest] = site.name.split(' ')
 
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 [background-image:radial-gradient(var(--color-border)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)] [background-size:22px_22px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[44rem] -translate-x-1/2 rounded-full bg-brand/20 blur-3xl"
-      />
-
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 pt-16 pb-20 sm:px-6 md:pt-24 lg:grid-cols-[1.15fr_1fr]">
-        <div className="min-w-0 animate-in duration-700 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-            <span className="size-1.5 rounded-full bg-brand" />
-            {h.intro}
-          </span>
-
-          <h1 className="mt-6 text-5xl leading-[1.04] font-semibold tracking-tight text-balance sm:text-6xl">
-            {h.hello} {site.name.split(' ')[0]}
-            <span className="text-brand">.</span>
-            <span className="mt-2 block text-muted-foreground">{h.role}</span>
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg text-pretty text-muted-foreground">
-            {h.pitch}
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/"
-              hash="projets"
-              className={cn(buttonVariants({ size: 'lg' }), 'h-11 px-5')}
-            >
-              {h.seeProjects}
-              <ArrowDown data-icon="inline-end" />
-            </Link>
-            <a
-              href={`mailto:${site.email}`}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'lg' }),
-                'h-11 px-5',
-              )}
-            >
-              <Mail data-icon="inline-start" />
-              {h.contactMe}
-            </a>
-          </div>
-
-          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">
-            {h.stats.map((stat) => (
-              <div key={stat.label}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-heading text-3xl font-semibold tracking-tight">
-                  {stat.value}
-                </dd>
-                <dd className="mt-1 text-sm text-muted-foreground">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <CourseCard />
-      </div>
-    </section>
-  )
-}
-
-/** Clin d'œil au métier : le hero montre une « carte de module » e-learning. */
-function CourseCard() {
-  const { t } = useI18n()
-  const c = t.home.hero.card
-  const doneCount = 2
-  const progress = Math.round(((doneCount + 0.5) / c.lessons.length) * 100)
-
-  return (
-    <div className="min-w-0 animate-in delay-150 duration-700 fill-mode-both fade-in slide-in-from-bottom-6 motion-reduce:animate-none">
-      <div className="relative mx-auto max-w-md rotate-1 rounded-3xl border border-border bg-card p-6 shadow-2xl ring-1 shadow-foreground/10 ring-foreground/5 transition-transform duration-500 hover:rotate-0">
-        <div className="flex items-center justify-between">
-          <span className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand">
-            {c.label}
-          </span>
-          <span className="font-mono text-xs text-muted-foreground">
-            {progress}%
-          </span>
-        </div>
-
-        <h2 className="mt-4 text-xl font-semibold tracking-tight">{c.title}</h2>
-
-        <div
-          className="mt-4 h-2 overflow-hidden rounded-full bg-secondary"
-          role="progressbar"
-          aria-label={c.progress}
-          aria-valuenow={progress}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
-          <div
-            className="h-full rounded-full bg-brand"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        <ol className="mt-6 space-y-2">
-          {c.lessons.map((lesson, i) => {
-            const done = i < doneCount
-            const current = i === doneCount
-            return (
-              <li
-                key={lesson}
-                className={cn(
-                  'flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm',
-                  current && 'bg-secondary',
-                )}
+    <section className="mx-auto max-w-7xl px-4 pt-8 pb-16 sm:px-6 sm:pt-12 lg:pb-24">
+      <Reel
+        intro={
+          <div className="flex flex-col justify-center lg:py-6">
+            <p className="text-lg text-muted-foreground">{h.hello}</p>
+            <h1 className="mt-1 text-[clamp(3.25rem,8vw,6.5rem)] leading-[0.9] font-semibold tracking-[-0.045em]">
+              {first}
+              <br />
+              {rest.join(' ')}
+            </h1>
+            <p className="mt-5 text-xl font-medium tracking-[-0.01em] sm:text-2xl">
+              {h.role}
+            </p>
+            <p className="mt-4 max-w-md leading-relaxed text-pretty text-muted-foreground">
+              {h.pitch}
+            </p>
+            <div className="mt-7 flex flex-wrap gap-2.5">
+              <Link
+                to="/"
+                hash="projets"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
               >
-                <span
-                  className={cn(
-                    'grid size-7 shrink-0 place-items-center rounded-full border text-xs font-medium',
-                    done && 'border-brand bg-brand text-brand-foreground',
-                    current && 'border-brand text-brand',
-                    !done && !current && 'border-border text-muted-foreground',
-                  )}
-                >
-                  {done ? (
-                    <Check className="size-3.5" />
-                  ) : current ? (
-                    <Play className="size-3 fill-current" />
-                  ) : (
-                    i + 1
-                  )}
-                </span>
-                <span
-                  className={cn(
-                    'flex-1',
-                    !done && !current && 'text-muted-foreground',
-                  )}
-                >
-                  {lesson}
-                </span>
-                {done && (
-                  <span className="text-xs text-muted-foreground">
-                    {c.done}
-                  </span>
-                )}
-                {current && (
-                  <span className="text-xs font-medium text-brand">
-                    {c.current}
-                  </span>
-                )}
-              </li>
-            )
-          })}
-        </ol>
-      </div>
-    </div>
+                {h.seeProjects}
+                <ArrowDown className="size-4" />
+              </Link>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
+              >
+                <Mail className="size-4" />
+                {h.contactMe}
+              </a>
+            </div>
+          </div>
+        }
+      />
+    </section>
   )
 }
 
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
-  const groups = [
-    { category: 'learning', title: p.learning },
-    { category: 'design', title: p.design },
-  ]
 
   return (
     <section
       id="projets"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24"
     >
-      <SectionHeading eyebrow={p.eyebrow} title={p.title} text={p.text} />
+      <SectionHeading title={p.title} text={p.text} />
 
-      {groups.map((group) => (
-        <div key={group.category} className="mt-14">
-          <h3 className="text-xl font-semibold tracking-tight">
-            {group.title}
-          </h3>
-          <Carousel
-            label={group.title}
-            className="mt-6"
-            itemClassName="basis-[85%] sm:basis-[60%] md:basis-[45%]"
-          >
-            {t.projects
-              .filter((project) => project.category === group.category)
-              .map((project) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))}
-          </Carousel>
-        </div>
-      ))}
-    </section>
-  )
-}
-
-function ProjectCard({
-  project,
-}: {
-  project: ReturnType<typeof useI18n>['t']['projects'][number]
-}) {
-  const cover = getProjectMedia(project.slug)?.images[0]
-  const meta = [project.client, project.year].filter(Boolean).join(' · ')
-
-  return (
-    <Link
-      to="/projets/$slug"
-      params={{ slug: project.slug }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
-    >
-      {cover && (
-        <ProjectVisual
-          image={cover}
-          alt={project.gallery[0]}
-          className="aspect-[16/9] border-b border-border"
-        />
-      )}
-      <div className="p-6">
-        <p className="text-xs font-medium text-muted-foreground">{meta}</p>
-        <h4 className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
-          {project.title}
-          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
-        </h4>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {project.summary}
-        </p>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
-            >
-              {tag}
+      <ul className="mt-10 grid gap-4 sm:mt-14">
+        {t.projects.map((project) => {
+          const cover = getProjectMedia(project.slug)?.images[0]
+          const learning = project.category === 'learning'
+          const meta = [project.client, project.year]
+            .filter(Boolean)
+            .join(' · ')
+          return (
+            <li key={project.slug}>
+              <Link
+                to="/projets/$slug"
+                params={{ slug: project.slug }}
+                className="group grid gap-5 rounded-[1.75rem] border border-border bg-card/80 p-3 transition-[transform,box-shadow] duration-300 hover:shadow-xl hover:shadow-foreground/5 active:scale-[0.995] md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-8"
+              >
+                {cover && (
+                  <ProjectVisual
+                    image={cover}
+                    alt={project.gallery[0] ?? project.title}
+                    className="aspect-[16/10] rounded-[1.25rem]"
+                  />
+                )}
+                <div className="flex flex-col px-2 pb-3 md:py-4 md:pr-6">
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span
+                      className={cn(
+                        'size-2 rounded-full',
+                        learning ? 'bg-track-learning' : 'bg-track-design',
+                      )}
+                    />
+                    {learning ? p.learning : p.design}
+                    <span aria-hidden="true">·</span>
+                    {meta}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 max-w-prose leading-relaxed text-pretty text-muted-foreground">
+                    {project.summary}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
+                      >
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium">
+                    {p.open}
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </div>
+              </Link>
             </li>
-          ))}
-        </ul>
-      </div>
-    </Link>
+          )
+        })}
+      </ul>
+    </section>
   )
 }
 
@@ -291,30 +162,35 @@ function Services() {
   const s = t.home.services
 
   return (
-    <section className="border-y border-border/60 bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <SectionHeading eyebrow={s.eyebrow} title={s.title} />
-
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {s.items.map(({ title, text }, i) => {
-            const Icon = serviceIcons[i]
-            return (
-              <div
-                key={title}
-                className="rounded-3xl border border-border bg-card p-6"
-              >
-                <div className="grid size-10 place-items-center rounded-xl bg-brand/10 text-brand">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+      <SectionHeading title={s.title} />
+      <dl className="mt-10 grid gap-x-16 sm:mt-14 sm:grid-cols-2">
+        {s.items.map(({ title, text }, i) => {
+          const Icon = serviceIcons[i]
+          return (
+            <div
+              key={title}
+              className="flex gap-5 border-t border-border py-7 sm:py-8"
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-track-skill/15 text-track-skill">
+                <Icon
+                  aria-hidden="true"
+                  className="size-5"
+                  strokeWidth={1.75}
+                />
+              </span>
+              <div>
+                <dt className="text-lg font-semibold tracking-[-0.01em]">
+                  {title}
+                </dt>
+                <dd className="mt-2 max-w-md leading-relaxed text-pretty text-muted-foreground">
                   {text}
-                </p>
+                </dd>
               </div>
-            )
-          })}
-        </div>
-      </div>
+            </div>
+          )
+        })}
+      </dl>
     </section>
   )
 }
@@ -326,26 +202,27 @@ function About() {
   return (
     <section
       id="a-propos"
-      className="mx-auto grid max-w-6xl scroll-mt-20 gap-14 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2"
+      className="mx-auto grid max-w-7xl scroll-mt-24 gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20"
     >
       <div>
-        <SectionHeading eyebrow={a.eyebrow} title={a.title} />
-        <div className="mt-6 space-y-4 text-lg text-pretty text-muted-foreground">
+        <h2 className="text-4xl leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl">
+          {a.title}
+        </h2>
+        <div className="mt-8 max-w-xl space-y-4 text-lg leading-relaxed text-pretty text-muted-foreground">
           {a.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
       </div>
-
-      <div className="lg:pt-10">
+      <div className="lg:self-end">
         <h3 className="text-sm font-medium text-muted-foreground">
           {a.companiesTitle}
         </h3>
-        <ul className="mt-6 grid grid-cols-2 gap-4">
+        <ul className="mt-4 flex flex-wrap items-baseline gap-x-10 gap-y-2 border-t border-border pt-6">
           {companies.map((company) => (
             <li
               key={company}
-              className="grid h-28 place-items-center rounded-3xl border border-border bg-card font-heading text-2xl font-semibold tracking-tight"
+              className="font-heading text-5xl font-semibold tracking-[-0.04em] sm:text-6xl"
             >
               {company}
             </li>
@@ -356,48 +233,59 @@ function About() {
   )
 }
 
-function Contact() {
+/** Générique de fin : le contact, comme les dernières lignes d'un film. */
+function Credits() {
   const { t } = useI18n()
   const c = t.home.contact
 
   return (
     <section
       id="contact"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 sm:px-6 sm:pb-24"
     >
-      <div className="relative overflow-hidden rounded-[2rem] bg-foreground px-6 py-12 text-center text-background sm:px-8 sm:px-16 sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand/40 blur-3xl"
-        />
-        <h2 className="relative text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+      <div className="rounded-[2rem] bg-foreground px-6 py-16 text-center text-background sm:px-16 sm:py-24">
+        <h2 className="mx-auto max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl">
           {c.title}
         </h2>
-        <p className="relative mx-auto mt-4 max-w-lg text-background/70">
+        <p className="mx-auto mt-5 max-w-md text-lg text-background/70">
           {c.text}
         </p>
-        <div className="relative mt-8 flex flex-wrap justify-center gap-3">
+        <dl className="mx-auto mt-12 grid max-w-md gap-3 text-left">
+          <CreditLine label="E-mail">
+            <a
+              href={`mailto:${site.email}`}
+              className="underline-offset-4 hover:underline"
+            >
+              {site.email}
+            </a>
+          </CreditLine>
+          <CreditLine label="LinkedIn">
+            <a
+              href={site.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="underline-offset-4 hover:underline"
+            >
+              {site.name}
+            </a>
+          </CreditLine>
+        </dl>
+        <div className="mt-12 flex flex-wrap justify-center gap-2.5">
           <a
             href={`mailto:${site.email}`}
-            className={cn(
-              buttonVariants({ size: 'lg' }),
-              'h-11 bg-brand px-5 text-brand-foreground hover:bg-brand/90',
-            )}
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-background px-5 text-sm font-medium text-foreground transition-transform active:scale-[0.97]"
           >
-            <Mail data-icon="inline-start" />
+            <Mail className="size-4" />
             {c.email}
           </a>
           <a
             href={site.linkedinUrl}
             target="_blank"
             rel="noreferrer"
-            className={cn(
-              buttonVariants({ variant: 'ghost', size: 'lg' }),
-              'h-11 px-5 text-background hover:bg-background/10 hover:text-background',
-            )}
+            className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium text-background ring-1 ring-background/25 transition-[transform,background-color] hover:bg-background/10 active:scale-[0.97]"
           >
             {c.linkedin}
-            <ArrowRight data-icon="inline-end" />
+            <ArrowRight className="size-4" />
           </a>
         </div>
       </div>
@@ -405,22 +293,36 @@ function Contact() {
   )
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  text,
+function CreditLine({
+  label,
+  children,
 }: {
-  eyebrow: string
-  title: string
-  text?: string
+  label: string
+  children: React.ReactNode
 }) {
   return (
+    <div className="grid grid-cols-[1fr_auto_1fr] items-baseline gap-4">
+      <dt className="text-right text-sm text-background/60">{label}</dt>
+      <span
+        aria-hidden="true"
+        className="size-1 rounded-full bg-background/40"
+      />
+      <dd className="truncate font-medium">{children}</dd>
+    </div>
+  )
+}
+
+function SectionHeading({ title, text }: { title: string; text?: string }) {
+  return (
     <div className="max-w-2xl">
-      <p className="text-sm font-medium text-brand">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+      <h2 className="text-4xl leading-[1.02] font-semibold tracking-[-0.035em] sm:text-5xl">
         {title}
       </h2>
-      {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
+      {text && (
+        <p className="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+          {text}
+        </p>
+      )}
     </div>
   )
 }

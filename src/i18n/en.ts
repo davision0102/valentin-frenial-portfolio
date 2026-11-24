@@ -25,7 +25,6 @@ export const en: Dictionary = {
   },
   home: {
     hero: {
-      intro: 'Learning portfolio',
       hello: 'Hi, I’m',
       role: 'Digital learning project manager.',
       pitch:
@@ -33,33 +32,31 @@ export const en: Dictionary = {
       seeProjects: 'See my projects',
       contactMe: 'Get in touch',
       stats: [
-        { value: '12', label: 'languages for one project' },
-        { value: '6', label: 'modules shipped in 1 month' },
-        { value: '14', label: 'job videos shot and edited' },
+        {
+          value: '12',
+          label: 'languages for one project',
+          short: '12 languages',
+        },
+        {
+          value: '6',
+          label: 'modules shipped in 1 month',
+          short: '6 modules in 1 month',
+        },
+        {
+          value: '14',
+          label: 'job videos shot and edited',
+          short: '14 videos',
+        },
       ],
-      card: {
-        label: 'Module in progress',
-        title: 'Designing a course people enjoy',
-        progress: 'Module progress',
-        lessons: [
-          'Understand the need',
-          'Write the script',
-          'Produce the content',
-          'Launch and measure',
-        ],
-        done: 'Done',
-        current: 'In progress',
-      },
     },
     projects: {
-      eyebrow: 'Portfolio',
       title: 'My projects',
       text: 'Training for thousands of learners, plus a few design projects on the side.',
       learning: 'E-learning projects',
       design: 'Design projects',
+      open: 'View project',
     },
     services: {
-      eyebrow: 'What I do',
       title: 'From a training idea to a live online module.',
       items: [
         {
@@ -81,7 +78,6 @@ export const en: Dictionary = {
       ],
     },
     about: {
-      eyebrow: 'About',
       title: 'Teach, yes. Bore, never.',
       paragraphs: [
         'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
@@ -241,6 +237,16 @@ export const en: Dictionary = {
       results: [],
     },
   ],
+  reel: {
+    label: 'Project reel',
+    open: 'Open project',
+    play: 'Play',
+    pause: 'Pause',
+    previous: 'Previous clip',
+    next: 'Next clip',
+    hint: 'Click a clip to preview it, or use the arrow keys.',
+    tracks: { learning: 'E-learning', design: 'Design', skills: 'Skills' },
+  },
   carousel: {
     previous: 'Previous',
     next: 'Next',
