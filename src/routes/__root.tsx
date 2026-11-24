@@ -18,11 +18,11 @@ export const Route = createRootRoute({
 const navLinkClass =
   'rounded-full px-3 py-1.5 text-sm text-foreground/75 transition-colors hover:bg-foreground/5 hover:text-foreground'
 
-/** Liens du menu : les sections de la page d'accueil. */
+/** Liens du menu mobile : sections de l'accueil et page À propos. */
 const sections = [
-  { hash: 'projets', key: 'projects' },
-  { hash: 'a-propos', key: 'about' },
-  { hash: 'contact', key: 'contact' },
+  { to: '/', hash: 'projets', key: 'projects' },
+  { to: '/a-propos', hash: undefined, key: 'about' },
+  { to: '/', hash: 'contact', key: 'contact' },
 ] as const
 
 function RootLayout() {
@@ -51,11 +51,7 @@ function RootLayout() {
             >
               {t.nav.projects}
             </Link>
-            <Link
-              to="/"
-              hash="a-propos"
-              className={cn(navLinkClass, 'max-sm:hidden')}
-            >
+            <Link to="/a-propos" className={cn(navLinkClass, 'max-sm:hidden')}>
               {t.nav.about}
             </Link>
             <Link
@@ -91,9 +87,9 @@ function RootLayout() {
           >
             <ul className="grid">
               {sections.map((section) => (
-                <li key={section.hash}>
+                <li key={section.key}>
                   <Link
-                    to="/"
+                    to={section.to}
                     hash={section.hash}
                     onClick={() => setMenuOpen(false)}
                     className="block rounded-2xl px-4 py-3 text-lg font-medium transition-colors hover:bg-foreground/5"

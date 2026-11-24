@@ -81,8 +81,9 @@ export const fr = {
       title: 'Former, oui. Ennuyer, jamais.',
       paragraphs: [
         'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
-        'Chez Nexans et pendant mon alternance chez Chanel, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
+        'Chez Nexans puis chez Chanel, en alternance puis en poste, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
       ],
+      moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },
     contact: {
@@ -243,6 +244,141 @@ export const fr = {
       results: [],
     },
   ],
+  aboutPage: {
+    greetings: ['Bonjour', 'Hello', 'Hola'],
+    intro: 'moi c’est Valentin.',
+    role: 'Chef de projet Learning et designer',
+    profile: [
+      'Designer spécialisé en digital learning et en expériences pédagogiques, je conçois des e-learnings intuitifs, engageants et centrés utilisateur.',
+      'Habitué à collaborer avec des équipes RH, Finance et RSE, je transforme des contenus complexes en expériences de formation claires et impactantes.',
+      'Autonome et minutieux, je combine design, outils digitaux et analyse des résultats pour renforcer l’engagement des apprenants.',
+    ],
+    contact: 'Me contacter',
+    projects: 'Voir mes projets',
+    facts: [
+      { value: '50+', label: 'modules e-learning créés' },
+      { value: '8 000', label: 'utilisateurs sur la plateforme Nexans' },
+      { value: '150', label: 'artisans accompagnés dans 17 pays' },
+      { value: '3', label: 'plateformes LMS administrées' },
+    ],
+    journeyTitle: 'Mon parcours',
+    journeyText:
+      'Cinq ans à concevoir des formations, de l’alternance aux projets internationaux.',
+    jobs: [
+      {
+        period: 'Déc. 2025 – aujourd’hui',
+        role: 'Designer indépendant',
+        company: 'Valenteint Studio',
+        summary:
+          'Accompagnement de clients sur leurs projets de design et de communication, avec des supports web et print.',
+        highlights: [
+          'Visuels de communication et supports print pour une campagne d’élections municipales',
+          'Une page Catalogue Learning et 3 modules de formation pour le groupe Rémy Cointreau',
+        ],
+      },
+      {
+        period: 'Oct. 2025 – sept. 2026',
+        role: 'Chef de projet Digital Training',
+        company: 'Chanel',
+        summary:
+          'Création et déploiement d’un programme de développement des artisans dans 15 pays.',
+        highlights: [
+          '20 modules de formation technique conçus et rédigés',
+          'Mise à niveau d’anciens modules devenus obsolètes',
+          'Suivi des badges et des programmes certifiants',
+          'Participation aux KPI des Repair Centers',
+        ],
+      },
+      {
+        period: 'Sept. 2024 – oct. 2025',
+        role: 'Chef de projet Digital Training, en apprentissage',
+        company: 'Chanel',
+        summary:
+          'Développement de la plateforme de formation des artisans, à partir de l’analyse de leurs besoins.',
+        highlights: [
+          '16 modules de formation technique conçus et rédigés',
+          'Animation d’une communauté de 150 artisans dans 17 pays',
+          'Organisation des tournages vidéo et des formations en présentiel',
+          'Programme d’intégration pour les nouveaux artisans',
+        ],
+      },
+      {
+        period: 'Sept. 2021 – sept. 2024',
+        role: 'Webmaster & Digital Content Producer, en apprentissage',
+        company: 'Nexans',
+        summary:
+          'Réorganisation complète du parcours utilisateur de la plateforme pour mettre en avant les parcours d’apprentissage.',
+        highlights: [
+          'Administration de la plateforme pour plus de 8 000 utilisateurs (Cornerstone, CrossKnowledge, Edflex)',
+          '40 nouveaux e-learnings dans la direction artistique de la plateforme',
+          'Refonte de l’ergonomie et de la navigation des pages catalogue',
+          '25 pages HTML réalisées pour les LMS',
+        ],
+      },
+    ],
+    educationTitle: 'Formation',
+    education: [
+      {
+        period: '2023 – 2025',
+        title: 'Master Stratégie digitale & direction artistique',
+        school: 'EEMI',
+      },
+      {
+        period: '2020 – 2023',
+        title: 'Bachelor Gestion de projets digitaux & design',
+        school: 'EEMI',
+      },
+    ],
+    skillsTitle: 'Ma boîte à outils',
+    skills: [
+      {
+        title: 'Design',
+        items: [
+          'Instructional design',
+          'UX design',
+          'Scénarisation',
+          'Motion design',
+          'Design interactif',
+          'Hiérarchie visuelle',
+          'Gamification',
+          'Prototypage',
+        ],
+      },
+      {
+        title: 'Learning',
+        items: [
+          'Learning experience',
+          'Conception e-learning',
+          'Ingénierie pédagogique',
+          'Storyboarding',
+          'Admin LMS',
+          'Analyse des besoins',
+          'Suivi KPI',
+          'User-centered design',
+        ],
+      },
+      {
+        title: 'Outils',
+        items: [
+          'Figma',
+          'Suite Adobe',
+          'Articulate Storyline 360',
+          'HTML / CSS',
+          'WordPress',
+          'Excel',
+          'PowerPoint',
+        ],
+      },
+    ],
+    offTitle: 'En dehors du travail',
+    off: [
+      { title: 'Langues', text: 'Français, anglais et espagnol' },
+      { title: 'Voyages', text: 'Voyager et découvrir de nouvelles cultures' },
+      { title: 'Sport', text: 'Le sport fait partie de mon quotidien' },
+    ],
+    ctaTitle: 'On travaille ensemble ?',
+    ctaText: 'Pour un poste ou une mission, écrivez-moi.',
+  },
   carousel: {
     previous: 'Précédent',
     next: 'Suivant',

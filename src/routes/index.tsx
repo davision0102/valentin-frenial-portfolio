@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   ArrowDown,
@@ -10,6 +9,7 @@ import {
   Mail,
   Palette,
 } from 'lucide-react'
+import { Portrait } from '@/components/portrait'
 import { ProjectVisual } from '@/components/project-visual'
 import { Carousel } from '@/components/carousel'
 import { getProjectMedia } from '@/config/projects'
@@ -25,7 +25,7 @@ export const Route = createFileRoute('/')({
 const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 
 /** Entreprises (noms propres : identiques dans toutes les langues). */
-const companies = ['Nexans', 'Chanel']
+const companies = ['Nexans', 'Chanel', 'Rémy Cointreau']
 
 function HomePage() {
   return (
@@ -93,45 +93,12 @@ function Hero() {
           </ul>
         </div>
 
-        <HeroPhoto />
+        <Portrait
+          caption={companies.slice(0, 2).join(' · ')}
+          className="mx-auto max-w-[13rem] max-lg:order-first sm:max-w-xs lg:max-w-none"
+        />
       </div>
     </section>
-  )
-}
-
-/**
- * Photo de Valentin, en portrait. Déposer le fichier dans public/valentin.jpg :
- * il s'affiche tout seul. En attendant, ce sont ses initiales.
- */
-function HeroPhoto() {
-  const { t } = useI18n()
-  const [missing, setMissing] = useState(false)
-
-  return (
-    <figure className="relative mx-auto w-full max-w-[12rem] max-lg:order-first sm:max-w-xs lg:max-w-none">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl ring-1 shadow-brand/20 ring-border">
-        {missing ? (
-          <span
-            role="img"
-            aria-label={t.home.hero.photoAlt}
-            className="grid size-full place-items-center bg-linear-to-br from-spotlight to-brand font-heading text-7xl font-semibold tracking-[-0.04em] text-white"
-          >
-            {site.initials}
-          </span>
-        ) : (
-          <img
-            src={`${import.meta.env.BASE_URL}valentin.jpg`}
-            alt={t.home.hero.photoAlt}
-            onError={() => setMissing(true)}
-            className="size-full object-cover"
-          />
-        )}
-      </div>
-      <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium glass">
-        <span className="size-2 rounded-full bg-track-skill" />
-        {companies.join(' · ')}
-      </figcaption>
-    </figure>
   )
 }
 
@@ -266,17 +233,24 @@ function About() {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+        <Link
+          to="/a-propos"
+          className="group mt-8 inline-flex items-center gap-2 font-medium text-brand"
+        >
+          {a.moreAbout}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
 
       <div className="lg:pt-10">
         <h3 className="text-sm font-medium text-muted-foreground">
           {a.companiesTitle}
         </h3>
-        <ul className="mt-6 grid grid-cols-2 gap-4">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
           {companies.map((company) => (
             <li
               key={company}
-              className="grid h-28 place-items-center rounded-3xl border border-border bg-card font-heading text-2xl font-semibold tracking-tight"
+              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-4 text-center font-heading text-xl font-semibold tracking-tight"
             >
               {company}
             </li>

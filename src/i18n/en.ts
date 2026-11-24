@@ -79,8 +79,9 @@ export const en: Dictionary = {
       title: 'Teach, yes. Bore, never.',
       paragraphs: [
         'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
-        'At Nexans and during my work-study years at Chanel, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
+        'At Nexans, then at Chanel, first as a work-study student and then on staff, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
       ],
+      moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },
     contact: {
@@ -235,6 +236,141 @@ export const en: Dictionary = {
       results: [],
     },
   ],
+  aboutPage: {
+    greetings: ['Hello', 'Bonjour', 'Hola'],
+    intro: 'I’m Valentin.',
+    role: 'Learning project manager and designer',
+    profile: [
+      'A designer specialised in digital learning and learning experiences, I create e-learning that is intuitive, engaging and user-centred.',
+      'Used to working with HR, Finance and CSR teams, I turn complex content into clear, impactful learning experiences.',
+      'Independent and meticulous, I combine design, digital tools and results analysis to boost learner engagement.',
+    ],
+    contact: 'Get in touch',
+    projects: 'See my projects',
+    facts: [
+      { value: '50+', label: 'e-learning modules created' },
+      { value: '8,000', label: 'users on the Nexans platform' },
+      { value: '150', label: 'artisans supported in 17 countries' },
+      { value: '3', label: 'LMS platforms administered' },
+    ],
+    journeyTitle: 'My journey',
+    journeyText:
+      'Five years designing training, from work-study to international projects.',
+    jobs: [
+      {
+        period: 'Dec. 2025 – today',
+        role: 'Freelance designer',
+        company: 'Valenteint Studio',
+        summary:
+          'Helping clients with design and communication projects, with web and print materials.',
+        highlights: [
+          'Communication visuals and print materials for a municipal election campaign',
+          'A Learning Catalogue page and 3 training modules for the Rémy Cointreau group',
+        ],
+      },
+      {
+        period: 'Oct. 2025 – Sept. 2026',
+        role: 'Digital Training Project Manager',
+        company: 'Chanel',
+        summary:
+          'Creating and rolling out a development programme for artisans in 15 countries.',
+        highlights: [
+          '20 technical training modules designed and written',
+          'Outdated modules brought up to date',
+          'Tracking of badges and certification programmes',
+          'Contribution to Repair Center KPIs',
+        ],
+      },
+      {
+        period: 'Sept. 2024 – Oct. 2025',
+        role: 'Digital Training Project Manager, work-study',
+        company: 'Chanel',
+        summary:
+          'Developing the artisans’ training platform, based on an analysis of their needs.',
+        highlights: [
+          '16 technical training modules designed and written',
+          'Running a community of 150 artisans in 17 countries',
+          'Organising video shoots and in-person training',
+          'An onboarding programme for new artisans',
+        ],
+      },
+      {
+        period: 'Sept. 2021 – Sept. 2024',
+        role: 'Webmaster & Digital Content Producer, work-study',
+        company: 'Nexans',
+        summary:
+          'A complete redesign of the platform’s user journey to put learning paths first.',
+        highlights: [
+          'Platform administration for 8,000+ users (Cornerstone, CrossKnowledge, Edflex)',
+          '40 new e-learning modules in the platform’s art direction',
+          'Catalogue pages redesigned for usability and navigation',
+          '25 HTML pages built for the LMS',
+        ],
+      },
+    ],
+    educationTitle: 'Education',
+    education: [
+      {
+        period: '2023 – 2025',
+        title: 'Master’s in Digital Strategy & Art Direction',
+        school: 'EEMI',
+      },
+      {
+        period: '2020 – 2023',
+        title: 'Bachelor’s in Digital Project Management & Design',
+        school: 'EEMI',
+      },
+    ],
+    skillsTitle: 'My toolbox',
+    skills: [
+      {
+        title: 'Design',
+        items: [
+          'Instructional design',
+          'UX design',
+          'Scripting',
+          'Motion design',
+          'Interactive design',
+          'Visual hierarchy',
+          'Gamification',
+          'Prototyping',
+        ],
+      },
+      {
+        title: 'Learning',
+        items: [
+          'Learning experience',
+          'E-learning design',
+          'Instructional engineering',
+          'Storyboarding',
+          'LMS admin',
+          'Needs analysis',
+          'KPI tracking',
+          'User-centred design',
+        ],
+      },
+      {
+        title: 'Tools',
+        items: [
+          'Figma',
+          'Adobe Suite',
+          'Articulate Storyline 360',
+          'HTML / CSS',
+          'WordPress',
+          'Excel',
+          'PowerPoint',
+        ],
+      },
+    ],
+    offTitle: 'Outside work',
+    off: [
+      { title: 'Languages', text: 'French, English and Spanish' },
+      { title: 'Travel', text: 'Travelling and discovering new cultures' },
+      { title: 'Sport', text: 'Sport is part of my daily life' },
+    ],
+    ctaTitle: 'Shall we work together?',
+    ctaText: 'For a role or a project, drop me a line.',
+  },
   carousel: {
     previous: 'Previous',
     next: 'Next',
