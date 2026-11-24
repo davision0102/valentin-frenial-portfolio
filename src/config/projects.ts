@@ -43,11 +43,34 @@ export const projectMedia: ProjectMedia[] = [
       { file: 'onboarding-artisans-2.jpg', fit: 'cover' },
       { file: 'onboarding-artisans-1.jpg', fit: 'contain' },
       { file: 'onboarding-artisans-3.jpg', fit: 'contain' },
+      { file: 'onboarding-artisans-4.jpg', fit: 'contain' },
     ],
   },
   {
     slug: 'kit-chanel-25',
     images: [{ file: 'kit-chanel-25-1.jpg', fit: 'contain' }],
+  },
+  {
+    slug: 'campagne-municipale',
+    images: [
+      { file: 'campagne-municipale-1.jpg', fit: 'contain' },
+      { file: 'campagne-municipale-2.jpg', fit: 'contain' },
+      { file: 'campagne-municipale-3.jpg', fit: 'contain' },
+      { file: 'campagne-municipale-4.jpg', fit: 'contain' },
+      { file: 'campagne-municipale-5.jpg', fit: 'contain' },
+    ],
+  },
+  {
+    slug: 'ico',
+    images: [
+      { file: 'ico-1.jpg', fit: 'contain' },
+      { file: 'ico-2.jpg', fit: 'contain' },
+      { file: 'ico-3.jpg', fit: 'contain' },
+      { file: 'ico-4.jpg', fit: 'contain' },
+      { file: 'ico-5.jpg', fit: 'contain' },
+      { file: 'ico-6.jpg', fit: 'contain' },
+      { file: 'ico-7.jpg', fit: 'contain' },
+    ],
   },
   {
     slug: 'minute-metier',

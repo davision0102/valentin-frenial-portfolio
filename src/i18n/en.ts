@@ -157,6 +157,7 @@ export const en: Dictionary = {
         'The “Collect all the badges” video',
         'The platform homepage',
         'A first-steps tutorial',
+        'First steps on the platform and the video module',
       ],
       summary:
         'An onboarding programme for new artisans, which I suggested and then built on my own.',
@@ -189,6 +190,61 @@ export const en: Dictionary = {
         { value: '1 month', label: 'to produce everything' },
         { value: '6', label: 'demo videos' },
       ],
+    },
+    {
+      slug: 'campagne-municipale',
+      category: 'design',
+      title: '2026 municipal campaign',
+      client: 'Ensemble pour Thorigny list',
+      year: '2026',
+      format: 'Print materials',
+      role: 'Freelance designer',
+      tags: ['Print', 'Communication', 'Freelance'],
+      gallery: [
+        'The campaign poster',
+        'The 35-actions leaflet, with the town map',
+        'The first-round circular',
+        'The second-round circular',
+        'The ballot paper',
+      ],
+      summary:
+        'Print materials for a list running in the March 2026 municipal and community elections: poster, leaflets, circulars and ballot paper.',
+      challenge:
+        'A two-round campaign, with materials to produce fast, readable at a glance and consistent from the first document to the last.',
+      solution:
+        'As a freelancer, I designed the communication visuals and produced the campaign’s print materials in one shared identity: poster, leaflets, circulars for both rounds and the ballot paper.',
+      note: '',
+      results: [
+        { value: '5', label: 'print materials' },
+        { value: '2', label: 'campaign rounds' },
+      ],
+    },
+    {
+      slug: 'ico',
+      category: 'design',
+      title: 'ICO!: a pirate card game',
+      client: 'Workshop',
+      year: '',
+      format: 'Brand guidelines and packaging',
+      role: '',
+      tags: ['Branding', 'Illustration', 'Packaging'],
+      gallery: [
+        'The brand guidelines cover',
+        'The game cards',
+        'The cards in context',
+        'The game boxes',
+        'The Pirate card',
+        'The captain pawn, shaped like a ship’s wheel',
+        'A social media post',
+      ],
+      summary:
+        'The complete identity of a hidden-role card game set in a pirate world: logo, colours, typefaces, cards, box and social media.',
+      challenge:
+        'Lost in the Caribbean, sailors must unmask the pirates hiding in their crew. Up against Werewolves of Millers Hollow, the game had to stand out with a friendlier world.',
+      solution:
+        'Complete brand guidelines: a ship’s-wheel logo, a bright palette, typefaces, illustrations for every card, the box, a captain pawn and Instagram posts, plus a benchmark of competing games.',
+      note: '',
+      results: [],
     },
     {
       slug: 'minute-metier',

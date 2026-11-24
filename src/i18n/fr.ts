@@ -162,6 +162,7 @@ export const fr = {
         'La vidéo « Collect all the badges »',
         'L’accueil de la plateforme',
         'Un tutoriel des premiers pas',
+        'Les premiers pas sur la plateforme et le module vidéo',
       ],
       summary:
         'Un programme d’accueil pour les nouveaux artisans, que j’ai proposé puis réalisé en autonomie.',
@@ -194,6 +195,61 @@ export const fr = {
         { value: '1 mois', label: 'pour tout produire' },
         { value: '6', label: 'vidéos de démonstration' },
       ],
+    },
+    {
+      slug: 'campagne-municipale',
+      category: 'design',
+      title: 'Campagne municipale 2026',
+      client: 'Liste Ensemble pour Thorigny',
+      year: '2026',
+      format: 'Supports print',
+      role: 'Designer indépendant',
+      tags: ['Print', 'Communication', 'Freelance'],
+      gallery: [
+        'L’affiche de campagne',
+        'Le tract des 35 actions, avec la carte de la ville',
+        'La circulaire du premier tour',
+        'La circulaire du second tour',
+        'Le bulletin de vote',
+      ],
+      summary:
+        'Les supports print d’une liste aux élections municipales et communautaires de mars 2026 : affiche, tracts, circulaires et bulletin de vote.',
+      challenge:
+        'Une campagne en deux tours, avec des supports à produire vite, lisibles d’un coup d’œil et cohérents du premier au dernier document.',
+      solution:
+        'En indépendant, j’ai conçu les visuels de communication et réalisé les supports print de la campagne, dans une identité commune : affiche, tracts, circulaires des deux tours et bulletin de vote.',
+      note: '',
+      results: [
+        { value: '5', label: 'supports print' },
+        { value: '2', label: 'tours de campagne' },
+      ],
+    },
+    {
+      slug: 'ico',
+      category: 'design',
+      title: 'ICO! : un jeu de cartes de pirates',
+      client: 'Workshop',
+      year: '',
+      format: 'Charte graphique et packaging',
+      role: '',
+      tags: ['Branding', 'Illustration', 'Packaging'],
+      gallery: [
+        'La couverture de la charte graphique',
+        'Les cartes du jeu',
+        'Les cartes en situation',
+        'Les boîtes du jeu',
+        'La carte Pirate',
+        'Le pion capitaine, en forme de gouvernail',
+        'Un post pour les réseaux sociaux',
+      ],
+      summary:
+        'L’identité complète d’un jeu de cartes à rôles cachés dans l’univers des pirates : logo, couleurs, typographies, cartes, boîte et réseaux sociaux.',
+      challenge:
+        'Perdus dans la mer des Caraïbes, des marins doivent démasquer les pirates cachés dans leur équipage. Face aux Loups-Garous de Thiercelieux, le jeu devait se démarquer par un univers plus accueillant.',
+      solution:
+        'Une charte graphique complète : logo au gouvernail, palette vive, typographies, illustrations de chaque carte, boîte, pion capitaine et posts Instagram, avec un benchmark des jeux concurrents.',
+      note: '',
+      results: [],
     },
     {
       slug: 'minute-metier',
