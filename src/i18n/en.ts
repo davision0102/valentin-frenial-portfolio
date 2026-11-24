@@ -20,9 +20,6 @@ export const en: Dictionary = {
   footer: {
     role: 'Digital learning project manager',
   },
-  draft: {
-    text: 'Draft: some details (contact, bio) are still placeholders.',
-  },
   home: {
     hero: {
       photoAlt: 'Photo of Valentin Frenial',

@@ -22,9 +22,6 @@ export const fr = {
   footer: {
     role: 'Chef de projet digital e-learning',
   },
-  draft: {
-    text: 'Ébauche : certaines informations (contact, présentation) sont encore provisoires.',
-  },
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',

@@ -32,11 +32,6 @@ function RootLayout() {
 
   return (
     <div className="flex min-h-svh flex-col">
-      {/* Bandeau d'ébauche : à supprimer quand le contenu est définitif. */}
-      <p className="bg-spotlight px-4 py-2 text-center text-xs font-medium text-white">
-        {t.draft.text}
-      </p>
-
       {/* Barre de verre flottante, le contenu défile dessous. */}
       <header className="sticky top-3 z-40 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-6">
         <div className="flex h-14 items-center justify-between gap-3 rounded-full pr-2 pl-2 glass">
