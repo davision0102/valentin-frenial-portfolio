@@ -31,7 +31,16 @@ function RootLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex min-h-svh flex-col">
+    <div className="relative isolate flex min-h-svh flex-col">
+      {/* Halos de couleur derrière le haut de chaque page, barre comprise,
+          avec un fondu vers le bas : pas de coupure sous l'en-tête. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[56rem] overflow-hidden [mask-image:linear-gradient(to_bottom,black_45%,transparent)]"
+      >
+        <div className="absolute -top-48 -left-32 size-[38rem] rounded-full bg-brand/22 blur-[120px]" />
+        <div className="absolute -top-24 -right-32 size-[32rem] rounded-full bg-track-design/18 blur-[120px]" />
+      </div>
       {/* Barre de verre flottante, le contenu défile dessous. */}
       <header className="sticky top-3 z-40 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-6">
         <div className="flex h-14 items-center justify-between gap-3 rounded-full pr-2 pl-2 glass">

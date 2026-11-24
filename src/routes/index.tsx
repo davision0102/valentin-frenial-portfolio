@@ -44,16 +44,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Halos de couleur tirés de la palette, derrière le haut de page. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <div className="absolute -top-40 -left-32 size-[34rem] rounded-full bg-brand/25 blur-[110px]" />
-        <div className="absolute top-10 -right-24 size-[28rem] rounded-full bg-track-design/20 blur-[110px]" />
-      </div>
-
+    <section>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <div className="min-w-0">
           <h1 className="text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">

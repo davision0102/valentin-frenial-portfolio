@@ -241,135 +241,38 @@ export const en: Dictionary = {
     intro: 'I’m Valentin.',
     role: 'Learning project manager and designer',
     profile: [
-      'A designer specialised in digital learning and learning experiences, I create e-learning that is intuitive, engaging and user-centred.',
-      'Used to working with HR, Finance and CSR teams, I turn complex content into clear, impactful learning experiences.',
-      'Independent and meticulous, I combine design, digital tools and results analysis to boost learner engagement.',
+      'I design digital training that is intuitive, engaging and built around the people who take it.',
+      'Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
     ],
+    downloadCv: 'Download my CV',
     contact: 'Get in touch',
-    projects: 'See my projects',
-    facts: [
-      { value: '50+', label: 'e-learning modules created' },
-      { value: '8,000', label: 'users on the Nexans platform' },
-      { value: '150', label: 'artisans supported in 17 countries' },
-      { value: '3', label: 'LMS platforms administered' },
-    ],
-    journeyTitle: 'My journey',
-    journeyText:
-      'Five years designing training, from work-study to international projects.',
-    jobs: [
+    valuesTitle: 'How I work',
+    values: [
       {
-        period: 'Dec. 2025 – today',
-        role: 'Freelance designer',
-        company: 'Valenteint Studio',
-        summary:
-          'Helping clients with design and communication projects, with web and print materials.',
-        highlights: [
-          'Communication visuals and print materials for a municipal election campaign',
-          'A Learning Catalogue page and 3 training modules for the Rémy Cointreau group',
-        ],
+        title: 'Start with the learners',
+        text: 'I analyse their needs before designing anything: good training is useful first.',
       },
       {
-        period: 'Oct. 2025 – Sept. 2026',
-        role: 'Digital Training Project Manager',
-        company: 'Chanel',
-        summary:
-          'Creating and rolling out a development programme for artisans in 15 countries.',
-        highlights: [
-          '20 technical training modules designed and written',
-          'Outdated modules brought up to date',
-          'Tracking of badges and certification programmes',
-          'Contribution to Repair Center KPIs',
-        ],
+        title: 'Make the complex simple',
+        text: 'With HR, Finance or CSR teams, I turn technical content into clear, visual learning paths.',
       },
       {
-        period: 'Sept. 2024 – Oct. 2025',
-        role: 'Digital Training Project Manager, work-study',
-        company: 'Chanel',
-        summary:
-          'Developing the artisans’ training platform, based on an analysis of their needs.',
-        highlights: [
-          '16 technical training modules designed and written',
-          'Running a community of 150 artisans in 17 countries',
-          'Organising video shoots and in-person training',
-          'An onboarding programme for new artisans',
-        ],
-      },
-      {
-        period: 'Sept. 2021 – Sept. 2024',
-        role: 'Webmaster & Digital Content Producer, work-study',
-        company: 'Nexans',
-        summary:
-          'A complete redesign of the platform’s user journey to put learning paths first.',
-        highlights: [
-          'Platform administration for 8,000+ users (Cornerstone, CrossKnowledge, Edflex)',
-          '40 new e-learning modules in the platform’s art direction',
-          'Catalogue pages redesigned for usability and navigation',
-          '25 HTML pages built for the LMS',
-        ],
+        title: 'Measure to improve',
+        text: 'I track results and learner engagement to make every module better.',
       },
     ],
-    educationTitle: 'Education',
-    education: [
-      {
-        period: '2023 – 2025',
-        title: 'Master’s in Digital Strategy & Art Direction',
-        school: 'EEMI',
-      },
-      {
-        period: '2020 – 2023',
-        title: 'Bachelor’s in Digital Project Management & Design',
-        school: 'EEMI',
-      },
-    ],
-    skillsTitle: 'My toolbox',
-    skills: [
-      {
-        title: 'Design',
-        items: [
-          'Instructional design',
-          'UX design',
-          'Scripting',
-          'Motion design',
-          'Interactive design',
-          'Visual hierarchy',
-          'Gamification',
-          'Prototyping',
-        ],
-      },
-      {
-        title: 'Learning',
-        items: [
-          'Learning experience',
-          'E-learning design',
-          'Instructional engineering',
-          'Storyboarding',
-          'LMS admin',
-          'Needs analysis',
-          'KPI tracking',
-          'User-centred design',
-        ],
-      },
-      {
-        title: 'Tools',
-        items: [
-          'Figma',
-          'Adobe Suite',
-          'Articulate Storyline 360',
-          'HTML / CSS',
-          'WordPress',
-          'Excel',
-          'PowerPoint',
-        ],
-      },
-    ],
+    storyTitle: 'My story, in short',
+    story:
+      'Trained at EEMI in digital project management and art direction, I learned the ropes as a work-study student at Nexans, then at Chanel, where I designed training for artisans around the world. Today I also work as a freelancer with Valenteint Studio.',
     offTitle: 'Outside work',
     off: [
       { title: 'Languages', text: 'French, English and Spanish' },
       { title: 'Travel', text: 'Travelling and discovering new cultures' },
-      { title: 'Sport', text: 'Sport is part of my daily life' },
+      { title: 'Sport', text: 'Sports, a real passion of mine' },
     ],
-    ctaTitle: 'Shall we work together?',
-    ctaText: 'For a role or a project, drop me a line.',
+    ctaTitle: 'Want to know more?',
+    ctaText:
+      'My whole journey fits on one page: download my CV or drop me a line.',
   },
   carousel: {
     previous: 'Previous',
