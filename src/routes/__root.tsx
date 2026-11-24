@@ -43,7 +43,7 @@ function RootLayout() {
       </div>
       {/* Barre de verre flottante, le contenu défile dessous. */}
       <header className="sticky top-3 z-40 mx-auto mt-3 w-full max-w-7xl px-3 sm:px-6">
-        <div className="flex h-14 items-center justify-between gap-3 rounded-full pr-2 pl-2 glass">
+        <div className="flex h-12 items-center justify-between gap-3 rounded-full pr-1.5 pl-1.5 glass">
           <Link
             to="/"
             aria-label={`${site.name}, ${t.nav.homeLabel}`}
@@ -66,12 +66,10 @@ function RootLayout() {
             <Link
               to="/"
               hash="contact"
-              className="mx-1 inline-flex h-9 items-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-transform active:scale-[0.97] max-sm:hidden"
+              className="ml-1 inline-flex h-9 items-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-transform active:scale-[0.97] max-sm:hidden"
             >
               {t.nav.contact}
             </Link>
-            <ThemeToggle />
-            <LanguageSwitch />
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
@@ -108,6 +106,10 @@ function RootLayout() {
                 </li>
               ))}
             </ul>
+            <div className="mt-1 flex items-center justify-between border-t border-border px-2 pt-3 pb-1">
+              <ThemeToggle />
+              <LanguageSwitch />
+            </div>
           </nav>
         )}
       </header>
@@ -121,7 +123,7 @@ function RootLayout() {
           <p>
             © {new Date().getFullYear()} {site.name} · {t.footer.role}
           </p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <a href={`mailto:${site.email}`} className="hover:text-foreground">
               {site.email}
             </a>
@@ -133,6 +135,11 @@ function RootLayout() {
             >
               LinkedIn
             </a>
+            <span aria-hidden="true" className="h-4 w-px bg-border" />
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <LanguageSwitch />
+            </div>
           </div>
         </div>
       </footer>

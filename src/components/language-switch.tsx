@@ -1,7 +1,7 @@
 import { LANGS, useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
-/** Sélecteur FR / EN affiché dans l'en-tête. */
+/** Sélecteur FR / EN (pied de page et menu mobile). */
 export function LanguageSwitch() {
   const { lang, setLang, t } = useI18n()
 
