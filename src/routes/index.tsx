@@ -13,7 +13,6 @@ import {
 import { ProjectVisual } from '@/components/project-visual'
 import { Carousel } from '@/components/carousel'
 import { getProjectMedia } from '@/config/projects'
-import { imageUrl } from '@/config/projects'
 import { buttonVariants } from '@/components/ui/button'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
@@ -43,92 +42,96 @@ function HomePage() {
 function Hero() {
   const { t } = useI18n()
   const h = t.home.hero
-  const backdrop = getProjectMedia(t.projects[1].slug)?.images[0]?.file
 
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Halo coloré derrière le haut de page : un visuel de projet très flouté. */}
-      {backdrop && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black_40%,transparent)]"
-        >
-          <img
-            src={imageUrl(backdrop)}
-            alt=""
-            className="size-full scale-125 object-cover opacity-[var(--ambient-opacity)] blur-[90px] saturate-150"
-          />
-        </div>
-      )}
-      <div className="mx-auto max-w-5xl px-4 pt-16 pb-16 text-center sm:px-6 sm:pt-24 sm:pb-24">
-        <HeroPhoto />
-        <h1 className="mx-auto mt-8 text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-          {h.hello} {site.name.split(' ')[0]}.
-          <span className="block text-muted-foreground">{h.role}</span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
-          {h.pitch}
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-          <Link
-            to="/"
-            hash="projets"
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
-          >
-            {h.seeProjects}
-            <ArrowDown className="size-4" />
-          </Link>
-          <a
-            href={`mailto:${site.email}`}
-            className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
-          >
-            <Mail className="size-4" />
-            {h.contactMe}
-          </a>
-        </div>
-        <ul className="mt-10 flex flex-wrap justify-center gap-2">
-          {h.stats.map((stat) => (
-            <li
-              key={stat.label}
-              className="rounded-full px-4 py-2 text-sm glass"
+      {/* Halos de couleur tirés de la palette, derrière le haut de page. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute -top-40 -left-32 size-[34rem] rounded-full bg-brand/25 blur-[110px]" />
+        <div className="absolute top-10 -right-24 size-[28rem] rounded-full bg-track-design/20 blur-[110px]" />
+      </div>
+
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
+        <div className="min-w-0">
+          <h1 className="text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+            {h.hello} {site.name.split(' ')[0]}.
+            <span className="block text-muted-foreground">{h.role}</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
+            {h.pitch}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-2.5">
+            <Link
+              to="/"
+              hash="projets"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
             >
-              <span className="font-semibold">{stat.value}</span>{' '}
-              <span className="text-muted-foreground">{stat.label}</span>
-            </li>
-          ))}
-        </ul>
+              {h.seeProjects}
+              <ArrowDown className="size-4" />
+            </Link>
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
+            >
+              <Mail className="size-4" />
+              {h.contactMe}
+            </a>
+          </div>
+          <ul className="mt-10 flex flex-wrap gap-2">
+            {h.stats.map((stat) => (
+              <li
+                key={stat.label}
+                className="rounded-full px-4 py-2 text-sm glass"
+              >
+                <span className="font-semibold">{stat.value}</span>{' '}
+                <span className="text-muted-foreground">{stat.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <HeroPhoto />
       </div>
     </section>
   )
 }
 
 /**
- * Photo de Valentin. Déposer le fichier dans public/valentin.jpg : il
- * s'affiche tout seul. En attendant, ce sont ses initiales.
+ * Photo de Valentin, en portrait. Déposer le fichier dans public/valentin.jpg :
+ * il s'affiche tout seul. En attendant, ce sont ses initiales.
  */
 function HeroPhoto() {
   const { t } = useI18n()
   const [missing, setMissing] = useState(false)
 
   return (
-    <div className="mx-auto grid size-32 place-items-center rounded-full p-1.5 glass sm:size-36">
-      {missing ? (
-        <span
-          role="img"
-          aria-label={t.home.hero.photoAlt}
-          className="grid size-full place-items-center rounded-full bg-spotlight font-heading text-4xl font-semibold tracking-[-0.03em] text-white"
-        >
-          {site.initials}
-        </span>
-      ) : (
-        <img
-          src={`${import.meta.env.BASE_URL}valentin.jpg`}
-          alt={t.home.hero.photoAlt}
-          onError={() => setMissing(true)}
-          className="size-full rounded-full object-cover"
-        />
-      )}
-    </div>
+    <figure className="relative mx-auto w-full max-w-[12rem] max-lg:order-first sm:max-w-xs lg:max-w-none">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl ring-1 shadow-brand/20 ring-border">
+        {missing ? (
+          <span
+            role="img"
+            aria-label={t.home.hero.photoAlt}
+            className="grid size-full place-items-center bg-linear-to-br from-spotlight to-brand font-heading text-7xl font-semibold tracking-[-0.04em] text-white"
+          >
+            {site.initials}
+          </span>
+        ) : (
+          <img
+            src={`${import.meta.env.BASE_URL}valentin.jpg`}
+            alt={t.home.hero.photoAlt}
+            onError={() => setMissing(true)}
+            className="size-full object-cover"
+          />
+        )}
+      </div>
+      <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium glass">
+        <span className="size-2 rounded-full bg-track-skill" />
+        {companies.join(' · ')}
+      </figcaption>
+    </figure>
   )
 }
 
