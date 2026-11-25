@@ -52,21 +52,6 @@ function AboutPage() {
         <p className="mt-6 text-lg leading-relaxed text-pretty text-muted-foreground">
           {a.text}
         </p>
-        {/* Chiffres clés : trois pastilles douces. */}
-        <dl className="mt-8 flex flex-wrap justify-center gap-2">
-          {t.home.hero.stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
-            >
-              <dt className="sr-only">{stat.label}</dt>
-              <dd className="font-heading text-base font-semibold text-heading tabular-nums">
-                {stat.value}
-              </dd>
-              <dd className="text-sm text-muted-foreground">{stat.label}</dd>
-            </div>
-          ))}
-        </dl>
       </header>
 
       {/* Grand écran : éventail de photos qui se chevauchent, celle survolée

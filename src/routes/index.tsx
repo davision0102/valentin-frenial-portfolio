@@ -34,6 +34,7 @@ function HomePage() {
     <>
       <Hero />
       <Projects />
+      <Clients />
       <Services />
     </>
   )
@@ -53,14 +54,15 @@ function Hero() {
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
-      {/* Le bandeau est dans le flux ; sur grand écran, la ligne du dessous
-          remonte un peu pour que la photo passe devant lui. */}
+      {/* Le bandeau de salutations, puis le texte et la photo, centrés
+          l'un par rapport à l'autre. */}
       <GreetingsMarquee words={h.greetings} />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:pt-0">
         {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
-            en grand, détail en plus discret, puis les tout aligné sur le bas de la photo. */}
-        <div className="max-w-xl lg:mt-20">
+            en grand, détail en plus discret, puis les chiffres en pastilles,
+            le tout aligné sur le bas de la photo. */}
+        <div className="max-w-xl">
           <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
             {h.role.replace(/\.$/, '')}
           </p>
@@ -70,11 +72,26 @@ function Hero() {
           <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
             {h.bio[1]}
           </p>
+          {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
+          <dl className="mt-6 flex flex-wrap gap-2">
+            {h.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
+              >
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="font-heading text-base font-semibold text-heading tabular-nums">
+                  {stat.value}
+                </dd>
+                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
             pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(24vw,22rem)] lg:max-w-none lg:self-end">
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
           <img
             src={`${import.meta.env.BASE_URL}valentin.png`}
             alt={h.photoAlt}
@@ -126,6 +143,33 @@ function GreetingsMarquee({
   )
 }
 
+/** Sous les projets : les entreprises pour lesquelles ils ont été faits, centrées. */
+function Clients() {
+  const { t } = useI18n()
+
+  return (
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 pb-16 text-center sm:px-8 sm:pb-24 lg:px-16">
+      <h2 className="text-sm font-normal text-muted-foreground">
+        {t.home.about.companiesTitle}
+      </h2>
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-16">
+        {companies.map((company) => (
+          // Logo d'une seule couleur (celle du texte) : il suit le thème.
+          <span
+            key={company.name}
+            role="img"
+            aria-label={company.name}
+            className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
+            style={{
+              maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+            }}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
@@ -147,27 +191,6 @@ function Projects() {
       </div>
 
       <ProjectsMarquee />
-
-      {/* Sous les projets : les entreprises pour lesquelles ils ont été faits. */}
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 px-5 sm:mt-16 sm:flex-row sm:items-center sm:gap-10 sm:px-8 lg:px-16">
-        <p className="shrink-0 text-sm text-muted-foreground">
-          {t.home.about.companiesTitle}
-        </p>
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-4 sm:gap-x-10">
-          {companies.map((company) => (
-            // Logo d'une seule couleur (celle du texte) : il suit le thème.
-            <span
-              key={company.name}
-              role="img"
-              aria-label={company.name}
-              className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat] sm:w-28"
-              style={{
-                maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
     </section>
   )
 }
