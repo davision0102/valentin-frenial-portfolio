@@ -51,10 +51,8 @@ export function PagedCarousel({
         if (event.key === 'ArrowLeft') go(current - 1)
       }}
     >
-      {/* Marges négatives + intérieures : les ombres des cartes ne sont pas
-          coupées, sans laisser apparaître la carte suivante. */}
       <div
-        className="-mx-3 -my-4 touch-pan-y overflow-hidden px-3 py-4"
+        className="touch-pan-y overflow-hidden"
         onPointerDown={(event) => {
           if (event.pointerType === 'touch') touchStart.current = event.clientX
         }}
@@ -94,12 +92,23 @@ export function PagedCarousel({
 
       {maxIndex > 0 && (
         <div className="mt-6 flex items-center justify-between gap-4">
-          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground tabular-nums">
-            {String(current + 1).padStart(2, '0')}
-            {perView > 1 && `–${String(current + perView).padStart(2, '0')}`}
-            {' / '}
-            {String(items.length).padStart(2, '0')}
-          </p>
+          {/* Un point par position ; celui de la position actuelle s'allonge. */}
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: maxIndex + 1 }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => go(i)}
+                aria-label={t.carousel.goTo(i + 1)}
+                aria-current={i === current}
+                className={
+                  i === current
+                    ? 'h-2 w-6 rounded-full bg-brand transition-all duration-300'
+                    : 'h-2 w-2 rounded-full bg-border transition-all duration-300 hover:bg-muted-foreground/50'
+                }
+              />
+            ))}
+          </div>
           <div className="flex gap-2">
             <button
               type="button"
