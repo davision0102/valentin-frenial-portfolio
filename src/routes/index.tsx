@@ -215,8 +215,8 @@ function Projects() {
 }
 
 /**
- * Savoir-faire : une liste éditoriale. Chaque ligne donne un numéro, un
- * intitulé en grand et une phrase ; au survol, l'intitulé glisse un peu.
+ * Savoir-faire : quatre blocs doux en grille (deux par ligne sur grand
+ * écran), sans traits : un numéro, un intitulé et une phrase.
  */
 function Services() {
   const { t } = useI18n()
@@ -224,28 +224,26 @@ function Services() {
 
   return (
     <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
-      <div className="border-t border-border pt-16 sm:pt-24">
-        <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
+      <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-        <ol className="mt-10 border-t border-border sm:mt-12">
-          {s.items.map(({ title, text }, i) => (
-            <li
-              key={title}
-              className="group grid gap-3 border-b border-border py-8 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-x-8 lg:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1fr)] lg:items-baseline lg:gap-x-16 lg:py-10"
-            >
-              <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="text-2xl font-semibold tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-2 motion-reduce:group-hover:translate-x-0 sm:text-3xl">
-                {title}
-              </h3>
-              <p className="max-w-md leading-relaxed text-pretty text-muted-foreground sm:col-start-2 lg:col-start-3">
-                {text}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
+      <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6">
+        {s.items.map(({ title, text }, i) => (
+          <li
+            key={title}
+            className="group rounded-2xl bg-secondary/70 p-8 transition-colors duration-300 hover:bg-secondary sm:p-10"
+          >
+            <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 className="mt-6 text-2xl font-semibold tracking-tight sm:mt-10 sm:text-3xl">
+              {title}
+            </h3>
+            <p className="mt-3 max-w-md leading-relaxed text-pretty text-muted-foreground">
+              {text}
+            </p>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

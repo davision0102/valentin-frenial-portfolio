@@ -27,18 +27,15 @@ export function SiteFooter() {
   const f = t.footer
 
   return (
-    <footer
-      id={contactId}
-      className="scroll-mt-4 border-t border-border bg-ink text-foreground"
-    >
+    <footer id={contactId} className="scroll-mt-4 bg-ink text-foreground">
       <div className="mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16">
-        <h2 className="max-w-2xl pt-12 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-16 sm:text-6xl">
+        <h2 className="max-w-2xl pt-16 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-24 sm:text-6xl">
           {f.title}
         </h2>
 
         {/* À gauche : contact et formulaire. À droite : les colonnes de liens,
             deux par deux. Les deux côtés ont chacun leur hauteur. */}
-        <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
+        <div className="mt-12 grid gap-12 sm:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
           <div className="max-w-lg">
             <p className={labelClass}>{f.contact}</p>
             <button
@@ -92,7 +89,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-12">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-20">
           <p>
             © {new Date().getFullYear()} {site.name}
           </p>
