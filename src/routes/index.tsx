@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
-import { Carousel } from '@/components/carousel'
+import { PagedCarousel } from '@/components/paged-carousel'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { buttonOutline } from '@/lib/ui'
@@ -188,18 +188,13 @@ function Projects() {
         </Link>
       </div>
 
-      {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
-          indique s'il s'agit d'e-learning ou de design. */}
-      <Carousel
-        label={p.title}
-        className="mt-10 sm:mt-12"
-        bleed
-        itemClassName="basis-[85%] sm:basis-[60%] md:basis-[46%]"
-      >
+      {/* Deux projets visibles (un sur téléphone) ; on passe aux suivants
+          avec les flèches. */}
+      <PagedCarousel label={p.title} className="mt-10 sm:mt-12">
         {t.projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
-      </Carousel>
+      </PagedCarousel>
     </section>
   )
 }
