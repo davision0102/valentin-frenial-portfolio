@@ -1,19 +1,37 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Download } from 'lucide-react'
+import { imageUrl } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
+import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/a-propos')({
   component: AboutPage,
 })
 
-/** Le CV en PDF, dans public/. */
-const cvUrl = `${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`
+/**
+ * Photos de l'éventail, de gauche à droite. Provisoire : des images de
+ * projets, en attendant de vraies photos de Valentin.
+ */
+const photos = [
+  'minute-metier-2.jpg',
+  'climate-training-5.jpg',
+  'nymphe-essentials-2.jpg',
+  'onboarding-artisans-1.jpg',
+  'kit-chanel-25-1.jpg',
+]
+
+/** Inclinaison et décalage vertical de chaque photo de l'éventail. */
+const fan = [
+  { rotate: '-rotate-6', shift: 'translate-y-6' },
+  { rotate: '-rotate-3', shift: 'translate-y-2' },
+  { rotate: 'rotate-0', shift: 'translate-y-0' },
+  { rotate: 'rotate-3', shift: 'translate-y-2' },
+  { rotate: 'rotate-6', shift: 'translate-y-6' },
+]
 
 /**
- * Page À propos, façon éditoriale : une intro en paragraphe, la façon de
- * travailler, le parcours en liste compacte, les outils. Pas de photo (elle
- * est déjà sur l'accueil), une typographie posée.
+ * Page À propos : une petite photo ronde, un titre, un court texte, puis un
+ * éventail de photos qui se chevauchent. Le pied de page suit directement.
  */
 function AboutPage() {
   const { t } = useI18n()
@@ -21,92 +39,72 @@ function AboutPage() {
   useDocumentTitle(t.nav.about)
 
   return (
-    <article className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
-      <header className="max-w-3xl">
-        <h1 className="text-sm font-medium text-muted-foreground">
-          {t.nav.about}
+    <article className="mx-auto max-w-[96rem] overflow-hidden px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
+      <header className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <img
+          src={`${import.meta.env.BASE_URL}valentin.png`}
+          alt={t.home.hero.photoAlt}
+          className="size-28 rounded-full sm:size-36"
+        />
+        <h1 className="mt-10 font-heading text-4xl font-semibold tracking-[-0.04em] text-balance sm:text-5xl">
+          {a.title}
         </h1>
-        <p className="mt-6 text-2xl leading-snug font-medium tracking-[-0.02em] text-balance sm:text-[2rem]">
-          {a.lede}
-        </p>
         <p className="mt-6 text-lg leading-relaxed text-pretty text-muted-foreground">
-          {a.ledeMore}
+          {a.text}
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <a
-            href={cvUrl}
-            download
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
-          >
-            <Download className="size-4" />
-            {a.downloadCv}
-          </a>
-        </div>
       </header>
 
-      <Section title={a.valuesTitle}>
-        <ol>
-          {a.values.map((value, i) => (
-            <li
-              key={value.title}
-              className="grid gap-2 border-t border-border py-6 first:border-t-0 first:pt-0 sm:grid-cols-[3rem_minmax(0,14rem)_minmax(0,1fr)] sm:gap-6"
-            >
-              <span className="text-sm text-muted-foreground tabular-nums">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="font-semibold">{value.title}</h3>
-              <p className="leading-relaxed text-pretty text-muted-foreground">
-                {value.text}
-              </p>
-            </li>
+      {/* Grand écran : éventail de photos qui se chevauchent, celle survolée
+          passe devant. */}
+      <ul
+        aria-label={a.photosAlt}
+        className="mt-24 hidden justify-center pb-8 sm:flex"
+      >
+        {photos.map((file, i) => (
+          <li
+            key={file}
+            style={{ zIndex: i === 2 ? 5 : 4 - Math.abs(i - 2) }}
+            className={cn(
+              'relative -ml-28 shrink-0 transition-transform duration-500 ease-out first:ml-0 hover:z-10! hover:-translate-y-4 hover:rotate-0 lg:-ml-8',
+              fan[i].rotate,
+              fan[i].shift,
+            )}
+          >
+            <img
+              src={imageUrl(file)}
+              alt=""
+              loading="lazy"
+              className="aspect-[3/4] w-52 rounded-2xl object-cover shadow-2xl ring-1 shadow-foreground/20 ring-black/5 lg:w-64"
+            />
+          </li>
+        ))}
+      </ul>
+
+      {/* Téléphone : les photos défilent en boucle, d'un bord à l'autre. */}
+      <div
+        role="img"
+        aria-label={a.photosAlt}
+        className="-mx-4 mt-16 overflow-hidden py-6 sm:hidden"
+      >
+        <div className="flex w-max animate-[marquee_28s_linear_infinite] motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex shrink-0 gap-6 pr-6">
+              {photos.map((file, i) => (
+                <img
+                  key={file}
+                  src={imageUrl(file)}
+                  alt=""
+                  loading="lazy"
+                  className={cn(
+                    'aspect-[3/4] w-40 shrink-0 rounded-2xl object-cover shadow-xl ring-1 shadow-foreground/15 ring-black/5',
+                    i % 2 === 0 ? '-rotate-2' : 'rotate-2',
+                  )}
+                />
+              ))}
+            </div>
           ))}
-        </ol>
-      </Section>
-
-      <Section title={a.storyTitle}>
-        <p className="max-w-3xl text-xl leading-relaxed text-pretty">
-          {a.story}
-        </p>
-      </Section>
-
-      <Section title={a.toolsTitle}>
-        <ul className="flex flex-wrap gap-2">
-          {a.tools.map((tool) => (
-            <li
-              key={tool}
-              className="rounded-full border border-border px-3.5 py-1.5 text-sm"
-            >
-              {tool}
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title={a.languagesTitle}>
-        <p className="text-xl font-medium tracking-tight">
-          {a.languages.join(' · ')}
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground">{a.languagesText}</p>
-      </Section>
+        </div>
+      </div>
     </article>
-  )
-}
-
-/**
- * Section de la page : titre discret à gauche, contenu à droite sur grand
- * écran ; l'un sous l'autre sur téléphone.
- */
-function Section({
-  title,
-  children,
-}: {
-  title: string
-  children: React.ReactNode
-}) {
-  return (
-    <section className="mt-16 grid gap-6 border-t border-border pt-8 sm:mt-24 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] lg:gap-16">
-      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
-      <div>{children}</div>
-    </section>
   )
 }

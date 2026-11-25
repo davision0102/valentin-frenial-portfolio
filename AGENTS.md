@@ -4,7 +4,7 @@ Instructions pour les assistants IA qui travaillent sur ce projet.
 
 ## Le projet
 
-Portfolio personnel : une page d'accueil (présentation, carrousels de projets, savoir-faire, à propos, contact) et une page par projet (`/projets/<slug>`).
+Portfolio personnel : une page d'accueil (hero, présentation, carrousel de projets, savoir-faire), une page Projets, une page À propos (photo, texte, éventail de photos) et une page par projet (`/projets/<slug>`). Le contact (lien e-mail et petit formulaire qui ouvre la messagerie) est dans le pied de page de chaque page (`#ecrire`).
 Explique simplement ce que tu fais, sans jargon, et vérifie le rendu dans le navigateur.
 
 ## Confidentialité
@@ -31,7 +31,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 ## Règles
 
 - Imports via l'alias `@/`.
-- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; le mode clair et le mode sombre en dépendent.
+- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; le site est pour l'instant uniquement en sombre (bleu nuit, classe `dark` sur `<html>`).
 - Textes : jamais en dur ; chaque texte dans `fr.ts` **et** `en.ts`, lu avec `useI18n()`.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 
@@ -39,7 +39,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 | Élément                         | Classes                                                             |
 | ------------------------------- | ------------------------------------------------------------------- |
-| Conteneur (pages, pied de page) | `mx-auto max-w-6xl px-4 sm:px-6`                                    |
+| Conteneur (pages, pied de page) | `mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16`                       |
 | Haut de page (1er bloc)         | `pt-12 sm:pt-20`                                                    |
 | Bas de page (dernier bloc)      | `pb-16 sm:pb-24`                                                    |
 | Section                         | `py-16 sm:py-24` (pas de double espace entre deux sections)         |

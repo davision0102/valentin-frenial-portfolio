@@ -8,56 +8,51 @@ import { cn } from '@/lib/utils'
 
 type Project = Dictionary['projects'][number]
 
-/** Carte d'un projet : visuel, client, titre, résumé et mots-clés. */
+/**
+ * Carte d'un projet : un grand visuel, puis le titre en capitales et une
+ * ligne discrète (type de projet, client, année). Pas de cadre autour.
+ */
 export function ProjectCard({ project }: { project: Project }) {
   const { t } = useI18n()
   const cover = getProjectMedia(project.slug)?.images[0]
-  const meta = [project.client, project.year].filter(Boolean).join(' · ')
+  const learning = project.category === 'learning'
+  const meta = [
+    learning ? t.projectsPage.learning : t.projectsPage.design,
+    project.client,
+    project.year,
+  ].filter(Boolean)
 
   return (
     <Link
       to="/projets/$slug"
       params={{ slug: project.slug }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
+      className="group block rounded-2xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background focus-visible:outline-none"
     >
-      <div className="relative border-b border-border">
+      <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-black/25">
         {cover && (
           <ProjectVisual
             image={{ ...cover, fit: 'contain' }}
             alt={project.gallery[0]}
-            className="aspect-[16/9]"
+            className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100"
           />
         )}
-        <CategoryBadge
-          category={project.category}
-          label={
-            project.category === 'learning'
-              ? t.projectsPage.learning
-              : t.projectsPage.design
-          }
-          className="absolute top-3 left-3"
+        <span className="absolute right-4 bottom-4 grid size-10 place-items-center bg-foreground text-background opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 max-lg:opacity-100">
+          <ArrowUpRight className="size-4" />
+        </span>
+      </div>
+      <h3 className="mt-5 font-heading text-lg font-semibold tracking-tight uppercase sm:text-xl">
+        {project.title}
+      </h3>
+      <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+        <span
+          aria-hidden="true"
+          className={cn(
+            'size-1.5 rounded-full',
+            learning ? 'bg-track-learning' : 'bg-track-design',
+          )}
         />
-      </div>
-      <div className="p-6">
-        <p className="text-xs font-medium text-muted-foreground">{meta}</p>
-        <h3 className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
-          {project.title}
-          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {project.summary}
-        </p>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </div>
+        {meta.join(' · ')}
+      </p>
     </Link>
   )
 }

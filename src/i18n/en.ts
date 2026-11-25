@@ -9,52 +9,43 @@ export const en: Dictionary = {
     about: 'About',
     contact: 'Get in touch',
     language: 'Language',
+    available: 'Available',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
-  theme: {
-    dark: 'Dark mode',
-    light: 'Light mode',
-    toDark: 'Switch to dark theme',
-    toLight: 'Switch to light theme',
-  },
   footer: {
-    copy: 'Copy',
-    copied: 'Copied!',
-    copyLabel: 'Copy the email address',
-    cv: 'CV (PDF)',
-  },
-  write: {
-    title: 'Got a training project in mind?',
-    intro: 'Pick a subject, tweak the message if you like, and send.',
-    subjectLabel: 'I’m writing about',
-    subjects: [
-      {
-        label: 'a role',
-        body: 'Hi Valentin,\n\nYour profile matches a digital learning project manager role we are looking to fill. Would you be available to talk about it?',
-      },
-      {
-        label: 'a project',
-        body: 'Hi Valentin,\n\nWe have a training project to design and would love to present it to you. Would you be available for a first call?',
-      },
-      {
-        label: 'a chat',
-        body: 'Hi Valentin,\n\nI came across your portfolio and would love to chat with you about digital learning.',
-      },
-    ],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
+    title: 'Let’s make training that sticks.',
+    contact: 'Contact',
+    project: 'Project in mind?',
+    name: 'Your name',
+    email: 'Email address',
+    need: 'What do you need?',
     send: 'Send',
+    subject: 'Portfolio',
+    from: 'From',
+    now: (date: string, time: string) =>
+      `It’s ${date}, ${time} here in France.`,
+    reply: 'I’ll get back to you shortly.',
+    explore: 'Explore',
+    follow: 'Follow',
+    linkedin: 'LinkedIn',
+    cv: 'Download my CV',
+    basedIn: 'Based in',
+    based: 'France',
+    availability: 'Availability',
+    available: 'Open to a chat',
   },
   home: {
     hero: {
       photoAlt: 'Photo of Valentin Frenial',
       greetings: ['Hello', 'Bonjour', 'Hola'],
-      intro: 'I’m',
       role: 'Digital learning project manager.',
+      bio: 'I’m Valentin, a digital learning project manager. I love turning complex topics into clear training that makes people want to learn.',
+      seeProjects: 'See my projects',
       pitch:
         'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',
-      seeProjects: 'See my projects',
-      contactMe: 'Get in touch',
       stats: [
         {
           value: '12',
@@ -72,8 +63,7 @@ export const en: Dictionary = {
     },
     projects: {
       title: 'My projects',
-      text: 'Training for thousands of learners, plus a few design projects on the side.',
-      seeAll: 'See all projects',
+      seeAll: 'All projects',
     },
     services: {
       title: 'From a training idea to a live online module.',
@@ -98,10 +88,6 @@ export const en: Dictionary = {
     },
     about: {
       title: 'Teach, yes. Bore, never.',
-      paragraphs: [
-        'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
-        'At Nexans, then at Chanel, first as a work-study student and then on staff, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
-      ],
       moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },
@@ -308,6 +294,7 @@ export const en: Dictionary = {
     },
   ],
   projectsPage: {
+    open: 'View project',
     title: 'My projects',
     intro:
       'Digital training for Nexans and Chanel, plus design projects, from video to print.',
@@ -317,43 +304,9 @@ export const en: Dictionary = {
     design: 'Design',
   },
   aboutPage: {
-    lede: 'I design digital training that is intuitive and engaging, built around the people who take it.',
-    ledeMore:
-      'Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
-    downloadCv: 'Download my CV',
-    contact: 'Get in touch',
-    valuesTitle: 'How I work',
-    values: [
-      {
-        title: 'Start with the learners',
-        text: 'I analyse their needs before designing anything: good training is useful first.',
-      },
-      {
-        title: 'Make the complex simple',
-        text: 'With HR, Finance or CSR teams, I turn technical content into clear, visual learning paths.',
-      },
-      {
-        title: 'Measure to improve',
-        text: 'I track results and learner engagement to make every module better.',
-      },
-    ],
-    storyTitle: 'In short',
-    story:
-      'It all started as a work-study student at Nexans, redesigning the learning platform’s journey and building dozens of e-learning modules. At Chanel, I then supported artisans around the world, from onboarding to certification programmes. Today, I bring this mix of learning design and graphic design to new projects.',
-    toolsTitle: 'Tools',
-    tools: [
-      'Articulate Storyline 360',
-      'Figma',
-      'Adobe Suite',
-      'HTML / CSS',
-      'WordPress',
-      'Cornerstone',
-      'CrossKnowledge',
-      'Edflex',
-    ],
-    languagesTitle: 'Languages',
-    languagesText: 'I work in all three.',
-    languages: ['Français', 'English', 'Español'],
+    title: 'I’m Valentin.',
+    text: 'I design digital training that is intuitive and engaging, built around the people who take it. Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
+    photosAlt: 'A few images from my projects',
   },
   carousel: {
     previous: 'Previous',

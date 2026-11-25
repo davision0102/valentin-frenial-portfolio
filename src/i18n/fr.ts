@@ -11,52 +11,43 @@ export const fr = {
     about: 'À propos',
     contact: 'Me contacter',
     language: 'Langue',
+    available: 'Disponible',
+    openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
+    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
-  theme: {
-    dark: 'Mode sombre',
-    light: 'Mode clair',
-    toDark: 'Passer en thème sombre',
-    toLight: 'Passer en thème clair',
-  },
   footer: {
-    copy: 'Copier',
-    copied: 'Copié\u00a0!',
-    copyLabel: 'Copier l’adresse e-mail',
-    cv: 'CV (PDF)',
-  },
-  write: {
-    title: 'Un projet de formation en tête\u00a0?',
-    intro: 'Choisissez l’objet, retouchez le message si besoin, et envoyez.',
-    subjectLabel: 'Je vous écris pour',
-    subjects: [
-      {
-        label: 'un poste',
-        body: 'Bonjour Valentin,\n\nVotre profil correspond à un poste de chef de projet digital learning que nous cherchons à pourvoir. Seriez-vous disponible pour en discuter\u00a0?',
-      },
-      {
-        label: 'une mission',
-        body: 'Bonjour Valentin,\n\nNous avons un projet de formation à concevoir et aimerions vous le présenter. Seriez-vous disponible pour un premier échange\u00a0?',
-      },
-      {
-        label: 'un échange',
-        body: 'Bonjour Valentin,\n\nJ’ai découvert votre portfolio et j’aimerais échanger avec vous autour du digital learning.',
-      },
-    ],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
+    title: 'Faisons une formation qui marque les esprits.',
+    contact: 'Contact',
+    project: 'Un projet en tête\u00a0?',
+    name: 'Votre nom',
+    email: 'Votre adresse e-mail',
+    need: 'De quoi avez-vous besoin\u00a0?',
     send: 'Envoyer',
+    subject: 'Portfolio',
+    from: 'De la part de',
+    now: (date: string, time: string) =>
+      `Nous sommes ${date}, il est ${time.replace(':', 'h')} ici en France.`,
+    reply: 'Je vous réponds au plus vite.',
+    explore: 'Explorer',
+    follow: 'Suivre',
+    linkedin: 'LinkedIn',
+    cv: 'Télécharger mon CV',
+    basedIn: 'Basé en',
+    based: 'France',
+    availability: 'Disponibilité',
+    available: 'Ouvert aux échanges',
   },
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', 'Hola'],
-      intro: 'moi c’est',
       role: 'Chef de projet digital learning.',
+      bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
+      seeProjects: 'Voir mes projets',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
-      seeProjects: 'Voir mes projets',
-      contactMe: 'Me contacter',
       stats: [
         {
           value: '12',
@@ -74,8 +65,7 @@ export const fr = {
     },
     projects: {
       title: 'Mes projets',
-      text: 'Des formations pour des milliers d’apprenants, et quelques projets de design en bonus.',
-      seeAll: 'Voir tous les projets',
+      seeAll: 'Tous les projets',
     },
     services: {
       title: 'De l’idée de formation au module en ligne.',
@@ -100,10 +90,6 @@ export const fr = {
     },
     about: {
       title: 'Former, oui. Ennuyer, jamais.',
-      paragraphs: [
-        'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
-        'Chez Nexans puis chez Chanel, en alternance puis en poste, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
-      ],
       moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },
@@ -316,6 +302,7 @@ export const fr = {
     },
   ],
   projectsPage: {
+    open: 'Voir le projet',
     title: 'Mes projets',
     intro:
       'Des formations digitales pour Nexans et Chanel, et des projets de design, de la vidéo au print.',
@@ -325,43 +312,9 @@ export const fr = {
     design: 'Design',
   },
   aboutPage: {
-    lede: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent.',
-    ledeMore:
-      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    downloadCv: 'Télécharger mon CV',
-    contact: 'Me contacter',
-    valuesTitle: 'Ma façon de travailler',
-    values: [
-      {
-        title: 'Partir des apprenants',
-        text: 'J’analyse leurs besoins avant de concevoir quoi que ce soit : une formation réussie est d’abord utile.',
-      },
-      {
-        title: 'Rendre le complexe simple',
-        text: 'Avec les équipes RH, Finance ou RSE, je transforme des contenus techniques en parcours clairs et visuels.',
-      },
-      {
-        title: 'Mesurer pour progresser',
-        text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
-      },
-    ],
-    storyTitle: 'En bref',
-    story:
-      'Tout a commencé en alternance chez Nexans, à refaire le parcours de la plateforme de formation et à concevoir des dizaines d’e-learnings. Chez Chanel, j’ai ensuite accompagné des artisans dans le monde entier, de l’intégration aux programmes certifiants. Aujourd’hui, je mets ce mélange de pédagogie et de design au service de nouveaux projets.',
-    toolsTitle: 'Outils',
-    tools: [
-      'Articulate Storyline 360',
-      'Figma',
-      'Suite Adobe',
-      'HTML / CSS',
-      'WordPress',
-      'Cornerstone',
-      'CrossKnowledge',
-      'Edflex',
-    ],
-    languagesTitle: 'Langues',
-    languagesText: 'Je travaille dans ces trois langues.',
-    languages: ['Français', 'English', 'Español'],
+    title: 'Moi, c’est Valentin.',
+    text: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent. Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
+    photosAlt: 'Quelques images de mes projets',
   },
   carousel: {
     previous: 'Précédent',

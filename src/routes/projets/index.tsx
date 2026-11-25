@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { CategoryBadge } from '@/components/project-card'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
@@ -14,18 +15,16 @@ export const Route = createFileRoute('/projets/')({
 type Filter = 'all' | 'learning' | 'design'
 
 /**
- * Index des projets : une liste épurée (titre, client, année, catégorie).
- * Au survol, l'image du projet apparaît et suit la souris ; sur téléphone,
- * chaque ligne affiche sa miniature.
+ * Projets : la liste à gauche, un panneau d'aperçu fixe à droite qui montre
+ * le projet survolé (ou sélectionné au clavier) : visuel, résumé, mots-clés.
+ * Sur téléphone, chaque projet est une carte simple.
  */
 function ProjectsPage() {
   const { t } = useI18n()
   const p = t.projectsPage
   useDocumentTitle(p.title)
   const [filter, setFilter] = useState<Filter>('all')
-  const [hovered, setHovered] = useState<string | null>(null)
-  const listRef = useRef<HTMLDivElement>(null)
-  const previewRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState<string | null>(null)
 
   const countOf = (id: Filter) =>
     t.projects.filter((project) => id === 'all' || project.category === id)
@@ -38,20 +37,12 @@ function ProjectsPage() {
   const shown = t.projects.filter(
     (project) => filter === 'all' || project.category === filter,
   )
-
-  /** Place l'aperçu à côté du pointeur (sans repasser par React). */
-  function movePreview(event: React.PointerEvent) {
-    const list = listRef.current
-    const preview = previewRef.current
-    if (!list || !preview) return
-    const box = list.getBoundingClientRect()
-    const x = event.clientX - box.left + 24
-    const y = event.clientY - box.top - preview.offsetHeight / 2
-    preview.style.transform = `translate3d(${x}px, ${y}px, 0)`
-  }
+  // Le panneau montre le projet survolé, ou à défaut le premier de la liste.
+  const current = shown.find((project) => project.slug === active) ?? shown[0]
+  const currentMedia = current ? getProjectMedia(current.slug) : undefined
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
+    <section className="mx-auto max-w-[96rem] px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <h1 className="sr-only">{p.title}</h1>
 
       <div
@@ -63,7 +54,10 @@ function ProjectsPage() {
           <button
             key={item.id}
             type="button"
-            onClick={() => setFilter(item.id)}
+            onClick={() => {
+              setFilter(item.id)
+              setActive(null)
+            }}
             aria-pressed={filter === item.id}
             className={cn(
               'inline-flex items-baseline gap-1.5 py-1 text-sm font-medium transition-colors',
@@ -80,85 +74,131 @@ function ProjectsPage() {
         ))}
       </div>
 
-      <div
-        ref={listRef}
-        onPointerMove={movePreview}
-        onPointerLeave={() => setHovered(null)}
-        className="relative mt-8 sm:mt-10"
-      >
+      <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-14">
+        {/* Liste */}
         <ul className="border-t border-border">
           {shown.map((project) => {
             const cover = getProjectMedia(project.slug)?.images[0]
+            const isActive = current?.slug === project.slug
             const learning = project.category === 'learning'
             return (
-              <li
-                key={project.slug}
-                className="animate-in border-b border-border duration-300 fade-in motion-reduce:animate-none"
-              >
+              <li key={project.slug} className="border-b border-border">
                 <Link
                   to="/projets/$slug"
                   params={{ slug: project.slug }}
-                  onPointerEnter={() => setHovered(project.slug)}
-                  onFocus={() => setHovered(null)}
-                  className="group grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-4 gap-y-1 py-5 md:grid-cols-[minmax(0,1fr)_14rem_3.5rem_7.5rem_1.25rem] md:gap-x-6 md:py-6"
+                  onPointerEnter={() => setActive(project.slug)}
+                  onFocus={() => setActive(project.slug)}
+                  className="group flex items-center gap-4 py-4 lg:py-5"
                 >
-                  {/* Miniature : seulement sur téléphone et tablette */}
+                  {/* Miniature : seulement sans le panneau d'aperçu */}
                   {cover && (
                     <ProjectVisual
                       image={{ ...cover, fit: 'contain' }}
                       alt=""
-                      className="row-span-2 aspect-[4/3] rounded-xl md:hidden"
+                      className="aspect-[4/3] w-20 shrink-0 rounded-xl lg:hidden"
                     />
                   )}
-                  <h2 className="text-lg leading-snug font-semibold tracking-tight transition-[color,translate] duration-300 group-hover:text-brand sm:text-2xl md:group-hover:translate-x-2">
-                    {project.title}
-                  </h2>
-                  <p className="col-start-2 flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground md:col-start-auto md:contents">
-                    <span className="truncate">{project.client}</span>
-                    <span className="tabular-nums">{project.year}</span>
-                    <span className="inline-flex items-center gap-2">
-                      <span
-                        className={cn(
-                          'size-2 rounded-full',
-                          learning ? 'bg-track-learning' : 'bg-track-design',
-                        )}
-                      />
-                      {learning ? p.learning : p.design}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'hidden h-8 w-0.5 shrink-0 rounded-full transition-colors lg:block',
+                      isActive
+                        ? learning
+                          ? 'bg-track-learning'
+                          : 'bg-track-design'
+                        : 'bg-transparent',
+                    )}
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={cn(
+                        'block text-lg leading-snug font-semibold tracking-tight transition-colors sm:text-xl',
+                        isActive
+                          ? 'lg:text-foreground'
+                          : 'lg:text-muted-foreground',
+                        'group-hover:text-foreground',
+                      )}
+                    >
+                      {project.title}
                     </span>
-                  </p>
-                  <ArrowUpRight className="hidden size-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand md:block" />
+                    <span className="mt-1 flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground">
+                      <span>{project.client}</span>
+                      {project.year && (
+                        <span className="tabular-nums">{project.year}</span>
+                      )}
+                      <span className="inline-flex items-center gap-1.5">
+                        <span
+                          className={cn(
+                            'size-1.5 rounded-full',
+                            learning ? 'bg-track-learning' : 'bg-track-design',
+                          )}
+                        />
+                        {learning ? p.learning : p.design}
+                      </span>
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className={cn(
+                      'size-5 shrink-0 text-muted-foreground transition-all lg:opacity-0',
+                      isActive &&
+                        'lg:translate-x-1 lg:text-foreground lg:opacity-100',
+                    )}
+                  />
                 </Link>
               </li>
             )
           })}
         </ul>
 
-        {/* Aperçu qui suit la souris (écrans avec souris uniquement) */}
-        <div
-          ref={previewRef}
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 left-0 z-10 hidden w-72 [@media(hover:hover)_and_(pointer:fine)]:md:block"
-        >
-          {t.projects.map((project) => {
-            const cover = getProjectMedia(project.slug)?.images[0]
-            if (!cover) return null
-            return (
-              <ProjectVisual
-                key={project.slug}
-                image={{ ...cover, fit: 'contain' }}
-                alt=""
-                className={cn(
-                  'absolute inset-x-0 top-0 aspect-[4/3] rounded-2xl border border-border shadow-2xl shadow-foreground/15 transition-[opacity,scale] duration-200 motion-reduce:transition-none',
-                  hovered === project.slug
-                    ? 'scale-100 opacity-100'
-                    : 'scale-95 opacity-0',
-                )}
-              />
-            )
-          })}
-          {/* Réserve la hauteur de l'aperçu pour le centrer sur le pointeur */}
-          <div className="invisible aspect-[4/3]" />
-        </div>
+        {/* Panneau d'aperçu fixe (grand écran) */}
+        {current && (
+          <aside aria-live="polite" className="hidden lg:block">
+            <div className="sticky top-24">
+              <Link
+                to="/projets/$slug"
+                params={{ slug: current.slug }}
+                className="group block overflow-hidden rounded-3xl border border-border bg-card"
+              >
+                <div className="relative">
+                  {currentMedia?.images[0] && (
+                    <ProjectVisual
+                      key={current.slug}
+                      image={{ ...currentMedia.images[0], fit: 'contain' }}
+                      alt={current.gallery[0] ?? current.title}
+                      className="aspect-[4/3] animate-in duration-300 fade-in motion-reduce:animate-none"
+                    />
+                  )}
+                  <CategoryBadge
+                    category={current.category}
+                    label={
+                      current.category === 'learning' ? p.learning : p.design
+                    }
+                    className="absolute top-4 left-4"
+                  />
+                </div>
+                <div className="p-6">
+                  <p className="leading-relaxed text-pretty text-muted-foreground">
+                    {current.summary}
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {current.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
+                      >
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium transition-colors group-hover:text-brand">
+                    {p.open}
+                    <ArrowUpRight className="size-4" />
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </aside>
+        )}
       </div>
     </section>
   )

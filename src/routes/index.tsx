@@ -1,28 +1,16 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import {
-  ArrowDown,
-  ArrowRight,
-  Clapperboard,
-  ClipboardList,
-  GraduationCap,
-  Mail,
-  Palette,
-} from 'lucide-react'
-import { ContactComposer } from '@/components/contact-composer'
-import { Greeting } from '@/components/greeting'
-import { Portrait } from '@/components/portrait'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { buttonOutline } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
-
-const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 
 /** Entreprises (noms propres : identiques dans toutes les langues). */
 const companies = [
@@ -30,6 +18,10 @@ const companies = [
   { name: 'Chanel', logo: 'chanel.svg' },
   { name: 'Rémy Cointreau', logo: 'remy-cointreau.svg' },
 ]
+
+/** Titre de section : grandes capitales serrées. */
+const titleClass =
+  'font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
 
 function HomePage() {
   const { t } = useI18n()
@@ -41,75 +33,150 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <Intro />
       <Projects />
       <Services />
-      <About />
-      <ContactComposer />
     </>
   )
 }
 
+/**
+ * Hero : sur un bleu nuit profond, « Bonjour · Hello · Hola » défile en
+ * grand et sans fin, derrière la photo. En bas à gauche, une courte
+ * présentation et un bouton ; la photo en bas à droite.
+ */
 function Hero() {
   const { t } = useI18n()
   const h = t.home.hero
 
   return (
-    <section>
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
-        <div className="min-w-0">
-          <h1 className="text-[clamp(2.5rem,5.2vw,4rem)] leading-[0.98] font-semibold tracking-[-0.04em]">
-            <span className="sr-only">
-              {h.greetings[0]}, {h.intro} {site.name.split(' ')[0]}.
-            </span>
-            <span aria-hidden="true">
-              <span className="block">
-                <Greeting words={h.greetings} className="text-brand" />,
-              </span>
-              {h.intro} {site.name.split(' ')[0]}.
-            </span>
-            <span className="block text-muted-foreground">{h.role}</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
-            {h.pitch}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-2.5">
-            <Link
-              to="/"
-              hash="projets"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
-            >
-              {h.seeProjects}
-              <ArrowDown className="size-4" />
-            </Link>
-            <Link
-              to="/"
-              hash="ecrire"
-              className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
-            >
-              <Mail className="size-4" />
-              {h.contactMe}
-            </Link>
-          </div>
-          <dl className="mt-10 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm sm:flex-nowrap">
-            {h.stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  'flex items-baseline gap-1.5 whitespace-nowrap',
-                  i > 0 && 'sm:border-l sm:border-border sm:pl-6',
-                )}
-              >
+    <section className="dark relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+      <h1 className="sr-only">
+        {site.name}, {h.role}
+      </h1>
+      <GreetingsMarquee
+        words={h.greetings}
+        className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
+      />
+
+      <div className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-10 px-4 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
+        <div className="max-w-md lg:mb-6">
+          <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
+          {/* Chiffres clés, sur une ligne sous la présentation. */}
+          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            {h.stats.map((stat) => (
+              <div key={stat.label} className="flex items-baseline gap-2">
                 <dt className="sr-only">{stat.label}</dt>
-                <dd className="text-lg font-semibold tabular-nums">
+                <dd className="font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums">
                   {stat.value}
                 </dd>
-                <dd className="text-muted-foreground">{stat.label}</dd>
+                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
               </div>
             ))}
           </dl>
+          <Link to="/" hash="projets" className={`${buttonOutline} mt-8`}>
+            {h.seeProjects}
+            <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
+          </Link>
         </div>
 
-        <Portrait className="mx-auto max-w-[9rem] max-lg:order-first sm:max-w-[12rem] lg:max-w-[18rem]" />
+        {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
+            pour que le bord du cercle sorte du cadre. */}
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[15rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(30vw,28rem)] lg:max-w-none lg:self-end">
+          <img
+            src={`${import.meta.env.BASE_URL}valentin.png`}
+            alt={h.photoAlt}
+            className="absolute bottom-[-15%] left-1/2 w-[170%] max-w-none -translate-x-1/2"
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * Bandeau de salutations qui défile en boucle. La liste est doublée : quand
+ * la première moitié est sortie, l'animation repart sans saut.
+ * Arrêté si le visiteur préfère moins d'animations.
+ */
+function GreetingsMarquee({
+  words,
+  className,
+}: {
+  words: readonly string[]
+  className?: string
+}) {
+  // Assez de mots pour dépasser la largeur des grands écrans.
+  const row = [...words, ...words, ...words]
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(
+        'pointer-events-none overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]',
+        className,
+      )}
+    >
+      <div className="flex w-max animate-[marquee_40s_linear_infinite] motion-reduce:animate-none">
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0 items-center">
+            {row.map((word, i) => (
+              <span key={i} className="flex items-center">
+                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap">
+                  {word}
+                </span>
+                <span className="size-3 shrink-0 rounded-full bg-brand sm:size-4" />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Présentation : la phrase d'accroche et le lien vers la page À propos à
+ * gauche, les entreprises à droite, puis les chiffres clés sur une ligne.
+ */
+function Intro() {
+  const { t } = useI18n()
+  const h = t.home.hero
+  const a = t.home.about
+
+  return (
+    <section
+      id="a-propos"
+      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 py-16 sm:px-8 sm:py-24 lg:px-16"
+    >
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:gap-16">
+        <div>
+          <h2 className={titleClass}>{a.title}</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
+            {h.pitch}
+          </p>
+          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
+            {a.moreAbout}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
+        <div className="lg:pt-2">
+          <h3 className="text-sm text-muted-foreground">{a.companiesTitle}</h3>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-6 sm:gap-x-8">
+            {companies.map((company) => (
+              // Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre.
+              <span
+                key={company.name}
+                role="img"
+                aria-label={company.name}
+                className="block h-8 w-24 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat]"
+                style={{
+                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -122,125 +189,55 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
+      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
-      <SectionHeading title={p.title} text={p.text} />
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+        <h2 className={titleClass}>{p.title}</h2>
+        <Link to="/projets" className={buttonOutline}>
+          {p.seeAll}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
 
-      {/* Tous les projets dans un seul carrousel ; l'étiquette de chaque carte
+      {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
           indique s'il s'agit d'e-learning ou de design. */}
       <Carousel
         label={p.title}
         className="mt-10 sm:mt-12"
-        itemClassName="basis-[85%] sm:basis-[60%] md:basis-[45%]"
+        itemClassName="basis-[85%] sm:basis-[60%] md:basis-[46%]"
       >
         {t.projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Carousel>
-
-      <Link
-        to="/projets"
-        className="group mt-10 inline-flex items-center gap-2 font-medium text-brand sm:mt-12"
-      >
-        {p.seeAll}
-        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-      </Link>
     </section>
   )
 }
 
+/** Savoir-faire : quatre colonnes numérotées, sans cartes. */
 function Services() {
   const { t } = useI18n()
   const s = t.home.services
 
   return (
-    <section className="border-y border-border/60 bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <SectionHeading title={s.title} />
+    <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
+      <div className="border-t border-border pt-16 sm:pt-24">
+        <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-        <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
-          {s.items.map(({ title, text }, i) => {
-            const Icon = serviceIcons[i]
-            return (
-              <div
-                key={title}
-                className="rounded-3xl border border-border bg-card p-6"
-              >
-                <div className="grid size-10 place-items-center rounded-xl bg-brand/10 text-brand">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {text}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function About() {
-  const { t } = useI18n()
-  const a = t.home.about
-
-  return (
-    <section
-      id="a-propos"
-      className="mx-auto grid max-w-6xl scroll-mt-20 gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16"
-    >
-      <div>
-        <SectionHeading title={a.title} />
-        <div className="mt-6 space-y-4 text-lg text-pretty text-muted-foreground">
-          {a.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-        <Link
-          to="/a-propos"
-          className="group mt-8 inline-flex items-center gap-2 font-medium text-brand"
-        >
-          {a.moreAbout}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-        </Link>
-      </div>
-
-      <div className="lg:pt-10">
-        <h3 className="text-sm font-medium text-muted-foreground">
-          {a.companiesTitle}
-        </h3>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-          {companies.map((company) => (
-            <li
-              key={company.name}
-              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-6"
-            >
-              {/* Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre. */}
-              <span
-                role="img"
-                aria-label={company.name}
-                className="block h-10 w-full max-w-[8.5rem] bg-foreground/85 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
-                style={{
-                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-                }}
-              />
+        <ol className="mt-10 grid gap-12 sm:mt-12 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-4 lg:gap-x-16">
+          {s.items.map(({ title, text }, i) => (
+            <li key={title}>
+              <span className="text-sm font-semibold text-brand tabular-nums">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-pretty text-muted-foreground">
+                {text}
+              </p>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
-  )
-}
-
-function SectionHeading({ title, text }: { title: string; text?: string }) {
-  return (
-    <div className="max-w-2xl">
-      <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-        {title}
-      </h2>
-      {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
-    </div>
   )
 }
