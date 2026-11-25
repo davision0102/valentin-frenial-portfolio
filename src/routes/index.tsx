@@ -13,7 +13,6 @@ import { ContactComposer } from '@/components/contact-composer'
 import { Greeting } from '@/components/greeting'
 import { Portrait } from '@/components/portrait'
 import { ProjectCard } from '@/components/project-card'
-import { ProjectVisual } from '@/components/project-visual'
 import { Carousel } from '@/components/carousel'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
@@ -22,14 +21,6 @@ import { cn } from '@/lib/utils'
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
-
-/** Un visuel de projet réel pour illustrer chaque savoir-faire. */
-const serviceVisuals = [
-  'climate-training-5.jpg',
-  'nymphe-essentials-2.jpg',
-  'minute-metier-2.jpg',
-  'kit-chanel-25-1.jpg',
-]
 
 const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 
@@ -133,12 +124,7 @@ function Projects() {
       id="projets"
       className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
     >
-      <SectionHeading
-        title={p.title}
-        titleMuted={p.titleMuted}
-        label={p.label}
-        text={p.text}
-      />
+      <SectionHeading title={p.title} text={p.text} />
 
       {/* Tous les projets dans un seul carrousel ; l'étiquette de chaque carte
           indique s'il s'agit d'e-learning ou de design. */}
@@ -170,11 +156,7 @@ function Services() {
   return (
     <section className="border-y border-border/60 bg-secondary/40">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <SectionHeading
-          title={s.title}
-          titleMuted={s.titleMuted}
-          label={s.label}
-        />
+        <SectionHeading title={s.title} />
 
         <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {s.items.map(({ title, text }, i) => {
@@ -182,25 +164,15 @@ function Services() {
             return (
               <div
                 key={title}
-                className="flex flex-col rounded-3xl border border-border bg-card p-2"
+                className="rounded-3xl border border-border bg-card p-6"
               >
-                {/* Grande zone visuelle : un vrai visuel de projet */}
-                <div className="relative overflow-hidden rounded-2xl">
-                  <ProjectVisual
-                    image={{ file: serviceVisuals[i], fit: 'cover' }}
-                    alt=""
-                    className="aspect-[4/3]"
-                  />
-                  <span className="absolute top-3 left-3 grid size-9 place-items-center rounded-full text-foreground glass">
-                    <Icon className="size-4" />
-                  </span>
+                <div className="grid size-10 place-items-center rounded-xl bg-brand/10 text-brand">
+                  <Icon className="size-5" />
                 </div>
-                <div className="px-4 pt-5 pb-4">
-                  <h3 className="text-lg font-semibold">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {text}
-                  </p>
-                </div>
+                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {text}
+                </p>
               </div>
             )
           })}
@@ -220,11 +192,7 @@ function About() {
       className="mx-auto grid max-w-6xl scroll-mt-20 gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16"
     >
       <div>
-        <SectionHeading
-          title={a.title}
-          titleMuted={a.titleMuted}
-          label={a.label}
-        />
+        <SectionHeading title={a.title} />
         <div className="mt-6 space-y-4 text-lg text-pretty text-muted-foreground">
           {a.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -266,33 +234,13 @@ function About() {
   )
 }
 
-/**
- * Titre de section en deux tons : une première partie franche, la suite plus
- * légère ; un repère discret entre crochets à droite.
- */
-function SectionHeading({
-  title,
-  titleMuted,
-  label,
-  text,
-}: {
-  title: string
-  titleMuted: string
-  label: string
-  text?: string
-}) {
+function SectionHeading({ title, text }: { title: string; text?: string }) {
   return (
-    <div className="flex flex-col-reverse gap-4 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-      <div className="max-w-2xl">
-        <h2 className="text-3xl tracking-tight text-balance sm:text-4xl">
-          <span className="font-semibold">{title}</span>{' '}
-          <span className="font-normal text-muted-foreground">
-            {titleMuted}
-          </span>
-        </h2>
-        {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
-      </div>
-      <p className="text-sm text-muted-foreground lg:pt-3">[ {label} ]</p>
+    <div className="max-w-2xl">
+      <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        {title}
+      </h2>
+      {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
     </div>
   )
 }

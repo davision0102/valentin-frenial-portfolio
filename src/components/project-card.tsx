@@ -14,21 +14,20 @@ export function ProjectCard({ project }: { project: Project }) {
   const cover = getProjectMedia(project.slug)?.images[0]
   const meta = [project.client, project.year].filter(Boolean).join(' · ')
 
-  // « Image d'abord » : titre en haut à gauche, catégorie en haut à droite,
-  // puis un grand visuel ; le résumé est sur la page du projet.
   return (
     <Link
       to="/projets/$slug"
       params={{ slug: project.slug }}
-      className="group flex h-full flex-col rounded-3xl border border-border bg-card p-2 transition-[box-shadow,translate] duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none motion-reduce:hover:translate-y-0"
     >
-      <div className="flex items-start justify-between gap-4 px-4 pt-4 pb-5">
-        <div className="min-w-0">
-          <h3 className="text-lg leading-snug font-semibold tracking-tight">
-            {project.title}
-          </h3>
-          <p className="mt-1 text-sm text-muted-foreground">{meta}</p>
-        </div>
+      <div className="relative border-b border-border">
+        {cover && (
+          <ProjectVisual
+            image={{ ...cover, fit: 'contain' }}
+            alt={project.gallery[0]}
+            className="aspect-[16/9]"
+          />
+        )}
         <CategoryBadge
           category={project.category}
           label={
@@ -36,24 +35,29 @@ export function ProjectCard({ project }: { project: Project }) {
               ? t.projectsPage.learning
               : t.projectsPage.design
           }
-          className="shrink-0"
+          className="absolute top-3 left-3"
         />
       </div>
-      {cover && (
-        <div className="relative mt-auto overflow-hidden rounded-2xl">
-          <ProjectVisual
-            image={{ ...cover, fit: 'contain' }}
-            alt={project.gallery[0]}
-            className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute right-3 bottom-3 grid size-10 place-items-center rounded-full glass transition-transform group-hover:scale-110"
-          >
-            <ArrowUpRight className="size-4" />
-          </span>
-        </div>
-      )}
+      <div className="p-6">
+        <p className="text-xs font-medium text-muted-foreground">{meta}</p>
+        <h3 className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
+          {project.title}
+          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          {project.summary}
+        </p>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
     </Link>
   )
 }
