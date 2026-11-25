@@ -25,8 +25,12 @@ export function ContactComposer() {
       className="mx-auto grid max-w-6xl scroll-mt-24 gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16"
     >
       <div>
-        <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-          {w.title}
+        <p className="text-sm text-muted-foreground">[ {w.label} ]</p>
+        <h2 className="mt-4 text-3xl tracking-tight text-balance sm:text-4xl">
+          <span className="font-semibold">{w.title}</span>{' '}
+          <span className="font-normal text-muted-foreground">
+            {w.titleMuted}
+          </span>
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">{w.intro}</p>
       </div>

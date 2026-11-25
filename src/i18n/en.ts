@@ -22,7 +22,9 @@ export const en: Dictionary = {
     cv: 'Download my CV (PDF)',
   },
   write: {
-    title: 'Got a training project in mind?',
+    title: 'Got a training project',
+    titleMuted: 'in mind?',
+    label: 'Contact',
     intro: 'Pick a subject, tweak the message if you like, and send.',
     subjectLabel: 'I’m writing about',
     subjects: [
@@ -69,12 +71,16 @@ export const en: Dictionary = {
       ],
     },
     projects: {
-      title: 'My projects',
+      title: 'My projects,',
+      titleMuted: 'designed for learners.',
+      label: 'Projects',
       text: 'Training for thousands of learners, plus a few design projects on the side.',
       seeAll: 'See all projects',
     },
     services: {
-      title: 'From a training idea to a live online module.',
+      title: 'From a training idea',
+      titleMuted: 'to a live online module.',
+      label: 'Skills',
       items: [
         {
           title: 'E-learning design',
@@ -95,7 +101,9 @@ export const en: Dictionary = {
       ],
     },
     about: {
-      title: 'Teach, yes. Bore, never.',
+      title: 'Teach, yes.',
+      titleMuted: 'Bore, never.',
+      label: 'About',
       paragraphs: [
         'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
         'At Nexans, then at Chanel, first as a work-study student and then on staff, I did it all: art direction, scripting, interactions, filming, editing and motion design.',

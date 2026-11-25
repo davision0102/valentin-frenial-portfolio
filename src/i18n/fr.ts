@@ -24,7 +24,9 @@ export const fr = {
     cv: 'Télécharger mon CV (PDF)',
   },
   write: {
-    title: 'Un projet de formation en tête\u00a0?',
+    title: 'Un projet de formation',
+    titleMuted: 'en tête\u00a0?',
+    label: 'Contact',
     intro: 'Choisissez l’objet, retouchez le message si besoin, et envoyez.',
     subjectLabel: 'Je vous écris pour',
     subjects: [
@@ -71,12 +73,16 @@ export const fr = {
       ],
     },
     projects: {
-      title: 'Mes projets',
+      title: 'Mes projets,',
+      titleMuted: 'pensés pour les apprenants.',
+      label: 'Projets',
       text: 'Des formations pour des milliers d’apprenants, et quelques projets de design en bonus.',
       seeAll: 'Voir tous les projets',
     },
     services: {
-      title: 'De l’idée de formation au module en ligne.',
+      title: 'De l’idée de formation',
+      titleMuted: 'au module en ligne.',
+      label: 'Savoir-faire',
       items: [
         {
           title: 'Conception e-learning',
@@ -97,7 +103,9 @@ export const fr = {
       ],
     },
     about: {
-      title: 'Former, oui. Ennuyer, jamais.',
+      title: 'Former, oui.',
+      titleMuted: 'Ennuyer, jamais.',
+      label: 'À propos',
       paragraphs: [
         'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
         'Chez Nexans puis chez Chanel, en alternance puis en poste, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
