@@ -59,8 +59,7 @@ function Hero() {
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
         {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
-            en grand, détail en plus discret, puis les logos des entreprises,
-            le tout aligné sur le bas de la photo. */}
+            en grand, détail en plus discret, puis les tout aligné sur le bas de la photo. */}
         <div className="max-w-xl lg:mt-20">
           <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
             {h.role.replace(/\.$/, '')}
@@ -71,26 +70,6 @@ function Hero() {
           <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
             {h.bio[1]}
           </p>
-          {/* Preuve tout de suite : les entreprises, sous un trait fin. */}
-          <div className="mt-8 border-t border-border pt-6">
-            <p className="text-sm text-muted-foreground">
-              {t.home.about.companiesTitle}
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-4 sm:gap-x-10">
-              {companies.map((company) => (
-                // Logo d'une seule couleur (celle du texte) : il suit le thème.
-                <span
-                  key={company.name}
-                  role="img"
-                  aria-label={company.name}
-                  className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat] sm:w-28"
-                  style={{
-                    maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
@@ -168,6 +147,27 @@ function Projects() {
       </div>
 
       <ProjectsMarquee />
+
+      {/* Sous les projets : les entreprises pour lesquelles ils ont été faits. */}
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 px-5 sm:mt-16 sm:flex-row sm:items-center sm:gap-10 sm:px-8 lg:px-16">
+        <p className="shrink-0 text-sm text-muted-foreground">
+          {t.home.about.companiesTitle}
+        </p>
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-4 sm:gap-x-10">
+          {companies.map((company) => (
+            // Logo d'une seule couleur (celle du texte) : il suit le thème.
+            <span
+              key={company.name}
+              role="img"
+              aria-label={company.name}
+              className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat] sm:w-28"
+              style={{
+                maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
