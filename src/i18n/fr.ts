@@ -20,16 +20,39 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    lead: 'Me retrouver ailleurs',
-    email: 'Écrire un e-mail',
-    cv: 'Mon CV en PDF',
-    backToTop: 'Retour en haut',
+    copy: 'Copier',
+    copied: 'Copié\u00a0!',
+    copyLabel: 'Copier l’adresse e-mail',
+    cv: 'CV (PDF)',
+  },
+  write: {
+    title: 'Un projet de formation en tête\u00a0?',
+    intro: 'Choisissez l’objet, retouchez le message si besoin, et envoyez.',
+    subjectLabel: 'Je vous écris pour',
+    subjects: [
+      {
+        label: 'un poste',
+        body: 'Bonjour Valentin,\n\nVotre profil correspond à un poste de chef de projet digital learning que nous cherchons à pourvoir. Seriez-vous disponible pour en discuter\u00a0?',
+      },
+      {
+        label: 'une mission',
+        body: 'Bonjour Valentin,\n\nNous avons un projet de formation à concevoir et aimerions vous le présenter. Seriez-vous disponible pour un premier échange\u00a0?',
+      },
+      {
+        label: 'un échange',
+        body: 'Bonjour Valentin,\n\nJ’ai découvert votre portfolio et j’aimerais échanger avec vous autour du digital learning.',
+      },
+    ],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    send: 'Envoyer',
   },
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
-      hello: 'Bonjour, moi c’est',
-      role: 'Chef de projet digital e-learning.',
+      greetings: ['Bonjour', 'Hello', 'Hola'],
+      intro: 'moi c’est',
+      role: 'Chef de projet digital learning.',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
       seeProjects: 'Voir mes projets',
@@ -37,15 +60,15 @@ export const fr = {
       stats: [
         {
           value: '12',
-          label: 'langues pour un même projet',
+          label: 'langues',
         },
         {
           value: '6',
-          label: 'modules livrés en 1 mois',
+          label: 'modules en 1 mois',
         },
         {
           value: '14',
-          label: 'vidéos métier tournées et montées',
+          label: 'vidéos métier',
         },
       ],
     },
@@ -83,12 +106,6 @@ export const fr = {
       ],
       moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
-    },
-    contact: {
-      title: 'Un projet de formation en tête ?',
-      text: 'Parlons-en, en vrai ou en visio.',
-      email: 'Écrire un e-mail',
-      linkedin: 'Me suivre sur LinkedIn',
     },
   },
   projects: [
@@ -308,13 +325,9 @@ export const fr = {
     design: 'Design',
   },
   aboutPage: {
-    greetings: ['Bonjour', 'Hello', 'Hola'],
-    intro: 'moi c’est Valentin.',
-    role: 'Chef de projet Learning et designer',
-    profile: [
-      'Je conçois des formations digitales intuitives, engageantes et pensées pour celles et ceux qui les suivent.',
-      'Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    ],
+    lede: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent.',
+    ledeMore:
+      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
     downloadCv: 'Télécharger mon CV',
     contact: 'Me contacter',
     valuesTitle: 'Ma façon de travailler',
@@ -332,18 +345,23 @@ export const fr = {
         text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
       },
     ],
-    storyTitle: 'Mon histoire, en bref',
+    storyTitle: 'En bref',
     story:
-      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes en alternance chez Nexans, puis chez Chanel, où j’ai conçu des formations pour des artisans dans le monde entier. Aujourd’hui, je travaille aussi en indépendant avec Valenteint Studio.',
-    offTitle: 'En dehors du travail',
-    off: [
-      { title: 'Langues', text: 'Français, anglais et espagnol' },
-      { title: 'Voyages', text: 'Voyager et découvrir de nouvelles cultures' },
-      { title: 'Sport', text: 'Les sports, un vrai centre d’intérêt' },
+      'Tout a commencé en alternance chez Nexans, à refaire le parcours de la plateforme de formation et à concevoir des dizaines d’e-learnings. Chez Chanel, j’ai ensuite accompagné des artisans dans le monde entier, de l’intégration aux programmes certifiants. Aujourd’hui, je mets ce mélange de pédagogie et de design au service de nouveaux projets.',
+    toolsTitle: 'Outils',
+    tools: [
+      'Articulate Storyline 360',
+      'Figma',
+      'Suite Adobe',
+      'HTML / CSS',
+      'WordPress',
+      'Cornerstone',
+      'CrossKnowledge',
+      'Edflex',
     ],
-    ctaTitle: 'Envie d’en savoir plus ?',
-    ctaText:
-      'Tout mon parcours tient sur une page : téléchargez mon CV ou écrivez-moi.',
+    languagesTitle: 'Langues',
+    languagesText: 'Je travaille dans ces trois langues.',
+    languages: ['Français', 'English', 'Español'],
   },
   carousel: {
     previous: 'Précédent',

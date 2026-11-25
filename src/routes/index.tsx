@@ -9,10 +9,11 @@ import {
   Mail,
   Palette,
 } from 'lucide-react'
+import { ContactComposer } from '@/components/contact-composer'
+import { Greeting } from '@/components/greeting'
 import { Portrait } from '@/components/portrait'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
-import { buttonVariants } from '@/components/ui/button'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
@@ -24,7 +25,11 @@ export const Route = createFileRoute('/')({
 const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 
 /** Entreprises (noms propres : identiques dans toutes les langues). */
-const companies = ['Nexans', 'Chanel', 'Rémy Cointreau']
+const companies = [
+  { name: 'Nexans', logo: 'nexans.svg' },
+  { name: 'Chanel', logo: 'chanel.svg' },
+  { name: 'Rémy Cointreau', logo: 'remy-cointreau.svg' },
+]
 
 function HomePage() {
   const { t } = useI18n()
@@ -39,7 +44,7 @@ function HomePage() {
       <Projects />
       <Services />
       <About />
-      <Contact />
+      <ContactComposer />
     </>
   )
 }
@@ -52,8 +57,16 @@ function Hero() {
     <section>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <div className="min-w-0">
-          <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-            {h.hello} {site.name.split(' ')[0]}.
+          <h1 className="text-[clamp(2.5rem,5.2vw,4rem)] leading-[0.98] font-semibold tracking-[-0.04em]">
+            <span className="sr-only">
+              {h.greetings[0]}, {h.intro} {site.name.split(' ')[0]}.
+            </span>
+            <span aria-hidden="true">
+              <span className="block">
+                <Greeting words={h.greetings} className="text-brand" />,
+              </span>
+              {h.intro} {site.name.split(' ')[0]}.
+            </span>
             <span className="block text-muted-foreground">{h.role}</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
@@ -68,31 +81,35 @@ function Hero() {
               {h.seeProjects}
               <ArrowDown className="size-4" />
             </Link>
-            <a
-              href={`mailto:${site.email}`}
+            <Link
+              to="/"
+              hash="ecrire"
               className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
             >
               <Mail className="size-4" />
               {h.contactMe}
-            </a>
+            </Link>
           </div>
-          <ul className="mt-10 flex flex-wrap gap-2">
-            {h.stats.map((stat) => (
-              <li
+          <dl className="mt-10 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm sm:flex-nowrap">
+            {h.stats.map((stat, i) => (
+              <div
                 key={stat.label}
-                className="rounded-full px-4 py-2 text-sm glass"
+                className={cn(
+                  'flex items-baseline gap-1.5 whitespace-nowrap',
+                  i > 0 && 'sm:border-l sm:border-border sm:pl-6',
+                )}
               >
-                <span className="font-semibold">{stat.value}</span>{' '}
-                <span className="text-muted-foreground">{stat.label}</span>
-              </li>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="text-lg font-semibold tabular-nums">
+                  {stat.value}
+                </dd>
+                <dd className="text-muted-foreground">{stat.label}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </div>
 
-        <Portrait
-          caption={companies.slice(0, 2).join(' · ')}
-          className="mx-auto max-w-[13rem] max-lg:order-first sm:max-w-xs lg:max-w-none"
-        />
+        <Portrait className="mx-auto max-w-[9rem] max-lg:order-first sm:max-w-[12rem] lg:max-w-[18rem]" />
       </div>
     </section>
   )
@@ -197,60 +214,21 @@ function About() {
         <ul className="mt-6 grid gap-4 sm:grid-cols-3">
           {companies.map((company) => (
             <li
-              key={company}
-              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-4 text-center font-heading text-xl font-semibold tracking-tight"
+              key={company.name}
+              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-6"
             >
-              {company}
+              {/* Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre. */}
+              <span
+                role="img"
+                aria-label={company.name}
+                className="block h-10 w-full max-w-[8.5rem] bg-foreground/85 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
+                style={{
+                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+                }}
+              />
             </li>
           ))}
         </ul>
-      </div>
-    </section>
-  )
-}
-
-function Contact() {
-  const { t } = useI18n()
-  const c = t.home.contact
-
-  return (
-    <section
-      id="contact"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
-    >
-      <div className="relative overflow-hidden rounded-[2rem] bg-spotlight px-6 py-12 text-center text-white sm:px-16 sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand/40 blur-3xl"
-        />
-        <h2 className="relative text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-          {c.title}
-        </h2>
-        <p className="relative mx-auto mt-4 max-w-lg text-white/70">{c.text}</p>
-        <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href={`mailto:${site.email}`}
-            className={cn(
-              buttonVariants({ size: 'lg' }),
-              'h-11 bg-brand px-5 text-brand-foreground hover:bg-brand/90',
-            )}
-          >
-            <Mail data-icon="inline-start" />
-            {c.email}
-          </a>
-          <a
-            href={site.linkedinUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              buttonVariants({ variant: 'ghost', size: 'lg' }),
-              'h-11 px-5 text-white hover:bg-white/10 hover:text-white',
-            )}
-          >
-            {c.linkedin}
-            <ArrowRight data-icon="inline-end" />
-          </a>
-        </div>
       </div>
     </section>
   )

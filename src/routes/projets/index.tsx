@@ -1,12 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowUpRight } from 'lucide-react'
-import { CategoryBadge } from '@/components/project-card'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import type { Dictionary } from '@/i18n/fr'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/projets/')({
@@ -14,14 +12,20 @@ export const Route = createFileRoute('/projets/')({
 })
 
 type Filter = 'all' | 'learning' | 'design'
-type Project = Dictionary['projects'][number]
 
-/** Tous les projets en vignettes, avec un filtre E-learning / Design. */
+/**
+ * Index des projets : une liste épurée (titre, client, année, catégorie).
+ * Au survol, l'image du projet apparaît et suit la souris ; sur téléphone,
+ * chaque ligne affiche sa miniature.
+ */
 function ProjectsPage() {
   const { t } = useI18n()
   const p = t.projectsPage
   useDocumentTitle(p.title)
   const [filter, setFilter] = useState<Filter>('all')
+  const [hovered, setHovered] = useState<string | null>(null)
+  const listRef = useRef<HTMLDivElement>(null)
+  const previewRef = useRef<HTMLDivElement>(null)
 
   const countOf = (id: Filter) =>
     t.projects.filter((project) => id === 'all' || project.category === id)
@@ -35,97 +39,127 @@ function ProjectsPage() {
     (project) => filter === 'all' || project.category === filter,
   )
 
+  /** Place l'aperçu à côté du pointeur (sans repasser par React). */
+  function movePreview(event: React.PointerEvent) {
+    const list = listRef.current
+    const preview = previewRef.current
+    if (!list || !preview) return
+    const box = list.getBoundingClientRect()
+    const x = event.clientX - box.left + 24
+    const y = event.clientY - box.top - preview.offsetHeight / 2
+    preview.style.transform = `translate3d(${x}px, ${y}px, 0)`
+  }
+
   return (
     <section className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
-      <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div className="max-w-2xl">
-          <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-            {p.title}
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
-            {p.intro}
-          </p>
-        </div>
+      <h1 className="sr-only">{p.title}</h1>
 
-        {/* Sélecteur compact : une option active à la fois. */}
-        <div
-          role="group"
-          aria-label={p.filtersLabel}
-          className="inline-flex w-fit shrink-0 rounded-full border border-border bg-card p-1"
-        >
-          {filters.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setFilter(item.id)}
-              aria-pressed={filter === item.id}
-              className={cn(
-                'inline-flex h-9 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors',
-                filter === item.id
-                  ? 'bg-foreground text-background'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              {item.label}
-              <span className="text-xs tabular-nums opacity-60">
-                {countOf(item.id)}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <ul className="mt-10 grid gap-x-6 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((project) => (
-          <li
-            key={project.slug}
-            className="animate-in duration-300 fade-in motion-reduce:animate-none"
+      <div
+        role="group"
+        aria-label={p.filtersLabel}
+        className="flex flex-wrap gap-x-6 gap-y-2"
+      >
+        {filters.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => setFilter(item.id)}
+            aria-pressed={filter === item.id}
+            className={cn(
+              'inline-flex items-baseline gap-1.5 py-1 text-sm font-medium transition-colors',
+              filter === item.id
+                ? 'text-foreground underline decoration-2 underline-offset-8'
+                : 'text-muted-foreground hover:text-foreground',
+            )}
           >
-            <ProjectTile project={project} />
-          </li>
+            {item.label}
+            <sup className="text-xs tabular-nums opacity-60">
+              {countOf(item.id)}
+            </sup>
+          </button>
         ))}
-      </ul>
-    </section>
-  )
-}
-
-/** Vignette : un grand visuel, puis titre, client et année. */
-function ProjectTile({ project }: { project: Project }) {
-  const { t } = useI18n()
-  const cover = getProjectMedia(project.slug)?.images[0]
-  const learning = project.category === 'learning'
-  const meta = [project.client, project.year].filter(Boolean).join(' · ')
-
-  return (
-    <Link
-      to="/projets/$slug"
-      params={{ slug: project.slug }}
-      className="group block focus-visible:outline-none"
-    >
-      <div className="relative overflow-hidden rounded-3xl border border-border transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-foreground/10 group-focus-visible:ring-2 group-focus-visible:ring-ring">
-        {cover && (
-          <ProjectVisual
-            image={{ ...cover, fit: 'contain' }}
-            alt={project.gallery[0] ?? project.title}
-            className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:group-hover:scale-100"
-          />
-        )}
-        <CategoryBadge
-          category={project.category}
-          label={learning ? t.projectsPage.learning : t.projectsPage.design}
-          className="absolute top-3 left-3"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute right-3 bottom-3 grid size-10 translate-y-1 place-items-center rounded-full opacity-0 glass transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-        >
-          <ArrowUpRight className="size-4" />
-        </span>
       </div>
-      <h2 className="mt-4 text-lg leading-snug font-semibold tracking-tight transition-colors group-hover:text-brand">
-        {project.title}
-      </h2>
-      <p className="mt-1 text-sm text-muted-foreground">{meta}</p>
-    </Link>
+
+      <div
+        ref={listRef}
+        onPointerMove={movePreview}
+        onPointerLeave={() => setHovered(null)}
+        className="relative mt-8 sm:mt-10"
+      >
+        <ul className="border-t border-border">
+          {shown.map((project) => {
+            const cover = getProjectMedia(project.slug)?.images[0]
+            const learning = project.category === 'learning'
+            return (
+              <li
+                key={project.slug}
+                className="animate-in border-b border-border duration-300 fade-in motion-reduce:animate-none"
+              >
+                <Link
+                  to="/projets/$slug"
+                  params={{ slug: project.slug }}
+                  onPointerEnter={() => setHovered(project.slug)}
+                  onFocus={() => setHovered(null)}
+                  className="group grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-4 gap-y-1 py-5 md:grid-cols-[minmax(0,1fr)_14rem_3.5rem_7.5rem_1.25rem] md:gap-x-6 md:py-6"
+                >
+                  {/* Miniature : seulement sur téléphone et tablette */}
+                  {cover && (
+                    <ProjectVisual
+                      image={{ ...cover, fit: 'contain' }}
+                      alt=""
+                      className="row-span-2 aspect-[4/3] rounded-xl md:hidden"
+                    />
+                  )}
+                  <h2 className="text-lg leading-snug font-semibold tracking-tight transition-[color,translate] duration-300 group-hover:text-brand sm:text-2xl md:group-hover:translate-x-2">
+                    {project.title}
+                  </h2>
+                  <p className="col-start-2 flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground md:col-start-auto md:contents">
+                    <span className="truncate">{project.client}</span>
+                    <span className="tabular-nums">{project.year}</span>
+                    <span className="inline-flex items-center gap-2">
+                      <span
+                        className={cn(
+                          'size-2 rounded-full',
+                          learning ? 'bg-track-learning' : 'bg-track-design',
+                        )}
+                      />
+                      {learning ? p.learning : p.design}
+                    </span>
+                  </p>
+                  <ArrowUpRight className="hidden size-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand md:block" />
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+
+        {/* Aperçu qui suit la souris (écrans avec souris uniquement) */}
+        <div
+          ref={previewRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 z-10 hidden w-72 [@media(hover:hover)_and_(pointer:fine)]:md:block"
+        >
+          {t.projects.map((project) => {
+            const cover = getProjectMedia(project.slug)?.images[0]
+            if (!cover) return null
+            return (
+              <ProjectVisual
+                key={project.slug}
+                image={{ ...cover, fit: 'contain' }}
+                alt=""
+                className={cn(
+                  'absolute inset-x-0 top-0 aspect-[4/3] rounded-2xl border border-border shadow-2xl shadow-foreground/15 transition-[opacity,scale] duration-200 motion-reduce:transition-none',
+                  hovered === project.slug
+                    ? 'scale-100 opacity-100'
+                    : 'scale-95 opacity-0',
+                )}
+              />
+            )
+          })}
+          {/* Réserve la hauteur de l'aperçu pour le centrer sur le pointeur */}
+          <div className="invisible aspect-[4/3]" />
+        </div>
+      </div>
+    </section>
   )
 }

@@ -18,15 +18,38 @@ export const en: Dictionary = {
     toLight: 'Switch to light theme',
   },
   footer: {
-    lead: 'Find me elsewhere',
-    email: 'Send an email',
-    cv: 'My CV as PDF',
-    backToTop: 'Back to top',
+    copy: 'Copy',
+    copied: 'Copied!',
+    copyLabel: 'Copy the email address',
+    cv: 'CV (PDF)',
+  },
+  write: {
+    title: 'Got a training project in mind?',
+    intro: 'Pick a subject, tweak the message if you like, and send.',
+    subjectLabel: 'I’m writing about',
+    subjects: [
+      {
+        label: 'a role',
+        body: 'Hi Valentin,\n\nYour profile matches a digital learning project manager role we are looking to fill. Would you be available to talk about it?',
+      },
+      {
+        label: 'a project',
+        body: 'Hi Valentin,\n\nWe have a training project to design and would love to present it to you. Would you be available for a first call?',
+      },
+      {
+        label: 'a chat',
+        body: 'Hi Valentin,\n\nI came across your portfolio and would love to chat with you about digital learning.',
+      },
+    ],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    send: 'Send',
   },
   home: {
     hero: {
       photoAlt: 'Photo of Valentin Frenial',
-      hello: 'Hi, I’m',
+      greetings: ['Hello', 'Bonjour', 'Hola'],
+      intro: 'I’m',
       role: 'Digital learning project manager.',
       pitch:
         'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',
@@ -35,15 +58,15 @@ export const en: Dictionary = {
       stats: [
         {
           value: '12',
-          label: 'languages for one project',
+          label: 'languages',
         },
         {
           value: '6',
-          label: 'modules shipped in 1 month',
+          label: 'modules in 1 month',
         },
         {
           value: '14',
-          label: 'job videos shot and edited',
+          label: 'job videos',
         },
       ],
     },
@@ -81,12 +104,6 @@ export const en: Dictionary = {
       ],
       moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
-    },
-    contact: {
-      title: 'Got a training project in mind?',
-      text: 'Let’s talk, in person or on a call.',
-      email: 'Send an email',
-      linkedin: 'Follow me on LinkedIn',
     },
   },
   projects: [
@@ -300,13 +317,9 @@ export const en: Dictionary = {
     design: 'Design',
   },
   aboutPage: {
-    greetings: ['Hello', 'Bonjour', 'Hola'],
-    intro: 'I’m Valentin.',
-    role: 'Learning project manager and designer',
-    profile: [
-      'I design digital training that is intuitive, engaging and built around the people who take it.',
-      'Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
-    ],
+    lede: 'I design digital training that is intuitive and engaging, built around the people who take it.',
+    ledeMore:
+      'Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
     downloadCv: 'Download my CV',
     contact: 'Get in touch',
     valuesTitle: 'How I work',
@@ -324,18 +337,23 @@ export const en: Dictionary = {
         text: 'I track results and learner engagement to make every module better.',
       },
     ],
-    storyTitle: 'My story, in short',
+    storyTitle: 'In short',
     story:
-      'Trained at EEMI in digital project management and art direction, I learned the ropes as a work-study student at Nexans, then at Chanel, where I designed training for artisans around the world. Today I also work as a freelancer with Valenteint Studio.',
-    offTitle: 'Outside work',
-    off: [
-      { title: 'Languages', text: 'French, English and Spanish' },
-      { title: 'Travel', text: 'Travelling and discovering new cultures' },
-      { title: 'Sport', text: 'Sports, a real passion of mine' },
+      'It all started as a work-study student at Nexans, redesigning the learning platform’s journey and building dozens of e-learning modules. At Chanel, I then supported artisans around the world, from onboarding to certification programmes. Today, I bring this mix of learning design and graphic design to new projects.',
+    toolsTitle: 'Tools',
+    tools: [
+      'Articulate Storyline 360',
+      'Figma',
+      'Adobe Suite',
+      'HTML / CSS',
+      'WordPress',
+      'Cornerstone',
+      'CrossKnowledge',
+      'Edflex',
     ],
-    ctaTitle: 'Want to know more?',
-    ctaText:
-      'My whole journey fits on one page: download my CV or drop me a line.',
+    languagesTitle: 'Languages',
+    languagesText: 'I work in all three.',
+    languages: ['Français', 'English', 'Español'],
   },
   carousel: {
     previous: 'Previous',
