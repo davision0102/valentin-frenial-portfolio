@@ -59,7 +59,7 @@ function Hero() {
         className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
       />
 
-      <div className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-10 px-4 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-5 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
         <div className="max-w-md lg:mb-6">
           <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
           {/* Chiffres clés, sur une ligne sous la présentation. */}
@@ -139,7 +139,7 @@ function Clients() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-[96rem] flex-col items-center gap-8 px-4 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
       <h2 className="text-sm font-normal text-muted-foreground">
         {t.home.about.companiesTitle}
       </h2>
@@ -168,7 +168,7 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16"
+      className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
       <h2 className={titleClass}>{p.title}</h2>
 
@@ -177,6 +177,7 @@ function Projects() {
       <Carousel
         label={p.title}
         className="mt-10 sm:mt-12"
+        bleed
         itemClassName="basis-[85%] sm:basis-[60%] md:basis-[46%]"
       >
         {t.projects.map((project) => (
@@ -202,7 +203,7 @@ function Services() {
   const s = t.home.services
 
   return (
-    <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
+    <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16">
       <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
       <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">

@@ -42,7 +42,7 @@ function ProjectsPage() {
   const currentMedia = current ? getProjectMedia(current.slug) : undefined
 
   return (
-    <section className="mx-auto max-w-[96rem] px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
+    <section className="mx-auto max-w-7xl px-5 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <h1 className="sr-only">{p.title}</h1>
 
       <div

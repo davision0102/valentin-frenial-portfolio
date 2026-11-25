@@ -28,7 +28,7 @@ export function SiteFooter() {
 
   return (
     <footer id={contactId} className="scroll-mt-4 bg-ink text-foreground">
-      <div className="mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         <h2 className="max-w-2xl pt-16 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-24 sm:text-6xl">
           {f.title}
         </h2>
