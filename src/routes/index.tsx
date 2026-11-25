@@ -9,12 +9,14 @@ import {
   Mail,
   Palette,
 } from 'lucide-react'
+import { ContactComposer } from '@/components/contact-composer'
 import { Greeting } from '@/components/greeting'
 import { Portrait } from '@/components/portrait'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -42,6 +44,7 @@ function HomePage() {
       <Projects />
       <Services />
       <About />
+      <ContactComposer />
     </>
   )
 }
@@ -78,25 +81,32 @@ function Hero() {
               {h.seeProjects}
               <ArrowDown className="size-4" />
             </Link>
-            <a
-              href={`mailto:${site.email}`}
+            <Link
+              to="/"
+              hash="ecrire"
               className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium glass transition-transform active:scale-[0.97]"
             >
               <Mail className="size-4" />
               {h.contactMe}
-            </a>
+            </Link>
           </div>
-          <ul className="mt-10 flex flex-wrap gap-2">
-            {h.stats.map((stat) => (
-              <li
+          <dl className="mt-10 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm sm:flex-nowrap">
+            {h.stats.map((stat, i) => (
+              <div
                 key={stat.label}
-                className="rounded-full px-4 py-2 text-sm glass"
+                className={cn(
+                  'flex items-baseline gap-1.5 whitespace-nowrap',
+                  i > 0 && 'sm:border-l sm:border-border sm:pl-6',
+                )}
               >
-                <span className="font-semibold">{stat.value}</span>{' '}
-                <span className="text-muted-foreground">{stat.label}</span>
-              </li>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="text-lg font-semibold tabular-nums">
+                  {stat.value}
+                </dd>
+                <dd className="text-muted-foreground">{stat.label}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </div>
 
         <Portrait className="mx-auto max-w-[9rem] max-lg:order-first sm:max-w-[12rem] lg:max-w-[18rem]" />

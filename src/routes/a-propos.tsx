@@ -41,12 +41,6 @@ function AboutPage() {
             <Download className="size-4" />
             {a.downloadCv}
           </a>
-          <a
-            href="#contact"
-            className="text-sm font-medium underline decoration-border decoration-2 underline-offset-4 transition-colors hover:decoration-brand"
-          >
-            {a.contact}
-          </a>
         </div>
       </header>
 
@@ -89,21 +83,10 @@ function AboutPage() {
       </Section>
 
       <Section title={a.languagesTitle}>
-        <ul className="grid gap-4 sm:grid-cols-3">
-          {a.languages.map((language) => (
-            <li
-              key={language.name}
-              className="rounded-2xl border border-border px-5 py-4"
-            >
-              <p className="text-2xl font-semibold tracking-tight text-brand">
-                {language.hello}
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {language.name}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <p className="text-xl font-medium tracking-tight">
+          {a.languages.join(' · ')}
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{a.languagesText}</p>
       </Section>
     </article>
   )

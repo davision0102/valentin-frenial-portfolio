@@ -18,19 +18,32 @@ export const en: Dictionary = {
     toLight: 'Switch to light theme',
   },
   footer: {
-    lead: 'Got a training project in mind?',
-    to: 'To',
-    subject: 'Subject',
-    subjects: ['A role', 'A project', 'A chat'],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
-    bodyDefault:
-      'Hi Valentin,\n\nI have a training project in mind and would love to talk about it.',
-    send: 'Send',
     copy: 'Copy',
     copied: 'Copied!',
     copyLabel: 'Copy the email address',
-    cv: 'My CV (PDF)',
+    cv: 'CV (PDF)',
+  },
+  write: {
+    title: 'Got a training project in mind?',
+    intro: 'Pick a subject, tweak the message if you like, and send.',
+    subjectLabel: 'I’m writing about',
+    subjects: [
+      {
+        label: 'a role',
+        body: 'Hi Valentin,\n\nYour profile matches a digital learning project manager role we are looking to fill. Would you be available to talk about it?',
+      },
+      {
+        label: 'a project',
+        body: 'Hi Valentin,\n\nWe have a training project to design and would love to present it to you. Would you be available for a first call?',
+      },
+      {
+        label: 'a chat',
+        body: 'Hi Valentin,\n\nI came across your portfolio and would love to chat with you about digital learning.',
+      },
+    ],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    send: 'Send',
   },
   home: {
     hero: {
@@ -45,15 +58,15 @@ export const en: Dictionary = {
       stats: [
         {
           value: '12',
-          label: 'languages for one project',
+          label: 'languages',
         },
         {
           value: '6',
-          label: 'modules shipped in 1 month',
+          label: 'modules in 1 month',
         },
         {
           value: '14',
-          label: 'job videos shot and edited',
+          label: 'job videos',
         },
       ],
     },
@@ -339,11 +352,8 @@ export const en: Dictionary = {
       'Edflex',
     ],
     languagesTitle: 'Languages',
-    languages: [
-      { name: 'French', hello: 'Bonjour' },
-      { name: 'English', hello: 'Hello' },
-      { name: 'Spanish', hello: 'Hola' },
-    ],
+    languagesText: 'I work in all three.',
+    languages: ['Français', 'English', 'Español'],
   },
   carousel: {
     previous: 'Previous',

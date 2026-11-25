@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { ArrowUpRight, Check, Copy, Download, Mail, Send } from 'lucide-react'
+import { ArrowUpRight, Check, Copy, Download, Mail } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
-import { cn } from '@/lib/utils'
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -47,14 +46,15 @@ function RootLayout() {
           <Link to="/a-propos" className={navLinkClass}>
             {t.nav.about}
           </Link>
-          <a
-            href="#contact"
+          <Link
+            to="/"
+            hash="ecrire"
             aria-label={t.nav.contact}
             className="ml-1 inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3 text-sm font-medium text-background transition-transform active:scale-[0.97] sm:px-4"
           >
             <Mail className="size-4 sm:hidden" />
             <span className="max-sm:sr-only">{t.nav.contact}</span>
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -68,25 +68,14 @@ function RootLayout() {
 }
 
 /**
- * Pied de page : un brouillon d'e-mail prêt à envoyer. On choisit l'objet,
- * on retouche le message, « Envoyer » ouvre la messagerie du visiteur avec
- * tout pré-rempli. LinkedIn, le CV, le thème et la langue tiennent dans la
- * même carte.
+ * Pied de page fin, identique sur toutes les pages : e-mail (à copier),
+ * LinkedIn, CV, puis copyright, thème et langue. Le vrai moment de contact
+ * est sur l'accueil (le brouillon d'e-mail).
  */
 function Footer() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
   const f = t.footer
   const [copied, setCopied] = useState(false)
-  const [subject, setSubject] = useState(0)
-  // Le message reste celui de la langue choisie tant qu'il n'a pas été modifié.
-  const [edited, setEdited] = useState<{ lang: string; text: string } | null>(
-    null,
-  )
-  const body = edited && edited.lang === lang ? edited.text : f.bodyDefault
-
-  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
-    `${f.subjectPrefix} · ${f.subjects[subject]}`,
-  )}&body=${encodeURIComponent(body)}`
 
   async function copyEmail() {
     try {
@@ -98,124 +87,60 @@ function Footer() {
     }
   }
 
-  const row =
-    'flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-border px-5 py-3.5'
-  const label = 'w-14 shrink-0 text-sm text-muted-foreground'
+  const link =
+    'inline-flex items-center gap-1.5 transition-colors hover:text-foreground'
 
   return (
-    <footer
-      id="contact"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-4 pb-4 sm:px-6 sm:pb-6"
-    >
-      {/* La classe « dark » applique la palette sombre dans la carte, quel
-          que soit le thème choisi. */}
-      <div className="dark relative isolate overflow-hidden rounded-[2rem] bg-spotlight px-4 pt-10 pb-5 text-foreground sm:px-10 sm:pt-14">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-32 -right-24 -z-10 size-[26rem] rounded-full bg-brand/30 blur-[110px]"
-        />
-
-        <h2 className="px-1 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {f.lead}
-        </h2>
-
-        {/* Le brouillon d'e-mail */}
-        <div className="mt-8 overflow-hidden rounded-2xl bg-background/55 ring-1 ring-border sm:mt-10">
-          <div className={row}>
-            <span className={label}>{f.to}</span>
-            <a
-              href={`mailto:${site.email}`}
-              className="font-medium underline-offset-4 hover:underline"
-            >
+    <footer className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div className="flex flex-col gap-4 border-t border-border py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <li className="flex items-center gap-1">
+            <a href={`mailto:${site.email}`} className={link}>
               {site.email}
             </a>
             <button
               type="button"
               onClick={copyEmail}
               aria-label={f.copyLabel}
-              className="ml-auto inline-flex h-8 items-center gap-1.5 rounded-full bg-foreground/10 px-3 text-xs font-medium transition-colors hover:bg-foreground/15"
+              title={f.copyLabel}
+              className="grid size-8 place-items-center rounded-full transition-colors hover:bg-foreground/5 hover:text-foreground"
             >
               {copied ? (
                 <Check className="size-3.5 text-track-skill" />
               ) : (
                 <Copy className="size-3.5" />
               )}
-              <span aria-live="polite">{copied ? f.copied : f.copy}</span>
             </button>
-          </div>
-
-          <div className={row}>
-            <span className={label} id="footer-subject">
-              {f.subject}
+            <span aria-live="polite" className="sr-only">
+              {copied ? f.copied : ''}
             </span>
-            <div
-              role="group"
-              aria-labelledby="footer-subject"
-              className="flex flex-wrap gap-2"
-            >
-              {f.subjects.map((item, i) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setSubject(i)}
-                  aria-pressed={subject === i}
-                  className={cn(
-                    'h-8 rounded-full px-3.5 text-sm font-medium transition-colors',
-                    subject === i
-                      ? 'bg-foreground text-background'
-                      : 'bg-foreground/10 hover:bg-foreground/15',
-                  )}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <label className="sr-only" htmlFor="footer-message">
-            {f.message}
-          </label>
-          <textarea
-            id="footer-message"
-            value={body}
-            onChange={(event) => setEdited({ lang, text: event.target.value })}
-            rows={4}
-            className="block w-full resize-none bg-transparent px-5 py-4 leading-relaxed placeholder:text-muted-foreground focus:outline-none"
-          />
-
-          <div className="flex flex-wrap items-center gap-2 border-t border-border px-3 py-3">
-            <a
-              href={mailto}
-              className="inline-flex h-10 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
-            >
-              <Send className="size-4" />
-              {f.send}
-            </a>
+          </li>
+          <li>
             <a
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-sm font-medium transition-colors hover:bg-foreground/10"
+              className={link}
             >
               LinkedIn
-              <ArrowUpRight className="size-4" />
+              <ArrowUpRight className="size-3.5" />
             </a>
+          </li>
+          <li>
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
               download
-              className="inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-sm font-medium transition-colors hover:bg-foreground/10"
+              className={link}
             >
               {f.cv}
-              <Download className="size-4" />
+              <Download className="size-3.5" />
             </a>
-          </div>
-        </div>
-
-        {/* Bas de la carte : même bloc */}
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 px-1 text-sm text-muted-foreground">
-          <p>
+          </li>
+        </ul>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span>
             © {new Date().getFullYear()} {site.name}
-          </p>
+          </span>
           <div className="flex items-center gap-1">
             <ThemeToggle showLabel />
             <LanguageSwitch />

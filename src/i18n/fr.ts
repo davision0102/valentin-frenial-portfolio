@@ -20,19 +20,32 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    lead: 'Un projet de formation en tête\u00a0?',
-    to: 'À',
-    subject: 'Objet',
-    subjects: ['Un poste', 'Une mission', 'Un échange'],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
-    bodyDefault:
-      'Bonjour Valentin,\n\nJ’ai un projet de formation en tête et j’aimerais en parler avec vous.',
-    send: 'Envoyer',
     copy: 'Copier',
     copied: 'Copié\u00a0!',
     copyLabel: 'Copier l’adresse e-mail',
-    cv: 'Mon CV (PDF)',
+    cv: 'CV (PDF)',
+  },
+  write: {
+    title: 'Un projet de formation en tête\u00a0?',
+    intro: 'Choisissez l’objet, retouchez le message si besoin, et envoyez.',
+    subjectLabel: 'Je vous écris pour',
+    subjects: [
+      {
+        label: 'un poste',
+        body: 'Bonjour Valentin,\n\nVotre profil correspond à un poste de chef de projet digital learning que nous cherchons à pourvoir. Seriez-vous disponible pour en discuter\u00a0?',
+      },
+      {
+        label: 'une mission',
+        body: 'Bonjour Valentin,\n\nNous avons un projet de formation à concevoir et aimerions vous le présenter. Seriez-vous disponible pour un premier échange\u00a0?',
+      },
+      {
+        label: 'un échange',
+        body: 'Bonjour Valentin,\n\nJ’ai découvert votre portfolio et j’aimerais échanger avec vous autour du digital learning.',
+      },
+    ],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    send: 'Envoyer',
   },
   home: {
     hero: {
@@ -47,15 +60,15 @@ export const fr = {
       stats: [
         {
           value: '12',
-          label: 'langues pour un même projet',
+          label: 'langues',
         },
         {
           value: '6',
-          label: 'modules livrés en 1 mois',
+          label: 'modules en 1 mois',
         },
         {
           value: '14',
-          label: 'vidéos métier tournées et montées',
+          label: 'vidéos métier',
         },
       ],
     },
@@ -347,11 +360,8 @@ export const fr = {
       'Edflex',
     ],
     languagesTitle: 'Langues',
-    languages: [
-      { name: 'Français', hello: 'Bonjour' },
-      { name: 'Anglais', hello: 'Hello' },
-      { name: 'Espagnol', hello: 'Hola' },
-    ],
+    languagesText: 'Je travaille dans ces trois langues.',
+    languages: ['Français', 'English', 'Español'],
   },
   carousel: {
     previous: 'Précédent',
