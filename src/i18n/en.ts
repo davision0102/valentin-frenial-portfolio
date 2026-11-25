@@ -20,10 +20,13 @@ export const en: Dictionary = {
   footer: {
     email: 'Send an email',
     cv: 'Download my CV (PDF)',
+    emailShort: 'Email',
+    cvShort: 'CV',
   },
   write: {
-    title: 'Got a training project in mind?',
-    intro: 'Pick a subject, tweak the message if you like, and send.',
+    title: 'Got a project?',
+    intro:
+      'A role, a project or just a chat about digital learning? Pick a subject, tweak the message if you like, and send.',
     subjectLabel: 'I’m writing about',
     subjects: [
       {
@@ -49,10 +52,9 @@ export const en: Dictionary = {
       greetings: ['Hello', 'Bonjour', 'Hola'],
       intro: 'I’m',
       role: 'Digital learning project manager.',
+      skills: 'E-learning · Video · Art direction',
       pitch:
         'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',
-      seeProjects: 'See my projects',
-      contactMe: 'Get in touch',
       stats: [
         {
           value: '12',
@@ -70,8 +72,7 @@ export const en: Dictionary = {
     },
     projects: {
       title: 'My projects',
-      text: 'Training for thousands of learners, plus a few design projects on the side.',
-      seeAll: 'See all projects',
+      seeAll: 'All projects',
     },
     services: {
       title: 'From a training idea to a live online module.',
@@ -96,10 +97,6 @@ export const en: Dictionary = {
     },
     about: {
       title: 'Teach, yes. Bore, never.',
-      paragraphs: [
-        'Between learning design and graphic design, I love turning complex or unfamiliar topics (compliance, climate, technical craftsmanship) into clear, engaging training.',
-        'At Nexans, then at Chanel, first as a work-study student and then on staff, I did it all: art direction, scripting, interactions, filming, editing and motion design.',
-      ],
       moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },

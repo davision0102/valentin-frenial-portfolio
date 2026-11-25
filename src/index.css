@@ -13,6 +13,8 @@
   --color-track-design: var(--track-design);
   --color-track-skill: var(--track-skill);
   --color-spotlight: var(--spotlight);
+  /* Bleu nuit très profond, le même dans les deux thèmes : hero et pied de page. */
+  --color-ink: oklch(0.15 0.04 266);
   --color-track-foreground: var(--track-foreground);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);

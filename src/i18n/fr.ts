@@ -22,10 +22,13 @@ export const fr = {
   footer: {
     email: 'Écrire un e-mail',
     cv: 'Télécharger mon CV (PDF)',
+    emailShort: 'E-mail',
+    cvShort: 'CV',
   },
   write: {
-    title: 'Un projet de formation en tête\u00a0?',
-    intro: 'Choisissez l’objet, retouchez le message si besoin, et envoyez.',
+    title: 'Un projet\u00a0?',
+    intro:
+      'Un poste, une mission ou simplement un échange autour du digital learning\u00a0? Choisissez l’objet, retouchez le message si besoin, et envoyez.',
     subjectLabel: 'Je vous écris pour',
     subjects: [
       {
@@ -51,10 +54,9 @@ export const fr = {
       greetings: ['Bonjour', 'Hello', 'Hola'],
       intro: 'moi c’est',
       role: 'Chef de projet digital learning.',
+      skills: 'E-learning · Vidéo · Direction artistique',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
-      seeProjects: 'Voir mes projets',
-      contactMe: 'Me contacter',
       stats: [
         {
           value: '12',
@@ -72,8 +74,7 @@ export const fr = {
     },
     projects: {
       title: 'Mes projets',
-      text: 'Des formations pour des milliers d’apprenants, et quelques projets de design en bonus.',
-      seeAll: 'Voir tous les projets',
+      seeAll: 'Tous les projets',
     },
     services: {
       title: 'De l’idée de formation au module en ligne.',
@@ -98,10 +99,6 @@ export const fr = {
     },
     about: {
       title: 'Former, oui. Ennuyer, jamais.',
-      paragraphs: [
-        'Entre pédagogie et design, j’aime transformer des sujets complexes ou peu familiers (conformité, climat, savoir-faire techniques) en formations claires et engageantes.',
-        'Chez Nexans puis chez Chanel, en alternance puis en poste, j’ai touché à tout : direction artistique, scénarisation, interactions, tournage, montage et motion design.',
-      ],
       moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },

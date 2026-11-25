@@ -1,11 +1,13 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { FileDown, Mail } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
+import { ContactComposer } from '@/components/contact-composer'
 import { LanguageSwitch } from '@/components/language-switch'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { contactId, goToContact } from '@/lib/contact'
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -45,15 +47,18 @@ function RootLayout() {
           <Link to="/a-propos" className={navLinkClass}>
             {t.nav.about}
           </Link>
-          <Link
-            to="/"
-            hash="ecrire"
+          <a
+            href={`#${contactId}`}
+            onClick={(event) => {
+              event.preventDefault()
+              goToContact()
+            }}
             aria-label={t.nav.contact}
             className="ml-1 inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3 text-sm font-medium text-background transition-transform active:scale-[0.97] sm:px-4"
           >
             <Mail className="size-4 sm:hidden" />
             <span className="max-sm:sr-only">{t.nav.contact}</span>
-          </Link>
+          </a>
         </nav>
       </header>
 
@@ -67,65 +72,68 @@ function RootLayout() {
 }
 
 /**
- * Pied de page : une seule ligne. À gauche le copyright, à droite de petits
- * boutons ronds (e-mail, LinkedIn, CV), puis le thème et la langue.
+ * Pied de page, sur un bleu nuit profond : un grand « Un projet ? », puis
+ * l'e-mail prêt à envoyer (le seul point de contact du site), et une ligne
+ * finale avec les liens, le thème, la langue et le copyright.
  * L'adresse e-mail n'est jamais écrite en clair dans la page.
  */
 function Footer() {
   const { t } = useI18n()
   const f = t.footer
-  const icon =
-    'grid size-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground'
+  const w = t.write
+  const link =
+    'inline-flex items-center gap-1 font-medium tracking-wide uppercase transition-colors hover:text-foreground'
 
   return (
-    <footer className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-      <div className="flex flex-col-reverse items-start gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {site.name}
-        </p>
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => openEmail()}
-            aria-label={f.email}
-            title={f.email}
-            className={icon}
-          >
-            <Mail className="size-4" />
-          </button>
-          <a
-            href={site.linkedinUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-            className={icon}
-          >
-            <LinkedinGlyph />
-          </a>
-          <a
-            href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
-            download
-            aria-label={f.cv}
-            title={f.cv}
-            className={icon}
-          >
-            <FileDown className="size-4" />
-          </a>
-          <span aria-hidden="true" className="mx-1 h-5 w-px bg-border" />
-          <ThemeToggle />
-          <LanguageSwitch />
+    <footer
+      id={contactId}
+      className="dark scroll-mt-4 border-t border-border bg-ink text-foreground"
+    >
+      <div className="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-10">
+        <h2 className="pt-16 font-heading text-[15vw] leading-[0.85] font-semibold tracking-[-0.05em] text-balance uppercase sm:pt-24 sm:text-[clamp(3rem,10.5vw,10rem)]">
+          {w.title}
+        </h2>
+
+        <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <p className="max-w-md text-lg leading-relaxed text-pretty text-muted-foreground">
+            {w.intro}
+          </p>
+          <ContactComposer />
+        </div>
+
+        <div className="mt-16 flex flex-col-reverse gap-6 border-t border-border py-6 text-xs text-muted-foreground sm:mt-24 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <button type="button" onClick={() => openEmail()} className={link}>
+              {f.emailShort}
+            </button>
+            <a
+              href={site.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={link}
+            >
+              LinkedIn
+              <ArrowUpRight className="size-3.5" />
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+              download
+              title={f.cv}
+              className={link}
+            >
+              {f.cvShort}
+              <ArrowDown className="size-3.5" />
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitch />
+            <p className="ml-2 tracking-wide uppercase">
+              © {new Date().getFullYear()} {site.name}
+            </p>
+          </div>
         </div>
       </div>
     </footer>
-  )
-}
-
-/** Logo LinkedIn simplifié (« in »), dessiné à la taille des autres icônes. */
-function LinkedinGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4 fill-current">
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.65v5.15h-4v-11Z" />
-    </svg>
   )
 }
