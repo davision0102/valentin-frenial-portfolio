@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
-import { PagedCarousel } from '@/components/paged-carousel'
+import { ProjectVisual } from '@/components/project-visual'
+import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { buttonOutline } from '@/lib/ui'
@@ -170,32 +171,95 @@ function Clients() {
   )
 }
 
+/** Les 3 projets mis en avant sur l'accueil (les autres sont sur /projets). */
+const featured = ['compliance-week', 'climate-training', 'kit-chanel-25']
+
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
+  // Test temporaire : /?projets=defile affiche la version « défilement ».
+  const marquee =
+    new URLSearchParams(window.location.search).get('projets') === 'defile'
 
   return (
-    <section
-      id="projets"
-      className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16"
-    >
-      {/* Le titre à gauche, le lien vers tous les projets à droite. */}
-      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-        <h2 className={titleClass}>{p.title}</h2>
-        <Link to="/projets" className={buttonOutline}>
-          {p.seeAll}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+    <section id="projets" className="scroll-mt-20 pb-16 sm:pb-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
+        {/* Le titre à gauche, le lien vers tous les projets à droite. */}
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+          <h2 className={titleClass}>{p.title}</h2>
+          <Link to="/projets" className={buttonOutline}>
+            {p.seeAll}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
+        {!marquee && (
+          <div className="mt-10 grid gap-12 sm:mt-12 md:grid-cols-3 md:gap-8 lg:gap-12">
+            {featured.map((slug) => {
+              const project = t.projects.find((item) => item.slug === slug)
+              return project ? (
+                <ProjectCard key={slug} project={project} />
+              ) : null
+            })}
+          </div>
+        )}
       </div>
 
-      {/* Deux projets visibles (un sur téléphone) ; on passe aux suivants
-          avec les flèches. */}
-      <PagedCarousel label={p.title} className="mt-10 sm:mt-12">
-        {t.projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </PagedCarousel>
+      {marquee && <ProjectsMarquee />}
     </section>
+  )
+}
+
+/**
+ * Version « défilement » : toutes les vignettes défilent en boucle d'un
+ * bord à l'autre de l'écran, en pause au survol ; chaque vignette ouvre son
+ * projet.
+ */
+function ProjectsMarquee() {
+  const { t } = useI18n()
+
+  return (
+    <div className="group/defile mt-10 overflow-hidden sm:mt-12">
+      <div className="flex w-max animate-[marquee_60s_linear_infinite] group-hover/defile:[animation-play-state:paused] motion-reduce:animate-none">
+        {[0, 1].map((copy) => (
+          <ul
+            key={copy}
+            aria-hidden={copy === 1}
+            className="flex shrink-0 gap-6 pr-6"
+          >
+            {t.projects.map((project) => {
+              const cover = getProjectMedia(project.slug)?.images[0]
+              return (
+                <li key={project.slug} className="w-64 shrink-0 sm:w-72">
+                  <Link
+                    to="/projets/$slug"
+                    params={{ slug: project.slug }}
+                    tabIndex={copy === 1 ? -1 : undefined}
+                    className="group block"
+                  >
+                    {cover && (
+                      <ProjectVisual
+                        image={{ ...cover, fit: 'contain' }}
+                        alt=""
+                        className="aspect-[4/3] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+                    )}
+                    <span className="mt-4 block font-heading text-sm font-semibold tracking-tight uppercase">
+                      {project.title}
+                    </span>
+                    <span className="mt-1 block text-xs text-muted-foreground">
+                      {[project.client, project.year]
+                        .filter(Boolean)
+                        .join(' · ')}
+                    </span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        ))}
+      </div>
+    </div>
   )
 }
 
