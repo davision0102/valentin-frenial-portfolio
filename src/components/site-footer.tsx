@@ -31,15 +31,14 @@ export function SiteFooter() {
       className="dark scroll-mt-4 border-t border-border bg-ink text-foreground"
     >
       <div className="mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16">
-        <h2 className="max-w-2xl pt-16 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-24 sm:text-6xl">
+        <h2 className="max-w-2xl pt-12 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-16 sm:text-6xl">
           {f.title}
         </h2>
 
-        {/* Deux rangées alignées : Contact · Explorer · Basé en, puis
-            Un projet en tête · Suivre · Disponibilité. Sur téléphone, les
-            colonnes de liens passent dessous, deux par ligne. */}
-        <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 sm:mt-20 lg:grid-cols-[minmax(0,1fr)_14rem_14rem] lg:gap-x-16">
-          <div className="col-span-2 max-w-lg lg:col-span-1 lg:col-start-1 lg:row-start-1">
+        {/* À gauche : contact et formulaire. À droite : les colonnes de liens,
+            deux par deux. Les deux côtés ont chacun leur hauteur. */}
+        <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
+          <div className="max-w-lg">
             <p className={labelClass}>{f.contact}</p>
             <button
               type="button"
@@ -48,63 +47,51 @@ export function SiteFooter() {
             >
               {site.emailParts.join('@')}
             </button>
-          </div>
 
-          <div className="col-span-2 max-w-lg lg:col-span-1 lg:col-start-1 lg:row-start-2">
-            <p className={labelClass}>{f.project}</p>
+            <p className={`${labelClass} mt-8`}>{f.project}</p>
             <ContactForm />
             <LocalTime />
           </div>
 
-          <FooterColumn
-            title={f.explore}
-            className="lg:col-start-2 lg:row-start-1"
-          >
-            <Link to="/" className="hover:text-brand">
-              {t.nav.home}
-            </Link>
-            <Link to="/projets" className="hover:text-brand">
-              {t.nav.projects}
-            </Link>
-            <Link to="/a-propos" className="hover:text-brand">
-              {t.nav.about}
-            </Link>
-          </FooterColumn>
-          <FooterColumn
-            title={f.basedIn}
-            className="lg:col-start-3 lg:row-start-1"
-          >
-            <span>{f.based}</span>
-          </FooterColumn>
-          <FooterColumn
-            title={f.follow}
-            className="lg:col-start-2 lg:row-start-2"
-          >
-            <a
-              href={site.linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-brand"
-            >
-              {f.linkedin}
-            </a>
-            <a
-              href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
-              download
-              className="hover:text-brand"
-            >
-              {f.cv}
-            </a>
-          </FooterColumn>
-          <FooterColumn
-            title={f.availability}
-            className="lg:col-start-3 lg:row-start-2"
-          >
-            <span>{f.available}</span>
-          </FooterColumn>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 self-start lg:grid-cols-[14rem_14rem] lg:gap-x-16">
+            <FooterColumn title={f.explore}>
+              <Link to="/" className="hover:text-brand">
+                {t.nav.home}
+              </Link>
+              <Link to="/projets" className="hover:text-brand">
+                {t.nav.projects}
+              </Link>
+              <Link to="/a-propos" className="hover:text-brand">
+                {t.nav.about}
+              </Link>
+            </FooterColumn>
+            <FooterColumn title={f.basedIn}>
+              <span>{f.based}</span>
+            </FooterColumn>
+            <FooterColumn title={f.follow}>
+              <a
+                href={site.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-brand"
+              >
+                {f.linkedin}
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+                download
+                className="hover:text-brand"
+              >
+                {f.cv}
+              </a>
+            </FooterColumn>
+            <FooterColumn title={f.availability}>
+              <span>{f.available}</span>
+            </FooterColumn>
+          </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-24">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-12">
           <p>
             © {new Date().getFullYear()} {site.name}
           </p>
@@ -226,7 +213,7 @@ function LocalTime() {
   })
 
   return (
-    <div className="mt-8 text-sm leading-relaxed text-muted-foreground">
+    <div className="mt-6 text-sm leading-relaxed text-muted-foreground">
       <p>{t.footer.now(date, time)}</p>
       <p>{t.footer.reply}</p>
     </div>
