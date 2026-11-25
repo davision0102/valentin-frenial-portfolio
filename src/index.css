@@ -49,30 +49,31 @@
 }
 
 :root {
-  /* Clair : un blanc simple, texte bleu nuit, titres en bleu nuit soutenu.
-     Le sombre (par défaut) est bleu nuit. */
+  /* Clair : « noir et blanc » où le noir est remplacé par un seul bleu
+     nuit (textes, titres, boutons, accents). Le sombre (par défaut) est
+     bleu nuit. */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.22 0.03 264);
-  --heading: oklch(0.3 0.13 264);
-  --card: oklch(0.985 0.004 260);
-  --card-foreground: oklch(0.22 0.03 264);
+  --foreground: oklch(0.27 0.11 264);
+  --heading: oklch(0.27 0.11 264);
+  --card: oklch(0.985 0.006 264);
+  --card-foreground: oklch(0.27 0.11 264);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.03 264);
-  --primary: oklch(0.3 0.13 264);
+  --popover-foreground: oklch(0.27 0.11 264);
+  --primary: oklch(0.27 0.11 264);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.965 0.008 260);
-  --secondary-foreground: oklch(0.22 0.03 264);
-  --muted: oklch(0.965 0.008 260);
-  --muted-foreground: oklch(0.47 0.03 262);
-  --accent: oklch(0.965 0.008 260);
-  --accent-foreground: oklch(0.22 0.03 264);
+  --secondary: oklch(0.965 0.012 264);
+  --secondary-foreground: oklch(0.27 0.11 264);
+  --muted: oklch(0.965 0.012 264);
+  --muted-foreground: oklch(0.5 0.07 264);
+  --accent: oklch(0.965 0.012 264);
+  --accent-foreground: oklch(0.27 0.11 264);
   --destructive: oklch(0.6 0.22 27);
-  --border: oklch(0.3 0.06 264 / 11%);
-  --input: oklch(0.3 0.06 264 / 16%);
-  --ring: oklch(0.5 0.19 260);
+  --border: oklch(0.27 0.11 264 / 12%);
+  --input: oklch(0.27 0.11 264 / 18%);
+  --ring: oklch(0.27 0.11 264);
   --radius: 0.875rem;
   /* Couleurs des catégories : bleu (e-learning), lilas (design), turquoise (savoir-faire). */
-  --brand: oklch(0.5 0.2 260);
+  --brand: oklch(0.27 0.11 264);
   --brand-foreground: oklch(0.99 0 0);
   --track-learning: oklch(0.5 0.2 260);
   --track-design: oklch(0.56 0.18 292);
@@ -86,7 +87,7 @@
   --glass-shadow:
     0 1px 2px oklch(0.2 0.04 265 / 8%),
     0 12px 32px -12px oklch(0.25 0.08 265 / 28%);
-  --spotlight: oklch(0.3 0.13 264);
+  --spotlight: oklch(0.27 0.11 264);
   --track-foreground: oklch(0.99 0 0);
 }
 
