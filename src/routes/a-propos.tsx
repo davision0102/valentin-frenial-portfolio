@@ -54,17 +54,18 @@ function AboutPage() {
         </p>
       </header>
 
-      {/* Éventail de photos : elles se chevauchent, celle survolée passe devant. */}
+      {/* Grand écran : éventail de photos qui se chevauchent, celle survolée
+          passe devant. */}
       <ul
         aria-label={a.photosAlt}
-        className="mt-16 flex justify-center pb-8 sm:mt-24"
+        className="mt-24 hidden justify-center pb-8 sm:flex"
       >
         {photos.map((file, i) => (
           <li
             key={file}
             style={{ zIndex: i === 2 ? 5 : 4 - Math.abs(i - 2) }}
             className={cn(
-              'relative -ml-14 shrink-0 transition-transform duration-500 ease-out first:ml-0 hover:z-10! hover:-translate-y-4 hover:rotate-0 sm:-ml-24 lg:-ml-28',
+              'relative -ml-24 shrink-0 transition-transform duration-500 ease-out first:ml-0 hover:z-10! hover:-translate-y-4 hover:rotate-0 lg:-ml-28',
               fan[i].rotate,
               fan[i].shift,
             )}
@@ -73,11 +74,37 @@ function AboutPage() {
               src={imageUrl(file)}
               alt=""
               loading="lazy"
-              className="aspect-[3/4] w-28 rounded-2xl object-cover shadow-2xl ring-1 shadow-foreground/20 ring-black/5 sm:w-52 lg:w-64"
+              className="aspect-[3/4] w-52 rounded-2xl object-cover shadow-2xl ring-1 shadow-foreground/20 ring-black/5 lg:w-64"
             />
           </li>
         ))}
       </ul>
+
+      {/* Téléphone : les photos défilent en boucle, d'un bord à l'autre. */}
+      <div
+        role="img"
+        aria-label={a.photosAlt}
+        className="-mx-4 mt-16 overflow-hidden py-6 sm:hidden"
+      >
+        <div className="flex w-max animate-[marquee_28s_linear_infinite] motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex shrink-0 gap-4 pr-4">
+              {photos.map((file, i) => (
+                <img
+                  key={file}
+                  src={imageUrl(file)}
+                  alt=""
+                  loading="lazy"
+                  className={cn(
+                    'aspect-[3/4] w-40 shrink-0 rounded-2xl object-cover shadow-xl ring-1 shadow-foreground/15 ring-black/5',
+                    i % 2 === 0 ? '-rotate-2' : 'rotate-2',
+                  )}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </article>
   )
 }
