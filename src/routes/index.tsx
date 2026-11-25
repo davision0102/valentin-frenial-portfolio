@@ -50,18 +50,21 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-16 flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,88svh)] flex-col justify-center overflow-hidden bg-ink pt-28 pb-16 text-foreground lg:pb-20">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
-      <GreetingsMarquee
-        words={h.greetings}
-        className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
-      />
+      {/* Le bandeau est dans le flux ; sur grand écran, la ligne du dessous
+          remonte un peu pour que la photo passe devant lui. */}
+      <GreetingsMarquee words={h.greetings} />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-5 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
-        <div className="max-w-md lg:mb-6">
-          <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
+        <div className="max-w-lg lg:mt-20 lg:mb-6">
+          <div className="space-y-3 leading-relaxed text-pretty">
+            {h.bio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           {/* Chiffres clés, sur une ligne sous la présentation. */}
           <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
             {h.stats.map((stat) => (

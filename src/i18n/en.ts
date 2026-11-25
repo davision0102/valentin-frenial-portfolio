@@ -33,7 +33,10 @@ export const en: Dictionary = {
       photoAlt: 'Photo of Valentin Frenial',
       greetings: ['Hello', 'Bonjour', 'Hola'],
       role: 'Digital learning project manager.',
-      bio: 'I’m Valentin, a digital learning project manager. I love turning complex topics into clear training that makes people want to learn.',
+      bio: [
+        'As a digital learning project manager, I design intuitive, engaging, learner-centred e-learning, from the first idea to launch.',
+        'Working alongside HR, Finance and CSR teams, I turn complex content into clear, impactful training. Independent and meticulous, I rely on design, digital tools and results analysis to boost learner engagement.',
+      ],
       aboutMe: 'About me',
       stats: [
         {
