@@ -18,10 +18,8 @@ export const en: Dictionary = {
     toLight: 'Switch to light theme',
   },
   footer: {
-    copy: 'Copy',
-    copied: 'Copied!',
-    copyLabel: 'Copy the email address',
-    cv: 'CV (PDF)',
+    email: 'Send an email',
+    cv: 'Download my CV (PDF)',
   },
   write: {
     title: 'Got a training project in mind?',
@@ -308,6 +306,7 @@ export const en: Dictionary = {
     },
   ],
   projectsPage: {
+    open: 'View project',
     title: 'My projects',
     intro:
       'Digital training for Nexans and Chanel, plus design projects, from video to print.',

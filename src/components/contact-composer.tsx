@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Send } from 'lucide-react'
-import { site } from '@/config/site'
+import { openEmail } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
@@ -18,10 +18,6 @@ export function ContactComposer() {
   const [edited, setEdited] = useState<Record<string, string>>({})
   const key = `${lang}-${subject}`
   const body = edited[key] ?? w.subjects[subject].body
-
-  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
-    `${w.subjectPrefix} · ${w.subjects[subject].label}`,
-  )}&body=${encodeURIComponent(body)}`
 
   return (
     <section
@@ -78,13 +74,19 @@ export function ContactComposer() {
         />
 
         <div className="mt-4">
-          <a
-            href={mailto}
+          <button
+            type="button"
+            onClick={() =>
+              openEmail(
+                `${w.subjectPrefix} · ${w.subjects[subject].label}`,
+                body,
+              )
+            }
             className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
           >
             <Send className="size-4" />
             {w.send}
-          </a>
+          </button>
         </div>
       </div>
     </section>

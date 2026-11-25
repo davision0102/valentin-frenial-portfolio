@@ -20,10 +20,8 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    copy: 'Copier',
-    copied: 'Copié\u00a0!',
-    copyLabel: 'Copier l’adresse e-mail',
-    cv: 'CV (PDF)',
+    email: 'Écrire un e-mail',
+    cv: 'Télécharger mon CV (PDF)',
   },
   write: {
     title: 'Un projet de formation en tête\u00a0?',
@@ -316,6 +314,7 @@ export const fr = {
     },
   ],
   projectsPage: {
+    open: 'Voir le projet',
     title: 'Mes projets',
     intro:
       'Des formations digitales pour Nexans et Chanel, et des projets de design, de la vidéo au print.',

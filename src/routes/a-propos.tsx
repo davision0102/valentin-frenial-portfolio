@@ -45,17 +45,22 @@ function AboutPage() {
       </header>
 
       <Section title={a.valuesTitle}>
-        <ol>
+        {/* Un parcours en 3 étapes reliées, comme un module qui avance. */}
+        <ol className="grid gap-8 sm:grid-cols-3 sm:gap-6">
           {a.values.map((value, i) => (
-            <li
-              key={value.title}
-              className="grid gap-2 border-t border-border py-6 first:border-t-0 first:pt-0 sm:grid-cols-[3rem_minmax(0,14rem)_minmax(0,1fr)] sm:gap-6"
-            >
-              <span className="text-sm text-muted-foreground tabular-nums">
-                {String(i + 1).padStart(2, '0')}
+            <li key={value.title} className="relative pl-14 sm:pt-14 sm:pl-0">
+              {/* Trait vers l'étape suivante */}
+              {i < a.values.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute top-10 bottom-[-2rem] left-5 w-px bg-border sm:top-5 sm:right-[-1.5rem] sm:bottom-auto sm:left-10 sm:h-px sm:w-auto"
+                />
+              )}
+              <span className="absolute top-0 left-0 grid size-10 place-items-center rounded-full border border-brand/40 bg-background text-sm font-semibold text-brand tabular-nums">
+                {i + 1}
               </span>
               <h3 className="font-semibold">{value.title}</h3>
-              <p className="leading-relaxed text-pretty text-muted-foreground">
+              <p className="mt-2 leading-relaxed text-pretty text-muted-foreground">
                 {value.text}
               </p>
             </li>

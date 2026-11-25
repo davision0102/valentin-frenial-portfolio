@@ -5,7 +5,12 @@
  */
 export const site = {
   name: 'Valentin Frenial',
-  email: 'valentin.frenial@hotmail.fr',
+  /**
+   * E-mail en deux morceaux, assemblés seulement au clic (openEmail) : il
+   * n'apparaît pas en clair dans la page, ce qui gêne les robots qui
+   * collectent les adresses pour le spam.
+   */
+  emailParts: ['valentin.frenial', 'hotmail.fr'] as const,
   linkedinUrl: 'https://www.linkedin.com/in/valentinfrenial/',
   /** Initiales affichées dans le logo. */
   get initials() {
@@ -17,3 +22,13 @@ export const site = {
       .toUpperCase()
   },
 } as const
+
+/** Ouvre la messagerie du visiteur vers Valentin, avec un objet et un message. */
+export function openEmail(subject?: string, body?: string) {
+  const [user, domain] = site.emailParts
+  const params = new URLSearchParams()
+  if (subject) params.set('subject', subject)
+  if (body) params.set('body', body)
+  const query = params.toString().replace(/\+/g, '%20')
+  window.location.href = `mailto:${user}@${domain}${query ? `?${query}` : ''}`
+}
