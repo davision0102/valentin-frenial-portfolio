@@ -50,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-16 flex min-h-[max(34rem,88svh)] flex-col justify-center overflow-hidden bg-ink pt-28 pb-16 text-foreground lg:pb-20">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col justify-center overflow-hidden bg-ink pt-28 pb-16 text-foreground lg:pb-20">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
@@ -77,10 +77,6 @@ function Hero() {
               </div>
             ))}
           </dl>
-          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
-            {h.aboutMe}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
         </div>
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie

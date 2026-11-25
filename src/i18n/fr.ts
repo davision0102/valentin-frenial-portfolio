@@ -39,7 +39,6 @@ export const fr = {
         'Chef de projet digital learning, je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',
         'Aux côtés des équipes RH, Finance et RSE, je transforme des contenus complexes en formations claires et impactantes. Autonome et minutieux, je m’appuie sur le design, les outils digitaux et l’analyse des résultats pour renforcer l’engagement des apprenants.',
       ],
-      aboutMe: 'À propos de moi',
       stats: [
         {
           value: '12',
