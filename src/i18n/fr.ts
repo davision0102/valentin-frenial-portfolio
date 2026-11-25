@@ -21,25 +21,13 @@ export const fr = {
   },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
-    contact: 'Contact',
-    project: 'Un projet en tête\u00a0?',
-    name: 'Votre nom',
-    email: 'Votre adresse e-mail',
-    need: 'De quoi avez-vous besoin\u00a0?',
-    send: 'Envoyer',
-    subject: 'Portfolio',
-    from: 'De la part de',
     now: (date: string, time: string) =>
       `Nous sommes ${date}, il est ${time.replace(':', 'h')} ici en France.`,
-    reply: 'Je vous réponds au plus vite.',
-    explore: 'Explorer',
-    follow: 'Suivre',
+    reply: 'Écrivez-moi, je vous réponds au plus vite.',
+    email: 'Envoyer un e-mail',
     linkedin: 'LinkedIn',
     cv: 'Télécharger mon CV',
-    basedIn: 'Basé en',
-    based: 'France',
-    availability: 'Disponibilité',
-    available: 'Ouvert aux échanges',
+    subject: 'Portfolio',
   },
   home: {
     hero: {

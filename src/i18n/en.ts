@@ -19,25 +19,13 @@ export const en: Dictionary = {
   },
   footer: {
     title: 'Let’s make training that sticks.',
-    contact: 'Contact',
-    project: 'Project in mind?',
-    name: 'Your name',
-    email: 'Email address',
-    need: 'What do you need?',
-    send: 'Send',
-    subject: 'Portfolio',
-    from: 'From',
     now: (date: string, time: string) =>
       `It’s ${date}, ${time} here in France.`,
-    reply: 'I’ll get back to you shortly.',
-    explore: 'Explore',
-    follow: 'Follow',
+    reply: 'Drop me a line, I’ll get back to you shortly.',
+    email: 'Send an email',
     linkedin: 'LinkedIn',
     cv: 'Download my CV',
-    basedIn: 'Based in',
-    based: 'France',
-    availability: 'Availability',
-    available: 'Open to a chat',
+    subject: 'Portfolio',
   },
   home: {
     hero: {
