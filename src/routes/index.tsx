@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
-import { ProjectCard } from '@/components/project-card'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
@@ -171,15 +170,9 @@ function Clients() {
   )
 }
 
-/** Les 3 projets mis en avant sur l'accueil (les autres sont sur /projets). */
-const featured = ['compliance-week', 'climate-training', 'kit-chanel-25']
-
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
-  // Test temporaire : /?projets=defile affiche la version « défilement ».
-  const marquee =
-    new URLSearchParams(window.location.search).get('projets') === 'defile'
 
   return (
     <section id="projets" className="scroll-mt-20 pb-16 sm:pb-24">
@@ -192,28 +185,17 @@ function Projects() {
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
-
-        {!marquee && (
-          <div className="mt-10 grid gap-12 sm:mt-12 md:grid-cols-3 md:gap-8 lg:gap-12">
-            {featured.map((slug) => {
-              const project = t.projects.find((item) => item.slug === slug)
-              return project ? (
-                <ProjectCard key={slug} project={project} />
-              ) : null
-            })}
-          </div>
-        )}
       </div>
 
-      {marquee && <ProjectsMarquee />}
+      <ProjectsMarquee />
     </section>
   )
 }
 
 /**
- * Version « défilement » : toutes les vignettes défilent en boucle d'un
- * bord à l'autre de l'écran, en pause au survol ; chaque vignette ouvre son
- * projet.
+ * Projets de l'accueil : toutes les vignettes défilent en boucle d'un bord
+ * à l'autre de l'écran, en pause au survol ; chaque vignette ouvre son
+ * projet. La page Projets sert à les parcourir en détail.
  */
 function ProjectsMarquee() {
   const { t } = useI18n()
