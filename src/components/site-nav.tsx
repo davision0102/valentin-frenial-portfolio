@@ -6,14 +6,16 @@ import { useI18n } from '@/i18n/context'
 import { contactId, goToContact } from '@/lib/contact'
 import { cn } from '@/lib/utils'
 
+/** Liens du menu : pas de fond au survol, seul le texte bouge et s'éclaire. */
 const itemClass =
-  'block w-full px-3 py-2.5 text-left text-lg font-medium text-foreground/70 transition-colors hover:bg-foreground/6 hover:text-foreground [&.active]:text-foreground'
+  'inline-block px-3 py-2 text-lg font-medium text-foreground/60 transition-[color,translate] duration-300 ease-out hover:translate-x-1.5 hover:text-foreground focus-visible:translate-x-1.5 focus-visible:text-foreground [&.active]:text-foreground'
 
 /**
  * Barre de navigation : un rectangle de verre centré en haut de la page,
- * avec le nom, la pastille « Disponible » et un bouton menu. Le menu se
- * déplie sous la barre ; il se referme avec la croix, la touche Échap, un
- * clic ailleurs, le choix d'un lien, ou quand la souris quitte la barre.
+ * avec le nom à gauche, la pastille « Disponible » et le bouton menu à
+ * droite. Le menu se déplie dès que la souris passe sur la barre (ou au clic
+ * sur le bouton, au doigt ou au clavier) et se replie quand elle la quitte,
+ * avec la croix, la touche Échap, un clic ailleurs ou le choix d'un lien.
  */
 export function SiteNav() {
   const { t } = useI18n()
@@ -43,12 +45,15 @@ export function SiteNav() {
     <header className="sticky top-3 z-40 mt-3 flex h-12 justify-center px-3">
       <div
         ref={boxRef}
+        onPointerEnter={(event) => {
+          if (event.pointerType === 'mouse') setOpen(true)
+        }}
         onPointerLeave={(event) => {
           if (event.pointerType === 'mouse') close()
         }}
-        className="absolute top-0 w-[min(calc(100%-1.5rem),24rem)] overflow-hidden rounded-lg glass"
+        className="absolute top-0 w-[min(calc(100%-1.5rem),32rem)] overflow-hidden rounded-lg glass"
       >
-        <div className="flex h-12 items-center gap-3 pr-1.5 pl-4">
+        <div className="flex h-12 items-center gap-3 pr-2 pl-5">
           <Link
             to="/"
             onClick={close}
@@ -57,7 +62,7 @@ export function SiteNav() {
           >
             {site.name}
           </Link>
-          <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <span className="ml-auto flex items-center gap-1.5 text-xs text-muted-foreground">
             <span className="relative flex size-2" aria-hidden="true">
               <span className="absolute inset-0 animate-ping rounded-full bg-available opacity-60 motion-reduce:animate-none" />
               <span className="relative size-2 rounded-full bg-available" />
@@ -70,7 +75,7 @@ export function SiteNav() {
             aria-expanded={open}
             aria-controls="menu-principal"
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            className="ml-auto grid size-9 place-items-center transition-colors hover:bg-foreground/8"
+            className="grid size-9 place-items-center"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -86,7 +91,7 @@ export function SiteNav() {
           )}
         >
           <nav aria-label="Menu" className="overflow-hidden">
-            <ul className="border-t border-border p-1.5">
+            <ul className="px-2 pt-1 pb-3">
               <li>
                 <Link
                   to="/"
