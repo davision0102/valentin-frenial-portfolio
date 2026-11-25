@@ -28,13 +28,13 @@ export function SiteFooter() {
             <LocalTime />
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-col lg:items-stretch">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:flex-col lg:items-stretch">
             <button
               type="button"
               onClick={() => openEmail(f.subject)}
               className={buttonSolid}
             >
-              <Mail className="size-4" />
+              <Mail className="size-3.5" />
               {f.email}
             </button>
             <a
@@ -44,7 +44,7 @@ export function SiteFooter() {
               className={buttonOutline}
             >
               {f.linkedin}
-              <ArrowUpRight className="size-4" />
+              <ArrowUpRight className="size-3.5" />
             </a>
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
@@ -52,7 +52,7 @@ export function SiteFooter() {
               className={buttonOutline}
             >
               {f.cv}
-              <ArrowDown className="size-4" />
+              <ArrowDown className="size-3.5" />
             </a>
           </div>
         </div>
