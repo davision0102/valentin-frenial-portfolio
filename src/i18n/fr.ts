@@ -20,16 +20,19 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    lead: 'Me retrouver ailleurs',
-    email: 'Écrire un e-mail',
-    cv: 'Mon CV en PDF',
+    lead: 'Un projet de formation en tête\u00a0?',
+    text: 'Écrivez-moi, en vrai ou en visio : je réponds vite.',
+    copy: 'Copier',
+    copied: 'Copié\u00a0!',
+    copyLabel: 'Copier l’adresse e-mail',
+    cv: 'Mon CV (PDF)',
     backToTop: 'Retour en haut',
   },
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
       hello: 'Bonjour, moi c’est',
-      role: 'Chef de projet digital e-learning.',
+      role: 'Chef de projet digital learning.',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
       seeProjects: 'Voir mes projets',
@@ -83,12 +86,6 @@ export const fr = {
       ],
       moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
-    },
-    contact: {
-      title: 'Un projet de formation en tête ?',
-      text: 'Parlons-en, en vrai ou en visio.',
-      email: 'Écrire un e-mail',
-      linkedin: 'Me suivre sur LinkedIn',
     },
   },
   projects: [
@@ -308,13 +305,9 @@ export const fr = {
     design: 'Design',
   },
   aboutPage: {
-    greetings: ['Bonjour', 'Hello', 'Hola'],
-    intro: 'moi c’est Valentin.',
-    role: 'Chef de projet Learning et designer',
-    profile: [
-      'Je conçois des formations digitales intuitives, engageantes et pensées pour celles et ceux qui les suivent.',
-      'Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    ],
+    lede: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent.',
+    ledeMore:
+      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
     downloadCv: 'Télécharger mon CV',
     contact: 'Me contacter',
     valuesTitle: 'Ma façon de travailler',
@@ -332,18 +325,52 @@ export const fr = {
         text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
       },
     ],
-    storyTitle: 'Mon histoire, en bref',
-    story:
-      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes en alternance chez Nexans, puis chez Chanel, où j’ai conçu des formations pour des artisans dans le monde entier. Aujourd’hui, je travaille aussi en indépendant avec Valenteint Studio.',
-    offTitle: 'En dehors du travail',
-    off: [
-      { title: 'Langues', text: 'Français, anglais et espagnol' },
-      { title: 'Voyages', text: 'Voyager et découvrir de nouvelles cultures' },
-      { title: 'Sport', text: 'Les sports, un vrai centre d’intérêt' },
+    journeyTitle: 'Parcours',
+    journey: [
+      {
+        period: '2025 — aujourd’hui',
+        role: 'Designer indépendant',
+        place: 'Valenteint Studio',
+      },
+      {
+        period: '2025 — 2026',
+        role: 'Chef de projet Digital Training',
+        place: 'Chanel',
+      },
+      {
+        period: '2024 — 2025',
+        role: 'Chef de projet Digital Training, en alternance',
+        place: 'Chanel',
+      },
+      {
+        period: '2021 — 2024',
+        role: 'Webmaster & Digital Content Producer, en alternance',
+        place: 'Nexans',
+      },
+      {
+        period: '2023 — 2025',
+        role: 'Master Stratégie digitale & direction artistique',
+        place: 'EEMI',
+      },
+      {
+        period: '2020 — 2023',
+        role: 'Bachelor Gestion de projets digitaux & design',
+        place: 'EEMI',
+      },
     ],
-    ctaTitle: 'Envie d’en savoir plus ?',
-    ctaText:
-      'Tout mon parcours tient sur une page : téléchargez mon CV ou écrivez-moi.',
+    toolsTitle: 'Outils',
+    tools: [
+      'Articulate Storyline 360',
+      'Figma',
+      'Suite Adobe',
+      'HTML / CSS',
+      'WordPress',
+      'Cornerstone',
+      'CrossKnowledge',
+      'Edflex',
+    ],
+    languagesTitle: 'Langues',
+    languages: 'Français, anglais, espagnol',
   },
   carousel: {
     previous: 'Précédent',

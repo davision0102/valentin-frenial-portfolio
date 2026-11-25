@@ -18,9 +18,12 @@ export const en: Dictionary = {
     toLight: 'Switch to light theme',
   },
   footer: {
-    lead: 'Find me elsewhere',
-    email: 'Send an email',
-    cv: 'My CV as PDF',
+    lead: 'Got a training project in mind?',
+    text: 'Drop me a line, in person or on a call: I reply quickly.',
+    copy: 'Copy',
+    copied: 'Copied!',
+    copyLabel: 'Copy the email address',
+    cv: 'My CV (PDF)',
     backToTop: 'Back to top',
   },
   home: {
@@ -81,12 +84,6 @@ export const en: Dictionary = {
       ],
       moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
-    },
-    contact: {
-      title: 'Got a training project in mind?',
-      text: 'Let’s talk, in person or on a call.',
-      email: 'Send an email',
-      linkedin: 'Follow me on LinkedIn',
     },
   },
   projects: [
@@ -300,13 +297,9 @@ export const en: Dictionary = {
     design: 'Design',
   },
   aboutPage: {
-    greetings: ['Hello', 'Bonjour', 'Hola'],
-    intro: 'I’m Valentin.',
-    role: 'Learning project manager and designer',
-    profile: [
-      'I design digital training that is intuitive, engaging and built around the people who take it.',
-      'Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
-    ],
+    lede: 'I design digital training that is intuitive and engaging, built around the people who take it.',
+    ledeMore:
+      'Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
     downloadCv: 'Download my CV',
     contact: 'Get in touch',
     valuesTitle: 'How I work',
@@ -324,18 +317,52 @@ export const en: Dictionary = {
         text: 'I track results and learner engagement to make every module better.',
       },
     ],
-    storyTitle: 'My story, in short',
-    story:
-      'Trained at EEMI in digital project management and art direction, I learned the ropes as a work-study student at Nexans, then at Chanel, where I designed training for artisans around the world. Today I also work as a freelancer with Valenteint Studio.',
-    offTitle: 'Outside work',
-    off: [
-      { title: 'Languages', text: 'French, English and Spanish' },
-      { title: 'Travel', text: 'Travelling and discovering new cultures' },
-      { title: 'Sport', text: 'Sports, a real passion of mine' },
+    journeyTitle: 'Journey',
+    journey: [
+      {
+        period: '2025 — today',
+        role: 'Freelance designer',
+        place: 'Valenteint Studio',
+      },
+      {
+        period: '2025 — 2026',
+        role: 'Digital Training Project Manager',
+        place: 'Chanel',
+      },
+      {
+        period: '2024 — 2025',
+        role: 'Digital Training Project Manager, work-study',
+        place: 'Chanel',
+      },
+      {
+        period: '2021 — 2024',
+        role: 'Webmaster & Digital Content Producer, work-study',
+        place: 'Nexans',
+      },
+      {
+        period: '2023 — 2025',
+        role: 'Master’s in Digital Strategy & Art Direction',
+        place: 'EEMI',
+      },
+      {
+        period: '2020 — 2023',
+        role: 'Bachelor’s in Digital Project Management & Design',
+        place: 'EEMI',
+      },
     ],
-    ctaTitle: 'Want to know more?',
-    ctaText:
-      'My whole journey fits on one page: download my CV or drop me a line.',
+    toolsTitle: 'Tools',
+    tools: [
+      'Articulate Storyline 360',
+      'Figma',
+      'Adobe Suite',
+      'HTML / CSS',
+      'WordPress',
+      'Cornerstone',
+      'CrossKnowledge',
+      'Edflex',
+    ],
+    languagesTitle: 'Languages',
+    languages: 'French, English, Spanish',
   },
   carousel: {
     previous: 'Previous',

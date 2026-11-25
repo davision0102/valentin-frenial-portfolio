@@ -12,10 +12,8 @@ import {
 import { Portrait } from '@/components/portrait'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
-import { buttonVariants } from '@/components/ui/button'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
-import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -24,7 +22,11 @@ export const Route = createFileRoute('/')({
 const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 
 /** Entreprises (noms propres : identiques dans toutes les langues). */
-const companies = ['Nexans', 'Chanel', 'Rémy Cointreau']
+const companies = [
+  { name: 'Nexans', logo: 'nexans.svg' },
+  { name: 'Chanel', logo: 'chanel.svg' },
+  { name: 'Rémy Cointreau', logo: 'remy-cointreau.svg' },
+]
 
 function HomePage() {
   const { t } = useI18n()
@@ -39,7 +41,6 @@ function HomePage() {
       <Projects />
       <Services />
       <About />
-      <Contact />
     </>
   )
 }
@@ -90,7 +91,10 @@ function Hero() {
         </div>
 
         <Portrait
-          caption={companies.slice(0, 2).join(' · ')}
+          caption={companies
+            .slice(0, 2)
+            .map((company) => company.name)
+            .join(' · ')}
           className="mx-auto max-w-[13rem] max-lg:order-first sm:max-w-xs lg:max-w-none"
         />
       </div>
@@ -197,60 +201,21 @@ function About() {
         <ul className="mt-6 grid gap-4 sm:grid-cols-3">
           {companies.map((company) => (
             <li
-              key={company}
-              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-4 text-center font-heading text-xl font-semibold tracking-tight"
+              key={company.name}
+              className="grid h-24 place-items-center rounded-3xl border border-border bg-card px-6"
             >
-              {company}
+              {/* Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre. */}
+              <span
+                role="img"
+                aria-label={company.name}
+                className="block h-10 w-full max-w-[8.5rem] bg-foreground/85 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
+                style={{
+                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+                }}
+              />
             </li>
           ))}
         </ul>
-      </div>
-    </section>
-  )
-}
-
-function Contact() {
-  const { t } = useI18n()
-  const c = t.home.contact
-
-  return (
-    <section
-      id="contact"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
-    >
-      <div className="relative overflow-hidden rounded-[2rem] bg-spotlight px-6 py-12 text-center text-white sm:px-16 sm:py-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand/40 blur-3xl"
-        />
-        <h2 className="relative text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-          {c.title}
-        </h2>
-        <p className="relative mx-auto mt-4 max-w-lg text-white/70">{c.text}</p>
-        <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href={`mailto:${site.email}`}
-            className={cn(
-              buttonVariants({ size: 'lg' }),
-              'h-11 bg-brand px-5 text-brand-foreground hover:bg-brand/90',
-            )}
-          >
-            <Mail data-icon="inline-start" />
-            {c.email}
-          </a>
-          <a
-            href={site.linkedinUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              buttonVariants({ variant: 'ghost', size: 'lg' }),
-              'h-11 px-5 text-white hover:bg-white/10 hover:text-white',
-            )}
-          >
-            {c.linkedin}
-            <ArrowRight data-icon="inline-end" />
-          </a>
-        </div>
       </div>
     </section>
   )
