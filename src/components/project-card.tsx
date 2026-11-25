@@ -9,14 +9,7 @@ import { cn } from '@/lib/utils'
 type Project = Dictionary['projects'][number]
 
 /** Carte d'un projet : visuel, client, titre, résumé et mots-clés. */
-export function ProjectCard({
-  project,
-  heading: Heading = 'h4',
-}: {
-  project: Project
-  /** Niveau du titre : h4 dans les carrousels de l'accueil, h2 sur /projets. */
-  heading?: 'h2' | 'h3' | 'h4'
-}) {
+export function ProjectCard({ project }: { project: Project }) {
   const { t } = useI18n()
   const cover = getProjectMedia(project.slug)?.images[0]
   const meta = [project.client, project.year].filter(Boolean).join(' · ')
@@ -47,10 +40,10 @@ export function ProjectCard({
       </div>
       <div className="p-6">
         <p className="text-xs font-medium text-muted-foreground">{meta}</p>
-        <Heading className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
+        <h3 className="mt-2 flex items-start justify-between gap-4 font-heading text-xl font-semibold tracking-tight">
           {project.title}
           <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
-        </Heading>
+        </h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {project.summary}
         </p>

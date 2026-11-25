@@ -22,7 +22,6 @@ export const en: Dictionary = {
     email: 'Send an email',
     cv: 'My CV as PDF',
     backToTop: 'Back to top',
-    role: 'Digital learning project manager',
   },
   home: {
     hero: {
@@ -37,26 +36,20 @@ export const en: Dictionary = {
         {
           value: '12',
           label: 'languages for one project',
-          short: '12 languages',
         },
         {
           value: '6',
           label: 'modules shipped in 1 month',
-          short: '6 modules in 1 month',
         },
         {
           value: '14',
           label: 'job videos shot and edited',
-          short: '14 videos',
         },
       ],
     },
     projects: {
       title: 'My projects',
       text: 'Training for thousands of learners, plus a few design projects on the side.',
-      learning: 'E-learning projects',
-      design: 'Design projects',
-      open: 'View project',
       seeAll: 'See all projects',
     },
     services: {
@@ -305,7 +298,6 @@ export const en: Dictionary = {
     all: 'All',
     learning: 'E-learning',
     design: 'Design',
-    count: (n: number) => (n > 1 ? `${n} projects` : `${n} project`),
   },
   aboutPage: {
     greetings: ['Hello', 'Bonjour', 'Hola'],
@@ -365,6 +357,7 @@ export const en: Dictionary = {
     next: 'Next project',
   },
   notFound: {
+    pageTitle: 'Page not found',
     title: 'This page doesn’t exist.',
     text: 'The address may be misspelled, or the page has moved.',
     back: 'Back to home',

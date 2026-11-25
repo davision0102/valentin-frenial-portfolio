@@ -16,14 +16,3 @@ export function LogoMark({ className }: { className?: string }) {
     </span>
   )
 }
-
-export function Logo({ className }: { className?: string }) {
-  return (
-    <span className={cn('inline-flex items-center gap-2', className)}>
-      <LogoMark />
-      <span className="font-heading text-[15px] font-semibold tracking-tight whitespace-nowrap">
-        {site.name}
-      </span>
-    </span>
-  )
-}

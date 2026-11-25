@@ -24,7 +24,6 @@ export const fr = {
     email: 'Écrire un e-mail',
     cv: 'Mon CV en PDF',
     backToTop: 'Retour en haut',
-    role: 'Chef de projet digital e-learning',
   },
   home: {
     hero: {
@@ -39,26 +38,20 @@ export const fr = {
         {
           value: '12',
           label: 'langues pour un même projet',
-          short: '12 langues',
         },
         {
           value: '6',
           label: 'modules livrés en 1 mois',
-          short: '6 modules en 1 mois',
         },
         {
           value: '14',
           label: 'vidéos métier tournées et montées',
-          short: '14 vidéos',
         },
       ],
     },
     projects: {
       title: 'Mes projets',
       text: 'Des formations pour des milliers d’apprenants, et quelques projets de design en bonus.',
-      learning: 'Projets e-learning',
-      design: 'Projets design',
-      open: 'Voir le projet',
       seeAll: 'Voir tous les projets',
     },
     services: {
@@ -313,7 +306,6 @@ export const fr = {
     all: 'Tous',
     learning: 'E-learning',
     design: 'Design',
-    count: (n: number) => (n > 1 ? `${n} projets` : `${n} projet`),
   },
   aboutPage: {
     greetings: ['Bonjour', 'Hello', 'Hola'],
@@ -373,6 +365,7 @@ export const fr = {
     next: 'Projet suivant',
   },
   notFound: {
+    pageTitle: 'Page introuvable',
     title: 'Cette page n’existe pas.',
     text: 'L’adresse est peut-être mal écrite, ou la page a été déplacée.',
     back: 'Retour à l’accueil',

@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { CategoryBadge } from '@/components/project-card'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
+import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
 import type { Dictionary } from '@/i18n/fr'
 import { cn } from '@/lib/utils'
@@ -19,6 +20,7 @@ type Project = Dictionary['projects'][number]
 function ProjectsPage() {
   const { t } = useI18n()
   const p = t.projectsPage
+  useDocumentTitle(p.title)
   const [filter, setFilter] = useState<Filter>('all')
 
   const countOf = (id: Filter) =>
