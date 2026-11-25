@@ -50,7 +50,7 @@ export function SiteNav() {
         onPointerLeave={(event) => {
           if (event.pointerType === 'mouse') close()
         }}
-        className="absolute top-0 w-[min(calc(100%-1.5rem),27rem)] overflow-hidden rounded-lg glass"
+        className="absolute top-0 w-[min(calc(100%-1.5rem),24rem)] overflow-hidden rounded-lg glass"
       >
         <div className="flex h-11 items-center gap-3 pr-1.5 pl-4">
           <Link
