@@ -13,12 +13,6 @@ export const fr = {
     language: 'Langue',
   },
   languages: { fr: 'Français', en: 'English' },
-  theme: {
-    dark: 'Mode sombre',
-    light: 'Mode clair',
-    toDark: 'Passer en thème sombre',
-    toLight: 'Passer en thème clair',
-  },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
     contact: 'Contact',

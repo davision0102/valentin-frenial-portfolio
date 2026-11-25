@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { LanguageSwitch } from '@/components/language-switch'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
@@ -99,7 +98,6 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {site.name}
           </p>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <LanguageSwitch />
           </div>
         </div>

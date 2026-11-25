@@ -13,8 +13,8 @@
   --color-track-design: var(--track-design);
   --color-track-skill: var(--track-skill);
   --color-spotlight: var(--spotlight);
-  /* Bleu nuit très profond, le même dans les deux thèmes : hero et pied de page. */
-  --color-ink: oklch(0.15 0.04 266);
+  /* Fond du hero et du pied de page : le même bleu nuit que tout le site. */
+  --color-ink: var(--background);
   --color-track-foreground: var(--track-foreground);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
@@ -83,30 +83,32 @@
 }
 
 .dark {
-  --background: oklch(0.17 0.045 266);
+  /* Un seul bleu nuit pour tout le site ; les surfaces sont à peine plus
+     claires et se détachent surtout par leurs ombres. */
+  --background: oklch(0.16 0.04 266);
   --foreground: oklch(0.96 0.012 255);
-  --card: oklch(0.22 0.055 265);
+  --card: oklch(0.2 0.045 265);
   --card-foreground: oklch(0.96 0.012 255);
-  --popover: oklch(0.22 0.055 265);
+  --popover: oklch(0.2 0.045 265);
   --popover-foreground: oklch(0.96 0.012 255);
   --primary: oklch(0.96 0.012 255);
   --primary-foreground: oklch(0.19 0.05 266);
-  --secondary: oklch(0.27 0.06 265);
+  --secondary: oklch(0.22 0.045 265);
   --secondary-foreground: oklch(0.96 0.012 255);
-  --muted: oklch(0.27 0.06 265);
-  --muted-foreground: oklch(0.76 0.035 258);
-  --accent: oklch(0.27 0.06 265);
+  --muted: oklch(0.22 0.045 265);
+  --muted-foreground: oklch(0.74 0.03 258);
+  --accent: oklch(0.22 0.045 265);
   --accent-foreground: oklch(0.96 0.012 255);
   --destructive: oklch(0.7 0.19 22);
-  --border: oklch(0.85 0.05 255 / 12%);
-  --input: oklch(0.85 0.05 255 / 16%);
+  --border: oklch(0.85 0.03 255 / 11%);
+  --input: oklch(0.85 0.03 255 / 16%);
   --ring: oklch(0.75 0.14 252);
-  --brand: oklch(0.76 0.13 250);
+  --brand: oklch(0.7 0.15 255);
   --brand-foreground: oklch(0.19 0.05 266);
-  --track-learning: oklch(0.72 0.14 250);
+  --track-learning: oklch(0.7 0.15 255);
   --track-design: oklch(0.76 0.13 292);
   --track-skill: oklch(0.79 0.11 195);
-  --glass: oklch(0.27 0.06 265 / 55%);
+  --glass: oklch(0.22 0.045 265 / 60%);
   --glass-edge: oklch(0.9 0.05 255 / 16%);
   --glass-shadow:
     0 1px 2px oklch(0 0 0 / 30%), 0 22px 60px -20px oklch(0 0 0 / 60%);

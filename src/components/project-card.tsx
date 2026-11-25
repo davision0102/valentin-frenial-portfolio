@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
       params={{ slug: project.slug }}
       className="group block rounded-2xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background focus-visible:outline-none"
     >
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-black/25">
         {cover && (
           <ProjectVisual
             image={{ ...cover, fit: 'contain' }}

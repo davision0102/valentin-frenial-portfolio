@@ -11,12 +11,6 @@ export const en: Dictionary = {
     language: 'Language',
   },
   languages: { fr: 'Français', en: 'English' },
-  theme: {
-    dark: 'Dark mode',
-    light: 'Light mode',
-    toDark: 'Switch to dark theme',
-    toLight: 'Switch to light theme',
-  },
   footer: {
     title: 'Let’s make training that sticks.',
     contact: 'Contact',
