@@ -59,21 +59,26 @@ function Hero() {
       <GreetingsMarquee words={h.greetings} />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
-        <div className="max-w-lg lg:mt-20 lg:mb-6">
-          <div className="space-y-3 leading-relaxed text-pretty">
-            {h.bio.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          {/* Chiffres clés, sur une ligne sous la présentation. */}
-          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+        {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
+            en grand, détail en plus discret, puis les chiffres sous un trait,
+            le tout aligné sur le bas de la photo. */}
+        <div className="max-w-xl lg:mt-20">
+          <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
+            {h.role.replace(/\.$/, '')}
+          </p>
+          <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
+            {h.bio[0]}
+          </p>
+          <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
+            {h.bio[1]}
+          </p>
+          <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6 sm:gap-8">
             {h.stats.map((stat) => (
-              <div key={stat.label} className="flex items-baseline gap-2">
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums">
+              <div key={stat.label} className="flex flex-col-reverse gap-1">
+                <dt className="text-sm text-muted-foreground">{stat.label}</dt>
+                <dd className="font-heading text-3xl font-semibold tracking-[-0.03em] tabular-nums">
                   {stat.value}
                 </dd>
-                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
               </div>
             ))}
           </dl>

@@ -36,7 +36,7 @@ export const fr = {
       greetings: ['Bonjour', 'Hello', 'Hola'],
       role: 'Chef de projet digital learning.',
       bio: [
-        'Chef de projet digital learning, je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',
+        'Je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',
         'Aux côtés des équipes RH, Finance et RSE, je transforme des contenus complexes en formations claires et impactantes. Autonome et minutieux, je m’appuie sur le design, les outils digitaux et l’analyse des résultats pour renforcer l’engagement des apprenants.',
       ],
       stats: [

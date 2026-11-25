@@ -34,7 +34,7 @@ export const en: Dictionary = {
       greetings: ['Hello', 'Bonjour', 'Hola'],
       role: 'Digital learning project manager.',
       bio: [
-        'As a digital learning project manager, I design intuitive, engaging, learner-centred e-learning, from the first idea to launch.',
+        'I design intuitive, engaging, learner-centred e-learning, from the first idea to launch.',
         'Working alongside HR, Finance and CSR teams, I turn complex content into clear, impactful training. Independent and meticulous, I rely on design, digital tools and results analysis to boost learner engagement.',
       ],
       stats: [
