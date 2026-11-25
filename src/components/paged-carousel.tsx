@@ -5,6 +5,9 @@ import { useI18n } from '@/i18n/context'
 /** Écart entre deux éléments, en rem (doit suivre la classe gap-12). */
 const GAP = 3
 
+/** Deux éléments visibles à partir de cette largeur (comme md: dans Tailwind). */
+const WIDE = '(min-width: 768px)'
+
 /**
  * Carrousel « page par page » : un élément visible sur téléphone, deux à
  * partir de la tablette. On avance uniquement avec les flèches (ou les
@@ -23,13 +26,17 @@ export function PagedCarousel({
 }) {
   const { t } = useI18n()
   const items = Children.toArray(children)
-  const [perView, setPerView] = useState(1)
+  // Calculé tout de suite (site sans rendu serveur) : pas de fondu parasite
+  // de la deuxième carte au chargement.
+  const [perView, setPerView] = useState(() =>
+    window.matchMedia(WIDE).matches ? 2 : 1,
+  )
   const [index, setIndex] = useState(0)
   const touchStart = useRef<number | null>(null)
 
-  // Nombre d'éléments visibles : 2 à partir de 768px (comme md: dans Tailwind).
+  // Suit le passage d'une largeur à l'autre (rotation, redimensionnement).
   useEffect(() => {
-    const query = window.matchMedia('(min-width: 768px)')
+    const query = window.matchMedia(WIDE)
     const sync = () => setPerView(query.matches ? 2 : 1)
     sync()
     query.addEventListener('change', sync)
@@ -51,8 +58,11 @@ export function PagedCarousel({
         if (event.key === 'ArrowLeft') go(current - 1)
       }}
     >
+      {/* Pas de découpe nette aux bords : les cartes hors champ sont
+          invisibles et apparaissent ou disparaissent en fondu en glissant
+          (le débordement horizontal est coupé au niveau de la page). */}
       <div
-        className="touch-pan-y overflow-hidden"
+        className="touch-pan-y"
         onPointerDown={(event) => {
           if (event.pointerType === 'touch') touchStart.current = event.clientX
         }}
@@ -78,7 +88,11 @@ export function PagedCarousel({
                 aria-roledescription="slide"
                 aria-label={t.carousel.slide(i + 1, items.length)}
                 inert={!visible}
-                className="shrink-0"
+                className={
+                  visible
+                    ? 'shrink-0 opacity-100 transition-opacity duration-500 ease-out motion-reduce:transition-none'
+                    : 'shrink-0 opacity-0 transition-opacity duration-300 ease-out motion-reduce:transition-none'
+                }
                 style={{
                   flexBasis: `calc((100% - ${(perView - 1) * GAP}rem) / ${perView})`,
                 }}
