@@ -7,35 +7,26 @@ export const en: Dictionary = {
     homeLabel: 'home',
     projects: 'Projects',
     about: 'About',
-    contact: 'Get in touch',
     language: 'Language',
     available: 'Available',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
+  theme: {
+    toDark: 'Switch to dark theme',
+    toLight: 'Switch to light theme',
+  },
   footer: {
     title: 'Let’s make training that sticks.',
-    contact: 'Contact',
-    project: 'Project in mind?',
-    name: 'Your name',
-    email: 'Email address',
-    need: 'What do you need?',
-    send: 'Send',
-    subject: 'Portfolio',
-    from: 'From',
     now: (date: string, time: string) =>
       `It’s ${date}, ${time} here in France.`,
-    reply: 'I’ll get back to you shortly.',
-    explore: 'Explore',
-    follow: 'Follow',
+    reply: 'Drop me a line, I’ll get back to you shortly.',
+    email: 'Send an email',
     linkedin: 'LinkedIn',
     cv: 'Download my CV',
-    basedIn: 'Based in',
-    based: 'France',
-    availability: 'Availability',
-    available: 'Open to a chat',
+    subject: 'Portfolio',
+    rights: 'All rights reserved.',
   },
   home: {
     hero: {
@@ -44,8 +35,6 @@ export const en: Dictionary = {
       role: 'Digital learning project manager.',
       bio: 'I’m Valentin, a digital learning project manager. I love turning complex topics into clear training that makes people want to learn.',
       seeProjects: 'See my projects',
-      pitch:
-        'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',
       stats: [
         {
           value: '12',
@@ -87,8 +76,6 @@ export const en: Dictionary = {
       ],
     },
     about: {
-      title: 'Teach, yes. Bore, never.',
-      moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },
   },

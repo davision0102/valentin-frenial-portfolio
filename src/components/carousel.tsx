@@ -17,12 +17,19 @@ export function Carousel({
   children,
   itemClassName,
   className,
+  bleed = false,
 }: {
   /** Nom lu par les lecteurs d'écran, par exemple « Projets ». */
   label: string
   children: React.ReactNode
   itemClassName?: string
   className?: string
+  /**
+   * La piste déborde jusqu'aux bords de l'écran : les éléments suivants
+   * glissent jusqu'au bord au lieu d'être coupés net à la marge de la page.
+   * Les éléments restent alignés sur la marge à l'arrêt.
+   */
+  bleed?: boolean
 }) {
   const { t } = useI18n()
   const trackRef = useRef<HTMLDivElement>(null)
@@ -39,6 +46,8 @@ export function Carousel({
     const track = trackRef.current
     if (!track) return
     const slides = Array.from(track.children) as HTMLElement[]
+    // Décalage du premier élément (marge intérieure de la piste en mode bleed).
+    const base = slides[0]?.offsetLeft ?? 0
     if (
       targetRef.current !== null &&
       Math.abs(track.scrollLeft - targetRef.current) < 2
@@ -52,8 +61,10 @@ export function Carousel({
     // Élément le plus proche du bord gauche ; le dernier quand on est au bout.
     let closest = 0
     slides.forEach((slide, i) => {
-      const distance = Math.abs(slide.offsetLeft - track.scrollLeft)
-      const best = Math.abs(slides[closest].offsetLeft - track.scrollLeft)
+      const distance = Math.abs(slide.offsetLeft - base - track.scrollLeft)
+      const best = Math.abs(
+        slides[closest].offsetLeft - base - track.scrollLeft,
+      )
       if (distance < best) closest = i
     })
     setActive(end ? slides.length - 1 : closest)
@@ -64,6 +75,20 @@ export function Carousel({
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [update])
+
+  // Mode bleed : l'aimantation s'arrête sur la marge de la page, pas au bord
+  // de l'écran. Calculé au chargement et au redimensionnement seulement
+  // (le faire pendant le défilement interromprait l'animation).
+  useEffect(() => {
+    const track = trackRef.current
+    if (!bleed || !track) return
+    const sync = () => {
+      track.style.scrollPaddingInline = getComputedStyle(track).paddingLeft
+    }
+    sync()
+    window.addEventListener('resize', sync)
+    return () => window.removeEventListener('resize', sync)
+  }, [bleed])
 
   function scrollToLeft(left: number) {
     const track = trackRef.current
@@ -78,9 +103,9 @@ export function Carousel({
     const track = trackRef.current
     if (!track) return []
     const max = track.scrollWidth - track.clientWidth
-    return Array.from(track.children, (slide) =>
-      Math.min((slide as HTMLElement).offsetLeft, max),
-    )
+    const slides = Array.from(track.children) as HTMLElement[]
+    const base = slides[0]?.offsetLeft ?? 0
+    return slides.map((slide) => Math.min(slide.offsetLeft - base, max))
   }
 
   function goTo(index: number) {
@@ -113,7 +138,12 @@ export function Carousel({
         ref={trackRef}
         onScroll={update}
         tabIndex={0}
-        className="relative -my-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-6 overflow-x-auto py-4 focus-visible:outline-none [&::-webkit-scrollbar]:hidden"
+        className={cn(
+          'relative -my-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-6 overflow-x-auto py-4 focus-visible:outline-none [&::-webkit-scrollbar]:hidden',
+          // Mode bleed : la piste prend toute la largeur de l'écran, avec une
+          // marge intérieure égale à la marge de la page.
+          bleed && 'mx-[calc(50%-50vw)] px-[calc(50vw-50%)]',
+        )}
       >
         {items.map((item, i) => (
           <div

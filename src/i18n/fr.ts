@@ -9,35 +9,26 @@ export const fr = {
     homeLabel: 'accueil',
     projects: 'Projets',
     about: 'À propos',
-    contact: 'Me contacter',
     language: 'Langue',
     available: 'Disponible',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
-    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
+  theme: {
+    toDark: 'Passer en thème sombre',
+    toLight: 'Passer en thème clair',
+  },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
-    contact: 'Contact',
-    project: 'Un projet en tête\u00a0?',
-    name: 'Votre nom',
-    email: 'Votre adresse e-mail',
-    need: 'De quoi avez-vous besoin\u00a0?',
-    send: 'Envoyer',
-    subject: 'Portfolio',
-    from: 'De la part de',
     now: (date: string, time: string) =>
       `Nous sommes ${date}, il est ${time.replace(':', 'h')} ici en France.`,
-    reply: 'Je vous réponds au plus vite.',
-    explore: 'Explorer',
-    follow: 'Suivre',
+    reply: 'Écrivez-moi, je vous réponds au plus vite.',
+    email: 'Envoyer un e-mail',
     linkedin: 'LinkedIn',
     cv: 'Télécharger mon CV',
-    basedIn: 'Basé en',
-    based: 'France',
-    availability: 'Disponibilité',
-    available: 'Ouvert aux échanges',
+    subject: 'Portfolio',
+    rights: 'Tous droits réservés.',
   },
   home: {
     hero: {
@@ -46,8 +37,6 @@ export const fr = {
       role: 'Chef de projet digital learning.',
       bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
       seeProjects: 'Voir mes projets',
-      pitch:
-        'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
       stats: [
         {
           value: '12',
@@ -89,8 +78,6 @@ export const fr = {
       ],
     },
     about: {
-      title: 'Former, oui. Ennuyer, jamais.',
-      moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },
   },

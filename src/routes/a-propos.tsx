@@ -39,7 +39,7 @@ function AboutPage() {
   useDocumentTitle(t.nav.about)
 
   return (
-    <article className="mx-auto max-w-[96rem] overflow-hidden px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
+    <article className="mx-auto max-w-7xl overflow-hidden px-5 pt-12 pb-20 sm:px-8 sm:pt-20 sm:pb-32 lg:px-16">
       <header className="mx-auto flex max-w-3xl flex-col items-center text-center">
         <img
           src={`${import.meta.env.BASE_URL}valentin.png`}
@@ -84,7 +84,7 @@ function AboutPage() {
       <div
         role="img"
         aria-label={a.photosAlt}
-        className="-mx-4 mt-16 overflow-hidden py-6 sm:hidden"
+        className="-mx-5 mt-16 overflow-hidden py-6 sm:hidden"
       >
         <div className="flex w-max animate-[marquee_28s_linear_infinite] motion-reduce:animate-none">
           {[0, 1].map((copy) => (

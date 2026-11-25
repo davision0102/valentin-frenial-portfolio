@@ -33,7 +33,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Intro />
+      <Clients />
       <Projects />
       <Services />
     </>
@@ -50,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="dark relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
@@ -59,7 +59,7 @@ function Hero() {
         className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
       />
 
-      <div className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-10 px-4 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-5 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
         <div className="max-w-md lg:mb-6">
           <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
           {/* Chiffres clés, sur une ligne sous la présentation. */}
@@ -82,7 +82,7 @@ function Hero() {
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
             pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[15rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(30vw,28rem)] lg:max-w-none lg:self-end">
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(24vw,22rem)] lg:max-w-none lg:self-end">
           <img
             src={`${import.meta.env.BASE_URL}valentin.png`}
             alt={h.photoAlt}
@@ -121,10 +121,10 @@ function GreetingsMarquee({
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap">
+                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
                   {word}
                 </span>
-                <span className="size-3 shrink-0 rounded-full bg-brand sm:size-4" />
+                <span className="size-2.5 shrink-0 rounded-full bg-brand sm:size-3" />
               </span>
             ))}
           </div>
@@ -134,49 +134,28 @@ function GreetingsMarquee({
   )
 }
 
-/**
- * Présentation : la phrase d'accroche et le lien vers la page À propos à
- * gauche, les entreprises à droite, puis les chiffres clés sur une ligne.
- */
-function Intro() {
+/** Les entreprises pour lesquelles Valentin a travaillé : un intitulé et les logos, centrés. */
+function Clients() {
   const { t } = useI18n()
-  const h = t.home.hero
-  const a = t.home.about
 
   return (
-    <section
-      id="a-propos"
-      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 py-16 sm:px-8 sm:py-24 lg:px-16"
-    >
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:gap-16">
-        <div>
-          <h2 className={titleClass}>{a.title}</h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
-            {h.pitch}
-          </p>
-          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
-            {a.moreAbout}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-
-        <div className="lg:pt-2">
-          <h3 className="text-sm text-muted-foreground">{a.companiesTitle}</h3>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-6 sm:gap-x-8">
-            {companies.map((company) => (
-              // Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre.
-              <span
-                key={company.name}
-                role="img"
-                aria-label={company.name}
-                className="block h-8 w-24 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat]"
-                style={{
-                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
+      <h2 className="text-sm font-normal text-muted-foreground">
+        {t.home.about.companiesTitle}
+      </h2>
+      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+        {companies.map((company) => (
+          // Logo d'une seule couleur (celle du texte) : il suit le thème.
+          <span
+            key={company.name}
+            role="img"
+            aria-label={company.name}
+            className="block h-9 w-28 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
+            style={{
+              maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+            }}
+          />
+        ))}
       </div>
     </section>
   )
@@ -189,55 +168,62 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16"
+      className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
-      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-        <h2 className={titleClass}>{p.title}</h2>
-        <Link to="/projets" className={buttonOutline}>
-          {p.seeAll}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
-      </div>
+      <h2 className={titleClass}>{p.title}</h2>
 
       {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
           indique s'il s'agit d'e-learning ou de design. */}
       <Carousel
         label={p.title}
         className="mt-10 sm:mt-12"
+        bleed
         itemClassName="basis-[85%] sm:basis-[60%] md:basis-[46%]"
       >
         {t.projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Carousel>
+
+      {/* Comme partout : le bouton vient après le contenu, aligné à gauche. */}
+      <Link to="/projets" className={`${buttonOutline} mt-10 sm:mt-12`}>
+        {p.seeAll}
+        <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+      </Link>
     </section>
   )
 }
 
-/** Savoir-faire : quatre colonnes numérotées, sans cartes. */
+/**
+ * Savoir-faire : quatre blocs doux côte à côte sur grand écran (deux par
+ * ligne sur tablette), sans traits : un numéro, un intitulé et une phrase.
+ */
 function Services() {
   const { t } = useI18n()
   const s = t.home.services
 
   return (
-    <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
-      <div className="border-t border-border pt-16 sm:pt-24">
-        <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
+    <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16">
+      <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-        <ol className="mt-10 grid gap-12 sm:mt-12 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-4 lg:gap-x-16">
-          {s.items.map(({ title, text }, i) => (
-            <li key={title}>
-              <span className="text-sm font-semibold text-brand tabular-nums">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="mt-3 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-pretty text-muted-foreground">
-                {text}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
+      <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {s.items.map(({ title, text }, i) => (
+          <li
+            key={title}
+            className="group rounded-2xl bg-secondary/70 p-6 transition-colors duration-300 hover:bg-secondary sm:p-8"
+          >
+            <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 className="mt-6 text-xl font-semibold tracking-tight sm:mt-8">
+              {title}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-pretty text-muted-foreground">
+              {text}
+            </p>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

@@ -11,7 +11,7 @@ export const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <div className="relative isolate flex min-h-svh flex-col">
+    <div className="relative isolate flex min-h-svh flex-col overflow-x-clip">
       <SiteNav />
 
       <main className="flex-1">

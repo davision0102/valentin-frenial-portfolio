@@ -9,7 +9,7 @@ export function NotFound() {
   useDocumentTitle(t.notFound.pageTitle)
 
   return (
-    <section className="mx-auto flex max-w-[96rem] flex-col items-center px-4 pt-12 pb-16 text-center sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
+    <section className="mx-auto flex max-w-7xl flex-col items-center px-5 pt-12 pb-16 text-center sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <p className="font-heading text-8xl font-semibold tracking-tight text-brand/30 sm:text-9xl">
         404
       </p>
