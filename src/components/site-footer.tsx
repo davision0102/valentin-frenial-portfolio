@@ -4,7 +4,15 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
-import { buttonOutline, buttonSolid } from '@/lib/ui'
+
+/**
+ * Boutons du pied de page : plus grands et en texte normal pour être bien
+ * lisibles sur le bleu nuit ; un bouton plein et deux bordés bien visibles.
+ */
+const footerButton =
+  'group inline-flex h-12 items-center justify-center gap-2.5 rounded-lg px-6 text-sm font-medium transition-[background-color,border-color,transform] active:scale-[0.97]'
+const footerSolid = `${footerButton} bg-foreground text-background hover:bg-foreground/90`
+const footerOutline = `${footerButton} border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground/5`
 
 /**
  * Pied de page : une bande bleu nuit avec la grande phrase, la date et
@@ -37,27 +45,27 @@ export function SiteFooter() {
             <button
               type="button"
               onClick={() => openEmail(f.subject)}
-              className={buttonSolid}
+              className={footerSolid}
             >
-              <Mail className="size-3.5" />
+              <Mail className="size-4" />
               {f.email}
             </button>
             <a
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className={buttonOutline}
+              className={footerOutline}
             >
               {f.linkedin}
-              <ArrowUpRight className="size-3.5" />
+              <ArrowUpRight className="size-4" />
             </a>
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
               download
-              className={buttonOutline}
+              className={footerOutline}
             >
               {f.cv}
-              <ArrowDown className="size-3.5" />
+              <ArrowDown className="size-4" />
             </a>
           </div>
         </div>
