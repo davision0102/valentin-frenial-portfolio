@@ -85,9 +85,9 @@ function ProjectsPage() {
       </div>
 
       <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-2 lg:gap-16">
-        {/* Téléphone et tablette : des cartes qui se suivent (grande image,
-            numéro, titre, infos). */}
-        <ol className="grid gap-12 sm:grid-cols-2 sm:gap-8 lg:hidden">
+        {/* Téléphone et tablette : chaque projet dans une carte (image, numéro,
+            titre, infos), les cartes se suivent. */}
+        <ol className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:hidden">
           {shown.map((project, i) => {
             const cover = getProjectMedia(project.slug)?.images[0]
             return (
@@ -95,23 +95,23 @@ function ProjectsPage() {
                 <Link
                   to="/projets/$slug"
                   params={{ slug: project.slug }}
-                  className="group block"
+                  className="group block h-full rounded-3xl bg-secondary/70 p-3 pb-5 transition-colors active:bg-secondary"
                 >
                   {cover && (
                     <ProjectVisual
                       image={{ ...cover, fit: 'contain' }}
                       alt={project.gallery[0] ?? project.title}
-                      className="aspect-[4/3] rounded-2xl"
+                      className="aspect-[4/3] rounded-2xl bg-background"
                     />
                   )}
-                  <span className="mt-5 block font-mono text-xs tracking-[0.18em] text-muted-foreground tabular-nums">
+                  <span className="mt-5 block px-2 font-mono text-xs tracking-[0.18em] text-muted-foreground tabular-nums">
                     {pad(i + 1)}
                   </span>
-                  <span className="mt-2 flex items-start justify-between gap-4 font-heading text-xl leading-snug font-semibold tracking-tight">
+                  <span className="mt-2 flex items-start justify-between gap-4 px-2 font-heading text-xl leading-snug font-semibold tracking-tight">
                     {project.title}
                     <ArrowUpRight className="mt-1 size-5 shrink-0 text-muted-foreground" />
                   </span>
-                  <span className="mt-1 block text-sm text-muted-foreground">
+                  <span className="mt-1 block px-2 text-sm text-muted-foreground">
                     {[
                       project.client,
                       project.year,
