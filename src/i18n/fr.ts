@@ -30,8 +30,8 @@ export const fr = {
     send: 'Envoyer',
     subject: 'Portfolio',
     from: 'De la part de',
-    now: (day: string, time: string) =>
-      `Nous sommes ${day}, il est ${time} ici en France.`,
+    now: (date: string, time: string) =>
+      `Nous sommes ${date}, il est ${time.replace(':', 'h')} ici en France.`,
     reply: 'Je vous réponds au plus vite.',
     explore: 'Explorer',
     follow: 'Suivre',

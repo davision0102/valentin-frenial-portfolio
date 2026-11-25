@@ -28,7 +28,8 @@ export const en: Dictionary = {
     send: 'Send',
     subject: 'Portfolio',
     from: 'From',
-    now: (day: string, time: string) => `It’s ${day}, ${time} here in France.`,
+    now: (date: string, time: string) =>
+      `It’s ${date}, ${time} here in France.`,
     reply: 'I’ll get back to you shortly.',
     explore: 'Explore',
     follow: 'Follow',

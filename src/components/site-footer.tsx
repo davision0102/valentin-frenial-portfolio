@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Moon, Sun } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
@@ -31,13 +30,13 @@ export function SiteFooter() {
       id={contactId}
       className="dark scroll-mt-4 border-t border-border bg-ink text-foreground"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16">
         <h2 className="max-w-2xl pt-16 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-24 sm:text-6xl">
           {f.title}
         </h2>
 
         <div className="mt-16 grid gap-12 sm:mt-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
-          <div className="max-w-md">
+          <div className="max-w-lg">
             <p className={labelClass}>{f.contact}</p>
             <button
               type="button"
@@ -52,7 +51,7 @@ export function SiteFooter() {
             <LocalTime />
           </div>
 
-          <div className="grid grid-cols-2 gap-x-16 gap-y-10 self-start">
+          <div className="grid grid-cols-2 gap-x-16 gap-y-10 self-start lg:gap-x-24">
             <div className="space-y-10">
               <FooterColumn title={f.explore}>
                 <Link to="/" className="hover:text-brand">
@@ -194,7 +193,7 @@ function ContactForm() {
   )
 }
 
-/** L'heure qu'il est en France, mise à jour chaque minute. */
+/** La date et l'heure en France, mises à jour toutes les 30 secondes. */
 function LocalTime() {
   const { t, lang } = useI18n()
   const [now, setNow] = useState(() => new Date())
@@ -205,27 +204,21 @@ function LocalTime() {
   }, [])
 
   const zone = { timeZone: 'Europe/Paris' } as const
-  const day = now.toLocaleDateString(lang, { ...zone, weekday: 'long' })
-  const time = now.toLocaleTimeString(lang, {
+  const date = now.toLocaleDateString(lang, {
     ...zone,
-    hour: '2-digit',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  })
+  const time = now.toLocaleTimeString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+    ...zone,
+    hour: 'numeric',
     minute: '2-digit',
   })
-  const hour = Number(
-    now.toLocaleTimeString('en-GB', {
-      ...zone,
-      hour: '2-digit',
-      hour12: false,
-    }),
-  )
-  const Icon = hour >= 7 && hour < 20 ? Sun : Moon
 
   return (
     <div className="mt-8 text-sm leading-relaxed text-muted-foreground">
-      <p>
-        {t.footer.now(day, time)}{' '}
-        <Icon className="inline size-3.5 align-[-0.125em]" aria-hidden="true" />
-      </p>
+      <p>{t.footer.now(date, time)}</p>
       <p>{t.footer.reply}</p>
     </div>
   )
