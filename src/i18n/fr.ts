@@ -20,16 +20,27 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    email: 'E-mail',
+    title: 'Faisons une formation qui marque les esprits.',
+    contact: 'Contact',
+    writeEmail: 'Écrire un e-mail',
+    project: 'Un projet en tête\u00a0?',
+    name: 'Votre nom',
+    email: 'Votre adresse e-mail',
+    need: 'De quoi avez-vous besoin\u00a0?',
+    send: 'Envoyer',
+    subject: 'Portfolio',
+    from: 'De la part de',
+    now: (day: string, time: string) =>
+      `Nous sommes ${day}, il est ${time} ici en France.`,
+    reply: 'Je vous réponds au plus vite.',
+    explore: 'Explorer',
+    follow: 'Suivre',
     linkedin: 'LinkedIn',
     cv: 'Télécharger mon CV',
-  },
-  write: {
-    title: 'Un projet\u00a0?',
-    intro:
-      'Un poste, une mission ou simplement un échange autour du digital learning\u00a0?',
-    cta: 'Me contacter',
-    subject: 'Portfolio · Prise de contact',
+    basedIn: 'Basé en',
+    based: 'France',
+    availability: 'Disponibilité',
+    available: 'Ouvert aux échanges',
   },
   home: {
     hero: {

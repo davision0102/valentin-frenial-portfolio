@@ -4,7 +4,7 @@ Instructions pour les assistants IA qui travaillent sur ce projet.
 
 ## Le projet
 
-Portfolio personnel : une page d'accueil (hero, présentation, carrousel de projets, savoir-faire), une page Projets, une page À propos et une page par projet (`/projets/<slug>`). Le contact (bouton qui ouvre la messagerie) est dans le pied de page de chaque page (`#ecrire`).
+Portfolio personnel : une page d'accueil (hero, présentation, carrousel de projets, savoir-faire), une page Projets, une page À propos et une page par projet (`/projets/<slug>`). Le contact (lien e-mail et petit formulaire qui ouvre la messagerie) est dans le pied de page de chaque page (`#ecrire`).
 Explique simplement ce que tu fais, sans jargon, et vérifie le rendu dans le navigateur.
 
 ## Confidentialité
