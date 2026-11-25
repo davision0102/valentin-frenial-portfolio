@@ -17,6 +17,8 @@
   --color-ink: var(--background);
   --color-track-foreground: var(--track-foreground);
   --color-brand: var(--brand);
+  /* Vert du point « Disponible » de la barre de navigation. */
+  --color-available: oklch(0.8 0.17 155);
   --color-brand-foreground: var(--brand-foreground);
   --color-ring: var(--ring);
   --color-input: var(--input);

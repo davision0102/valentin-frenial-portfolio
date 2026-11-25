@@ -9,6 +9,10 @@ export const en: Dictionary = {
     about: 'About',
     contact: 'Get in touch',
     language: 'Language',
+    available: 'Available',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
   footer: {

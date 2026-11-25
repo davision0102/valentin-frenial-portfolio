@@ -11,6 +11,10 @@ export const fr = {
     about: 'À propos',
     contact: 'Me contacter',
     language: 'Langue',
+    available: 'Disponible',
+    openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
+    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
   footer: {
