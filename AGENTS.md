@@ -22,7 +22,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 | Quoi                                | Où                                           |
 | ----------------------------------- | -------------------------------------------- |
 | Nom, e-mail, LinkedIn               | `src/config/site.ts`                         |
-| Textes (français et anglais)        | `src/i18n/fr.ts` et `src/i18n/en.ts`         |
+| Textes (français uniquement)        | `src/i18n/fr.ts`                             |
 | Images et liens des projets         | `public/images/` et `src/config/projects.ts` |
 | Couleurs, polices                   | `src/index.css`                              |
 | Logos des entreprises (une couleur) | `public/logos/` (SVG, Wikimedia Commons)     |
@@ -32,7 +32,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 - Imports via l'alias `@/`.
 - Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; le sombre (bleu nuit) est le thème par défaut, le clair est un blanc simple avec des titres bleu nuit (`--heading`).
-- Textes : jamais en dur ; chaque texte dans `fr.ts` **et** `en.ts`, lu avec `useI18n()`.
+- Textes : jamais en dur ; chaque texte dans `fr.ts`, lu avec `useI18n()`. Le site est en français uniquement.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 
 ## Espacements (identiques sur toutes les pages)

@@ -1,24 +1,18 @@
 import { createContext, useContext } from 'react'
 import { fr, type Dictionary } from './fr'
 
-export type Lang = 'fr' | 'en'
-
-export const LANGS: Lang[] = ['fr', 'en']
+/** Le site est en français uniquement. */
+export type Lang = 'fr'
 
 type I18n = {
   lang: Lang
-  setLang: (lang: Lang) => void
-  /** Les textes de la langue active : `t.home.hero.pitch`, `t.nav.home`… */
+  /** Les textes du site : `t.home.hero.bio`, `t.nav.projects`… */
   t: Dictionary
 }
 
-export const I18nContext = createContext<I18n>({
-  lang: 'fr',
-  setLang: () => {},
-  t: fr,
-})
+export const I18nContext = createContext<I18n>({ lang: 'fr', t: fr })
 
-/** Donne la langue active et ses textes. */
+/** Donne les textes du site. */
 export function useI18n() {
   return useContext(I18nContext)
 }

@@ -1,20 +1,14 @@
-/**
- * Textes du site en français (langue de référence).
- * Toute nouvelle clé ajoutée ici doit aussi être ajoutée dans en.ts :
- * TypeScript signale celles qui manquent.
- */
+/** Textes du site (en français uniquement). */
 export const fr = {
   nav: {
     home: 'Accueil',
     homeLabel: 'accueil',
     projects: 'Projets',
     about: 'À propos',
-    language: 'Langue',
     available: 'Disponible',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
   },
-  languages: { fr: 'Français', en: 'English' },
   theme: {
     toDark: 'Passer en thème sombre',
     toLight: 'Passer en thème clair',

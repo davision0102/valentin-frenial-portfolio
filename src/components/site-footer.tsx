@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
-import { LanguageSwitch } from '@/components/language-switch'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
@@ -10,7 +9,7 @@ import { buttonOutline, buttonSolid } from '@/lib/ui'
 /**
  * Pied de page : une bande bleu nuit avec la grande phrase, la date et
  * l'heure en France, une invitation à écrire et trois boutons (e-mail,
- * LinkedIn, CV). Dessous, une ligne avec le copyright, le thème et la langue.
+ * LinkedIn, CV). Dessous, une ligne avec le copyright et le thème.
  * L'adresse e-mail n'est jamais écrite en entier dans le code.
  */
 export function SiteFooter() {
@@ -69,7 +68,6 @@ export function SiteFooter() {
           </p>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <LanguageSwitch />
           </div>
         </div>
       </div>
@@ -79,7 +77,7 @@ export function SiteFooter() {
 
 /** La date et l'heure en France, mises à jour toutes les 30 secondes. */
 function LocalTime() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
   const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
@@ -88,13 +86,13 @@ function LocalTime() {
   }, [])
 
   const zone = { timeZone: 'Europe/Paris' } as const
-  const date = now.toLocaleDateString(lang, {
+  const date = now.toLocaleDateString('fr-FR', {
     ...zone,
     weekday: 'long',
     day: 'numeric',
     month: 'long',
   })
-  const time = now.toLocaleTimeString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  const time = now.toLocaleTimeString('fr-FR', {
     ...zone,
     hour: 'numeric',
     minute: '2-digit',
