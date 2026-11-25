@@ -40,10 +40,10 @@ export function ProjectCard({ project }: { project: Project }) {
           <ArrowUpRight className="size-4" />
         </span>
       </div>
-      <h3 className="mt-5 font-heading text-lg font-semibold tracking-tight uppercase sm:text-xl">
+      <h3 className="mt-6 font-heading text-lg font-semibold tracking-tight uppercase sm:text-xl">
         {project.title}
       </h3>
-      <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+      <p className="mt-2 flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
         <span
           aria-hidden="true"
           className={cn(

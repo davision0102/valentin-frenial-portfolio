@@ -2,8 +2,8 @@ import { Children, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useI18n } from '@/i18n/context'
 
-/** Écart entre deux éléments, en rem (doit suivre la classe gap-6). */
-const GAP = 1.5
+/** Écart entre deux éléments, en rem (doit suivre la classe gap-12). */
+const GAP = 3
 
 /**
  * Carrousel « page par page » : un élément visible sur téléphone, deux à
@@ -64,7 +64,7 @@ export function PagedCarousel({
         }}
       >
         <div
-          className="flex gap-6 transition-transform duration-500 ease-out motion-reduce:transition-none"
+          className="flex gap-12 transition-transform duration-500 ease-out motion-reduce:transition-none"
           style={{
             transform: `translateX(calc(${-current} * (100% + ${GAP}rem) / ${perView}))`,
           }}
@@ -91,7 +91,7 @@ export function PagedCarousel({
       </div>
 
       {maxIndex > 0 && (
-        <div className="mt-6 flex items-center justify-between gap-4">
+        <div className="mt-8 flex items-center justify-between gap-4">
           {/* Un point par position ; celui de la position actuelle s'allonge. */}
           <div className="flex items-center gap-1.5">
             {Array.from({ length: maxIndex + 1 }, (_, i) => (
