@@ -29,7 +29,8 @@ export const en: Dictionary = {
   home: {
     hero: {
       photoAlt: 'Photo of Valentin Frenial',
-      hello: 'Hi, I’m',
+      greetings: ['Hello', 'Bonjour', 'Hola'],
+      intro: 'I’m',
       role: 'Digital learning project manager.',
       pitch:
         'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',

@@ -31,7 +31,8 @@ export const fr = {
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
-      hello: 'Bonjour, moi c’est',
+      greetings: ['Bonjour', 'Hello', 'Hola'],
+      intro: 'moi c’est',
       role: 'Chef de projet digital learning.',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',

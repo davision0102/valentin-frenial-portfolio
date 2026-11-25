@@ -91,87 +91,101 @@ function Footer() {
   return (
     <footer
       id="contact"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-4 sm:px-6"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 px-4 pb-4 sm:px-6 sm:pb-6"
     >
-      <div className="border-t border-border py-16 sm:py-24">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t.footer.lead}
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground">{t.footer.text}</p>
+      {/* Un seul bloc : une carte bleu nuit qui se détache de la page.
+          La classe « dark » applique la palette sombre à l'intérieur,
+          quel que soit le thème choisi. */}
+      <div className="dark relative isolate overflow-hidden rounded-[2rem] bg-spotlight px-6 pt-12 pb-6 text-foreground sm:px-12 sm:pt-16">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 -right-24 -z-10 size-[26rem] rounded-full bg-brand/30 blur-[110px]"
+        />
 
-        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-5 sm:mt-12">
-          <a
-            href={`mailto:${site.email}`}
-            className="text-[clamp(1.35rem,6vw,4.25rem)] leading-none font-semibold tracking-[-0.04em] underline decoration-border decoration-2 underline-offset-[0.18em] transition-colors hover:text-brand hover:decoration-brand"
-          >
-            {site.email}
-          </a>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              {t.footer.lead}
+            </h2>
+            <p className="mt-4 max-w-md text-lg text-muted-foreground">
+              {t.footer.text}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={`mailto:${site.email}`}
+                className="text-xl font-semibold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-[6px] transition-colors hover:decoration-foreground sm:text-2xl"
+              >
+                {site.email}
+              </a>
+              <button
+                type="button"
+                onClick={copyEmail}
+                aria-label={t.footer.copyLabel}
+                className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground/10 px-3.5 text-sm font-medium transition-[transform,background-color] hover:bg-foreground/15 active:scale-[0.97]"
+              >
+                {copied ? (
+                  <Check className="size-4 text-track-skill" />
+                ) : (
+                  <Copy className="size-4" />
+                )}
+                <span aria-live="polite">
+                  {copied ? t.footer.copied : t.footer.copy}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <ul className="flex flex-wrap gap-3 lg:flex-col lg:items-stretch">
+            <li>
+              <a
+                href={site.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex h-11 w-full items-center justify-between gap-6 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
+              >
+                LinkedIn
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+                download
+                className="group inline-flex h-11 w-full items-center justify-between gap-6 rounded-full bg-foreground/10 px-5 text-sm font-semibold transition-[transform,background-color] hover:bg-foreground/15 active:scale-[0.97]"
+              >
+                {t.footer.cv}
+                <Download className="size-4 transition-transform group-hover:translate-y-0.5" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Bas de la carte : même bloc, simplement en retrait */}
+        <div className="mt-12 flex flex-col items-center gap-3 text-sm text-muted-foreground sm:mt-16 sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}
+          </p>
+          <div className="flex items-center gap-1">
+            <ThemeToggle showLabel />
+            <LanguageSwitch />
+          </div>
           <button
             type="button"
-            onClick={copyEmail}
-            aria-label={t.footer.copyLabel}
-            className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium glass transition-transform active:scale-[0.97]"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                  .matches
+                  ? 'auto'
+                  : 'smooth',
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 transition-colors hover:text-foreground"
           >
-            {copied ? (
-              <Check className="size-4 text-track-skill" />
-            ) : (
-              <Copy className="size-4" />
-            )}
-            <span aria-live="polite">
-              {copied ? t.footer.copied : t.footer.copy}
-            </span>
+            {t.footer.backToTop}
+            <ArrowUp className="size-4" />
           </button>
         </div>
-
-        <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-medium sm:mt-12">
-          <li>
-            <a
-              href={site.linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-1.5 transition-colors hover:text-brand"
-            >
-              LinkedIn
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </li>
-          <li>
-            <a
-              href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
-              download
-              className="group inline-flex items-center gap-1.5 transition-colors hover:text-brand"
-            >
-              {t.footer.cv}
-              <Download className="size-4 transition-transform group-hover:translate-y-0.5" />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="flex flex-col items-center gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:flex-row sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {site.name}
-        </p>
-        <div className="flex items-center gap-1">
-          <ThemeToggle showLabel />
-          <LanguageSwitch />
-        </div>
-        <button
-          type="button"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
-                .matches
-                ? 'auto'
-                : 'smooth',
-            })
-          }
-          className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 transition-colors hover:text-foreground"
-        >
-          {t.footer.backToTop}
-          <ArrowUp className="size-4" />
-        </button>
       </div>
     </footer>
   )

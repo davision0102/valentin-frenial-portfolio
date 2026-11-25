@@ -9,6 +9,7 @@ import {
   Mail,
   Palette,
 } from 'lucide-react'
+import { Greeting } from '@/components/greeting'
 import { Portrait } from '@/components/portrait'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
@@ -54,7 +55,15 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <div className="min-w-0">
           <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-            {h.hello} {site.name.split(' ')[0]}.
+            <span className="sr-only">
+              {h.greetings[0]}, {h.intro} {site.name.split(' ')[0]}.
+            </span>
+            <span aria-hidden="true">
+              <span className="block">
+                <Greeting words={h.greetings} className="text-brand" />,
+              </span>
+              {h.intro} {site.name.split(' ')[0]}.
+            </span>
             <span className="block text-muted-foreground">{h.role}</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
@@ -90,13 +99,7 @@ function Hero() {
           </ul>
         </div>
 
-        <Portrait
-          caption={companies
-            .slice(0, 2)
-            .map((company) => company.name)
-            .join(' · ')}
-          className="mx-auto max-w-[13rem] max-lg:order-first sm:max-w-xs lg:max-w-none"
-        />
+        <Portrait className="mx-auto max-w-[9rem] max-lg:order-first sm:max-w-[12rem] lg:max-w-[18rem]" />
       </div>
     </section>
   )
