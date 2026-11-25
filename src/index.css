@@ -9,18 +9,10 @@
 @theme inline {
   --font-heading: 'Geist Variable', var(--font-sans);
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --color-track-learning: var(--track-learning);
-  --color-track-design: var(--track-design);
-  --color-track-skill: var(--track-skill);
-  --color-spotlight: var(--spotlight);
-  /* Fond du hero et du pied de page : le même bleu nuit que tout le site. */
-  --color-ink: var(--background);
-  --color-track-foreground: var(--track-foreground);
   --color-brand: var(--brand);
   --color-heading: var(--heading);
   /* Vert du point « Disponible » de la barre de navigation. */
   --color-available: oklch(0.8 0.17 155);
-  --color-brand-foreground: var(--brand-foreground);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -72,12 +64,7 @@
   --input: oklch(0.27 0.11 264 / 18%);
   --ring: oklch(0.27 0.11 264);
   --radius: 0.875rem;
-  /* Couleurs des catégories : bleu (e-learning), lilas (design), turquoise (savoir-faire). */
   --brand: oklch(0.27 0.11 264);
-  --brand-foreground: oklch(0.99 0 0);
-  --track-learning: oklch(0.5 0.2 260);
-  --track-design: oklch(0.56 0.18 292);
-  --track-skill: oklch(0.6 0.11 200);
   /* Verre : fond translucide, arête claire, ombre douce. */
   /* Verre légèrement bleuté et un peu plus dense : la barre se détache du
      fond blanc, et le contenu qui passe dessous reste flou. */
@@ -87,8 +74,6 @@
   --glass-shadow:
     0 1px 2px oklch(0.2 0.04 265 / 8%),
     0 12px 32px -12px oklch(0.25 0.08 265 / 28%);
-  --spotlight: oklch(0.27 0.11 264);
-  --track-foreground: oklch(0.99 0 0);
 }
 
 .dark {
@@ -114,17 +99,11 @@
   --input: oklch(0.85 0.03 255 / 16%);
   --ring: oklch(0.75 0.14 252);
   --brand: oklch(0.7 0.15 255);
-  --brand-foreground: oklch(0.19 0.05 266);
-  --track-learning: oklch(0.7 0.15 255);
-  --track-design: oklch(0.76 0.13 292);
-  --track-skill: oklch(0.79 0.11 195);
   --glass: oklch(0.22 0.045 265 / 60%);
   --glass-ring: oklch(1 0 0 / 6%);
   --glass-edge: oklch(0.9 0.05 255 / 16%);
   --glass-shadow:
     0 1px 2px oklch(0 0 0 / 30%), 0 22px 60px -20px oklch(0 0 0 / 60%);
-  --spotlight: oklch(0.33 0.12 262);
-  --track-foreground: oklch(0.17 0.045 266);
 }
 
 /* Verre : réservé aux petits éléments d'interface (barre, pastilles,

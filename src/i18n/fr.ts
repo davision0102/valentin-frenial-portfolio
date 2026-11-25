@@ -1,7 +1,6 @@
 /** Textes du site (en français uniquement). */
 export const fr = {
   nav: {
-    home: 'Accueil',
     homeLabel: 'accueil',
     projects: 'Projets',
     about: 'À propos',
@@ -287,8 +286,6 @@ export const fr = {
   projectsPage: {
     open: 'Voir le projet',
     title: 'Mes projets',
-    intro:
-      'Des formations digitales pour Nexans et Chanel, et des projets de design, de la vidéo au print.',
     filtersLabel: 'Filtrer les projets',
     all: 'Tous',
     learning: 'E-learning',
