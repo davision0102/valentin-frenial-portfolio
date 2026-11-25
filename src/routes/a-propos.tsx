@@ -65,7 +65,7 @@ function AboutPage() {
             key={file}
             style={{ zIndex: i === 2 ? 5 : 4 - Math.abs(i - 2) }}
             className={cn(
-              'relative -ml-24 shrink-0 transition-transform duration-500 ease-out first:ml-0 hover:z-10! hover:-translate-y-4 hover:rotate-0 lg:-ml-28',
+              'relative -ml-28 shrink-0 transition-transform duration-500 ease-out first:ml-0 hover:z-10! hover:-translate-y-4 hover:rotate-0 lg:-ml-8',
               fan[i].rotate,
               fan[i].shift,
             )}
@@ -88,7 +88,7 @@ function AboutPage() {
       >
         <div className="flex w-max animate-[marquee_28s_linear_infinite] motion-reduce:animate-none">
           {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 gap-4 pr-4">
+            <div key={copy} className="flex shrink-0 gap-6 pr-6">
               {photos.map((file, i) => (
                 <img
                   key={file}

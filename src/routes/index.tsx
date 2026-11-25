@@ -62,6 +62,18 @@ function Hero() {
       <div className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-10 px-4 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
         <div className="max-w-md lg:mb-6">
           <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
+          {/* Chiffres clés, sur une ligne sous la présentation. */}
+          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            {h.stats.map((stat) => (
+              <div key={stat.label} className="flex items-baseline gap-2">
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums">
+                  {stat.value}
+                </dd>
+                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
           <Link to="/" hash="projets" className={`${buttonOutline} mt-8`}>
             {h.seeProjects}
             <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
@@ -166,21 +178,6 @@ function Intro() {
           </div>
         </div>
       </div>
-
-      {/* Chiffres clés : une ligne, trois colonnes séparées par un trait. */}
-      <dl className="mt-12 grid grid-cols-3 divide-x divide-border border-y border-border sm:mt-16">
-        {h.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex flex-col gap-1 px-3 py-5 first:pl-0 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2.5 sm:px-8 sm:py-6"
-          >
-            <dd className="order-first font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums sm:text-4xl">
-              {stat.value}
-            </dd>
-            <dt className="text-sm text-muted-foreground">{stat.label}</dt>
-          </div>
-        ))}
-      </dl>
     </section>
   )
 }
@@ -227,7 +224,7 @@ function Services() {
       <div className="border-t border-border pt-16 sm:pt-24">
         <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-        <ol className="mt-10 grid gap-x-8 gap-y-10 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid gap-12 sm:mt-12 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-4 lg:gap-x-16">
           {s.items.map(({ title, text }, i) => (
             <li key={title}>
               <span className="text-sm font-semibold text-brand tabular-nums">

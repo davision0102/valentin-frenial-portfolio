@@ -35,62 +35,73 @@ export function SiteFooter() {
           {f.title}
         </h2>
 
-        <div className="mt-16 grid gap-12 sm:mt-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
-          <div className="max-w-lg">
+        {/* Deux rangées alignées : Contact · Explorer · Basé en, puis
+            Un projet en tête · Suivre · Disponibilité. Sur téléphone, les
+            colonnes de liens passent dessous, deux par ligne. */}
+        <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 sm:mt-20 lg:grid-cols-[minmax(0,1fr)_14rem_14rem] lg:gap-x-16">
+          <div className="col-span-2 max-w-lg lg:col-span-1 lg:col-start-1 lg:row-start-1">
             <p className={labelClass}>{f.contact}</p>
             <button
               type="button"
               onClick={() => openEmail()}
-              className="mt-3 border-b border-foreground pb-0.5 text-lg transition-colors hover:border-brand hover:text-brand"
+              className="mt-4 border-b border-foreground pb-0.5 text-lg transition-colors hover:border-brand hover:text-brand"
             >
               {site.emailParts.join('@')}
             </button>
+          </div>
 
-            <p className={`${labelClass} mt-10`}>{f.project}</p>
+          <div className="col-span-2 max-w-lg lg:col-span-1 lg:col-start-1 lg:row-start-2">
+            <p className={labelClass}>{f.project}</p>
             <ContactForm />
             <LocalTime />
           </div>
 
-          <div className="grid grid-cols-2 gap-x-16 gap-y-10 self-start lg:gap-x-24">
-            <div className="space-y-10">
-              <FooterColumn title={f.explore}>
-                <Link to="/" className="hover:text-brand">
-                  {t.nav.home}
-                </Link>
-                <Link to="/projets" className="hover:text-brand">
-                  {t.nav.projects}
-                </Link>
-                <Link to="/a-propos" className="hover:text-brand">
-                  {t.nav.about}
-                </Link>
-              </FooterColumn>
-              <FooterColumn title={f.follow}>
-                <a
-                  href={site.linkedinUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-brand"
-                >
-                  {f.linkedin}
-                </a>
-                <a
-                  href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
-                  download
-                  className="hover:text-brand"
-                >
-                  {f.cv}
-                </a>
-              </FooterColumn>
-            </div>
-            <div className="space-y-10">
-              <FooterColumn title={f.basedIn}>
-                <span>{f.based}</span>
-              </FooterColumn>
-              <FooterColumn title={f.availability}>
-                <span>{f.available}</span>
-              </FooterColumn>
-            </div>
-          </div>
+          <FooterColumn
+            title={f.explore}
+            className="lg:col-start-2 lg:row-start-1"
+          >
+            <Link to="/" className="hover:text-brand">
+              {t.nav.home}
+            </Link>
+            <Link to="/projets" className="hover:text-brand">
+              {t.nav.projects}
+            </Link>
+            <Link to="/a-propos" className="hover:text-brand">
+              {t.nav.about}
+            </Link>
+          </FooterColumn>
+          <FooterColumn
+            title={f.basedIn}
+            className="lg:col-start-3 lg:row-start-1"
+          >
+            <span>{f.based}</span>
+          </FooterColumn>
+          <FooterColumn
+            title={f.follow}
+            className="lg:col-start-2 lg:row-start-2"
+          >
+            <a
+              href={site.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-brand"
+            >
+              {f.linkedin}
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+              download
+              className="hover:text-brand"
+            >
+              {f.cv}
+            </a>
+          </FooterColumn>
+          <FooterColumn
+            title={f.availability}
+            className="lg:col-start-3 lg:row-start-2"
+          >
+            <span>{f.available}</span>
+          </FooterColumn>
         </div>
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-24">
@@ -109,12 +120,14 @@ export function SiteFooter() {
 function FooterColumn({
   title,
   children,
+  className,
 }: {
   title: string
   children: React.ReactNode
+  className?: string
 }) {
   return (
-    <div>
+    <div className={className}>
       <h3 className={labelClass}>{title}</h3>
       <div className="mt-4 flex flex-col items-start gap-2 transition-colors [&>a]:transition-colors">
         {children}
@@ -136,7 +149,7 @@ function ContactForm() {
 
   return (
     <form
-      className="mt-2"
+      className="mt-1"
       onSubmit={(event) => {
         event.preventDefault()
         const signature = [`${f.from} ${name}`, email].filter(Boolean)
