@@ -34,7 +34,7 @@ export const en: Dictionary = {
       greetings: ['Hello', 'Bonjour', 'Hola'],
       role: 'Digital learning project manager.',
       bio: 'I’m Valentin, a digital learning project manager. I love turning complex topics into clear training that makes people want to learn.',
-      seeProjects: 'See my projects',
+      aboutMe: 'About me',
       stats: [
         {
           value: '12',

@@ -36,7 +36,7 @@ export const fr = {
       greetings: ['Bonjour', 'Hello', 'Hola'],
       role: 'Chef de projet digital learning.',
       bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
-      seeProjects: 'Voir mes projets',
+      aboutMe: 'À propos de moi',
       stats: [
         {
           value: '12',

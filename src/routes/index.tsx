@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowDown, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
 import { site } from '@/config/site'
@@ -74,9 +74,9 @@ function Hero() {
               </div>
             ))}
           </dl>
-          <Link to="/" hash="projets" className={`${buttonOutline} mt-8`}>
-            {h.seeProjects}
-            <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
+          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
+            {h.aboutMe}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
 
@@ -170,7 +170,14 @@ function Projects() {
       id="projets"
       className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
-      <h2 className={titleClass}>{p.title}</h2>
+      {/* Le titre à gauche, le lien vers tous les projets à droite. */}
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+        <h2 className={titleClass}>{p.title}</h2>
+        <Link to="/projets" className={buttonOutline}>
+          {p.seeAll}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
 
       {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
           indique s'il s'agit d'e-learning ou de design. */}
@@ -184,12 +191,6 @@ function Projects() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Carousel>
-
-      {/* Comme partout : le bouton vient après le contenu, aligné à gauche. */}
-      <Link to="/projets" className={`${buttonOutline} mt-10 sm:mt-12`}>
-        {p.seeAll}
-        <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-      </Link>
     </section>
   )
 }
