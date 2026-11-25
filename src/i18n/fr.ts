@@ -33,7 +33,7 @@ export const fr = {
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
-      greetings: ['Bonjour', 'Hello', 'Hola'],
+      greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
       bio: [
         'Je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',

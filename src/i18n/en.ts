@@ -31,7 +31,7 @@ export const en: Dictionary = {
   home: {
     hero: {
       photoAlt: 'Photo of Valentin Frenial',
-      greetings: ['Hello', 'Bonjour', 'Hola'],
+      greetings: ['Hello', 'Bonjour', '¡Hola!'],
       role: 'Digital learning project manager.',
       bio: [
         'I design intuitive, engaging, learner-centred e-learning, from the first idea to launch.',
