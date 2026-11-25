@@ -21,11 +21,11 @@ const companies = [
 
 /** Titre de section : grandes capitales serrées. */
 const titleClass =
-  'font-heading text-4xl leading-[0.95] font-semibold tracking-[-0.04em] text-balance uppercase sm:text-6xl'
+  'font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
 
 /** Bouton discret, bordé, en capitales. */
 const outlineButton =
-  'group inline-flex h-11 items-center gap-2 rounded-full border border-border px-5 text-xs font-semibold tracking-wide uppercase transition-colors hover:border-foreground/40'
+  'group inline-flex h-11 items-center gap-2 rounded-lg border border-border px-5 text-xs font-semibold tracking-wide uppercase transition-colors hover:border-foreground/40'
 
 function HomePage() {
   const { t } = useI18n()
@@ -55,7 +55,7 @@ function Hero() {
 
   return (
     <section className="-mt-12 px-3">
-      <div className="dark relative isolate mx-auto flex min-h-[max(36rem,calc(100svh-1.5rem))] max-w-[96rem] flex-col overflow-hidden rounded-[1.75rem] bg-ink text-foreground sm:rounded-[2.5rem]">
+      <div className="dark relative isolate mx-auto flex min-h-[max(36rem,calc(100svh-1.5rem))] max-w-[96rem] flex-col overflow-hidden rounded-2xl bg-ink text-foreground sm:rounded-3xl">
         {/* Halo bleu derrière la photo */}
         <div
           aria-hidden="true"
@@ -90,8 +90,8 @@ function Hero() {
 }
 
 /**
- * Présentation : la phrase d'accroche, le lien vers la page À propos et les
- * entreprises ; les chiffres clés à droite.
+ * Présentation : la phrase d'accroche et le lien vers la page À propos à
+ * gauche, les entreprises à droite, puis les chiffres clés sur une ligne.
  */
 function Intro() {
   const { t } = useI18n()
@@ -101,47 +101,50 @@ function Intro() {
   return (
     <section
       id="a-propos"
-      className="mx-auto grid max-w-6xl scroll-mt-20 gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] lg:gap-16"
+      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
     >
-      <div>
-        <h2 className={titleClass}>{a.title}</h2>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
-          {h.pitch}
-        </p>
-        <Link to="/a-propos" className={`${outlineButton} mt-8`}>
-          {a.moreAbout}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:gap-16">
+        <div>
+          <h2 className={titleClass}>{a.title}</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
+            {h.pitch}
+          </p>
+          <Link to="/a-propos" className={`${outlineButton} mt-8`}>
+            {a.moreAbout}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-6 sm:gap-x-10">
-          <h3 className="w-full text-sm text-muted-foreground">
-            {a.companiesTitle}
-          </h3>
-          {companies.map((company) => (
-            // Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre.
-            <span
-              key={company.name}
-              role="img"
-              aria-label={company.name}
-              className="block h-8 w-24 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat]"
-              style={{
-                maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-              }}
-            />
-          ))}
+        <div className="lg:pt-2">
+          <h3 className="text-sm text-muted-foreground">{a.companiesTitle}</h3>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-6 sm:gap-x-8">
+            {companies.map((company) => (
+              // Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre.
+              <span
+                key={company.name}
+                role="img"
+                aria-label={company.name}
+                className="block h-8 w-24 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat]"
+                style={{
+                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <dl className="grid grid-cols-3 gap-4 sm:gap-8 lg:grid-cols-1 lg:content-start lg:gap-6">
+      {/* Chiffres clés : une ligne, trois colonnes séparées par un trait. */}
+      <dl className="mt-12 grid grid-cols-3 divide-x divide-border border-y border-border sm:mt-16">
         {h.stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col-reverse border-t border-border pt-4"
+            className="flex flex-col gap-1 px-3 py-5 first:pl-0 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2.5 sm:px-8 sm:py-6"
           >
-            <dt className="mt-1 text-sm text-muted-foreground">{stat.label}</dt>
-            <dd className="font-heading text-4xl font-semibold tracking-[-0.04em] tabular-nums sm:text-5xl">
+            <dd className="order-first font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums sm:text-4xl">
               {stat.value}
             </dd>
+            <dt className="text-sm text-muted-foreground">{stat.label}</dt>
           </div>
         ))}
       </dl>

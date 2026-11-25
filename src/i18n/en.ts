@@ -18,33 +18,15 @@ export const en: Dictionary = {
     toLight: 'Switch to light theme',
   },
   footer: {
-    email: 'Send an email',
-    cv: 'Download my CV (PDF)',
-    emailShort: 'Email',
-    cvShort: 'CV',
+    email: 'Email',
+    linkedin: 'LinkedIn',
+    cv: 'Download my CV',
   },
   write: {
     title: 'Got a project?',
-    intro:
-      'A role, a project or just a chat about digital learning? Pick a subject, tweak the message if you like, and send.',
-    subjectLabel: 'I’m writing about',
-    subjects: [
-      {
-        label: 'a role',
-        body: 'Hi Valentin,\n\nYour profile matches a digital learning project manager role we are looking to fill. Would you be available to talk about it?',
-      },
-      {
-        label: 'a project',
-        body: 'Hi Valentin,\n\nWe have a training project to design and would love to present it to you. Would you be available for a first call?',
-      },
-      {
-        label: 'a chat',
-        body: 'Hi Valentin,\n\nI came across your portfolio and would love to chat with you about digital learning.',
-      },
-    ],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
-    send: 'Send',
+    intro: 'A role, a project or just a chat about digital learning?',
+    cta: 'Get in touch',
+    subject: 'Portfolio · Getting in touch',
   },
   home: {
     hero: {

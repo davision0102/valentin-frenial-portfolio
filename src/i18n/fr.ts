@@ -20,33 +20,16 @@ export const fr = {
     toLight: 'Passer en thème clair',
   },
   footer: {
-    email: 'Écrire un e-mail',
-    cv: 'Télécharger mon CV (PDF)',
-    emailShort: 'E-mail',
-    cvShort: 'CV',
+    email: 'E-mail',
+    linkedin: 'LinkedIn',
+    cv: 'Télécharger mon CV',
   },
   write: {
     title: 'Un projet\u00a0?',
     intro:
-      'Un poste, une mission ou simplement un échange autour du digital learning\u00a0? Choisissez l’objet, retouchez le message si besoin, et envoyez.',
-    subjectLabel: 'Je vous écris pour',
-    subjects: [
-      {
-        label: 'un poste',
-        body: 'Bonjour Valentin,\n\nVotre profil correspond à un poste de chef de projet digital learning que nous cherchons à pourvoir. Seriez-vous disponible pour en discuter\u00a0?',
-      },
-      {
-        label: 'une mission',
-        body: 'Bonjour Valentin,\n\nNous avons un projet de formation à concevoir et aimerions vous le présenter. Seriez-vous disponible pour un premier échange\u00a0?',
-      },
-      {
-        label: 'un échange',
-        body: 'Bonjour Valentin,\n\nJ’ai découvert votre portfolio et j’aimerais échanger avec vous autour du digital learning.',
-      },
-    ],
-    subjectPrefix: 'Portfolio',
-    message: 'Message',
-    send: 'Envoyer',
+      'Un poste, une mission ou simplement un échange autour du digital learning\u00a0?',
+    cta: 'Me contacter',
+    subject: 'Portfolio · Prise de contact',
   },
   home: {
     hero: {

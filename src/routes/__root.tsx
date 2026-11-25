@@ -1,6 +1,5 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
-import { ContactComposer } from '@/components/contact-composer'
+import { Mail } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
@@ -72,9 +71,9 @@ function RootLayout() {
 }
 
 /**
- * Pied de page, sur un bleu nuit profond : un grand « Un projet ? », puis
- * l'e-mail prêt à envoyer (le seul point de contact du site), et une ligne
- * finale avec les liens, le thème, la langue et le copyright.
+ * Pied de page, sur un bleu nuit profond : un grand « Un projet ? » centré,
+ * une phrase et un bouton qui ouvre la messagerie, puis une ligne finale
+ * avec les liens, le thème, la langue et le copyright.
  * L'adresse e-mail n'est jamais écrite en clair dans la page.
  */
 function Footer() {
@@ -82,29 +81,35 @@ function Footer() {
   const f = t.footer
   const w = t.write
   const link =
-    'inline-flex items-center gap-1 font-medium tracking-wide uppercase transition-colors hover:text-foreground'
+    'font-medium tracking-wide uppercase transition-colors hover:text-foreground'
 
   return (
     <footer
       id={contactId}
       className="dark scroll-mt-4 border-t border-border bg-ink text-foreground"
     >
-      <div className="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-10">
-        <h2 className="pt-16 font-heading text-[15vw] leading-[0.85] font-semibold tracking-[-0.05em] text-balance uppercase sm:pt-24 sm:text-[clamp(3rem,10.5vw,10rem)]">
-          {w.title}
-        </h2>
-
-        <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <p className="max-w-md text-lg leading-relaxed text-pretty text-muted-foreground">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-col items-center pt-16 text-center sm:pt-24">
+          <h2 className="font-heading text-[13vw] leading-[0.9] font-semibold tracking-[-0.05em] text-balance uppercase sm:text-[clamp(3rem,8vw,6.5rem)]">
+            {w.title}
+          </h2>
+          <p className="mt-6 max-w-md leading-relaxed text-pretty text-muted-foreground">
             {w.intro}
           </p>
-          <ContactComposer />
+          <button
+            type="button"
+            onClick={() => openEmail(w.subject)}
+            className="mt-8 inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
+          >
+            <Mail className="size-4" />
+            {w.cta}
+          </button>
         </div>
 
         <div className="mt-16 flex flex-col-reverse gap-6 border-t border-border py-6 text-xs text-muted-foreground sm:mt-24 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <button type="button" onClick={() => openEmail()} className={link}>
-              {f.emailShort}
+              {f.email}
             </button>
             <a
               href={site.linkedinUrl}
@@ -112,17 +117,14 @@ function Footer() {
               rel="noreferrer"
               className={link}
             >
-              LinkedIn
-              <ArrowUpRight className="size-3.5" />
+              {f.linkedin}
             </a>
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
               download
-              title={f.cv}
               className={link}
             >
-              {f.cvShort}
-              <ArrowDown className="size-3.5" />
+              {f.cv}
             </a>
           </div>
           <div className="flex flex-wrap items-center gap-2">
