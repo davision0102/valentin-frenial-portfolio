@@ -33,7 +33,6 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Clients />
       <Projects />
       <Services />
     </>
@@ -60,7 +59,7 @@ function Hero() {
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
         {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
-            en grand, détail en plus discret, puis les chiffres en pastilles,
+            en grand, détail en plus discret, puis les logos des entreprises,
             le tout aligné sur le bas de la photo. */}
         <div className="max-w-xl lg:mt-20">
           <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
@@ -72,21 +71,26 @@ function Hero() {
           <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
             {h.bio[1]}
           </p>
-          {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
-          <dl className="mt-6 flex flex-wrap gap-2">
-            {h.stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
-              >
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-heading text-base font-semibold text-heading tabular-nums">
-                  {stat.value}
-                </dd>
-                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
-              </div>
-            ))}
-          </dl>
+          {/* Preuve tout de suite : les entreprises, sous un trait fin. */}
+          <div className="mt-8 border-t border-border pt-6">
+            <p className="text-sm text-muted-foreground">
+              {t.home.about.companiesTitle}
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-4 sm:gap-x-10">
+              {companies.map((company) => (
+                // Logo d'une seule couleur (celle du texte) : il suit le thème.
+                <span
+                  key={company.name}
+                  role="img"
+                  aria-label={company.name}
+                  className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat] sm:w-28"
+                  style={{
+                    maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
@@ -143,39 +147,15 @@ function GreetingsMarquee({
   )
 }
 
-/** Les entreprises pour lesquelles Valentin a travaillé : un intitulé et les logos, centrés. */
-function Clients() {
-  const { t } = useI18n()
-
-  return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-10 text-center sm:px-8 sm:py-14 lg:px-16">
-      <h2 className="text-sm font-normal text-muted-foreground">
-        {t.home.about.companiesTitle}
-      </h2>
-      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
-        {companies.map((company) => (
-          // Logo d'une seule couleur (celle du texte) : il suit le thème.
-          <span
-            key={company.name}
-            role="img"
-            aria-label={company.name}
-            className="block h-9 w-28 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
-            style={{
-              maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-            }}
-          />
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function Projects() {
   const { t } = useI18n()
   const p = t.home.projects
 
   return (
-    <section id="projets" className="scroll-mt-20 pt-6 pb-16 sm:pt-10 sm:pb-24">
+    <section
+      id="projets"
+      className="scroll-mt-20 pt-16 pb-16 sm:pt-24 sm:pb-24"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         {/* Le titre à gauche, le lien vers tous les projets à droite. */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
