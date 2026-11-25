@@ -26,6 +26,7 @@ export const en: Dictionary = {
     linkedin: 'LinkedIn',
     cv: 'Download my CV',
     subject: 'Portfolio',
+    rights: 'All rights reserved.',
   },
   home: {
     hero: {

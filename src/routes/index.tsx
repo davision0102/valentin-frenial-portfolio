@@ -50,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
@@ -82,7 +82,7 @@ function Hero() {
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
             pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[15rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(30vw,28rem)] lg:max-w-none lg:self-end">
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(24vw,22rem)] lg:max-w-none lg:self-end">
           <img
             src={`${import.meta.env.BASE_URL}valentin.png`}
             alt={h.photoAlt}
@@ -121,10 +121,10 @@ function GreetingsMarquee({
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
+                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
                   {word}
                 </span>
-                <span className="size-3 shrink-0 rounded-full bg-brand sm:size-4" />
+                <span className="size-2.5 shrink-0 rounded-full bg-brand sm:size-3" />
               </span>
             ))}
           </div>

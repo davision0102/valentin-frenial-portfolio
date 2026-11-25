@@ -28,6 +28,7 @@ export const fr = {
     linkedin: 'LinkedIn',
     cv: 'Télécharger mon CV',
     subject: 'Portfolio',
+    rights: 'Tous droits réservés.',
   },
   home: {
     hero: {

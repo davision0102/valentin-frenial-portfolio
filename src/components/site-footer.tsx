@@ -20,9 +20,9 @@ export function SiteFooter() {
   return (
     <footer id={contactId} className="scroll-mt-4 bg-ink text-foreground">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
-        <div className="grid gap-10 rounded-3xl bg-secondary/70 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:p-16">
+        <div className="grid gap-8 rounded-3xl bg-secondary/70 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:p-12">
           <div>
-            <h2 className="max-w-2xl font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:text-6xl">
+            <h2 className="max-w-xl font-heading text-2xl leading-[1.1] font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
               {f.title}
             </h2>
             <LocalTime />
@@ -57,9 +57,9 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 py-6 text-sm text-muted-foreground sm:py-8">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground">
           <p>
-            © {new Date().getFullYear()} {site.name}
+            © {new Date().getFullYear()} {site.name}. {f.rights}
           </p>
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -95,7 +95,7 @@ function LocalTime() {
   })
 
   return (
-    <div className="mt-8 leading-relaxed text-muted-foreground">
+    <div className="mt-5 text-sm leading-relaxed text-muted-foreground">
       <p>{t.footer.now(date, time)}</p>
       <p>{t.footer.reply}</p>
     </div>
