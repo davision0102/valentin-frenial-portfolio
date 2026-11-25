@@ -79,20 +79,21 @@ function AboutPage() {
         ))}
       </ul>
 
-      {/* Téléphone : les 4 cartes en grille, légendes visibles. */}
+      {/* Téléphone : les 4 photos en carrousel qu'on fait glisser au doigt,
+          d'un bord à l'autre de l'écran, légendes visibles. */}
       <ul
         aria-label={a.photosAlt}
-        className="mt-16 grid grid-cols-2 gap-4 sm:hidden"
+        className="-mx-5 mt-16 flex snap-x snap-mandatory scroll-px-5 [scrollbar-width:none] gap-4 overflow-x-auto px-5 pb-2 sm:hidden [&::-webkit-scrollbar]:hidden"
       >
         {photos.map((file, i) => (
-          <li key={file}>
+          <li key={file} className="w-[72%] shrink-0 snap-start">
             <img
               src={imageUrl(file)}
               alt=""
               className="aspect-square w-full rounded-2xl object-cover"
             />
             <p className="mt-3 text-sm">
-              <span className="block font-semibold">{a.facts[i].label}</span>
+              <span className="font-semibold">{a.facts[i].label}</span>{' '}
               <span className="text-muted-foreground">{a.facts[i].value}</span>
             </p>
           </li>

@@ -91,7 +91,7 @@ function Hero() {
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
             pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-center overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
           <img
             src={`${import.meta.env.BASE_URL}valentin.png`}
             alt={h.photoAlt}
@@ -183,7 +183,7 @@ function Projects() {
         {/* Le titre à gauche, le lien vers tous les projets à droite. */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
           <h2 className={titleClass}>{p.title}</h2>
-          <Link to="/projets" className={buttonOutline}>
+          <Link to="/projets" className={`${buttonOutline} max-sm:hidden`}>
             {p.seeAll}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
@@ -191,6 +191,14 @@ function Projects() {
       </div>
 
       <ProjectsMarquee />
+
+      {/* Sur téléphone, le bouton vient après les vignettes. */}
+      <div className="mt-8 px-5 sm:hidden">
+        <Link to="/projets" className={`${buttonOutline} w-full`}>
+          {p.seeAll}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
     </section>
   )
 }

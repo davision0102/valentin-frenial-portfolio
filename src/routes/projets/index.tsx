@@ -20,7 +20,8 @@ const pad = (n: number) => String(n).padStart(2, '0')
 /**
  * Projets : un titre et des filtres, puis une liste numérotée à gauche et,
  * sur grand écran, un aperçu fixe à droite qui suit le projet survolé (ou
- * sélectionné au clavier). Sur téléphone, chaque ligne a sa miniature.
+ * sélectionné au clavier). Sur téléphone et tablette, des cartes qui se
+ * suivent.
  */
 function ProjectsPage() {
   const { t } = useI18n()
@@ -84,10 +85,50 @@ function ProjectsPage() {
       </div>
 
       <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-2 lg:gap-16">
-        {/* Liste numérotée */}
-        <ol className="border-t border-border">
+        {/* Téléphone et tablette : des cartes qui se suivent (grande image,
+            numéro, titre, infos). */}
+        <ol className="grid gap-12 sm:grid-cols-2 sm:gap-8 lg:hidden">
           {shown.map((project, i) => {
             const cover = getProjectMedia(project.slug)?.images[0]
+            return (
+              <li key={project.slug}>
+                <Link
+                  to="/projets/$slug"
+                  params={{ slug: project.slug }}
+                  className="group block"
+                >
+                  {cover && (
+                    <ProjectVisual
+                      image={{ ...cover, fit: 'contain' }}
+                      alt={project.gallery[0] ?? project.title}
+                      className="aspect-[4/3] rounded-2xl"
+                    />
+                  )}
+                  <span className="mt-5 block font-mono text-xs tracking-[0.18em] text-muted-foreground tabular-nums">
+                    {pad(i + 1)}
+                  </span>
+                  <span className="mt-2 flex items-start justify-between gap-4 font-heading text-xl leading-snug font-semibold tracking-tight">
+                    {project.title}
+                    <ArrowUpRight className="mt-1 size-5 shrink-0 text-muted-foreground" />
+                  </span>
+                  <span className="mt-1 block text-sm text-muted-foreground">
+                    {[
+                      project.client,
+                      project.year,
+                      categoryOf(project.category),
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </span>
+                </Link>
+              </li>
+            )
+          })}
+        </ol>
+
+        {/* Grand écran : liste numérotée */}
+        <ol className="hidden border-t border-border lg:block">
+          {shown.map((project, i) => {
             const isActive = current?.slug === project.slug
             return (
               <li key={project.slug} className="border-b border-border">
@@ -96,19 +137,11 @@ function ProjectsPage() {
                   params={{ slug: project.slug }}
                   onPointerEnter={() => setActive(project.slug)}
                   onFocus={() => setActive(project.slug)}
-                  className="group flex items-center gap-4 py-5 sm:gap-6"
+                  className="group flex items-center gap-6 py-5"
                 >
-                  {/* Miniature : seulement sans l'aperçu (téléphone, tablette) */}
-                  {cover && (
-                    <ProjectVisual
-                      image={{ ...cover, fit: 'contain' }}
-                      alt=""
-                      className="aspect-[4/3] w-20 shrink-0 rounded-xl lg:hidden"
-                    />
-                  )}
                   <span
                     className={cn(
-                      'hidden w-8 shrink-0 font-mono text-xs tracking-[0.18em] tabular-nums transition-colors lg:block',
+                      'w-8 shrink-0 font-mono text-xs tracking-[0.18em] tabular-nums transition-colors',
                       isActive ? 'text-foreground' : 'text-muted-foreground',
                     )}
                   >
@@ -117,11 +150,10 @@ function ProjectsPage() {
                   <span className="min-w-0 flex-1">
                     <span
                       className={cn(
-                        'block font-heading text-lg leading-snug font-semibold tracking-tight transition-[color,translate] duration-300 ease-out sm:text-xl',
+                        'block font-heading text-xl leading-snug font-semibold tracking-tight transition-[color,translate] duration-300 ease-out group-hover:text-foreground',
                         isActive
-                          ? 'lg:translate-x-2 lg:text-foreground'
-                          : 'lg:text-muted-foreground',
-                        'group-hover:text-foreground',
+                          ? 'translate-x-2 text-foreground'
+                          : 'text-muted-foreground',
                       )}
                     >
                       {project.title}
@@ -138,9 +170,8 @@ function ProjectsPage() {
                   </span>
                   <ArrowRight
                     className={cn(
-                      'size-5 shrink-0 text-muted-foreground transition-all duration-300 lg:opacity-0',
-                      isActive &&
-                        'lg:translate-x-1 lg:text-foreground lg:opacity-100',
+                      'size-5 shrink-0 text-muted-foreground opacity-0 transition-all duration-300',
+                      isActive && 'translate-x-1 text-foreground opacity-100',
                     )}
                   />
                 </Link>
