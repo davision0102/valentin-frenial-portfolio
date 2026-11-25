@@ -69,23 +69,10 @@ function AboutPage() {
         </ol>
       </Section>
 
-      <Section title={a.journeyTitle}>
-        <ul>
-          {a.journey.map((step) => (
-            <li
-              key={step.period + step.role}
-              className="grid gap-1 border-t border-border py-4 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_minmax(0,1fr)_auto] sm:gap-6"
-            >
-              <span className="text-sm text-muted-foreground tabular-nums">
-                {step.period}
-              </span>
-              <span className="font-medium">{step.role}</span>
-              <span className="text-sm text-muted-foreground sm:text-right">
-                {step.place}
-              </span>
-            </li>
-          ))}
-        </ul>
+      <Section title={a.storyTitle}>
+        <p className="max-w-3xl text-xl leading-relaxed text-pretty">
+          {a.story}
+        </p>
       </Section>
 
       <Section title={a.toolsTitle}>
@@ -99,12 +86,24 @@ function AboutPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">
-            {a.languagesTitle}
-          </span>{' '}
-          · {a.languages}
-        </p>
+      </Section>
+
+      <Section title={a.languagesTitle}>
+        <ul className="grid gap-4 sm:grid-cols-3">
+          {a.languages.map((language) => (
+            <li
+              key={language.name}
+              className="rounded-2xl border border-border px-5 py-4"
+            >
+              <p className="text-2xl font-semibold tracking-tight text-brand">
+                {language.hello}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {language.name}
+              </p>
+            </li>
+          ))}
+        </ul>
       </Section>
     </article>
   )

@@ -19,12 +19,18 @@ export const en: Dictionary = {
   },
   footer: {
     lead: 'Got a training project in mind?',
-    text: 'Drop me a line, in person or on a call: I reply quickly.',
+    to: 'To',
+    subject: 'Subject',
+    subjects: ['A role', 'A project', 'A chat'],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    bodyDefault:
+      'Hi Valentin,\n\nI have a training project in mind and would love to talk about it.',
+    send: 'Send',
     copy: 'Copy',
     copied: 'Copied!',
     copyLabel: 'Copy the email address',
     cv: 'My CV (PDF)',
-    backToTop: 'Back to top',
   },
   home: {
     hero: {
@@ -318,39 +324,9 @@ export const en: Dictionary = {
         text: 'I track results and learner engagement to make every module better.',
       },
     ],
-    journeyTitle: 'Journey',
-    journey: [
-      {
-        period: '2025 — today',
-        role: 'Freelance designer',
-        place: 'Valenteint Studio',
-      },
-      {
-        period: '2025 — 2026',
-        role: 'Digital Training Project Manager',
-        place: 'Chanel',
-      },
-      {
-        period: '2024 — 2025',
-        role: 'Digital Training Project Manager, work-study',
-        place: 'Chanel',
-      },
-      {
-        period: '2021 — 2024',
-        role: 'Webmaster & Digital Content Producer, work-study',
-        place: 'Nexans',
-      },
-      {
-        period: '2023 — 2025',
-        role: 'Master’s in Digital Strategy & Art Direction',
-        place: 'EEMI',
-      },
-      {
-        period: '2020 — 2023',
-        role: 'Bachelor’s in Digital Project Management & Design',
-        place: 'EEMI',
-      },
-    ],
+    storyTitle: 'In short',
+    story:
+      'It all started as a work-study student at Nexans, redesigning the learning platform’s journey and building dozens of e-learning modules. At Chanel, I then supported artisans around the world, from onboarding to certification programmes. Today, I bring this mix of learning design and graphic design to new projects.',
     toolsTitle: 'Tools',
     tools: [
       'Articulate Storyline 360',
@@ -363,7 +339,11 @@ export const en: Dictionary = {
       'Edflex',
     ],
     languagesTitle: 'Languages',
-    languages: 'French, English, Spanish',
+    languages: [
+      { name: 'French', hello: 'Bonjour' },
+      { name: 'English', hello: 'Hello' },
+      { name: 'Spanish', hello: 'Hola' },
+    ],
   },
   carousel: {
     previous: 'Previous',

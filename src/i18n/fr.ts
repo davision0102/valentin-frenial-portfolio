@@ -21,12 +21,18 @@ export const fr = {
   },
   footer: {
     lead: 'Un projet de formation en tête\u00a0?',
-    text: 'Écrivez-moi, en vrai ou en visio : je réponds vite.',
+    to: 'À',
+    subject: 'Objet',
+    subjects: ['Un poste', 'Une mission', 'Un échange'],
+    subjectPrefix: 'Portfolio',
+    message: 'Message',
+    bodyDefault:
+      'Bonjour Valentin,\n\nJ’ai un projet de formation en tête et j’aimerais en parler avec vous.',
+    send: 'Envoyer',
     copy: 'Copier',
     copied: 'Copié\u00a0!',
     copyLabel: 'Copier l’adresse e-mail',
     cv: 'Mon CV (PDF)',
-    backToTop: 'Retour en haut',
   },
   home: {
     hero: {
@@ -326,39 +332,9 @@ export const fr = {
         text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
       },
     ],
-    journeyTitle: 'Parcours',
-    journey: [
-      {
-        period: '2025 — aujourd’hui',
-        role: 'Designer indépendant',
-        place: 'Valenteint Studio',
-      },
-      {
-        period: '2025 — 2026',
-        role: 'Chef de projet Digital Training',
-        place: 'Chanel',
-      },
-      {
-        period: '2024 — 2025',
-        role: 'Chef de projet Digital Training, en alternance',
-        place: 'Chanel',
-      },
-      {
-        period: '2021 — 2024',
-        role: 'Webmaster & Digital Content Producer, en alternance',
-        place: 'Nexans',
-      },
-      {
-        period: '2023 — 2025',
-        role: 'Master Stratégie digitale & direction artistique',
-        place: 'EEMI',
-      },
-      {
-        period: '2020 — 2023',
-        role: 'Bachelor Gestion de projets digitaux & design',
-        place: 'EEMI',
-      },
-    ],
+    storyTitle: 'En bref',
+    story:
+      'Tout a commencé en alternance chez Nexans, à refaire le parcours de la plateforme de formation et à concevoir des dizaines d’e-learnings. Chez Chanel, j’ai ensuite accompagné des artisans dans le monde entier, de l’intégration aux programmes certifiants. Aujourd’hui, je mets ce mélange de pédagogie et de design au service de nouveaux projets.',
     toolsTitle: 'Outils',
     tools: [
       'Articulate Storyline 360',
@@ -371,7 +347,11 @@ export const fr = {
       'Edflex',
     ],
     languagesTitle: 'Langues',
-    languages: 'Français, anglais, espagnol',
+    languages: [
+      { name: 'Français', hello: 'Bonjour' },
+      { name: 'Anglais', hello: 'Hello' },
+      { name: 'Espagnol', hello: 'Hola' },
+    ],
   },
   carousel: {
     previous: 'Précédent',

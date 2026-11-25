@@ -54,7 +54,7 @@ function Hero() {
     <section>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
         <div className="min-w-0">
-          <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+          <h1 className="text-[clamp(2.5rem,5.2vw,4rem)] leading-[0.98] font-semibold tracking-[-0.04em]">
             <span className="sr-only">
               {h.greetings[0]}, {h.intro} {site.name.split(' ')[0]}.
             </span>

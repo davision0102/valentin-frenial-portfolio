@@ -1,19 +1,13 @@
 import { useState } from 'react'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import {
-  ArrowUp,
-  ArrowUpRight,
-  Check,
-  Copy,
-  Download,
-  Mail,
-} from 'lucide-react'
+import { ArrowUpRight, Check, Copy, Download, Mail, Send } from 'lucide-react'
 import { LanguageSwitch } from '@/components/language-switch'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { cn } from '@/lib/utils'
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -73,10 +67,26 @@ function RootLayout() {
   )
 }
 
-/** Pied de page : un seul bloc de contact, chaque moyen une seule fois. */
+/**
+ * Pied de page : un brouillon d'e-mail prêt à envoyer. On choisit l'objet,
+ * on retouche le message, « Envoyer » ouvre la messagerie du visiteur avec
+ * tout pré-rempli. LinkedIn, le CV, le thème et la langue tiennent dans la
+ * même carte.
+ */
 function Footer() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const f = t.footer
   const [copied, setCopied] = useState(false)
+  const [subject, setSubject] = useState(0)
+  // Le message reste celui de la langue choisie tant qu'il n'a pas été modifié.
+  const [edited, setEdited] = useState<{ lang: string; text: string } | null>(
+    null,
+  )
+  const body = edited && edited.lang === lang ? edited.text : f.bodyDefault
+
+  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
+    `${f.subjectPrefix} · ${f.subjects[subject]}`,
+  )}&body=${encodeURIComponent(body)}`
 
   async function copyEmail() {
     try {
@@ -88,80 +98,121 @@ function Footer() {
     }
   }
 
+  const row =
+    'flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-border px-5 py-3.5'
+  const label = 'w-14 shrink-0 text-sm text-muted-foreground'
+
   return (
     <footer
       id="contact"
       className="mx-auto w-full max-w-6xl scroll-mt-24 px-4 pb-4 sm:px-6 sm:pb-6"
     >
-      {/* Un seul bloc : une carte bleu nuit qui se détache de la page.
-          La classe « dark » applique la palette sombre à l'intérieur,
-          quel que soit le thème choisi. */}
-      <div className="dark relative isolate overflow-hidden rounded-[2rem] bg-spotlight px-6 pt-12 pb-6 text-foreground sm:px-12 sm:pt-16">
+      {/* La classe « dark » applique la palette sombre dans la carte, quel
+          que soit le thème choisi. */}
+      <div className="dark relative isolate overflow-hidden rounded-[2rem] bg-spotlight px-4 pt-10 pb-5 text-foreground sm:px-10 sm:pt-14">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-32 -right-24 -z-10 size-[26rem] rounded-full bg-brand/30 blur-[110px]"
         />
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              {t.footer.lead}
-            </h2>
-            <p className="mt-4 max-w-md text-lg text-muted-foreground">
-              {t.footer.text}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={`mailto:${site.email}`}
-                className="text-xl font-semibold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-[6px] transition-colors hover:decoration-foreground sm:text-2xl"
-              >
-                {site.email}
-              </a>
-              <button
-                type="button"
-                onClick={copyEmail}
-                aria-label={t.footer.copyLabel}
-                className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground/10 px-3.5 text-sm font-medium transition-[transform,background-color] hover:bg-foreground/15 active:scale-[0.97]"
-              >
-                {copied ? (
-                  <Check className="size-4 text-track-skill" />
-                ) : (
-                  <Copy className="size-4" />
-                )}
-                <span aria-live="polite">
-                  {copied ? t.footer.copied : t.footer.copy}
-                </span>
-              </button>
+        <h2 className="px-1 text-3xl font-semibold tracking-tight sm:text-4xl">
+          {f.lead}
+        </h2>
+
+        {/* Le brouillon d'e-mail */}
+        <div className="mt-8 overflow-hidden rounded-2xl bg-background/55 ring-1 ring-border sm:mt-10">
+          <div className={row}>
+            <span className={label}>{f.to}</span>
+            <a
+              href={`mailto:${site.email}`}
+              className="font-medium underline-offset-4 hover:underline"
+            >
+              {site.email}
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label={f.copyLabel}
+              className="ml-auto inline-flex h-8 items-center gap-1.5 rounded-full bg-foreground/10 px-3 text-xs font-medium transition-colors hover:bg-foreground/15"
+            >
+              {copied ? (
+                <Check className="size-3.5 text-track-skill" />
+              ) : (
+                <Copy className="size-3.5" />
+              )}
+              <span aria-live="polite">{copied ? f.copied : f.copy}</span>
+            </button>
+          </div>
+
+          <div className={row}>
+            <span className={label} id="footer-subject">
+              {f.subject}
+            </span>
+            <div
+              role="group"
+              aria-labelledby="footer-subject"
+              className="flex flex-wrap gap-2"
+            >
+              {f.subjects.map((item, i) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setSubject(i)}
+                  aria-pressed={subject === i}
+                  className={cn(
+                    'h-8 rounded-full px-3.5 text-sm font-medium transition-colors',
+                    subject === i
+                      ? 'bg-foreground text-background'
+                      : 'bg-foreground/10 hover:bg-foreground/15',
+                  )}
+                >
+                  {item}
+                </button>
+              ))}
             </div>
           </div>
 
-          <ul className="flex flex-wrap gap-3 lg:flex-col lg:items-stretch">
-            <li>
-              <a
-                href={site.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex h-11 w-full items-center justify-between gap-6 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
-              >
-                LinkedIn
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
-                download
-                className="group inline-flex h-11 w-full items-center justify-between gap-6 rounded-full bg-foreground/10 px-5 text-sm font-semibold transition-[transform,background-color] hover:bg-foreground/15 active:scale-[0.97]"
-              >
-                {t.footer.cv}
-                <Download className="size-4 transition-transform group-hover:translate-y-0.5" />
-              </a>
-            </li>
-          </ul>
+          <label className="sr-only" htmlFor="footer-message">
+            {f.message}
+          </label>
+          <textarea
+            id="footer-message"
+            value={body}
+            onChange={(event) => setEdited({ lang, text: event.target.value })}
+            rows={4}
+            className="block w-full resize-none bg-transparent px-5 py-4 leading-relaxed placeholder:text-muted-foreground focus:outline-none"
+          />
+
+          <div className="flex flex-wrap items-center gap-2 border-t border-border px-3 py-3">
+            <a
+              href={mailto}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform active:scale-[0.97]"
+            >
+              <Send className="size-4" />
+              {f.send}
+            </a>
+            <a
+              href={site.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-sm font-medium transition-colors hover:bg-foreground/10"
+            >
+              LinkedIn
+              <ArrowUpRight className="size-4" />
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
+              download
+              className="inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-sm font-medium transition-colors hover:bg-foreground/10"
+            >
+              {f.cv}
+              <Download className="size-4" />
+            </a>
+          </div>
         </div>
 
-        {/* Bas de la carte : même bloc, simplement en retrait */}
-        <div className="mt-12 flex flex-col items-center gap-3 text-sm text-muted-foreground sm:mt-16 sm:flex-row sm:justify-between">
+        {/* Bas de la carte : même bloc */}
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 px-1 text-sm text-muted-foreground">
           <p>
             © {new Date().getFullYear()} {site.name}
           </p>
@@ -169,22 +220,6 @@ function Footer() {
             <ThemeToggle showLabel />
             <LanguageSwitch />
           </div>
-          <button
-            type="button"
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
-                  .matches
-                  ? 'auto'
-                  : 'smooth',
-              })
-            }
-            className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 transition-colors hover:text-foreground"
-          >
-            {t.footer.backToTop}
-            <ArrowUp className="size-4" />
-          </button>
         </div>
       </div>
     </footer>
