@@ -46,8 +46,6 @@ export const en: Dictionary = {
       role: 'Digital learning project manager.',
       bio: 'I’m Valentin, a digital learning project manager. I love turning complex topics into clear training that makes people want to learn.',
       seeProjects: 'See my projects',
-      pitch:
-        'I design digital training that makes people want to learn: interactive e-learning, video, motion design and art direction. From the first idea to launch on the platform, for Nexans and Chanel.',
       stats: [
         {
           value: '12',
@@ -89,8 +87,6 @@ export const en: Dictionary = {
       ],
     },
     about: {
-      title: 'Teach, yes. Bore, never.',
-      moreAbout: 'More about me',
       companiesTitle: 'They trusted me',
     },
   },

@@ -33,7 +33,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Intro />
+      <Clients />
       <Projects />
       <Services />
     </>
@@ -134,49 +134,28 @@ function GreetingsMarquee({
   )
 }
 
-/**
- * Présentation : la phrase d'accroche et le lien vers la page À propos à
- * gauche, les entreprises à droite, puis les chiffres clés sur une ligne.
- */
-function Intro() {
+/** Les entreprises pour lesquelles Valentin a travaillé : un intitulé et les logos, centrés. */
+function Clients() {
   const { t } = useI18n()
-  const h = t.home.hero
-  const a = t.home.about
 
   return (
-    <section
-      id="a-propos"
-      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 py-16 sm:px-8 sm:py-24 lg:px-16"
-    >
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:gap-16">
-        <div>
-          <h2 className={titleClass}>{a.title}</h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
-            {h.pitch}
-          </p>
-          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
-            {a.moreAbout}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-
-        <div className="lg:pt-2">
-          <h3 className="text-sm text-muted-foreground">{a.companiesTitle}</h3>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-6 sm:gap-x-8">
-            {companies.map((company) => (
-              // Logo d'une seule couleur (celle du texte) : il suit le mode clair / sombre.
-              <span
-                key={company.name}
-                role="img"
-                aria-label={company.name}
-                className="block h-8 w-24 bg-foreground/80 [mask-size:contain] [mask-position:left_center] [mask-repeat:no-repeat]"
-                style={{
-                  maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+    <section className="mx-auto flex max-w-[96rem] flex-col items-center gap-8 px-4 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
+      <h2 className="text-sm font-normal text-muted-foreground">
+        {t.home.about.companiesTitle}
+      </h2>
+      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+        {companies.map((company) => (
+          // Logo d'une seule couleur (celle du texte) : il suit le thème.
+          <span
+            key={company.name}
+            role="img"
+            aria-label={company.name}
+            className="block h-9 w-28 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
+            style={{
+              maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
+            }}
+          />
+        ))}
       </div>
     </section>
   )
@@ -215,8 +194,8 @@ function Projects() {
 }
 
 /**
- * Savoir-faire : quatre blocs doux en grille (deux par ligne sur grand
- * écran), sans traits : un numéro, un intitulé et une phrase.
+ * Savoir-faire : quatre blocs doux côte à côte sur grand écran (deux par
+ * ligne sur tablette), sans traits : un numéro, un intitulé et une phrase.
  */
 function Services() {
   const { t } = useI18n()
@@ -226,19 +205,19 @@ function Services() {
     <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
       <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-      <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6">
+      <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {s.items.map(({ title, text }, i) => (
           <li
             key={title}
-            className="group rounded-2xl bg-secondary/70 p-8 transition-colors duration-300 hover:bg-secondary sm:p-10"
+            className="group rounded-2xl bg-secondary/70 p-6 transition-colors duration-300 hover:bg-secondary sm:p-8"
           >
             <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <h3 className="mt-6 text-2xl font-semibold tracking-tight sm:mt-10 sm:text-3xl">
+            <h3 className="mt-6 text-xl font-semibold tracking-tight sm:mt-8">
               {title}
             </h3>
-            <p className="mt-3 max-w-md leading-relaxed text-pretty text-muted-foreground">
+            <p className="mt-3 text-sm leading-relaxed text-pretty text-muted-foreground">
               {text}
             </p>
           </li>

@@ -48,8 +48,6 @@ export const fr = {
       role: 'Chef de projet digital learning.',
       bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
       seeProjects: 'Voir mes projets',
-      pitch:
-        'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
       stats: [
         {
           value: '12',
@@ -91,8 +89,6 @@ export const fr = {
       ],
     },
     about: {
-      title: 'Former, oui. Ennuyer, jamais.',
-      moreAbout: 'En savoir plus sur moi',
       companiesTitle: 'Ils m’ont fait confiance',
     },
   },
