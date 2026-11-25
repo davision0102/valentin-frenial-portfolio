@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
-import { LanguageSwitch } from '@/components/language-switch'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
-import { buttonOutline, buttonSolid } from '@/lib/ui'
 
 /**
- * Pied de page : un bloc doux avec la grande phrase, la date et l'heure en
- * France, une invitation à écrire et trois liens (e-mail, LinkedIn, CV).
- * Dessous, une ligne avec le copyright, le thème et la langue.
+ * Boutons du pied de page : plus grands et en texte normal pour être bien
+ * lisibles sur le bleu nuit ; un bouton plein et deux bordés bien visibles.
+ */
+const footerButton =
+  'group inline-flex h-12 items-center justify-center gap-2.5 rounded-lg px-6 text-sm font-medium transition-[background-color,border-color,transform] active:scale-[0.97]'
+const footerSolid = `${footerButton} bg-foreground text-background hover:bg-foreground/90`
+const footerOutline = `${footerButton} border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground/5`
+
+/**
+ * Pied de page : une bande bleu nuit avec la grande phrase, la date et
+ * l'heure en France, une invitation à écrire et trois boutons (e-mail,
+ * LinkedIn, CV). Dessous, une ligne avec le copyright et le thème.
  * L'adresse e-mail n'est jamais écrite en entier dans le code.
  */
 export function SiteFooter() {
@@ -18,9 +25,15 @@ export function SiteFooter() {
   const f = t.footer
 
   return (
-    <footer id={contactId} className="scroll-mt-4 bg-ink text-foreground">
+    // Bande bleu nuit pleine largeur, aux coins supérieurs arrondis : la
+    // classe `dark` lui donne les couleurs du thème sombre, quel que soit le
+    // thème de la page (en sombre, un trait fin la sépare du contenu).
+    <footer
+      id={contactId}
+      className="dark scroll-mt-4 rounded-t-[2rem] border-t border-border bg-background text-foreground sm:rounded-t-[2.5rem]"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
-        <div className="grid gap-8 rounded-3xl bg-secondary/70 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:p-12">
+        <div className="grid gap-10 pt-14 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
           <div>
             <h2 className="max-w-xl font-heading text-2xl leading-[1.1] font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
               {f.title}
@@ -28,42 +41,41 @@ export function SiteFooter() {
             <LocalTime />
           </div>
 
-          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:flex-col lg:items-stretch">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <button
               type="button"
               onClick={() => openEmail(f.subject)}
-              className={buttonSolid}
+              className={footerSolid}
             >
-              <Mail className="size-3.5" />
+              <Mail className="size-4" />
               {f.email}
             </button>
             <a
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className={buttonOutline}
+              className={footerOutline}
             >
               {f.linkedin}
-              <ArrowUpRight className="size-3.5" />
+              <ArrowUpRight className="size-4" />
             </a>
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
               download
-              className={buttonOutline}
+              className={footerOutline}
             >
               {f.cv}
-              <ArrowDown className="size-3.5" />
+              <ArrowDown className="size-4" />
             </a>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground sm:mt-20">
           <p>
             © {new Date().getFullYear()} {site.name}. {f.rights}
           </p>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <LanguageSwitch />
           </div>
         </div>
       </div>
@@ -73,7 +85,7 @@ export function SiteFooter() {
 
 /** La date et l'heure en France, mises à jour toutes les 30 secondes. */
 function LocalTime() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
   const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
@@ -82,13 +94,13 @@ function LocalTime() {
   }, [])
 
   const zone = { timeZone: 'Europe/Paris' } as const
-  const date = now.toLocaleDateString(lang, {
+  const date = now.toLocaleDateString('fr-FR', {
     ...zone,
     weekday: 'long',
     day: 'numeric',
     month: 'long',
   })
-  const time = now.toLocaleTimeString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  const time = now.toLocaleTimeString('fr-FR', {
     ...zone,
     hour: 'numeric',
     minute: '2-digit',

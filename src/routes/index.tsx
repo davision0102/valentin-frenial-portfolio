@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
-import { ProjectCard } from '@/components/project-card'
-import { Carousel } from '@/components/carousel'
+import { ProjectVisual } from '@/components/project-visual'
+import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { buttonOutline } from '@/lib/ui'
@@ -33,8 +33,8 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Clients />
       <Projects />
+      <Clients />
       <Services />
     </>
   )
@@ -50,39 +50,48 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col justify-center overflow-hidden bg-background pt-28 pb-16 text-foreground lg:pb-20">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
-      <GreetingsMarquee
-        words={h.greetings}
-        className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
-      />
+      {/* Le bandeau de salutations, puis le texte et la photo, centrés
+          l'un par rapport à l'autre. */}
+      <GreetingsMarquee words={h.greetings} />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-5 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
-        <div className="max-w-md lg:mb-6">
-          <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
-          {/* Chiffres clés, sur une ligne sous la présentation. */}
-          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:pt-0">
+        {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
+            en grand, détail en plus discret, puis les chiffres en pastilles,
+            le tout aligné sur le bas de la photo. */}
+        <div className="max-w-xl">
+          <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
+            {h.role.replace(/\.$/, '')}
+          </p>
+          <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
+            {h.bio[0]}
+          </p>
+          <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
+            {h.bio[1]}
+          </p>
+          {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
+          <dl className="mt-6 flex flex-wrap gap-2">
             {h.stats.map((stat) => (
-              <div key={stat.label} className="flex items-baseline gap-2">
+              <div
+                key={stat.label}
+                className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
+              >
                 <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-heading text-2xl font-semibold tracking-[-0.03em] tabular-nums">
+                <dd className="font-heading text-base font-semibold text-heading tabular-nums">
                   {stat.value}
                 </dd>
                 <dd className="text-sm text-muted-foreground">{stat.label}</dd>
               </div>
             ))}
           </dl>
-          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
-            {h.aboutMe}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
         </div>
 
         {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
             pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(24vw,22rem)] lg:max-w-none lg:self-end">
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-center overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
           <img
             src={`${import.meta.env.BASE_URL}valentin.png`}
             alt={h.photoAlt}
@@ -121,10 +130,10 @@ function GreetingsMarquee({
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
+                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading/15">
                   {word}
                 </span>
-                <span className="size-2.5 shrink-0 rounded-full bg-brand sm:size-3" />
+                <span className="size-2.5 shrink-0 rounded-full bg-brand/35 sm:size-3" />
               </span>
             ))}
           </div>
@@ -134,23 +143,23 @@ function GreetingsMarquee({
   )
 }
 
-/** Les entreprises pour lesquelles Valentin a travaillé : un intitulé et les logos, centrés. */
+/** Sous les projets : les entreprises pour lesquelles ils ont été faits, centrées. */
 function Clients() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 pb-16 text-center sm:px-8 sm:pb-24 lg:px-16">
       <h2 className="text-sm font-normal text-muted-foreground">
         {t.home.about.companiesTitle}
       </h2>
-      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-16">
         {companies.map((company) => (
           // Logo d'une seule couleur (celle du texte) : il suit le thème.
           <span
             key={company.name}
             role="img"
             aria-label={company.name}
-            className="block h-9 w-28 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
+            className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
             style={{
               maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
             }}
@@ -168,30 +177,86 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16"
+      className="scroll-mt-20 pt-16 pb-16 sm:pt-24 sm:pb-24"
     >
-      {/* Le titre à gauche, le lien vers tous les projets à droite. */}
-      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-        <h2 className={titleClass}>{p.title}</h2>
-        <Link to="/projets" className={buttonOutline}>
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
+        {/* Le titre à gauche, le lien vers tous les projets à droite. */}
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+          <h2 className={titleClass}>{p.title}</h2>
+          <Link to="/projets" className={`${buttonOutline} max-sm:hidden`}>
+            {p.seeAll}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+      </div>
+
+      <ProjectsMarquee />
+
+      {/* Sur téléphone, le bouton vient après les vignettes. */}
+      <div className="mt-8 px-5 sm:hidden">
+        <Link to="/projets" className={`${buttonOutline} w-full`}>
           {p.seeAll}
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>
-
-      {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
-          indique s'il s'agit d'e-learning ou de design. */}
-      <Carousel
-        label={p.title}
-        className="mt-10 sm:mt-12"
-        bleed
-        itemClassName="basis-[85%] sm:basis-[60%] md:basis-[46%]"
-      >
-        {t.projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </Carousel>
     </section>
+  )
+}
+
+/**
+ * Projets de l'accueil : toutes les vignettes défilent en boucle d'un bord
+ * à l'autre de l'écran, en pause au survol ; chaque vignette ouvre son
+ * projet. La page Projets sert à les parcourir en détail.
+ */
+function ProjectsMarquee() {
+  const { t } = useI18n()
+
+  return (
+    <div className="group/defile mt-10 overflow-hidden sm:mt-12">
+      <div className="flex w-max animate-[marquee_60s_linear_infinite] group-hover/defile:[animation-play-state:paused] motion-reduce:animate-none">
+        {[0, 1].map((copy) => (
+          <ul
+            key={copy}
+            aria-hidden={copy === 1}
+            className="flex shrink-0 gap-8 pr-8"
+          >
+            {t.projects.map((project) => {
+              const cover = getProjectMedia(project.slug)?.images[0]
+              return (
+                <li
+                  key={project.slug}
+                  className="w-72 shrink-0 sm:w-96 lg:w-[26rem]"
+                >
+                  <Link
+                    to="/projets/$slug"
+                    params={{ slug: project.slug }}
+                    tabIndex={copy === 1 ? -1 : undefined}
+                    className="group block"
+                  >
+                    {cover && (
+                      <ProjectVisual
+                        image={{ ...cover, fit: 'contain' }}
+                        alt=""
+                        eager
+                        className="aspect-[4/3] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+                    )}
+                    <span className="mt-4 block font-heading text-base font-semibold tracking-tight uppercase">
+                      {project.title}
+                    </span>
+                    <span className="mt-1 block text-sm text-muted-foreground">
+                      {[project.client, project.year]
+                        .filter(Boolean)
+                        .join(' · ')}
+                    </span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        ))}
+      </div>
+    </div>
   )
 }
 

@@ -1,20 +1,13 @@
-/**
- * Textes du site en français (langue de référence).
- * Toute nouvelle clé ajoutée ici doit aussi être ajoutée dans en.ts :
- * TypeScript signale celles qui manquent.
- */
+/** Textes du site (en français uniquement). */
 export const fr = {
   nav: {
-    home: 'Accueil',
     homeLabel: 'accueil',
     projects: 'Projets',
     about: 'À propos',
-    language: 'Langue',
     available: 'Disponible',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
   },
-  languages: { fr: 'Français', en: 'English' },
   theme: {
     toDark: 'Passer en thème sombre',
     toLight: 'Passer en thème clair',
@@ -33,10 +26,12 @@ export const fr = {
   home: {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
-      greetings: ['Bonjour', 'Hello', 'Hola'],
+      greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
-      bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
-      aboutMe: 'À propos de moi',
+      bio: [
+        'Je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',
+        'Aux côtés des équipes RH, Finance et RSE, je transforme des contenus complexes en formations claires et impactantes. Autonome et minutieux, je m’appuie sur le design, les outils digitaux et l’analyse des résultats pour renforcer l’engagement des apprenants.',
+      ],
       stats: [
         {
           value: '12',
@@ -291,8 +286,6 @@ export const fr = {
   projectsPage: {
     open: 'Voir le projet',
     title: 'Mes projets',
-    intro:
-      'Des formations digitales pour Nexans et Chanel, et des projets de design, de la vidéo au print.',
     filtersLabel: 'Filtrer les projets',
     all: 'Tous',
     learning: 'E-learning',
@@ -301,7 +294,14 @@ export const fr = {
   aboutPage: {
     title: 'Moi, c’est Valentin.',
     text: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent. Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    photosAlt: 'Quelques images de mes projets',
+    photosAlt: 'Quelques photos de moi',
+    // Provisoire : à remplacer par les vraies réponses de Valentin.
+    facts: [
+      { label: 'Plat préféré', value: 'À compléter' },
+      { label: 'Ville de cœur', value: 'À compléter' },
+      { label: 'En boucle', value: 'À compléter' },
+      { label: 'Le week-end', value: 'À compléter' },
+    ],
   },
   carousel: {
     previous: 'Précédent',
