@@ -39,7 +39,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 | Élément                         | Classes                                                             |
 | ------------------------------- | ------------------------------------------------------------------- |
-| Conteneur (pages, pied de page) | `mx-auto max-w-7xl px-5 sm:px-8 lg:px-16`                            |
+| Conteneur (pages, pied de page) | `mx-auto max-w-7xl px-5 sm:px-8 lg:px-16`                           |
 | Haut de page (1er bloc)         | `pt-12 sm:pt-20`                                                    |
 | Bas de page (dernier bloc)      | `pb-16 sm:pb-24`                                                    |
 | Section                         | `py-16 sm:py-24` (pas de double espace entre deux sections)         |
