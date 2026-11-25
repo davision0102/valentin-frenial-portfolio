@@ -148,7 +148,7 @@ function Clients() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 py-16 text-center sm:px-8 sm:py-24 lg:px-16">
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-10 text-center sm:px-8 sm:py-14 lg:px-16">
       <h2 className="text-sm font-normal text-muted-foreground">
         {t.home.about.companiesTitle}
       </h2>
@@ -175,7 +175,7 @@ function Projects() {
   const p = t.home.projects
 
   return (
-    <section id="projets" className="scroll-mt-20 pb-16 sm:pb-24">
+    <section id="projets" className="scroll-mt-20 pt-6 pb-16 sm:pt-10 sm:pb-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         {/* Le titre à gauche, le lien vers tous les projets à droite. */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
