@@ -3,7 +3,6 @@ import { Link } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
-import { contactId, goToContact } from '@/lib/contact'
 import { cn } from '@/lib/utils'
 
 /** Liens du menu : pas de fond au survol, seul le texte bouge et s'éclaire. */
@@ -111,19 +110,6 @@ export function SiteNav() {
                 <Link to="/a-propos" onClick={close} className={itemClass}>
                   {t.nav.about}
                 </Link>
-              </li>
-              <li>
-                <a
-                  href={`#${contactId}`}
-                  onClick={(event) => {
-                    event.preventDefault()
-                    close()
-                    goToContact()
-                  }}
-                  className={itemClass}
-                >
-                  {t.nav.contactShort}
-                </a>
               </li>
             </ul>
           </nav>

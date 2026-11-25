@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" class="dark" style="color-scheme: dark">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -12,6 +12,18 @@
     />
     <title>Valentin Frenial · Chef de projet digital learning</title>
     <meta name="theme-color" content="#0b1220" />
+    <script>
+      // Applique le thème avant le premier rendu pour éviter un flash.
+      try {
+        const saved = localStorage.getItem('theme')
+        // Bleu nuit par défaut, sauf si le visiteur a choisi le thème clair.
+        const dark = saved ? saved === 'dark' : true
+        if (dark) document.documentElement.classList.add('dark')
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+      } catch {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
 
     <!-- Aperçu lors d'un partage (LinkedIn, WhatsApp, Slack…) -->
     <meta property="og:type" content="website" />

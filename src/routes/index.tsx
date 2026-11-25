@@ -50,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="dark relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
@@ -121,7 +121,7 @@ function GreetingsMarquee({
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap">
+                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
                   {word}
                 </span>
                 <span className="size-3 shrink-0 rounded-full bg-brand sm:size-4" />
@@ -191,13 +191,7 @@ function Projects() {
       id="projets"
       className="mx-auto max-w-[96rem] scroll-mt-20 px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
-      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-        <h2 className={titleClass}>{p.title}</h2>
-        <Link to="/projets" className={buttonOutline}>
-          {p.seeAll}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
-      </div>
+      <h2 className={titleClass}>{p.title}</h2>
 
       {/* Tous les projets dans un seul carrousel ; la ligne sous chaque titre
           indique s'il s'agit d'e-learning ou de design. */}
@@ -210,11 +204,20 @@ function Projects() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Carousel>
+
+      {/* Comme partout : le bouton vient après le contenu, aligné à gauche. */}
+      <Link to="/projets" className={`${buttonOutline} mt-10 sm:mt-12`}>
+        {p.seeAll}
+        <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+      </Link>
     </section>
   )
 }
 
-/** Savoir-faire : quatre colonnes numérotées, sans cartes. */
+/**
+ * Savoir-faire : une liste éditoriale. Chaque ligne donne un numéro, un
+ * intitulé en grand et une phrase ; au survol, l'intitulé glisse un peu.
+ */
 function Services() {
   const { t } = useI18n()
   const s = t.home.services
@@ -224,14 +227,19 @@ function Services() {
       <div className="border-t border-border pt-16 sm:pt-24">
         <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 
-        <ol className="mt-10 grid gap-12 sm:mt-12 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-4 lg:gap-x-16">
+        <ol className="mt-10 border-t border-border sm:mt-12">
           {s.items.map(({ title, text }, i) => (
-            <li key={title}>
-              <span className="text-sm font-semibold text-brand tabular-nums">
+            <li
+              key={title}
+              className="group grid gap-3 border-b border-border py-8 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-x-8 lg:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1fr)] lg:items-baseline lg:gap-x-16 lg:py-10"
+            >
+              <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h3 className="mt-3 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-pretty text-muted-foreground">
+              <h3 className="text-2xl font-semibold tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-2 motion-reduce:group-hover:translate-x-0 sm:text-3xl">
+                {title}
+              </h3>
+              <p className="max-w-md leading-relaxed text-pretty text-muted-foreground sm:col-start-2 lg:col-start-3">
                 {text}
               </p>
             </li>

@@ -7,14 +7,16 @@ export const en: Dictionary = {
     homeLabel: 'home',
     projects: 'Projects',
     about: 'About',
-    contact: 'Get in touch',
     language: 'Language',
     available: 'Available',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
+  theme: {
+    toDark: 'Switch to dark theme',
+    toLight: 'Switch to light theme',
+  },
   footer: {
     title: 'Let’s make training that sticks.',
     contact: 'Contact',

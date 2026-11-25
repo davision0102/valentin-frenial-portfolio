@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { LanguageSwitch } from '@/components/language-switch'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
@@ -28,7 +29,7 @@ export function SiteFooter() {
   return (
     <footer
       id={contactId}
-      className="dark scroll-mt-4 border-t border-border bg-ink text-foreground"
+      className="scroll-mt-4 border-t border-border bg-ink text-foreground"
     >
       <div className="mx-auto max-w-[96rem] px-4 sm:px-8 lg:px-16">
         <h2 className="max-w-2xl pt-12 font-heading text-4xl leading-[1.05] font-semibold tracking-[-0.03em] text-balance sm:pt-16 sm:text-6xl">
@@ -96,6 +97,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {site.name}
           </p>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LanguageSwitch />
           </div>
         </div>

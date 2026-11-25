@@ -9,14 +9,16 @@ export const fr = {
     homeLabel: 'accueil',
     projects: 'Projets',
     about: 'À propos',
-    contact: 'Me contacter',
     language: 'Langue',
     available: 'Disponible',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
-    contactShort: 'Contact',
   },
   languages: { fr: 'Français', en: 'English' },
+  theme: {
+    toDark: 'Passer en thème sombre',
+    toLight: 'Passer en thème clair',
+  },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
     contact: 'Contact',
