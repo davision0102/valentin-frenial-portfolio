@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { Portrait } from '@/components/portrait'
 import { site } from '@/config/site'
+import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
 
 export const Route = createFileRoute('/a-propos')({
@@ -25,6 +26,9 @@ const offIcons = [Languages, Plane, Dumbbell]
 const cvUrl = `${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`
 
 function AboutPage() {
+  const { t } = useI18n()
+  useDocumentTitle(t.nav.about)
+
   return (
     <>
       <Intro />

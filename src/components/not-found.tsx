@@ -1,11 +1,13 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
+import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
 export function NotFound() {
   const { t } = useI18n()
+  useDocumentTitle(t.notFound.pageTitle)
 
   return (
     <section className="mx-auto flex max-w-6xl flex-col items-center px-4 pt-12 pb-16 text-center sm:px-6 sm:pt-20 sm:pb-24">

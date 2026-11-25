@@ -5,6 +5,7 @@ import { NotFound } from '@/components/not-found'
 import { ProjectVisual } from '@/components/project-visual'
 import { buttonVariants } from '@/components/ui/button'
 import { getProjectMedia } from '@/config/projects'
+import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
@@ -19,6 +20,7 @@ function ProjectPage() {
   const p = t.project
 
   const index = t.projects.findIndex((project) => project.slug === slug)
+  useDocumentTitle(index === -1 ? undefined : t.projects[index].title)
   if (index === -1) return <NotFound />
 
   const project = t.projects[index]

@@ -3,7 +3,7 @@
  * Les textes (titre, description, légendes) sont dans src/i18n/, sous
  * `projects`, avec le même `slug` et dans le même ordre.
  *
- * Les images sont dans public/projets/. Pour en ajouter une : déposer le
+ * Les images sont dans public/images/. Pour en ajouter une : déposer le
  * fichier, l'ajouter ici, puis ajouter sa légende dans `gallery` (fr et en).
  * `fit: 'contain'` affiche l'image entière (affiches, visuels en hauteur),
  * `fit: 'cover'` la fait remplir le cadre (captures d'écran en 16/9).
@@ -95,7 +95,7 @@ export const projectMedia: ProjectMedia[] = [
 
 /** Adresse publique d'une image (tient compte du sous-dossier GitHub Pages). */
 export function imageUrl(file: string) {
-  return `${import.meta.env.BASE_URL}projets/${file}`
+  return `${import.meta.env.BASE_URL}images/${file}`
 }
 
 export function getProjectMedia(slug: string) {

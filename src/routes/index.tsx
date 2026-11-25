@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   ArrowDown,
@@ -26,6 +27,12 @@ const serviceIcons = [GraduationCap, Palette, Clapperboard, ClipboardList]
 const companies = ['Nexans', 'Chanel', 'Rémy Cointreau']
 
 function HomePage() {
+  const { t } = useI18n()
+  // Sur l'accueil, le métier suit le nom : « Valentin Frenial · Chef de projet… ».
+  useEffect(() => {
+    document.title = `${site.name} · ${t.home.hero.role.replace(/\.$/, '')}`
+  }, [t])
+
   return (
     <>
       <Hero />

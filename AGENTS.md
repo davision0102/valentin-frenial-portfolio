@@ -19,13 +19,13 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 ## Où sont les choses
 
-| Quoi                         | Où                                            |
-| ---------------------------- | --------------------------------------------- |
-| Nom, e-mail, LinkedIn        | `src/config/site.ts`                          |
-| Textes (français et anglais) | `src/i18n/fr.ts` et `src/i18n/en.ts`          |
-| Images et liens des projets  | `public/projets/` et `src/config/projects.ts` |
-| Couleurs, polices            | `src/index.css`                               |
-| Photo du haut de page        | `public/valentin.png`                         |
+| Quoi                         | Où                                           |
+| ---------------------------- | -------------------------------------------- |
+| Nom, e-mail, LinkedIn        | `src/config/site.ts`                         |
+| Textes (français et anglais) | `src/i18n/fr.ts` et `src/i18n/en.ts`         |
+| Images et liens des projets  | `public/images/` et `src/config/projects.ts` |
+| Couleurs, polices            | `src/index.css`                              |
+| Photo du haut de page        | `public/valentin.png`                        |
 
 ## Règles
 
