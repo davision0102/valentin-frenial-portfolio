@@ -210,12 +210,15 @@ function ProjectsMarquee() {
           <ul
             key={copy}
             aria-hidden={copy === 1}
-            className="flex shrink-0 gap-6 pr-6"
+            className="flex shrink-0 gap-8 pr-8"
           >
             {t.projects.map((project) => {
               const cover = getProjectMedia(project.slug)?.images[0]
               return (
-                <li key={project.slug} className="w-64 shrink-0 sm:w-72">
+                <li
+                  key={project.slug}
+                  className="w-72 shrink-0 sm:w-96 lg:w-[26rem]"
+                >
                   <Link
                     to="/projets/$slug"
                     params={{ slug: project.slug }}
@@ -226,13 +229,14 @@ function ProjectsMarquee() {
                       <ProjectVisual
                         image={{ ...cover, fit: 'contain' }}
                         alt=""
+                        eager
                         className="aspect-[4/3] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
                       />
                     )}
-                    <span className="mt-4 block font-heading text-sm font-semibold tracking-tight uppercase">
+                    <span className="mt-4 block font-heading text-base font-semibold tracking-tight uppercase">
                       {project.title}
                     </span>
-                    <span className="mt-1 block text-xs text-muted-foreground">
+                    <span className="mt-1 block text-sm text-muted-foreground">
                       {[project.client, project.year]
                         .filter(Boolean)
                         .join(' · ')}
