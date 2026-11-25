@@ -35,7 +35,7 @@ function ProjectPage() {
   ].filter((fact) => fact.value) // une info vide n'est pas affichée
 
   return (
-    <article className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
+    <article className="mx-auto max-w-[96rem] px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <Link
         to="/projets"
         className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"

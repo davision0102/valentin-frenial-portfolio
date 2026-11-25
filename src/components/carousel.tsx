@@ -151,7 +151,7 @@ export function Carousel({
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="size-10 rounded-none"
               onClick={() => step(-1)}
               disabled={atStart}
               aria-label={t.carousel.previous}
@@ -161,7 +161,7 @@ export function Carousel({
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="size-10 rounded-none"
               onClick={() => step(1)}
               disabled={atEnd}
               aria-label={t.carousel.next}

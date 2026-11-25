@@ -5,6 +5,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
+import { buttonSolid } from '@/lib/ui'
 
 /** Petit intitulé en capitales espacées, au-dessus de chaque bloc. */
 const labelClass =
@@ -43,7 +44,7 @@ export function SiteFooter() {
               onClick={() => openEmail()}
               className="mt-3 border-b border-foreground pb-0.5 text-lg transition-colors hover:border-brand hover:text-brand"
             >
-              {f.writeEmail}
+              {site.emailParts.join('@')}
             </button>
 
             <p className={`${labelClass} mt-10`}>{f.project}</p>
@@ -183,10 +184,7 @@ function ContactForm() {
         placeholder={f.need}
         className={`${fieldClass} mt-2`}
       />
-      <button
-        type="submit"
-        className="mt-6 h-12 bg-foreground px-9 font-mono text-xs tracking-[0.2em] text-background uppercase transition-transform active:scale-[0.97]"
-      >
+      <button type="submit" className={`${buttonSolid} mt-6`}>
         {f.send}
       </button>
     </form>

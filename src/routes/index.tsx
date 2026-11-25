@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight } from 'lucide-react'
-import { Greeting } from '@/components/greeting'
-import { Portrait } from '@/components/portrait'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel } from '@/components/carousel'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { buttonOutline } from '@/lib/ui'
+import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -22,10 +22,6 @@ const companies = [
 /** Titre de section : grandes capitales serrées. */
 const titleClass =
   'font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
-
-/** Bouton discret, bordé, en capitales. */
-const outlineButton =
-  'group inline-flex h-11 items-center gap-2 rounded-lg border border-border px-5 text-xs font-semibold tracking-wide uppercase transition-colors hover:border-foreground/40'
 
 function HomePage() {
   const { t } = useI18n()
@@ -45,47 +41,84 @@ function HomePage() {
 }
 
 /**
- * Hero : une grande carte bleu nuit sous la barre de navigation, la photo au
- * centre, le métier en petites capitales et le nom en très grand en bas.
+ * Hero : sur un bleu nuit profond, « Bonjour · Hello · Hola » défile en
+ * grand et sans fin, derrière la photo. En bas à gauche, une courte
+ * présentation et un bouton ; la photo en bas à droite.
  */
 function Hero() {
   const { t } = useI18n()
   const h = t.home.hero
-  const [first, ...rest] = site.name.split(' ')
 
   return (
-    <section className="-mt-12 px-3">
-      <div className="dark relative isolate mx-auto flex min-h-[max(36rem,calc(100svh-1.5rem))] max-w-[96rem] flex-col overflow-hidden rounded-2xl bg-ink text-foreground sm:rounded-3xl">
-        {/* Halo bleu derrière la photo */}
-        <div
-          aria-hidden="true"
-          className="absolute top-[12%] left-1/2 -z-10 size-[min(40rem,120vw)] -translate-x-1/2 rounded-full bg-brand/25 blur-[140px]"
-        />
+    <section className="dark relative isolate -mt-[3.75rem] flex min-h-[max(40rem,100svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+      <h1 className="sr-only">
+        {site.name}, {h.role}
+      </h1>
+      <GreetingsMarquee
+        words={h.greetings}
+        className="lg:absolute lg:inset-x-0 lg:top-[42%] lg:-translate-y-1/2"
+      />
 
-        <div className="flex flex-1 flex-col items-center justify-center px-4 pt-24 pb-10 text-center">
-          <Portrait className="w-40 sm:w-56 lg:w-72" />
-          <p className="mt-14 text-sm font-semibold tracking-[0.12em] text-brand uppercase sm:text-base">
-            <Greeting words={h.greetings} />
-          </p>
-          <p className="mt-2 text-sm font-medium tracking-[0.08em] uppercase sm:text-base">
-            {h.role.replace(/\.$/, '')}
-          </p>
-          <p className="mt-1 text-sm tracking-[0.08em] text-muted-foreground uppercase sm:text-base">
-            {h.skills}
-          </p>
+      <div className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-10 px-4 pt-10 pb-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0 lg:pb-20">
+        <div className="max-w-md lg:mb-6">
+          <p className="text-lg leading-relaxed text-pretty">{h.bio}</p>
+          <Link to="/" hash="projets" className={`${buttonOutline} mt-8`}>
+            {h.seeProjects}
+            <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
+          </Link>
         </div>
 
-        <h1 className="px-3 pb-[0.12em] text-center font-heading text-[20vw] leading-[0.82] font-semibold tracking-[-0.06em] text-foreground/85 uppercase sm:text-[11.4vw] min-[96rem]:text-[11.25rem]">
-          <span className="sr-only">
-            {site.name}, {h.role}
-          </span>
-          <span aria-hidden="true">
-            <span className="block sm:inline">{first}</span>{' '}
-            <span className="block sm:inline">{rest.join(' ')}</span>
-          </span>
-        </h1>
+        {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
+            pour que le bord du cercle sorte du cadre. */}
+        <div className="relative z-10 aspect-[4/5] w-full max-w-[15rem] self-start overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[24rem] lg:w-[min(30vw,28rem)] lg:max-w-none lg:self-end">
+          <img
+            src={`${import.meta.env.BASE_URL}valentin.png`}
+            alt={h.photoAlt}
+            className="absolute bottom-[-15%] left-1/2 w-[170%] max-w-none -translate-x-1/2"
+          />
+        </div>
       </div>
     </section>
+  )
+}
+
+/**
+ * Bandeau de salutations qui défile en boucle. La liste est doublée : quand
+ * la première moitié est sortie, l'animation repart sans saut.
+ * Arrêté si le visiteur préfère moins d'animations.
+ */
+function GreetingsMarquee({
+  words,
+  className,
+}: {
+  words: readonly string[]
+  className?: string
+}) {
+  // Assez de mots pour dépasser la largeur des grands écrans.
+  const row = [...words, ...words, ...words]
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(
+        'pointer-events-none overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]',
+        className,
+      )}
+    >
+      <div className="flex w-max animate-[marquee_40s_linear_infinite] motion-reduce:animate-none">
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0 items-center">
+            {row.map((word, i) => (
+              <span key={i} className="flex items-center">
+                <span className="px-[0.35em] font-heading text-[clamp(3.5rem,9vw,8.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap">
+                  {word}
+                </span>
+                <span className="size-3 shrink-0 rounded-full bg-brand sm:size-4" />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -101,7 +134,7 @@ function Intro() {
   return (
     <section
       id="a-propos"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
+      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 py-16 sm:px-8 sm:py-24 lg:px-16"
     >
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:gap-16">
         <div>
@@ -109,7 +142,7 @@ function Intro() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
             {h.pitch}
           </p>
-          <Link to="/a-propos" className={`${outlineButton} mt-8`}>
+          <Link to="/a-propos" className={`${buttonOutline} mt-8`}>
             {a.moreAbout}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
@@ -159,11 +192,11 @@ function Projects() {
   return (
     <section
       id="projets"
-      className="mx-auto max-w-6xl scroll-mt-20 px-4 pb-16 sm:px-6 sm:pb-24"
+      className="mx-auto max-w-[96rem] scroll-mt-20 px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16"
     >
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
         <h2 className={titleClass}>{p.title}</h2>
-        <Link to="/projets" className={outlineButton}>
+        <Link to="/projets" className={buttonOutline}>
           {p.seeAll}
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
@@ -190,7 +223,7 @@ function Services() {
   const s = t.home.services
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24">
+    <section className="mx-auto max-w-[96rem] px-4 pb-16 sm:px-8 sm:pb-24 lg:px-16">
       <div className="border-t border-border pt-16 sm:pt-24">
         <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
 

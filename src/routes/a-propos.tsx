@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Download } from 'lucide-react'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
+import { buttonSolid } from '@/lib/ui'
 
 export const Route = createFileRoute('/a-propos')({
   component: AboutPage,
@@ -21,7 +22,7 @@ function AboutPage() {
   useDocumentTitle(t.nav.about)
 
   return (
-    <article className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
+    <article className="mx-auto max-w-[96rem] px-4 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <header className="max-w-3xl">
         <h1 className="text-sm font-medium text-muted-foreground">
           {t.nav.about}
@@ -33,11 +34,7 @@ function AboutPage() {
           {a.ledeMore}
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <a
-            href={cvUrl}
-            download
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background transition-transform active:scale-[0.97]"
-          >
+          <a href={cvUrl} download className={buttonSolid}>
             <Download className="size-4" />
             {a.downloadCv}
           </a>

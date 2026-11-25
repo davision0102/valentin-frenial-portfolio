@@ -36,7 +36,7 @@ export function ProjectCard({ project }: { project: Project }) {
             className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:group-hover:scale-100"
           />
         )}
-        <span className="absolute right-4 bottom-4 grid size-10 place-items-center rounded-full bg-foreground text-background opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 max-lg:opacity-100">
+        <span className="absolute right-4 bottom-4 grid size-10 place-items-center bg-foreground text-background opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 max-lg:opacity-100">
           <ArrowUpRight className="size-4" />
         </span>
       </div>

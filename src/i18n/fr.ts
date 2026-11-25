@@ -22,7 +22,6 @@ export const fr = {
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
     contact: 'Contact',
-    writeEmail: 'Écrire un e-mail',
     project: 'Un projet en tête\u00a0?',
     name: 'Votre nom',
     email: 'Votre adresse e-mail',
@@ -46,9 +45,9 @@ export const fr = {
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', 'Hola'],
-      intro: 'moi c’est',
       role: 'Chef de projet digital learning.',
-      skills: 'E-learning · Vidéo · Direction artistique',
+      bio: 'Moi c’est Valentin, chef de projet digital learning. J’aime transformer des sujets complexes en formations claires, qui donnent envie d’apprendre.',
+      seeProjects: 'Voir mes projets',
       pitch:
         'Je conçois des formations digitales qui donnent envie d’apprendre : e-learnings interactifs, vidéos, motion design et direction artistique. De l’idée à la mise en ligne sur la plateforme, pour Nexans et Chanel.',
       stats: [

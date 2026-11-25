@@ -2,6 +2,7 @@ import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { Mail } from 'lucide-react'
 import { LogoMark } from '@/components/logo'
 import { NotFound } from '@/components/not-found'
+import { CursorDot } from '@/components/cursor-dot'
 import { SiteFooter } from '@/components/site-footer'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
@@ -65,6 +66,7 @@ function RootLayout() {
       </main>
 
       <SiteFooter />
+      <CursorDot />
     </div>
   )
 }
