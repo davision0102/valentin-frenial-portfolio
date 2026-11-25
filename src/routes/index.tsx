@@ -50,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-[3.75rem] flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,88svh)] flex-col overflow-hidden bg-ink pt-28 text-foreground lg:pt-0">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>

@@ -41,7 +41,7 @@ export function SiteNav() {
 
   return (
     // Hauteur fixe : le menu déplié passe par-dessus la page sans la pousser.
-    <header className="sticky top-3 z-40 mt-3 flex h-12 justify-center px-3">
+    <header className="sticky top-5 z-40 mt-5 flex h-11 justify-center px-3">
       <div
         ref={boxRef}
         onPointerEnter={(event) => {
@@ -50,9 +50,9 @@ export function SiteNav() {
         onPointerLeave={(event) => {
           if (event.pointerType === 'mouse') close()
         }}
-        className="absolute top-0 w-[min(calc(100%-1.5rem),32rem)] overflow-hidden rounded-lg glass"
+        className="absolute top-0 w-[min(calc(100%-1.5rem),30.75rem)] overflow-hidden rounded-lg glass"
       >
-        <div className="flex h-12 items-center gap-3 pr-2 pl-5">
+        <div className="flex h-11 items-center gap-3 pr-1.5 pl-4">
           <Link
             to="/"
             onClick={close}
