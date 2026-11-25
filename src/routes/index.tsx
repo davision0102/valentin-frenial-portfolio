@@ -60,7 +60,7 @@ function Hero() {
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:-mt-12 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:pt-0">
         {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
-            en grand, détail en plus discret, puis les chiffres sous un trait,
+            en grand, détail en plus discret, puis les chiffres en pastilles,
             le tout aligné sur le bas de la photo. */}
         <div className="max-w-xl lg:mt-20">
           <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
@@ -72,13 +72,18 @@ function Hero() {
           <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
             {h.bio[1]}
           </p>
-          <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6 sm:gap-8">
+          {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
+          <dl className="mt-6 flex flex-wrap gap-2">
             {h.stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse gap-1">
-                <dt className="text-sm text-muted-foreground">{stat.label}</dt>
-                <dd className="font-heading text-3xl font-semibold tracking-[-0.03em] tabular-nums">
+              <div
+                key={stat.label}
+                className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
+              >
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="font-heading text-base font-semibold text-heading tabular-nums">
                   {stat.value}
                 </dd>
+                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
               </div>
             ))}
           </dl>
@@ -125,10 +130,10 @@ function GreetingsMarquee({
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading">
+                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading/15">
                   {word}
                 </span>
-                <span className="size-2.5 shrink-0 rounded-full bg-brand sm:size-3" />
+                <span className="size-2.5 shrink-0 rounded-full bg-brand/35 sm:size-3" />
               </span>
             ))}
           </div>
