@@ -92,16 +92,6 @@ export function SiteNav() {
           <nav aria-label="Menu" className="overflow-hidden">
             <ul className="px-2 pt-1 pb-3">
               <li>
-                <Link
-                  to="/"
-                  activeOptions={{ exact: true }}
-                  onClick={close}
-                  className={itemClass}
-                >
-                  {t.nav.home}
-                </Link>
-              </li>
-              <li>
                 <Link to="/projets" onClick={close} className={itemClass}>
                   {t.nav.projects}
                 </Link>
