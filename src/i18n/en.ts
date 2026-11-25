@@ -306,43 +306,9 @@ export const en: Dictionary = {
     design: 'Design',
   },
   aboutPage: {
-    lede: 'I design digital training that is intuitive and engaging, built around the people who take it.',
-    ledeMore:
-      'Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
-    downloadCv: 'Download my CV',
-    contact: 'Get in touch',
-    valuesTitle: 'How I work',
-    values: [
-      {
-        title: 'Start with the learners',
-        text: 'I analyse their needs before designing anything: good training is useful first.',
-      },
-      {
-        title: 'Make the complex simple',
-        text: 'With HR, Finance or CSR teams, I turn technical content into clear, visual learning paths.',
-      },
-      {
-        title: 'Measure to improve',
-        text: 'I track results and learner engagement to make every module better.',
-      },
-    ],
-    storyTitle: 'In short',
-    story:
-      'It all started as a work-study student at Nexans, redesigning the learning platform’s journey and building dozens of e-learning modules. At Chanel, I then supported artisans around the world, from onboarding to certification programmes. Today, I bring this mix of learning design and graphic design to new projects.',
-    toolsTitle: 'Tools',
-    tools: [
-      'Articulate Storyline 360',
-      'Figma',
-      'Adobe Suite',
-      'HTML / CSS',
-      'WordPress',
-      'Cornerstone',
-      'CrossKnowledge',
-      'Edflex',
-    ],
-    languagesTitle: 'Languages',
-    languagesText: 'I work in all three.',
-    languages: ['Français', 'English', 'Español'],
+    title: 'I’m Valentin.',
+    text: 'I design digital training that is intuitive and engaging, built around the people who take it. Trained at EEMI in digital project management and art direction, I learned the ropes at Nexans, then at Chanel. Independent and meticulous, I love taking a complex topic and turning it into a clear experience people want to finish.',
+    photosAlt: 'A few images from my projects',
   },
   carousel: {
     previous: 'Previous',

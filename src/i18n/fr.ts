@@ -314,43 +314,9 @@ export const fr = {
     design: 'Design',
   },
   aboutPage: {
-    lede: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent.',
-    ledeMore:
-      'Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    downloadCv: 'Télécharger mon CV',
-    contact: 'Me contacter',
-    valuesTitle: 'Ma façon de travailler',
-    values: [
-      {
-        title: 'Partir des apprenants',
-        text: 'J’analyse leurs besoins avant de concevoir quoi que ce soit : une formation réussie est d’abord utile.',
-      },
-      {
-        title: 'Rendre le complexe simple',
-        text: 'Avec les équipes RH, Finance ou RSE, je transforme des contenus techniques en parcours clairs et visuels.',
-      },
-      {
-        title: 'Mesurer pour progresser',
-        text: 'Je suis les résultats et l’engagement des apprenants pour améliorer chaque module.',
-      },
-    ],
-    storyTitle: 'En bref',
-    story:
-      'Tout a commencé en alternance chez Nexans, à refaire le parcours de la plateforme de formation et à concevoir des dizaines d’e-learnings. Chez Chanel, j’ai ensuite accompagné des artisans dans le monde entier, de l’intégration aux programmes certifiants. Aujourd’hui, je mets ce mélange de pédagogie et de design au service de nouveaux projets.',
-    toolsTitle: 'Outils',
-    tools: [
-      'Articulate Storyline 360',
-      'Figma',
-      'Suite Adobe',
-      'HTML / CSS',
-      'WordPress',
-      'Cornerstone',
-      'CrossKnowledge',
-      'Edflex',
-    ],
-    languagesTitle: 'Langues',
-    languagesText: 'Je travaille dans ces trois langues.',
-    languages: ['Français', 'English', 'Español'],
+    title: 'Moi, c’est Valentin.',
+    text: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent. Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
+    photosAlt: 'Quelques images de mes projets',
   },
   carousel: {
     previous: 'Précédent',
