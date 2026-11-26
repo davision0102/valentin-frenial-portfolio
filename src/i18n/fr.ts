@@ -28,23 +28,17 @@ export const fr = {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
+      scrollCue: 'Découvrir mes projets',
       bio: [
-        'Je conçois des e-learnings intuitifs, engageants et centrés sur l’apprenant, de l’idée jusqu’à la mise en ligne.',
-        'Aux côtés des équipes RH, Finance et RSE, je transforme des contenus complexes en formations claires et impactantes. Autonome et minutieux, je m’appuie sur le design, les outils digitaux et l’analyse des résultats pour renforcer l’engagement des apprenants.',
+        'Je conçois des expériences digitales qui allient design, pédagogie et créativité.',
+        'Spécialisé en Digital Learning et Direction Artistique, j’imagine des parcours intuitifs et engageants qui transforment des contenus complexes en expériences simples, accessibles et impactantes.',
+        'À la croisée du design et de la stratégie, j’aime donner vie aux idées et créer des expériences qui ont du sens, aussi bien pour ceux qui les conçoivent que pour ceux qui les vivent.',
       ],
       stats: [
-        {
-          value: '12',
-          label: 'langues',
-        },
-        {
-          value: '6',
-          label: 'modules en 1 mois',
-        },
-        {
-          value: '14',
-          label: 'vidéos métier',
-        },
+        { value: '50+', label: 'modules e-learning créés' },
+        { value: '30+', label: 'programmes de formation' },
+        { value: '16', label: 'motion design produits' },
+        { value: '8200+', label: 'apprenants formés' },
       ],
     },
     projects: {
@@ -54,6 +48,10 @@ export const fr = {
     services: {
       title: 'De l’idée de formation au module en ligne.',
       items: [
+        {
+          title: 'Gestion de projet',
+          text: 'Tenir des délais serrés, coordonner les équipes et déployer une formation dans plusieurs langues.',
+        },
         {
           title: 'Conception e-learning',
           text: 'Scénariser des modules interactifs, des quiz et des parcours qui gardent l’attention du début à la fin.',
@@ -65,10 +63,6 @@ export const fr = {
         {
           title: 'Vidéo et motion design',
           text: 'Organiser le tournage, monter, animer et habiller les vidéos qui font vivre les modules.',
-        },
-        {
-          title: 'Gestion de projet',
-          text: 'Tenir des délais serrés, coordonner les équipes et déployer une formation dans plusieurs langues.',
         },
       ],
     },

@@ -11,11 +11,11 @@
       content="Portfolio de Valentin Frenial, chef de projet digital learning : serious games, parcours blended, micro-learning."
     />
     <title>Valentin Frenial · Chef de projet digital learning</title>
-    <meta name="theme-color" content="#0b1220" />
+    <meta name="theme-color" content="#f4f7fd" />
     <script>
       // Applique le thème avant le premier rendu pour éviter un flash.
       // Téléphone : le thème suit celui du téléphone (pas de bouton).
-      // Ordinateur : bleu nuit par défaut, sauf si le visiteur a choisi le clair.
+      // Ordinateur : clair par défaut, sauf si le visiteur a choisi le sombre.
       try {
         const root = document.documentElement
         const mobile = matchMedia('(max-width: 639px)').matches
@@ -29,10 +29,10 @@
           system.addEventListener('change', (event) => apply(event.matches))
         } else {
           const saved = localStorage.getItem('theme')
-          apply(saved ? saved === 'dark' : true)
+          apply(saved ? saved === 'dark' : false)
         }
       } catch {
-        document.documentElement.classList.add('dark')
+        // stockage indisponible : on garde le thème clair
       }
     </script>
 

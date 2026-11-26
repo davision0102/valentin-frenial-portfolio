@@ -32,7 +32,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 ## Règles
 
 - Imports via l'alias `@/`.
-- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; sur ordinateur, le sombre (bleu nuit) est le thème par défaut et le clair est un blanc et bleu nuit ; sur téléphone, le thème suit celui de l'appareil (pas de bouton).
+- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; sur ordinateur, le clair (fond #F4F7FD, bleu nuit) est le thème par défaut et le sombre est bleu nuit ; sur téléphone, le thème suit celui de l'appareil (pas de bouton).
 - Textes : jamais en dur ; chaque texte dans `fr.ts`, lu avec `useI18n()`. Le site est en français uniquement.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 
