@@ -28,15 +28,13 @@ export const fr = {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
-      scrollCue: 'Découvrir mes projets',
       bio: [
         'Je conçois des expériences digitales qui allient design, pédagogie et créativité.',
         'Spécialisé en Digital Learning et Direction Artistique, j’imagine des parcours intuitifs et engageants qui transforment des contenus complexes en expériences simples, accessibles et impactantes.',
-        'À la croisée du design et de la stratégie, j’aime donner vie aux idées et créer des expériences qui ont du sens, aussi bien pour ceux qui les conçoivent que pour ceux qui les vivent.',
       ],
       stats: [
         { value: '50+', label: 'modules e-learning créés' },
-        { value: '30+', label: 'programmes de formation' },
+        { value: '30+', label: 'programmes de formation réalisés' },
         { value: '16', label: 'motion design produits' },
         { value: '8200+', label: 'apprenants formés' },
       ],
@@ -288,6 +286,8 @@ export const fr = {
   aboutPage: {
     title: 'Moi, c’est Valentin.',
     text: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent. Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
+    vision:
+      'À la croisée du design et de la stratégie, j’aime donner vie aux idées et créer des expériences qui ont du sens, aussi bien pour ceux qui les conçoivent que pour ceux qui les vivent.',
     photosAlt: 'Quelques photos de moi',
     // Provisoire : à remplacer par les vraies réponses de Valentin.
     facts: [

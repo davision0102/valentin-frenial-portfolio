@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowDown, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
@@ -35,7 +35,6 @@ function HomePage() {
     <>
       <Hero />
       <Projects />
-      <Clients />
       <Services />
     </>
   )
@@ -51,78 +50,65 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col justify-center overflow-hidden bg-background pt-28 pb-16 text-foreground lg:pb-20">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col overflow-hidden bg-background pt-28 pb-12 text-foreground lg:pt-20 lg:pb-14">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
-      {/* Le bandeau de salutations, puis le texte et la photo, centrés
-          l'un par rapport à l'autre. */}
-      <GreetingsMarquee words={h.greetings} />
+      {/* Le bloc principal (salutations, texte, photo) est centré dans
+          l'espace libre ; les logos sont calés en bas du hero. */}
+      <div className="my-auto">
+        <GreetingsMarquee words={h.greetings} />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:pt-0">
-        {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 pt-10 sm:px-8 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:pt-0">
+          {/* Présentation ancrée : métier en petites capitales, phrase d'accroche
             en grand, détail en plus discret, puis les chiffres en pastilles,
             le tout aligné sur le bas de la photo. */}
-        <div className="max-w-xl">
-          <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
-            {h.role.replace(/\.$/, '')}
-          </p>
-          <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
-            {h.bio[0]}
-          </p>
-          <div className="mt-4 space-y-3 leading-relaxed text-pretty text-muted-foreground">
-            {h.bio.slice(1).map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
-          <dl className="mt-6 flex flex-wrap gap-2">
-            {h.stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={`flex items-baseline gap-1.5 rounded-full px-4 py-2 ${tones[i % tones.length].bg}`}
-              >
-                <dt className="sr-only">{stat.label}</dt>
-                <dd
-                  className={`font-heading text-base font-semibold tabular-nums ${tones[i % tones.length].text}`}
+          <div className="max-w-xl">
+            <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
+              {h.role.replace(/\.$/, '')}
+            </p>
+            <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
+              {h.bio[0]}
+            </p>
+            <div className="mt-4 space-y-3 leading-relaxed text-pretty text-muted-foreground">
+              {h.bio.slice(1).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
+            <dl className="mt-6 flex flex-wrap gap-2">
+              {h.stats.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`flex items-baseline gap-1.5 rounded-full px-4 py-2 ${tones[i % tones.length].bg}`}
                 >
-                  {stat.value}
-                </dd>
-                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd
+                    className={`font-heading text-base font-semibold tabular-nums ${tones[i % tones.length].text}`}
+                  >
+                    {stat.value}
+                  </dd>
+                  <dd className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
-        {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
-            pour que le bord du cercle sorte du cadre. */}
-        <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-center overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
-          <img
-            src={`${import.meta.env.BASE_URL}valentin.png`}
-            alt={h.photoAlt}
-            className="absolute bottom-[-15%] left-1/2 w-[170%] max-w-none -translate-x-1/2"
-          />
+          {/* Photo de Valentin en présentation, en entier dans une carte
+            arrondie. */}
+          <div className="relative z-10 aspect-[944/1088] w-full max-w-[14rem] self-center overflow-hidden rounded-3xl bg-card max-lg:order-first sm:max-w-[16rem] lg:w-[min(22vw,20rem)] lg:max-w-none lg:self-center">
+            <img
+              src={`${import.meta.env.BASE_URL}valentin-hero.webp`}
+              alt={h.photoAlt}
+              className="size-full object-cover"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Invitation à descendre (grand écran) : un clic fait défiler jusqu'aux
-          projets. Sur téléphone, on fait défiler naturellement. */}
-      <a
-        href="#projets"
-        onClick={(event) => {
-          event.preventDefault()
-          const reduce = window.matchMedia(
-            '(prefers-reduced-motion: reduce)',
-          ).matches
-          document
-            .getElementById('projets')
-            ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })
-        }}
-        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-foreground lg:flex"
-      >
-        {h.scrollCue}
-        <ArrowDown className="size-4 motion-safe:animate-bounce" />
-      </a>
+      <ClientLogos />
     </section>
   )
 }
@@ -167,16 +153,19 @@ function GreetingsMarquee({
   )
 }
 
-/** Sous les projets : les entreprises pour lesquelles ils ont été faits, centrées. */
-function Clients() {
+/**
+ * Les entreprises pour lesquelles Valentin a travaillé, en bas du hero : un
+ * intitulé discret et les logos (en couleur en clair, blancs en sombre).
+ */
+function ClientLogos() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 pb-16 text-center sm:px-8 sm:pb-24 lg:px-16">
-      <h2 className="text-sm font-normal text-muted-foreground">
+    <div className="mx-auto flex flex-col items-center gap-3 px-5 pt-16 text-center sm:pt-20">
+      <p className="text-sm text-muted-foreground">
         {t.home.about.companiesTitle}
-      </h2>
-      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-16">
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-10">
         {companies.map((company) => {
           const src = `${import.meta.env.BASE_URL}logos/${company.logo}`
           return (
@@ -198,7 +187,7 @@ function Clients() {
           )
         })}
       </div>
-    </section>
+    </div>
   )
 }
 
@@ -257,7 +246,7 @@ function ProjectsMarquee() {
               return (
                 <li
                   key={project.slug}
-                  className="w-72 shrink-0 sm:w-96 lg:w-[26rem]"
+                  className="w-80 shrink-0 sm:w-[28rem] lg:w-[32rem]"
                 >
                   <Link
                     to="/projets/$slug"

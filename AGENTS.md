@@ -4,7 +4,7 @@ Instructions pour les assistants IA qui travaillent sur ce projet.
 
 ## Le projet
 
-Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, vignettes de projets qui défilent, logos des entreprises, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
+Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, logos des entreprises en bas du hero, vignettes de projets qui défilent, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
 Explique simplement ce que tu fais, sans jargon, et vérifie le rendu dans le navigateur.
 
 ## Confidentialité
@@ -19,15 +19,15 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 ## Où sont les choses
 
-| Quoi                                 | Où                                           |
-| ------------------------------------ | -------------------------------------------- |
-| Nom, e-mail, LinkedIn                | `src/config/site.ts`                         |
-| Textes (français uniquement)         | `src/i18n/fr.ts`                             |
-| Images et liens des projets          | `public/images/` et `src/config/projects.ts` |
-| Couleurs, polices                    | `src/index.css`                              |
-| Logos des entreprises (une couleur)  | `public/logos/` (SVG, Wikimedia Commons)     |
-| Boutons (identiques partout)         | `src/lib/ui.ts`                              |
-| Photo du hero et de la page À propos | `public/valentin.png`                        |
+| Quoi                                | Où                                                 |
+| ----------------------------------- | -------------------------------------------------- |
+| Nom, e-mail, LinkedIn               | `src/config/site.ts`                               |
+| Textes (français uniquement)        | `src/i18n/fr.ts`                                   |
+| Images et liens des projets         | `public/images/` et `src/config/projects.ts`       |
+| Couleurs, polices                   | `src/index.css`                                    |
+| Logos des entreprises (une couleur) | `public/logos/` (SVG, Wikimedia Commons)           |
+| Boutons (identiques partout)        | `src/lib/ui.ts`                                    |
+| Photos de Valentin (hero, À propos) | `public/valentin-hero.webp`, `public/valentin.png` |
 
 ## Règles
 
