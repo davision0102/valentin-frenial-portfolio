@@ -35,7 +35,6 @@ function HomePage() {
     <>
       <Hero />
       <Projects />
-      <Clients />
       <Services />
     </>
   )
@@ -51,7 +50,7 @@ function Hero() {
   const h = t.home.hero
 
   return (
-    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col justify-center overflow-hidden bg-background pt-28 pb-16 text-foreground lg:pb-20">
+    <section className="relative isolate -mt-16 flex min-h-[max(34rem,100svh)] flex-col justify-center overflow-hidden bg-background pt-28 pb-16 text-foreground lg:pt-20 lg:pb-20">
       <h1 className="sr-only">
         {site.name}, {h.role}
       </h1>
@@ -105,6 +104,8 @@ function Hero() {
         </div>
       </div>
 
+      <ClientLogos />
+
       {/* Invitation à descendre (grand écran) : un clic fait défiler jusqu'aux
           projets. Sur téléphone, on fait défiler naturellement. */}
       <a
@@ -118,7 +119,7 @@ function Hero() {
             .getElementById('projets')
             ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })
         }}
-        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-foreground lg:flex"
+        className="group mx-auto mt-10 hidden flex-col items-center gap-2 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-foreground lg:flex"
       >
         {h.scrollCue}
         <ArrowDown className="size-4 motion-safe:animate-bounce" />
@@ -167,16 +168,19 @@ function GreetingsMarquee({
   )
 }
 
-/** Sous les projets : les entreprises pour lesquelles ils ont été faits, centrées. */
-function Clients() {
+/**
+ * Les entreprises pour lesquelles Valentin a travaillé, en bas du hero : un
+ * intitulé discret et les logos (en couleur en clair, blancs en sombre).
+ */
+function ClientLogos() {
   const { t } = useI18n()
 
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 pb-16 text-center sm:px-8 sm:pb-24 lg:px-16">
-      <h2 className="text-sm font-normal text-muted-foreground">
+    <div className="mx-auto mt-10 flex flex-col items-center gap-3 px-5 text-center">
+      <p className="text-sm text-muted-foreground">
         {t.home.about.companiesTitle}
-      </h2>
-      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-16">
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-10">
         {companies.map((company) => {
           const src = `${import.meta.env.BASE_URL}logos/${company.logo}`
           return (
@@ -198,7 +202,7 @@ function Clients() {
           )
         })}
       </div>
-    </section>
+    </div>
   )
 }
 
