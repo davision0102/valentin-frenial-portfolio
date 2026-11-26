@@ -19,15 +19,15 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 
 ## Où sont les choses
 
-| Quoi                                 | Où                                           |
-| ------------------------------------ | -------------------------------------------- |
-| Nom, e-mail, LinkedIn                | `src/config/site.ts`                         |
-| Textes (français uniquement)         | `src/i18n/fr.ts`                             |
-| Images et liens des projets          | `public/images/` et `src/config/projects.ts` |
-| Couleurs, polices                    | `src/index.css`                              |
-| Logos des entreprises (une couleur)  | `public/logos/` (SVG, Wikimedia Commons)     |
-| Boutons (identiques partout)         | `src/lib/ui.ts`                              |
-| Photo du hero et de la page À propos | `public/valentin.png`                        |
+| Quoi                                | Où                                                 |
+| ----------------------------------- | -------------------------------------------------- |
+| Nom, e-mail, LinkedIn               | `src/config/site.ts`                               |
+| Textes (français uniquement)        | `src/i18n/fr.ts`                                   |
+| Images et liens des projets         | `public/images/` et `src/config/projects.ts`       |
+| Couleurs, polices                   | `src/index.css`                                    |
+| Logos des entreprises (une couleur) | `public/logos/` (SVG, Wikimedia Commons)           |
+| Boutons (identiques partout)        | `src/lib/ui.ts`                                    |
+| Photos de Valentin (hero, À propos) | `public/valentin-hero.webp`, `public/valentin.png` |
 
 ## Règles
 

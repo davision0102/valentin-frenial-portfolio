@@ -96,13 +96,13 @@ function Hero() {
             </dl>
           </div>
 
-          {/* Photo : le fond de la carte reprend celui de la photo ronde, agrandie
-            pour que le bord du cercle sorte du cadre. */}
-          <div className="relative z-10 aspect-[4/5] w-full max-w-[12rem] self-center overflow-hidden rounded-3xl bg-[#ddeffc] max-lg:order-first sm:max-w-[14rem] lg:w-[min(18vw,16rem)] lg:max-w-none lg:self-center">
+          {/* Photo de Valentin en présentation, en entier dans une carte
+            arrondie. */}
+          <div className="relative z-10 aspect-[944/1088] w-full max-w-[14rem] self-center overflow-hidden rounded-3xl bg-card max-lg:order-first sm:max-w-[16rem] lg:w-[min(22vw,20rem)] lg:max-w-none lg:self-center">
             <img
-              src={`${import.meta.env.BASE_URL}valentin.png`}
+              src={`${import.meta.env.BASE_URL}valentin-hero.webp`}
               alt={h.photoAlt}
-              className="absolute bottom-[-15%] left-1/2 w-[170%] max-w-none -translate-x-1/2"
+              className="size-full object-cover"
             />
           </div>
         </div>
