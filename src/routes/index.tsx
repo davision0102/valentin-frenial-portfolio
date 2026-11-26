@@ -257,7 +257,7 @@ function ProjectsMarquee() {
               return (
                 <li
                   key={project.slug}
-                  className="w-72 shrink-0 sm:w-96 lg:w-[26rem]"
+                  className="w-80 shrink-0 sm:w-[28rem] lg:w-[32rem]"
                 >
                   <Link
                     to="/projets/$slug"
