@@ -34,7 +34,7 @@ export const fr = {
       ],
       stats: [
         { value: '50+', label: 'modules e-learning créés' },
-        { value: '30+', label: 'programmes de formation' },
+        { value: '30+', label: 'programmes de formation réalisés' },
         { value: '16', label: 'motion design produits' },
         { value: '8200+', label: 'apprenants formés' },
       ],
