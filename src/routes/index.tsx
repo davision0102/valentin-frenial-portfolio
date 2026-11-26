@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight } from 'lucide-react'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
+import { tones } from '@/lib/tones'
 import { buttonOutline } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
@@ -69,18 +70,22 @@ function Hero() {
           <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
             {h.bio[0]}
           </p>
-          <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
-            {h.bio[1]}
-          </p>
+          <div className="mt-4 space-y-3 leading-relaxed text-pretty text-muted-foreground">
+            {h.bio.slice(1).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           {/* Chiffres clés : trois pastilles douces, sur une ligne. */}
           <dl className="mt-6 flex flex-wrap gap-2">
-            {h.stats.map((stat) => (
+            {h.stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="flex items-baseline gap-1.5 rounded-full bg-secondary px-4 py-2"
+                className={`flex items-baseline gap-1.5 rounded-full px-4 py-2 ${tones[i % tones.length].bg}`}
               >
                 <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-heading text-base font-semibold text-heading tabular-nums">
+                <dd
+                  className={`font-heading text-base font-semibold tabular-nums ${tones[i % tones.length].text}`}
+                >
                   {stat.value}
                 </dd>
                 <dd className="text-sm text-muted-foreground">{stat.label}</dd>
@@ -99,6 +104,25 @@ function Hero() {
           />
         </div>
       </div>
+
+      {/* Invitation à descendre (grand écran) : un clic fait défiler jusqu'aux
+          projets. Sur téléphone, on fait défiler naturellement. */}
+      <a
+        href="#projets"
+        onClick={(event) => {
+          event.preventDefault()
+          const reduce = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+          ).matches
+          document
+            .getElementById('projets')
+            ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })
+        }}
+        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-foreground lg:flex"
+      >
+        {h.scrollCue}
+        <ArrowDown className="size-4 motion-safe:animate-bounce" />
+      </a>
     </section>
   )
 }
@@ -153,18 +177,26 @@ function Clients() {
         {t.home.about.companiesTitle}
       </h2>
       <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-16">
-        {companies.map((company) => (
-          // Logo d'une seule couleur (celle du texte) : il suit le thème.
-          <span
-            key={company.name}
-            role="img"
-            aria-label={company.name}
-            className="block h-8 w-20 bg-foreground/80 [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32"
-            style={{
-              maskImage: `url(${import.meta.env.BASE_URL}logos/${company.logo})`,
-            }}
-          />
-        ))}
+        {companies.map((company) => {
+          const src = `${import.meta.env.BASE_URL}logos/${company.logo}`
+          return (
+            <span key={company.name} className="contents">
+              {/* Clair : le logo dans ses vraies couleurs. */}
+              <img
+                src={src}
+                alt={company.name}
+                className="h-8 w-20 object-contain sm:h-10 sm:w-32 dark:hidden"
+              />
+              {/* Sombre : le même logo, tout en blanc. */}
+              <span
+                role="img"
+                aria-label={company.name}
+                className="hidden h-8 w-20 bg-white [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32 dark:block"
+                style={{ maskImage: `url(${src})` }}
+              />
+            </span>
+          )
+        })}
       </div>
     </section>
   )
@@ -261,8 +293,8 @@ function ProjectsMarquee() {
 }
 
 /**
- * Savoir-faire : quatre blocs doux côte à côte sur grand écran (deux par
- * ligne sur tablette), sans traits : un numéro, un intitulé et une phrase.
+ * Savoir-faire : quatre cartes blanches côte à côte sur grand écran (deux
+ * par ligne sur tablette) : un numéro en couleur, un intitulé et une phrase.
  */
 function Services() {
   const { t } = useI18n()
@@ -276,9 +308,11 @@ function Services() {
         {s.items.map(({ title, text }, i) => (
           <li
             key={title}
-            className="group rounded-2xl bg-secondary/70 p-6 transition-colors duration-300 hover:bg-secondary sm:p-8"
+            className="rounded-2xl bg-card p-6 shadow-sm shadow-foreground/5 sm:p-8"
           >
-            <span className="font-mono text-xs tracking-[0.2em] text-brand tabular-nums">
+            <span
+              className={`inline-block rounded-full px-2.5 py-1 font-mono text-xs tracking-[0.18em] tabular-nums ${tones[i % tones.length].bg} ${tones[i % tones.length].text}`}
+            >
               {String(i + 1).padStart(2, '0')}
             </span>
             <h3 className="mt-6 text-xl font-semibold tracking-tight sm:mt-8">

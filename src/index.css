@@ -11,6 +11,10 @@
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --color-brand: var(--brand);
   --color-heading: var(--heading);
+  --color-tone-1: var(--tone-1);
+  --color-tone-2: var(--tone-2);
+  --color-tone-3: var(--tone-3);
+  --color-tone-4: var(--tone-4);
   /* Vert du point « Disponible » de la barre de navigation. */
   --color-available: oklch(0.8 0.17 155);
   --color-ring: var(--ring);
@@ -41,23 +45,22 @@
 }
 
 :root {
-  /* Clair : « noir et blanc » où le noir est remplacé par un seul bleu
-     nuit (textes, titres, boutons, accents). Le sombre (par défaut) est
-     bleu nuit. */
-  --background: oklch(1 0 0);
+  /* Clair (par défaut sur ordinateur) : fond blanc bleuté, un seul bleu
+     nuit pour les textes, titres et boutons ; cartes blanches. */
+  --background: #f4f7fd;
   --foreground: oklch(0.27 0.11 264);
   --heading: oklch(0.27 0.11 264);
-  --card: oklch(0.985 0.006 264);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.27 0.11 264);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.27 0.11 264);
   --primary: oklch(0.27 0.11 264);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.965 0.012 264);
+  --secondary: oklch(0.945 0.016 264);
   --secondary-foreground: oklch(0.27 0.11 264);
-  --muted: oklch(0.965 0.012 264);
+  --muted: oklch(0.945 0.016 264);
   --muted-foreground: oklch(0.5 0.07 264);
-  --accent: oklch(0.965 0.012 264);
+  --accent: oklch(0.945 0.016 264);
   --accent-foreground: oklch(0.27 0.11 264);
   --destructive: oklch(0.6 0.22 27);
   --border: oklch(0.27 0.11 264 / 12%);
@@ -65,10 +68,16 @@
   --ring: oklch(0.27 0.11 264);
   --radius: 0.875rem;
   --brand: oklch(0.27 0.11 264);
+  /* Quatre couleurs d'accent (chiffres, savoir-faire) : bleu, violet,
+     turquoise, orange. */
+  --tone-1: oklch(0.5 0.19 262);
+  --tone-2: oklch(0.52 0.2 295);
+  --tone-3: oklch(0.55 0.11 195);
+  --tone-4: oklch(0.62 0.17 45);
   /* Verre : fond translucide, arête claire, ombre douce. */
-  /* Verre légèrement bleuté et un peu plus dense : la barre se détache du
-     fond blanc, et le contenu qui passe dessous reste flou. */
-  --glass: oklch(0.975 0.012 262 / 72%);
+  /* Verre blanc et dense : la barre se détache du fond bleuté, et le
+     contenu qui passe dessous reste flou. */
+  --glass: oklch(1 0 0 / 82%);
   --glass-edge: oklch(1 0 0 / 90%);
   --glass-ring: oklch(0.3 0.08 264 / 10%);
   --glass-shadow:
@@ -99,6 +108,10 @@
   --input: oklch(0.85 0.03 255 / 16%);
   --ring: oklch(0.75 0.14 252);
   --brand: oklch(0.7 0.15 255);
+  --tone-1: oklch(0.75 0.13 262);
+  --tone-2: oklch(0.75 0.14 295);
+  --tone-3: oklch(0.78 0.1 195);
+  --tone-4: oklch(0.78 0.13 50);
   --glass: oklch(0.22 0.045 265 / 60%);
   --glass-ring: oklch(1 0 0 / 6%);
   --glass-edge: oklch(0.9 0.05 255 / 16%);

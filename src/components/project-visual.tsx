@@ -24,7 +24,7 @@ export function ProjectVisual({
   return (
     <div
       className={cn(
-        'relative overflow-hidden bg-secondary/70',
+        'relative overflow-hidden bg-card',
         contain && 'p-4 sm:p-6',
         className,
       )}
