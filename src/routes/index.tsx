@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowDown, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
@@ -105,25 +105,6 @@ function Hero() {
       </div>
 
       <ClientLogos />
-
-      {/* Invitation à descendre (grand écran) : un clic fait défiler jusqu'aux
-          projets. Sur téléphone, on fait défiler naturellement. */}
-      <a
-        href="#projets"
-        onClick={(event) => {
-          event.preventDefault()
-          const reduce = window.matchMedia(
-            '(prefers-reduced-motion: reduce)',
-          ).matches
-          document
-            .getElementById('projets')
-            ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })
-        }}
-        className="group mx-auto mt-10 hidden flex-col items-center gap-2 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-foreground lg:flex"
-      >
-        {h.scrollCue}
-        <ArrowDown className="size-4 motion-safe:animate-bounce" />
-      </a>
     </section>
   )
 }

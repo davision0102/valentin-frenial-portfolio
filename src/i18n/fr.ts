@@ -28,7 +28,6 @@ export const fr = {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
-      scrollCue: 'Découvrir mes projets',
       bio: [
         'Je conçois des expériences digitales qui allient design, pédagogie et créativité.',
         'Spécialisé en Digital Learning et Direction Artistique, j’imagine des parcours intuitifs et engageants qui transforment des contenus complexes en expériences simples, accessibles et impactantes.',
