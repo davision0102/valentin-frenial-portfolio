@@ -203,10 +203,12 @@ function ProjectsPage() {
                   .filter(Boolean)
                   .join(' · ')}
               </p>
-              <p className="mt-3 leading-relaxed text-pretty">
+              {/* Hauteur constante d'un projet à l'autre : le résumé tient sur
+                  2 lignes et les mots-clés sur 1 (la suite est coupée par …). */}
+              <p className="mt-3 line-clamp-2 min-h-[3.25rem] leading-relaxed text-pretty">
                 {current.summary}
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
+              <p className="mt-3 line-clamp-1 min-h-5 text-sm text-muted-foreground">
                 {current.tags.join(' · ')}
               </p>
               <Link
