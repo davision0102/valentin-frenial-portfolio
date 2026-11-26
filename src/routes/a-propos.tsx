@@ -44,6 +44,9 @@ function AboutPage() {
         <p className="mt-6 text-lg leading-relaxed text-pretty text-muted-foreground">
           {a.text}
         </p>
+        <p className="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+          {a.vision}
+        </p>
       </header>
 
       {/* Grand écran : 4 cartes qui se chevauchent, inclinées ; au survol
