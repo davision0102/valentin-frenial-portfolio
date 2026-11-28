@@ -164,15 +164,49 @@ function ProjectPage() {
   )
 }
 
-function Block({ title, text }: { title: string; text: string }) {
+/**
+ * Un texte de projet : chaque chaîne est un paragraphe, chaque tableau une
+ * liste à puces. « Intitulé : texte » met l'intitulé en gras.
+ */
+function Block({
+  title,
+  text,
+}: {
+  title: string
+  text: readonly (string | readonly string[])[]
+}) {
   return (
     <section className="border-t border-border pt-6">
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground">
-        {text}
-      </p>
+      <div className="mt-4 grid max-w-3xl gap-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+        {text.map((part, i) =>
+          typeof part === 'string' ? (
+            <p key={i}>{part}</p>
+          ) : (
+            <ul key={i} className="grid list-disc gap-2 pl-5 marker:text-brand">
+              {part.map((item) => {
+                const match = /^([^:]{1,60}) : (.+)$/.exec(item)
+                return (
+                  <li key={item}>
+                    {match ? (
+                      <>
+                        <strong className="font-medium text-foreground">
+                          {match[1]}
+                        </strong>{' '}
+                        : {match[2]}
+                      </>
+                    ) : (
+                      item
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          ),
+        )}
+      </div>
     </section>
   )
 }
