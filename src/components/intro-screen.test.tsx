@@ -16,9 +16,11 @@ describe('IntroScreen', () => {
   it('se joue à la première arrivée puis disparaît', () => {
     mockReducedMotion(false)
     render(<IntroScreen />)
+    act(() => vi.advanceTimersByTime(400))
     expect(screen.getByText('Bonjour')).toBeInTheDocument()
 
-    act(() => vi.advanceTimersByTime(3000))
+    act(() => vi.advanceTimersByTime(2500))
+    act(() => vi.advanceTimersByTime(1000))
     expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
     expect(screen.queryByText('¡Hola!')).not.toBeInTheDocument()
   })
@@ -27,12 +29,14 @@ describe('IntroScreen', () => {
     mockReducedMotion(false)
     sessionStorage.setItem('intro-vue', '1')
     render(<IntroScreen />)
+    act(() => vi.advanceTimersByTime(400))
     expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
   })
 
   it('ne se joue pas si le visiteur préfère moins d’animations', () => {
     mockReducedMotion(true)
     render(<IntroScreen />)
+    act(() => vi.advanceTimersByTime(400))
     expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
   })
 })

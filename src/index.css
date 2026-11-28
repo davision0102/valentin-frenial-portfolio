@@ -181,17 +181,20 @@
   }
 }
 
-/* Écran d'arrivée : chaque salutation monte en se précisant, et les
-   segments de la barre se remplissent l'un après l'autre. */
+/* Écran d'arrivée : le point apparaît en douceur, puis chaque salutation
+   sort de lui vers la gauche. */
+@keyframes intro-dot {
+  from {
+    transform: scale(0);
+  }
+}
 @keyframes intro-word {
   from {
     opacity: 0;
-    transform: translateY(0.3em);
-    filter: blur(8px);
+    transform: translateX(0.25em);
+    clip-path: inset(0 0 0 100%);
   }
-}
-@keyframes intro-bar {
-  from {
-    transform: scaleX(0);
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
