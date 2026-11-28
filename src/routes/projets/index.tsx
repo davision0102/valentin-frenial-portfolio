@@ -5,17 +5,21 @@ import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { button, buttonOutline, label, sectionTitle } from '@/lib/ui'
-import { cn } from '@/lib/utils'
+import {
+  button,
+  buttonOutline,
+  card,
+  cardTitle,
+  label,
+  sectionTitle,
+} from '@/lib/ui'
+import { cn, joinMeta, pad } from '@/lib/utils'
 
 export const Route = createFileRoute('/projets/')({
   component: ProjectsPage,
 })
 
 type Filter = 'all' | 'learning' | 'design'
-
-/** Numéro sur deux chiffres : 1 → « 01 ». */
-const pad = (n: number) => String(n).padStart(2, '0')
 
 /**
  * Projets : un titre et des filtres, puis une liste numérotée à gauche et,
@@ -88,13 +92,13 @@ function ProjectsPage() {
                 <Link
                   to="/projets/$slug"
                   params={{ slug: project.slug }}
-                  className="group block h-full rounded-3xl bg-secondary/70 p-3 pb-5 transition-colors active:bg-secondary"
+                  className={`${card} group block h-full p-3 pb-5 transition-transform active:scale-[0.99]`}
                 >
                   {cover && (
                     <ProjectVisual
                       image={{ ...cover, fit: 'contain' }}
                       alt={project.gallery[0] ?? project.title}
-                      className="aspect-[4/3] rounded-2xl bg-background"
+                      className="aspect-[4/3] rounded-xl bg-background"
                     />
                   )}
                   <span
@@ -102,18 +106,18 @@ function ProjectsPage() {
                   >
                     {pad(i + 1)}
                   </span>
-                  <span className="mt-2 flex items-start justify-between gap-4 px-2 font-heading text-xl leading-snug font-semibold tracking-tight">
+                  <span
+                    className={`${cardTitle} mt-2 flex items-start justify-between gap-4 px-2`}
+                  >
                     {project.title}
                     <ArrowUpRight className="mt-1 size-5 shrink-0 text-muted-foreground" />
                   </span>
                   <span className="mt-1 block px-2 text-sm text-muted-foreground">
-                    {[
+                    {joinMeta([
                       project.client,
                       project.year,
                       categoryOf(project.category),
-                    ]
-                      .filter(Boolean)
-                      .join(' · ')}
+                    ])}
                   </span>
                 </Link>
               </li>
@@ -146,7 +150,8 @@ function ProjectsPage() {
                   <span className="min-w-0 flex-1">
                     <span
                       className={cn(
-                        'block font-heading text-xl leading-snug font-semibold tracking-tight transition-[color,translate] duration-300 ease-out group-hover:text-foreground',
+                        cardTitle,
+                        'block transition-[color,translate] duration-300 ease-out group-hover:text-foreground',
                         isActive
                           ? 'translate-x-2 text-foreground'
                           : 'text-muted-foreground',
@@ -155,13 +160,11 @@ function ProjectsPage() {
                       {project.title}
                     </span>
                     <span className="mt-1 block text-sm text-muted-foreground">
-                      {[
+                      {joinMeta([
                         project.client,
                         project.year,
                         categoryOf(project.category),
-                      ]
-                        .filter(Boolean)
-                        .join(' · ')}
+                      ])}
                     </span>
                   </span>
                   <ArrowRight
@@ -195,9 +198,7 @@ function ProjectsPage() {
                 )}
               </Link>
               <p className={`${label} mt-6 text-muted-foreground`}>
-                {[categoryOf(current.category), current.year]
-                  .filter(Boolean)
-                  .join(' · ')}
+                {joinMeta([categoryOf(current.category), current.year])}
               </p>
               {/* Hauteur constante d'un projet à l'autre : le résumé tient sur
                   2 lignes et les mots-clés sur 1 (la suite est coupée par …). */}

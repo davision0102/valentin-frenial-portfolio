@@ -100,7 +100,7 @@ export function IntroScreen() {
           />
           {/* Son ombre, plus petite et plus pâle quand il est en l'air. */}
           <span
-            className="mt-1.5 block h-1 w-5 animate-[intro-shadow_both] rounded-full bg-heading/10 sm:w-6"
+            className="mt-1.5 block h-1 w-5 animate-[intro-shadow_both] rounded-full bg-foreground/10 sm:w-6"
             style={bounce}
           />
         </div>

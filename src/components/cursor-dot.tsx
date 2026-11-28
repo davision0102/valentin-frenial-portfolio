@@ -50,9 +50,10 @@ export function CursorDot() {
         started = true
       }
       outer.style.opacity = '1'
-      const target = event.target as Element | null
+      const target = event.target
       dot.dataset.hover = String(
-        Boolean(target?.closest('a, button, input, textarea, label, select')),
+        target instanceof Element &&
+          Boolean(target.closest('a, button, input, textarea, label, select')),
       )
       if (!frame) frame = requestAnimationFrame(render)
     }

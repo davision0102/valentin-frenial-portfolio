@@ -117,9 +117,7 @@ export function Carousel({
         ref={trackRef}
         onScroll={update}
         tabIndex={0}
-        className={cn(
-          'relative -my-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-6 overflow-x-auto py-4 focus-visible:outline-none [&::-webkit-scrollbar]:hidden',
-        )}
+        className="relative -my-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-6 overflow-x-auto py-4 focus-visible:outline-none [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div

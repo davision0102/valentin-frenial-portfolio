@@ -42,7 +42,7 @@ function AboutPage() {
   const align = () => setAligned(true)
 
   return (
-    <article className="mx-auto max-w-7xl overflow-hidden px-5 pt-12 pb-20 sm:px-8 sm:pt-20 sm:pb-32 lg:px-16">
+    <article className="mx-auto max-w-7xl overflow-hidden px-5 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       <header className="mx-auto flex max-w-3xl flex-col items-center text-center">
         <img
           src={`${import.meta.env.BASE_URL}valentin.png`}
@@ -80,7 +80,7 @@ function AboutPage() {
             <img
               src={imageUrl(file)}
               alt=""
-              className="aspect-square w-full rounded-3xl object-cover shadow-xl shadow-foreground/15 transition-[translate] duration-300 ease-out group-hover/carte:-translate-y-1.5 group-focus-visible/carte:-translate-y-1.5"
+              className="aspect-square w-full rounded-2xl object-cover shadow-xl shadow-foreground/15 transition-[translate] duration-300 ease-out group-hover/carte:-translate-y-1.5 group-focus-visible/carte:-translate-y-1.5"
             />
             {/* La légende n'apparaît que sur la photo survolée. */}
             <p className="mt-4 translate-y-1 text-sm opacity-0 transition-[opacity,translate] duration-300 group-hover/carte:translate-y-0 group-hover/carte:opacity-100 group-focus-visible/carte:translate-y-0 group-focus-visible/carte:opacity-100">
