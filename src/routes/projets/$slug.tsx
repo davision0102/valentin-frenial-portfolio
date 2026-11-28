@@ -3,11 +3,10 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Lock } from 'lucide-react'
 import { Carousel } from '@/components/carousel'
 import { NotFound } from '@/components/not-found'
 import { ProjectVisual } from '@/components/project-visual'
-import { buttonVariants } from '@/components/ui/button'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { cn } from '@/lib/utils'
+import { buttonOutline } from '@/lib/ui'
 
 export const Route = createFileRoute('/projets/$slug')({
   component: ProjectPage,
@@ -96,10 +95,10 @@ function ProjectPage() {
               href={media.link}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ variant: 'outline' })}
+              className={buttonOutline}
             >
               {p.link}
-              <ArrowUpRight data-icon="inline-end" />
+              <ArrowUpRight className="size-4" />
             </a>
           )}
         </div>
@@ -151,13 +150,10 @@ function ProjectPage() {
         <Link
           to="/projets/$slug"
           params={{ slug: next.slug }}
-          className={cn(
-            buttonVariants({ variant: 'ghost' }),
-            'mt-1 -ml-2.5 h-auto px-2.5 py-1.5 text-xl font-semibold tracking-tight',
-          )}
+          className="group mt-2 inline-flex items-center gap-2 text-xl font-semibold tracking-tight transition-colors hover:text-brand sm:text-2xl"
         >
           {next.title}
-          <ArrowRight data-icon="inline-end" />
+          <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
         </Link>
       </nav>
     </article>
