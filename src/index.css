@@ -227,3 +227,16 @@
     filter: blur(4px);
   }
 }
+/* Le point de la souris passe en fondu par les couleurs de l'écran d'arrivée. */
+@keyframes cursor-tones {
+  0%,
+  100% {
+    background-color: var(--tone-1);
+  }
+  33% {
+    background-color: var(--tone-2);
+  }
+  66% {
+    background-color: var(--tone-3);
+  }
+}

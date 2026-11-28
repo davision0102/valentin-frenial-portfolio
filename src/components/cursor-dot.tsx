@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Petit point bleu qui suit la souris avec un léger retard, et grossit
- * au-dessus d'un lien ou d'un bouton. Seulement avec une souris (pas sur
- * écran tactile) et jamais si le visiteur préfère moins d'animations.
+ * Petit point qui suit la souris avec un léger retard, et grossit
+ * au-dessus d'un lien ou d'un bouton. Il passe lentement par les trois
+ * couleurs du point de l'écran d'arrivée (bleu, violet, turquoise).
+ * Seulement avec une souris (pas sur écran tactile) et jamais si le
+ * visiteur préfère moins d'animations.
  */
 export function CursorDot() {
   const outerRef = useRef<HTMLDivElement>(null)
@@ -69,7 +71,7 @@ export function CursorDot() {
     >
       <div
         ref={dotRef}
-        className="size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand transition-[scale,opacity] duration-300 ease-out data-[hover=true]:scale-[2.5] data-[hover=true]:opacity-50"
+        className="size-3 -translate-x-1/2 -translate-y-1/2 animate-[cursor-tones_6s_linear_infinite] rounded-full bg-tone-1 transition-[scale,opacity] duration-300 ease-out data-[hover=true]:scale-[2.5] data-[hover=true]:opacity-50"
       />
     </div>
   )
