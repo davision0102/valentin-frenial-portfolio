@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react'
 
 /**
  * Petit point qui suit la souris avec un léger retard, et grossit
- * au-dessus d'un lien ou d'un bouton. Il passe lentement par les trois
- * couleurs du point de l'écran d'arrivée (bleu, violet, turquoise).
+ * au-dessus d’un lien ou d’un bouton, ou quand la souris va vite. Il passe
+ * lentement par les trois couleurs du point de l'écran d'arrivée (bleu,
+ * violet, turquoise).
  * Seulement avec une souris (pas sur écran tactile) et jamais si le
  * visiteur préfère moins d'animations.
  */
@@ -22,14 +23,19 @@ export function CursorDot() {
     let y = 0
     let targetX = 0
     let targetY = 0
+    let scale = 1
     let started = false
     let frame = 0
 
     const render = () => {
       x += (targetX - x) * 0.2
       y += (targetY - y) * 0.2
-      outer.style.transform = `translate3d(${x}px, ${y}px, 0)`
-      const moving = Math.abs(targetX - x) > 0.1 || Math.abs(targetY - y) > 0.1
+      // Plus la souris va vite, plus le point est en retard sur elle : ce
+      // retard le fait grossir (jusqu'à ×2,2), puis il revient en douceur.
+      const lag = Math.hypot(targetX - x, targetY - y)
+      scale += (1 + Math.min(lag / 50, 1.2) - scale) * 0.2
+      outer.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
+      const moving = lag > 0.1 || Math.abs(scale - 1) > 0.01
       frame = moving ? requestAnimationFrame(render) : 0
     }
 
@@ -67,7 +73,7 @@ export function CursorDot() {
     <div
       ref={outerRef}
       aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[100] opacity-0 transition-opacity duration-300"
+      className="pointer-events-none fixed top-0 left-0 z-[100] origin-top-left opacity-0 transition-opacity duration-300"
     >
       <div
         ref={dotRef}
