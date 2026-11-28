@@ -1,30 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useI18n } from '@/i18n/context'
 import { cn } from '@/lib/utils'
 
 /** Rythme de l'écran (en ms). */
-const FIRST_WORD_AT = 350
-const WORD_MS = 520
+const APPEAR_MS = 300
+const BOUNCE_MS = 460
 const EXIT_MS = 550
 const STORAGE_KEY = 'intro-vue'
 
-/** Le point change de couleur à chaque salutation, comme les pastilles du hero. */
-const dots = ['bg-tone-1', 'bg-tone-2', 'bg-tone-3', 'bg-tone-4']
+/** Une couleur par rebond : bleu, violet, turquoise (celles du hero). */
+const colors = ['bg-tone-1', 'bg-tone-2', 'bg-tone-3']
 
 /**
- * Écran d'arrivée, sur le fond clair du site : un point apparaît seul au
- * centre, puis « Bonjour », « Hello » et « ¡Hola! » sortent de lui l'un après
- * l'autre pendant qu'il change de couleur. Enfin le point se résorbe et
- * l'écran s'efface en fondu.
+ * Écran d'arrivée, sur le fond clair du site : un point apparaît au centre
+ * et rebondit trois fois, en changeant de couleur à chaque atterrissage,
+ * puis il se résorbe et l'écran s'efface en fondu.
  * Joué une seule fois par visite, jamais si le visiteur préfère moins
  * d'animations. Un clic ou une touche le passe.
  */
 export function IntroScreen() {
-  const { t } = useI18n()
-  const words = t.home.hero.greetings
   const [visible, setVisible] = useState(shouldPlay)
-  // -1 : le point est seul, avant la première salutation.
-  const [step, setStep] = useState(-1)
+  const [step, setStep] = useState(0)
   const [leaving, setLeaving] = useState(false)
 
   useEffect(() => {
@@ -33,10 +28,16 @@ export function IntroScreen() {
     const root = document.documentElement
     root.style.overflow = 'hidden'
 
-    const timers = words.map((_, i) =>
-      window.setTimeout(() => setStep(i), FIRST_WORD_AT + i * WORD_MS),
-    )
-    const exitAt = FIRST_WORD_AT + words.length * WORD_MS
+    // Le point change de couleur à chaque fois qu'il touche le sol.
+    const timers = colors
+      .slice(1)
+      .map((_, i) =>
+        window.setTimeout(
+          () => setStep(i + 1),
+          APPEAR_MS + (i + 1) * BOUNCE_MS,
+        ),
+      )
+    const exitAt = APPEAR_MS + colors.length * BOUNCE_MS
     timers.push(window.setTimeout(() => setLeaving(true), exitAt))
 
     const skip = () => setLeaving(true)
@@ -47,7 +48,7 @@ export function IntroScreen() {
       window.removeEventListener('keydown', skip)
       root.style.overflow = ''
     }
-  }, [visible, words])
+  }, [visible])
 
   // Une fois le fondu terminé, l'écran est retiré.
   useEffect(() => {
@@ -58,34 +59,40 @@ export function IntroScreen() {
 
   if (!visible) return null
 
+  const bounce = {
+    animationDuration: `${BOUNCE_MS}ms`,
+    animationDelay: `${APPEAR_MS}ms`,
+    animationIterationCount: colors.length,
+  }
+
   return (
     <div
       aria-hidden="true"
+      data-intro
       onClick={() => setLeaving(true)}
       className={cn(
-        'fixed inset-0 z-[100] bg-background transition-opacity duration-[550ms] ease-out',
+        'fixed inset-0 z-[100] grid place-items-center bg-background transition-opacity duration-[550ms] ease-out',
         leaving && 'opacity-0',
       )}
     >
-      {/* Le point reste au centre ; les salutations s'alignent à sa gauche. */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        {step >= 0 && (
-          <p
-            key={step}
-            className={cn(
-              'absolute right-full bottom-[-0.12em] animate-[intro-word_480ms_cubic-bezier(0.22,1,0.36,1)_both] pr-[0.14em] font-heading text-[clamp(2.75rem,9vw,6.5rem)] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-heading transition-opacity duration-300',
-              leaving && 'opacity-0',
-            )}
-          >
-            {words[step]}
-          </p>
+      <div
+        className={cn(
+          'relative flex animate-[intro-dot_300ms_cubic-bezier(0.34,1.56,0.64,1)_both] flex-col items-center transition-[scale] duration-300 ease-in',
+          leaving && 'scale-0',
         )}
+      >
+        {/* Le point : il monte, retombe et s'écrase un peu au sol. */}
         <span
           className={cn(
-            'block size-3.5 animate-[intro-dot_500ms_cubic-bezier(0.34,1.56,0.64,1)_both] rounded-full transition-[background-color,scale] duration-500 ease-out sm:size-4',
-            dots[Math.max(step, 0) % dots.length],
-            leaving && 'scale-0',
+            'block size-4 origin-bottom animate-[intro-bounce_both] rounded-full transition-colors duration-150 sm:size-5',
+            colors[step],
           )}
+          style={bounce}
+        />
+        {/* Son ombre, plus petite et plus pâle quand il est en l'air. */}
+        <span
+          className="mt-1.5 block h-1 w-5 animate-[intro-shadow_both] rounded-full bg-heading/10 sm:w-6"
+          style={bounce}
         />
       </div>
     </div>

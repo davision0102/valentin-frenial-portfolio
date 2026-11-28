@@ -1,10 +1,12 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { IntroScreen } from './intro-screen'
 
 function mockReducedMotion(reduce: boolean) {
   window.matchMedia = vi.fn().mockReturnValue({ matches: reduce })
 }
+
+const intro = () => document.querySelector('[data-intro]')
 
 describe('IntroScreen', () => {
   beforeEach(() => {
@@ -16,27 +18,23 @@ describe('IntroScreen', () => {
   it('se joue à la première arrivée puis disparaît', () => {
     mockReducedMotion(false)
     render(<IntroScreen />)
-    act(() => vi.advanceTimersByTime(400))
-    expect(screen.getByText('Bonjour')).toBeInTheDocument()
+    expect(intro()).toBeInTheDocument()
 
-    act(() => vi.advanceTimersByTime(2500))
+    act(() => vi.advanceTimersByTime(2000))
     act(() => vi.advanceTimersByTime(1000))
-    expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
-    expect(screen.queryByText('¡Hola!')).not.toBeInTheDocument()
+    expect(intro()).not.toBeInTheDocument()
   })
 
   it('ne se rejoue pas pendant la même visite', () => {
     mockReducedMotion(false)
     sessionStorage.setItem('intro-vue', '1')
     render(<IntroScreen />)
-    act(() => vi.advanceTimersByTime(400))
-    expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
+    expect(intro()).not.toBeInTheDocument()
   })
 
   it('ne se joue pas si le visiteur préfère moins d’animations', () => {
     mockReducedMotion(true)
     render(<IntroScreen />)
-    act(() => vi.advanceTimersByTime(400))
-    expect(screen.queryByText('Bonjour')).not.toBeInTheDocument()
+    expect(intro()).not.toBeInTheDocument()
   })
 })
