@@ -8,10 +8,6 @@ export const fr = {
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
   },
-  theme: {
-    toDark: 'Passer en thème sombre',
-    toLight: 'Passer en thème clair',
-  },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
     now: (date: string, time: string) =>

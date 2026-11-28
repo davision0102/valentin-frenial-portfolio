@@ -180,3 +180,18 @@
     transform: translateX(-50%);
   }
 }
+
+/* Écran d'arrivée : chaque salutation monte en se précisant, et les
+   segments de la barre se remplissent l'un après l'autre. */
+@keyframes intro-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+    filter: blur(8px);
+  }
+}
+@keyframes intro-bar {
+  from {
+    transform: scaleX(0);
+  }
+}

@@ -4,7 +4,7 @@ Instructions pour les assistants IA qui travaillent sur ce projet.
 
 ## Le projet
 
-Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, logos des entreprises en bas du hero, vignettes de projets qui défilent, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
+Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, logos des entreprises en bas du hero, vignettes de projets qui défilent, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Un écran d'arrivée (salutations et barre de chargement) s'affiche une fois par visite. Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
 Explique simplement ce que tu fais, sans jargon, et vérifie le rendu dans le navigateur.
 
 ## Confidentialité
@@ -32,7 +32,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 ## Règles
 
 - Imports via l'alias `@/`.
-- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; sur ordinateur, le clair (fond #F4F7FD, bleu nuit) est le thème par défaut et le sombre est bleu nuit ; sur téléphone, le thème suit celui de l'appareil (pas de bouton).
+- Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; le site est uniquement en clair (fond #F4F7FD, bleu nuit), sans bouton de thème. Le pied de page et l'écran d'arrivée portent la classe `dark` pour prendre la palette bleu nuit.
 - Textes : jamais en dur ; chaque texte dans `fr.ts`, lu avec `useI18n()`. Le site est en français uniquement.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 

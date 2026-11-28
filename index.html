@@ -12,29 +12,7 @@
     />
     <title>Valentin Frenial · Chef de projet digital learning</title>
     <meta name="theme-color" content="#f4f7fd" />
-    <script>
-      // Applique le thème avant le premier rendu pour éviter un flash.
-      // Téléphone : le thème suit celui du téléphone (pas de bouton).
-      // Ordinateur : clair par défaut, sauf si le visiteur a choisi le sombre.
-      try {
-        const root = document.documentElement
-        const mobile = matchMedia('(max-width: 639px)').matches
-        const system = matchMedia('(prefers-color-scheme: dark)')
-        const apply = (dark) => {
-          root.classList.toggle('dark', dark)
-          root.style.colorScheme = dark ? 'dark' : 'light'
-        }
-        if (mobile) {
-          apply(system.matches)
-          system.addEventListener('change', (event) => apply(event.matches))
-        } else {
-          const saved = localStorage.getItem('theme')
-          apply(saved ? saved === 'dark' : false)
-        }
-      } catch {
-        // stockage indisponible : on garde le thème clair
-      }
-    </script>
+    <meta name="color-scheme" content="light" />
 
     <!-- Aperçu lors d'un partage (LinkedIn, WhatsApp, Slack…) -->
     <meta property="og:type" content="website" />
