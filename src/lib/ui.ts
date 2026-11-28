@@ -41,3 +41,35 @@ export function iconButton(className?: string) {
 
 export const buttonSolid = button('solid')
 export const buttonOutline = button('outline')
+
+/**
+ * Les trois niveaux de texte du site, identiques partout (police Geist).
+ * - `sectionTitle` : titres de page et de section, en capitales
+ *   (« Mes projets », « Le besoin »…) ;
+ * - `displayTitle` : grandes phrases d'accroche en casse normale
+ *   (« Moi, c'est Valentin. », titre d'un projet, pied de page) ;
+ * - `label` : petits intitulés en capitales espacées, en Geist Mono
+ *   (métier, numéros, catégories).
+ * Le reste est du texte courant, sans réglage particulier.
+ */
+export const sectionTitle =
+  'text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
+
+export const displayTitle =
+  'text-4xl leading-[1.05] font-semibold tracking-[-0.04em] text-balance sm:text-5xl'
+
+export const label = 'font-mono text-xs tracking-[0.18em] uppercase'
+
+/** Titre d'une carte ou d'un élément de liste (projet, savoir-faire). */
+export const cardTitle = 'text-xl leading-snug font-semibold tracking-tight'
+
+/**
+ * Surfaces. Arrondis du site : `rounded-2xl` pour les cartes et les images,
+ * `rounded-full` pour les boutons et les étiquettes, `rounded-lg` pour la
+ * barre de navigation, `rounded-t-3xl` pour la bande du pied de page.
+ */
+export const card = 'rounded-2xl bg-card shadow-sm shadow-foreground/5'
+
+/** Petite étiquette arrondie (mots-clés d'un projet). */
+export const chip =
+  'inline-flex items-center rounded-full bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand'

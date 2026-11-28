@@ -6,8 +6,8 @@ import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { tones } from '@/lib/tones'
-import { buttonOutline } from '@/lib/ui'
-import { cn } from '@/lib/utils'
+import { buttonOutline, card, cardTitle, label, sectionTitle } from '@/lib/ui'
+import { joinMeta, pad } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -20,13 +20,9 @@ const companies = [
   { name: 'Rémy Cointreau', logo: 'remy-cointreau.svg' },
 ]
 
-/** Titre de section : grandes capitales serrées. */
-const titleClass =
-  'font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
-
 function HomePage() {
   const { t } = useI18n()
-  // Sur l'accueil, le métier suit le nom : « Valentin Frenial · Chef de projet… ».
+  // Sur l'accueil, le nom vient en premier : « Valentin Frenial · Chef de projet… ».
   useEffect(() => {
     document.title = `${site.name} · ${t.home.hero.role.replace(/\.$/, '')}`
   }, [t])
@@ -41,9 +37,9 @@ function HomePage() {
 }
 
 /**
- * Hero : sur un bleu nuit profond, « Bonjour · Hello · Hola » défile en
- * grand et sans fin, derrière la photo. En bas à gauche, une courte
- * présentation et un bouton ; la photo en bas à droite.
+ * Hero : « Bonjour · Hello · ¡Hola! » défile en grand et sans fin ; dessous,
+ * la présentation (métier, accroche, chiffres clés) et la photo de Valentin,
+ * puis les logos des entreprises en bas.
  */
 function Hero() {
   const { t } = useI18n()
@@ -64,10 +60,8 @@ function Hero() {
             en grand, détail en plus discret, puis les chiffres en pastilles,
             le tout aligné sur le bas de la photo. */}
           <div className="max-w-xl">
-            <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
-              {h.role.replace(/\.$/, '')}
-            </p>
-            <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
+            <p className={`${label} text-brand`}>{h.role.replace(/\.$/, '')}</p>
+            <p className="mt-4 text-xl leading-snug font-medium tracking-tight text-pretty sm:text-2xl">
               {h.bio[0]}
             </p>
             <div className="mt-4 space-y-3 leading-relaxed text-pretty text-muted-foreground">
@@ -84,7 +78,7 @@ function Hero() {
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd
-                    className={`font-heading text-base font-semibold tabular-nums ${tones[i % tones.length].text}`}
+                    className={`text-base font-semibold tabular-nums ${tones[i % tones.length].text}`}
                   >
                     {stat.value}
                   </dd>
@@ -98,7 +92,7 @@ function Hero() {
 
           {/* Photo de Valentin en présentation, en entier dans une carte
             arrondie. */}
-          <div className="relative z-10 aspect-[944/1088] w-full max-w-[14rem] self-center overflow-hidden rounded-3xl bg-card max-lg:order-first sm:max-w-[16rem] lg:w-[min(22vw,20rem)] lg:max-w-none lg:self-center">
+          <div className="relative z-10 aspect-[944/1088] w-full max-w-[14rem] self-center overflow-hidden rounded-2xl bg-card max-lg:order-first sm:max-w-[16rem] lg:w-[min(22vw,20rem)] lg:max-w-none lg:self-center">
             <img
               src={`${import.meta.env.BASE_URL}valentin-hero.webp`}
               alt={h.photoAlt}
@@ -118,29 +112,20 @@ function Hero() {
  * la première moitié est sortie, l'animation repart sans saut.
  * Arrêté si le visiteur préfère moins d'animations.
  */
-function GreetingsMarquee({
-  words,
-  className,
-}: {
-  words: readonly string[]
-  className?: string
-}) {
+function GreetingsMarquee({ words }: { words: readonly string[] }) {
   // Assez de mots pour dépasser la largeur des grands écrans.
   const row = [...words, ...words, ...words]
   return (
     <div
       aria-hidden="true"
-      className={cn(
-        'pointer-events-none overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]',
-        className,
-      )}
+      className="pointer-events-none overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
     >
       <div className="flex w-max animate-[marquee_40s_linear_infinite] motion-reduce:animate-none">
         {[0, 1].map((copy) => (
           <div key={copy} className="flex shrink-0 items-center">
             {row.map((word, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-[0.35em] font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-heading/15">
+                <span className="px-[0.35em] text-[clamp(2.5rem,6vw,5.5rem)] leading-none font-semibold tracking-[-0.04em] whitespace-nowrap text-foreground/15">
                   {word}
                 </span>
                 <span className="size-2.5 shrink-0 rounded-full bg-brand/35 sm:size-3" />
@@ -155,7 +140,7 @@ function GreetingsMarquee({
 
 /**
  * Les entreprises pour lesquelles Valentin a travaillé, en bas du hero : un
- * intitulé discret et les logos (en couleur en clair, blancs en sombre).
+ * intitulé discret et les logos dans leurs vraies couleurs.
  */
 function ClientLogos() {
   const { t } = useI18n()
@@ -163,27 +148,18 @@ function ClientLogos() {
   return (
     <div className="mx-auto flex flex-col items-center gap-3 px-5 pt-16 text-center sm:pt-20">
       <p className="text-sm text-muted-foreground">
-        {t.home.about.companiesTitle}
+        {t.home.hero.companiesTitle}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-10">
         {companies.map((company) => {
           const src = `${import.meta.env.BASE_URL}logos/${company.logo}`
           return (
-            <span key={company.name} className="contents">
-              {/* Clair : le logo dans ses vraies couleurs. */}
-              <img
-                src={src}
-                alt={company.name}
-                className="h-8 w-20 object-contain sm:h-10 sm:w-32 dark:hidden"
-              />
-              {/* Sombre : le même logo, tout en blanc. */}
-              <span
-                role="img"
-                aria-label={company.name}
-                className="hidden h-8 w-20 bg-white [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] sm:h-10 sm:w-32 dark:block"
-                style={{ maskImage: `url(${src})` }}
-              />
-            </span>
+            <img
+              key={company.name}
+              src={src}
+              alt={company.name}
+              className="h-8 w-20 object-contain sm:h-10 sm:w-32"
+            />
           )
         })}
       </div>
@@ -203,7 +179,7 @@ function Projects() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         {/* Le titre à gauche, le lien vers tous les projets à droite. */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-          <h2 className={titleClass}>{p.title}</h2>
+          <h2 className={sectionTitle}>{p.title}</h2>
           <Link to="/projets" className={`${buttonOutline} max-sm:hidden`}>
             {p.seeAll}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -262,13 +238,11 @@ function ProjectsMarquee() {
                         className="aspect-[4/3] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
                       />
                     )}
-                    <span className="mt-4 block font-heading text-base font-semibold tracking-tight uppercase">
+                    <span className={`${cardTitle} mt-4 block`}>
                       {project.title}
                     </span>
                     <span className="mt-1 block text-sm text-muted-foreground">
-                      {[project.client, project.year]
-                        .filter(Boolean)
-                        .join(' · ')}
+                      {joinMeta([project.client, project.year])}
                     </span>
                   </Link>
                 </li>
@@ -291,22 +265,17 @@ function Services() {
 
   return (
     <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16">
-      <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
+      <h2 className={`${sectionTitle} max-w-4xl`}>{s.title}</h2>
 
       <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {s.items.map(({ title, text }, i) => (
-          <li
-            key={title}
-            className="rounded-2xl bg-card p-6 shadow-sm shadow-foreground/5 sm:p-8"
-          >
+          <li key={title} className={`${card} p-6 sm:p-8`}>
             <span
-              className={`inline-block rounded-full px-2.5 py-1 font-mono text-xs tracking-[0.18em] tabular-nums ${tones[i % tones.length].bg} ${tones[i % tones.length].text}`}
+              className={`inline-block rounded-full px-2.5 py-1 ${label} tabular-nums ${tones[i % tones.length].bg} ${tones[i % tones.length].text}`}
             >
-              {String(i + 1).padStart(2, '0')}
+              {pad(i + 1)}
             </span>
-            <h3 className="mt-6 text-xl font-semibold tracking-tight sm:mt-8">
-              {title}
-            </h3>
+            <h3 className={`${cardTitle} mt-6 sm:mt-8`}>{title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-pretty text-muted-foreground">
               {text}
             </p>

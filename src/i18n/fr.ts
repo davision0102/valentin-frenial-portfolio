@@ -24,6 +24,7 @@ export const fr = {
     intro: ['Pédagogie', 'Design', 'Créativité'],
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
+      companiesTitle: 'Ils m’ont fait confiance',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
       role: 'Chef de projet digital learning.',
       bio: [
@@ -61,9 +62,6 @@ export const fr = {
           text: 'Organiser le tournage, monter, animer et habiller les vidéos qui font vivre les modules.',
         },
       ],
-    },
-    about: {
-      companiesTitle: 'Ils m’ont fait confiance',
     },
   },
   projects: [

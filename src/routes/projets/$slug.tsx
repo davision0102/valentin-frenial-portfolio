@@ -6,7 +6,14 @@ import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { buttonOutline } from '@/lib/ui'
+import {
+  buttonOutline,
+  card,
+  cardTitle,
+  chip,
+  displayTitle,
+  sectionTitle,
+} from '@/lib/ui'
 
 export const Route = createFileRoute('/projets/$slug')({
   component: ProjectPage,
@@ -46,17 +53,12 @@ function ProjectPage() {
       <header className="mt-8 max-w-4xl animate-in duration-500 fade-in slide-in-from-bottom-3 motion-reduce:animate-none">
         <ul className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand"
-            >
+            <li key={tag} className={chip}>
               {tag}
             </li>
           ))}
         </ul>
-        <h1 className="mt-4 text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-          {project.title}
-        </h1>
+        <h1 className={`${displayTitle} mt-4`}>{project.title}</h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
           {project.summary}
         </p>
@@ -73,7 +75,7 @@ function ProjectPage() {
               image={image}
               alt={project.gallery[i] ?? project.title}
               eager={i === 0}
-              className="aspect-[16/9] rounded-3xl border border-border"
+              className="aspect-[16/9] rounded-2xl"
             />
             <figcaption className="mt-3 text-sm text-muted-foreground">
               {project.gallery[i]}
@@ -121,17 +123,12 @@ function ProjectPage() {
 
           {project.results.length > 0 && (
             <section className="border-t border-border pt-6">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                {p.results}
-              </h2>
+              <h2 className={sectionTitle}>{p.results}</h2>
               <dl className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-[repeat(auto-fit,minmax(11rem,1fr))]">
                 {project.results.map((result) => (
-                  <div
-                    key={result.label}
-                    className="rounded-3xl bg-secondary/60 p-6"
-                  >
+                  <div key={result.label} className={`${card} p-6`}>
                     <dt className="sr-only">{result.label}</dt>
-                    <dd className="font-heading text-4xl font-semibold tracking-tight text-brand">
+                    <dd className="text-4xl font-semibold tracking-tight text-brand">
                       {result.value}
                     </dd>
                     <dd className="mt-2 text-sm text-muted-foreground">
@@ -150,7 +147,7 @@ function ProjectPage() {
         <Link
           to="/projets/$slug"
           params={{ slug: next.slug }}
-          className="group mt-2 inline-flex items-center gap-2 text-xl font-semibold tracking-tight transition-colors hover:text-brand sm:text-2xl"
+          className={`${cardTitle} group mt-2 inline-flex items-center gap-2 transition-colors hover:text-brand`}
         >
           {next.title}
           <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
@@ -173,9 +170,7 @@ function Block({
 }) {
   return (
     <section className="border-t border-border pt-6">
-      <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        {title}
-      </h2>
+      <h2 className={sectionTitle}>{title}</h2>
       <div className="mt-4 grid max-w-3xl gap-4 text-lg leading-relaxed text-pretty text-muted-foreground">
         {text.map((part, i) =>
           typeof part === 'string' ? (
