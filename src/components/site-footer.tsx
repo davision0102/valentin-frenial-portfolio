@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
@@ -74,9 +73,6 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.name}. {f.rights}
           </p>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </footer>

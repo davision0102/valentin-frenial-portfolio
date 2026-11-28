@@ -180,3 +180,50 @@
     transform: translateX(-50%);
   }
 }
+
+/* Écran d'arrivée : le point apparaît, puis rebondit. Il part vite du sol
+   et ralentit en haut, retombe en accélérant et s'écrase à l'atterrissage ;
+   son ombre rétrécit quand il monte. */
+@keyframes intro-dot {
+  from {
+    transform: scale(0);
+  }
+}
+@keyframes intro-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.3, 0.7);
+    animation-timing-function: cubic-bezier(0.25, 0.7, 0.4, 1);
+  }
+  12% {
+    transform: translateY(-0.6rem) scale(0.85, 1.15);
+  }
+  50% {
+    transform: translateY(-3.5rem) scale(1);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.75, 0.3);
+  }
+  90% {
+    transform: translateY(-0.4rem) scale(0.9, 1.1);
+  }
+}
+@keyframes intro-shadow {
+  0%,
+  100% {
+    transform: scaleX(1.15);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.25, 0.7, 0.4, 1);
+  }
+  50% {
+    transform: scaleX(0.5);
+    opacity: 0.4;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.75, 0.3);
+  }
+}
+/* Le mot de chaque rebond monte légèrement en se précisant. */
+@keyframes intro-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+    filter: blur(4px);
+  }
+}

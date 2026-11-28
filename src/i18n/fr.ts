@@ -8,10 +8,6 @@ export const fr = {
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
   },
-  theme: {
-    toDark: 'Passer en thème sombre',
-    toLight: 'Passer en thème clair',
-  },
   footer: {
     title: 'Faisons une formation qui marque les esprits.',
     now: (date: string, time: string) =>
@@ -24,6 +20,8 @@ export const fr = {
     rights: 'Tous droits réservés.',
   },
   home: {
+    // Écran d'arrivée : un mot par rebond du point, dans l'ordre des couleurs.
+    intro: ['Pédagogie', 'Design', 'Créativité'],
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
