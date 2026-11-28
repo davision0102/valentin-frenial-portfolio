@@ -219,3 +219,11 @@
     animation-timing-function: cubic-bezier(0.6, 0, 0.75, 0.3);
   }
 }
+/* Le mot de chaque rebond monte légèrement en se précisant. */
+@keyframes intro-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+    filter: blur(4px);
+  }
+}

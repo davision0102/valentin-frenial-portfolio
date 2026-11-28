@@ -4,7 +4,7 @@ Instructions pour les assistants IA qui travaillent sur ce projet.
 
 ## Le projet
 
-Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, logos des entreprises en bas du hero, vignettes de projets qui défilent, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Un écran d'arrivée (un point qui rebondit en changeant de couleur) s'affiche une fois par visite. Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
+Portfolio personnel : une page d'accueil (hero avec salutations qui défilent, logos des entreprises en bas du hero, vignettes de projets qui défilent, savoir-faire), une page Projets (liste numérotée et aperçu sur ordinateur, cartes sur téléphone), une page À propos (photo, texte, 4 photos perso qui s'alignent au survol avec une légende) et une page par projet (`/projets/<slug>`). Un écran d'arrivée (un point qui rebondit trois fois, une couleur et un mot par rebond : pédagogie, design, créativité) s'affiche une fois par visite. Le contact (bande bleu nuit avec boutons e-mail, LinkedIn et CV) est dans le pied de page de chaque page (`#ecrire`).
 Explique simplement ce que tu fais, sans jargon, et vérifie le rendu dans le navigateur.
 
 ## Confidentialité

@@ -20,6 +20,8 @@ export const fr = {
     rights: 'Tous droits réservés.',
   },
   home: {
+    // Écran d'arrivée : un mot par rebond du point, dans l'ordre des couleurs.
+    intro: ['Pédagogie', 'Design', 'Créativité'],
     hero: {
       photoAlt: 'Photo de Valentin Frenial',
       greetings: ['Bonjour', 'Hello', '¡Hola!'],
