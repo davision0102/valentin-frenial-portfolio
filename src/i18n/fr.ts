@@ -382,9 +382,6 @@ export const fr = {
   },
   aboutPage: {
     title: 'Moi, c’est Valentin.',
-    text: 'Je conçois des formations digitales intuitives et engageantes, pensées pour celles et ceux qui les suivent. Formé à l’EEMI entre gestion de projet digital et direction artistique, j’ai fait mes armes chez Nexans puis chez Chanel. Autonome et minutieux, j’aime partir d’un sujet complexe et en faire une expérience claire, qu’on a envie de suivre jusqu’au bout.',
-    vision:
-      'À la croisée du design et de la stratégie, j’aime donner vie aux idées et créer des expériences qui ont du sens, aussi bien pour ceux qui les conçoivent que pour ceux qui les vivent.',
     photosAlt: 'Quelques photos de moi',
     // Provisoire : à remplacer par les vraies réponses de Valentin.
     facts: [
@@ -392,6 +389,8 @@ export const fr = {
       { label: 'Ville de cœur', value: 'À compléter' },
       { label: 'En boucle', value: 'À compléter' },
       { label: 'Le week-end', value: 'À compléter' },
+      { label: 'Outil fétiche', value: 'À compléter' },
+      { label: 'Pays rêvé', value: 'À compléter' },
     ],
   },
   carousel: {
