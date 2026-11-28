@@ -26,7 +26,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 | Images et liens des projets         | `public/images/` et `src/config/projects.ts`       |
 | Couleurs, polices                   | `src/index.css`                                    |
 | Logos des entreprises (une couleur) | `public/logos/` (SVG, Wikimedia Commons)           |
-| Boutons (identiques partout)        | `src/lib/ui.ts`                                    |
+| Boutons (identiques partout)        | `src/lib/ui.ts` (`button()`, `iconButton()`)       |
 | Photos de Valentin (hero, À propos) | `public/valentin-hero.webp`, `public/valentin.png` |
 
 ## Règles
@@ -34,6 +34,7 @@ React 19 + TypeScript, Vite, Tailwind CSS 4 (thème dans `src/index.css`), TanSt
 - Imports via l'alias `@/`.
 - Couleurs : uniquement les tokens du thème (`bg-background`, `text-brand`…), jamais de couleur brute ; le site est uniquement en clair (fond #F4F7FD, bleu nuit), sans bouton de thème. Le pied de page porte la classe `dark` pour prendre la palette bleu nuit.
 - Textes : jamais en dur ; chaque texte dans `fr.ts`, lu avec `useI18n()`. Le site est en français uniquement.
+- Boutons : toujours `button()` ou `iconButton()` de `src/lib/ui.ts` (pilule arrondie, texte normal ; plein pour l'action principale, bordé pour le reste). Pas d'autre style de bouton. Les liens de navigation dans le texte restent de simples liens.
 - Ne pas modifier `src/routeTree.gen.ts` (généré automatiquement).
 
 ## Espacements (identiques sur toutes les pages)

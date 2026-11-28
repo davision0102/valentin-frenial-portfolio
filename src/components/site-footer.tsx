@@ -3,20 +3,12 @@ import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
-
-/**
- * Boutons du pied de page : plus grands et en texte normal pour être bien
- * lisibles sur le bleu nuit ; un bouton plein et deux bordés bien visibles.
- */
-const footerButton =
-  'group inline-flex h-12 items-center justify-center gap-2.5 rounded-lg px-6 text-sm font-medium transition-[background-color,border-color,transform] active:scale-[0.97]'
-const footerSolid = `${footerButton} bg-foreground text-background hover:bg-foreground/90`
-const footerOutline = `${footerButton} border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground/5`
+import { button } from '@/lib/ui'
 
 /**
  * Pied de page : une bande bleu nuit avec la grande phrase, la date et
  * l'heure en France, une invitation à écrire et trois boutons (e-mail,
- * LinkedIn, CV). Dessous, une ligne avec le copyright et le thème.
+ * LinkedIn, CV), les mêmes que partout. Dessous, le copyright.
  * L'adresse e-mail n'est jamais écrite en entier dans le code.
  */
 export function SiteFooter() {
@@ -44,7 +36,7 @@ export function SiteFooter() {
             <button
               type="button"
               onClick={() => openEmail(f.subject)}
-              className={footerSolid}
+              className={button('solid')}
             >
               <Mail className="size-4" />
               {f.email}
@@ -53,7 +45,7 @@ export function SiteFooter() {
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className={footerOutline}
+              className={button('outline')}
             >
               {f.linkedin}
               <ArrowUpRight className="size-4" />
@@ -61,7 +53,7 @@ export function SiteFooter() {
             <a
               href={`${import.meta.env.BASE_URL}cv-valentin-frenial.pdf`}
               download
-              className={footerOutline}
+              className={button('outline')}
             >
               {f.cv}
               <ArrowDown className="size-4" />

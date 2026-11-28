@@ -1,7 +1,7 @@
 import { Children, useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { useI18n } from '@/i18n/context'
+import { iconButton } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 /**
@@ -154,26 +154,24 @@ export function Carousel({
             ))}
           </div>
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              className="size-10 rounded-none"
+            <button
+              type="button"
+              className={iconButton()}
               onClick={() => step(-1)}
               disabled={atStart}
               aria-label={t.carousel.previous}
             >
               <ChevronLeft />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="size-10 rounded-none"
+            </button>
+            <button
+              type="button"
+              className={iconButton()}
               onClick={() => step(1)}
               disabled={atEnd}
               aria-label={t.carousel.next}
             >
               <ChevronRight />
-            </Button>
+            </button>
           </div>
         </div>
       )}

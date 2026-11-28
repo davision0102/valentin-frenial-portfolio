@@ -5,7 +5,7 @@ import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { buttonOutline } from '@/lib/ui'
+import { button, buttonOutline } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/projets/')({
@@ -57,7 +57,7 @@ function ProjectsPage() {
         <div
           role="group"
           aria-label={p.filtersLabel}
-          className="flex flex-wrap gap-x-6 gap-y-2"
+          className="flex flex-wrap gap-2"
         >
           {filters.map((item) => (
             <button
@@ -68,15 +68,10 @@ function ProjectsPage() {
                 setActive(null)
               }}
               aria-pressed={filter === item.id}
-              className={cn(
-                'border-b py-1 font-mono text-xs tracking-[0.18em] uppercase transition-colors',
-                filter === item.id
-                  ? 'border-foreground text-foreground'
-                  : 'border-transparent text-muted-foreground hover:text-foreground',
-              )}
+              className={button(filter === item.id ? 'solid' : 'outline', 'sm')}
             >
               {item.label}
-              <span className="ml-1.5 tabular-nums opacity-60">
+              <span className="tabular-nums opacity-60">
                 {pad(countOf(item.id))}
               </span>
             </button>
