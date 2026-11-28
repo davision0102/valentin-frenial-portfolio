@@ -5,7 +5,7 @@ import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { button, buttonOutline } from '@/lib/ui'
+import { button, buttonOutline, label, sectionTitle } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/projets/')({
@@ -51,9 +51,7 @@ function ProjectsPage() {
     <section className="mx-auto max-w-7xl px-5 pt-12 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:px-16">
       {/* En-tête : le titre à gauche, les filtres à droite. */}
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
-        <h1 className="font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] uppercase sm:text-4xl">
-          {p.title}
-        </h1>
+        <h1 className={sectionTitle}>{p.title}</h1>
         <div
           role="group"
           aria-label={p.filtersLabel}
@@ -99,7 +97,9 @@ function ProjectsPage() {
                       className="aspect-[4/3] rounded-2xl bg-background"
                     />
                   )}
-                  <span className="mt-5 block px-2 font-mono text-xs tracking-[0.18em] text-muted-foreground tabular-nums">
+                  <span
+                    className={`${label} mt-5 block px-2 text-muted-foreground tabular-nums`}
+                  >
                     {pad(i + 1)}
                   </span>
                   <span className="mt-2 flex items-start justify-between gap-4 px-2 font-heading text-xl leading-snug font-semibold tracking-tight">
@@ -136,7 +136,8 @@ function ProjectsPage() {
                 >
                   <span
                     className={cn(
-                      'w-8 shrink-0 font-mono text-xs tracking-[0.18em] tabular-nums transition-colors',
+                      label,
+                      'w-8 shrink-0 tabular-nums transition-colors',
                       isActive ? 'text-foreground' : 'text-muted-foreground',
                     )}
                   >
@@ -193,7 +194,7 @@ function ProjectsPage() {
                   />
                 )}
               </Link>
-              <p className="mt-6 font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase">
+              <p className={`${label} mt-6 text-muted-foreground`}>
                 {[categoryOf(current.category), current.year]
                   .filter(Boolean)
                   .join(' · ')}

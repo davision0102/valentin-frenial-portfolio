@@ -6,7 +6,7 @@ import { getProjectMedia } from '@/config/projects'
 import { site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { tones } from '@/lib/tones'
-import { buttonOutline } from '@/lib/ui'
+import { buttonOutline, label, sectionTitle } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
@@ -19,10 +19,6 @@ const companies = [
   { name: 'Chanel', logo: 'chanel.svg' },
   { name: 'Rémy Cointreau', logo: 'remy-cointreau.svg' },
 ]
-
-/** Titre de section : grandes capitales serrées. */
-const titleClass =
-  'font-heading text-3xl leading-[0.95] font-semibold tracking-[-0.03em] text-balance uppercase sm:text-4xl'
 
 function HomePage() {
   const { t } = useI18n()
@@ -64,10 +60,8 @@ function Hero() {
             en grand, détail en plus discret, puis les chiffres en pastilles,
             le tout aligné sur le bas de la photo. */}
           <div className="max-w-xl">
-            <p className="font-mono text-xs tracking-[0.2em] text-brand uppercase">
-              {h.role.replace(/\.$/, '')}
-            </p>
-            <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-[-0.01em] text-pretty text-heading sm:text-2xl">
+            <p className={`${label} text-brand`}>{h.role.replace(/\.$/, '')}</p>
+            <p className="mt-4 font-heading text-xl leading-snug font-medium tracking-tight text-pretty text-heading sm:text-2xl">
               {h.bio[0]}
             </p>
             <div className="mt-4 space-y-3 leading-relaxed text-pretty text-muted-foreground">
@@ -203,7 +197,7 @@ function Projects() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         {/* Le titre à gauche, le lien vers tous les projets à droite. */}
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-          <h2 className={titleClass}>{p.title}</h2>
+          <h2 className={sectionTitle}>{p.title}</h2>
           <Link to="/projets" className={`${buttonOutline} max-sm:hidden`}>
             {p.seeAll}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -262,7 +256,7 @@ function ProjectsMarquee() {
                         className="aspect-[4/3] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
                       />
                     )}
-                    <span className="mt-4 block font-heading text-base font-semibold tracking-tight uppercase">
+                    <span className="mt-4 block text-base font-semibold tracking-tight">
                       {project.title}
                     </span>
                     <span className="mt-1 block text-sm text-muted-foreground">
@@ -291,7 +285,7 @@ function Services() {
 
   return (
     <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-16">
-      <h2 className={`${titleClass} max-w-4xl`}>{s.title}</h2>
+      <h2 className={`${sectionTitle} max-w-4xl`}>{s.title}</h2>
 
       <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {s.items.map(({ title, text }, i) => (
@@ -300,7 +294,7 @@ function Services() {
             className="rounded-2xl bg-card p-6 shadow-sm shadow-foreground/5 sm:p-8"
           >
             <span
-              className={`inline-block rounded-full px-2.5 py-1 font-mono text-xs tracking-[0.18em] tabular-nums ${tones[i % tones.length].bg} ${tones[i % tones.length].text}`}
+              className={`inline-block rounded-full px-2.5 py-1 ${label} tabular-nums ${tones[i % tones.length].bg} ${tones[i % tones.length].text}`}
             >
               {String(i + 1).padStart(2, '0')}
             </span>

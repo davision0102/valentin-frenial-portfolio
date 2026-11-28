@@ -6,7 +6,7 @@ import { ProjectVisual } from '@/components/project-visual'
 import { getProjectMedia } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
-import { buttonOutline } from '@/lib/ui'
+import { buttonOutline, displayTitle, sectionTitle } from '@/lib/ui'
 
 export const Route = createFileRoute('/projets/$slug')({
   component: ProjectPage,
@@ -54,9 +54,7 @@ function ProjectPage() {
             </li>
           ))}
         </ul>
-        <h1 className="mt-4 text-[clamp(2.75rem,7vw,5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-          {project.title}
-        </h1>
+        <h1 className={`${displayTitle} mt-4`}>{project.title}</h1>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
           {project.summary}
         </p>
@@ -121,9 +119,7 @@ function ProjectPage() {
 
           {project.results.length > 0 && (
             <section className="border-t border-border pt-6">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                {p.results}
-              </h2>
+              <h2 className={sectionTitle}>{p.results}</h2>
               <dl className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-[repeat(auto-fit,minmax(11rem,1fr))]">
                 {project.results.map((result) => (
                   <div
@@ -173,9 +169,7 @@ function Block({
 }) {
   return (
     <section className="border-t border-border pt-6">
-      <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        {title}
-      </h2>
+      <h2 className={sectionTitle}>{title}</h2>
       <div className="mt-4 grid max-w-3xl gap-4 text-lg leading-relaxed text-pretty text-muted-foreground">
         {text.map((part, i) =>
           typeof part === 'string' ? (

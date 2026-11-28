@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/i18n/context'
+import { label } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 /** Rythme de l'écran (en ms). */
@@ -109,7 +110,8 @@ export function IntroScreen() {
           <p
             key={step}
             className={cn(
-              'absolute top-full left-1/2 mt-6 -translate-x-1/2 animate-[intro-word_400ms_cubic-bezier(0.22,1,0.36,1)_both] pl-[0.25em] font-mono text-xs tracking-[0.25em] whitespace-nowrap uppercase sm:text-sm',
+              label,
+              'absolute top-full left-1/2 mt-6 -translate-x-1/2 animate-[intro-word_400ms_cubic-bezier(0.22,1,0.36,1)_both] pl-[0.18em] whitespace-nowrap sm:text-sm',
               tone.text,
             )}
           >

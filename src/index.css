@@ -1,14 +1,17 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource-variable/inter';
 @import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: 'Geist Variable', var(--font-sans);
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Une seule famille : Geist pour tous les textes, Geist Mono pour les
+     petits intitulés en capitales. */
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
   --color-brand: var(--brand);
   --color-heading: var(--heading);
   --color-tone-1: var(--tone-1);

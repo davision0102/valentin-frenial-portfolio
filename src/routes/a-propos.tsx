@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { imageUrl } from '@/config/projects'
 import { useDocumentTitle } from '@/hooks/use-document-title'
 import { useI18n } from '@/i18n/context'
+import { displayTitle } from '@/lib/ui'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/a-propos')({
@@ -48,9 +49,7 @@ function AboutPage() {
           alt={t.home.hero.photoAlt}
           className="size-28 rounded-full sm:size-36"
         />
-        <h1 className="mt-10 font-heading text-4xl font-semibold tracking-[-0.04em] text-balance sm:text-5xl">
-          {a.title}
-        </h1>
+        <h1 className={`${displayTitle} mt-10`}>{a.title}</h1>
       </header>
 
       {/* Grand écran : 6 cartes inclinées qui se chevauchent. */}

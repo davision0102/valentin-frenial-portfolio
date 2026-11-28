@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 import { openEmail, site } from '@/config/site'
 import { useI18n } from '@/i18n/context'
 import { contactId } from '@/lib/contact'
-import { button } from '@/lib/ui'
+import { button, displayTitle } from '@/lib/ui'
 
 /**
  * Pied de page : une bande bleu nuit avec la grande phrase, la date et
@@ -26,9 +26,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-16">
         <div className="grid gap-10 pt-14 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
           <div>
-            <h2 className="max-w-xl font-heading text-2xl leading-[1.1] font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
-              {f.title}
-            </h2>
+            <h2 className={`${displayTitle} max-w-xl`}>{f.title}</h2>
             <LocalTime />
           </div>
 
