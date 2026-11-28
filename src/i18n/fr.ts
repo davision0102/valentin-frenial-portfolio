@@ -75,8 +75,8 @@ export const fr = {
       title: 'Compliance Week 2024',
       client: 'Nexans',
       year: '2024',
-      format: 'Homepage et 6 modules e-learning',
-      role: 'Direction artistique et conception',
+      format: '1 homepage et 6 modules e-learning multilingues',
+      role: 'Gestion de projet, direction artistique, conception et réalisation des supports digitaux',
       tags: ['E-learning', 'Direction artistique', '12 langues'],
       gallery: [
         'L’affiche de la Compliance Week 2024',
@@ -84,101 +84,148 @@ export const fr = {
       ],
       summary:
         'Une semaine de formation à la conformité, avec sa direction artistique, sa page d’accueil et 6 modules e-learning, traduits en 12 langues.',
-      challenge:
-        'Maintenir l’attention des apprenants tout au long de la semaine, sur des sujets qui ne leur sont pas familiers : anticorruption, cybersécurité, droits humains…',
-      solution:
-        'Une direction artistique claire sur le thème de la navigation, des interactions au cœur de chaque e-learning, une vidéo d’introduction avec un skipper et un quiz intégré à chaque module.',
+      challenge: [
+        'Maintenir l’attention et l’engagement des collaborateurs tout au long d’une semaine de formation consacrée à des sujets essentiels, mais parfois peu familiers : anticorruption, cybersécurité, droits humains et conformité.',
+        'L’enjeu était de rendre ces thématiques accessibles et compréhensibles, tout en proposant une expérience pédagogique dynamique et cohérente, adaptée à un public international.',
+      ],
+      solution: [
+        'J’ai conçu une direction artistique autour de l’univers de la navigation, déclinée sur l’ensemble du dispositif afin de créer une identité visuelle reconnaissable et immersive.',
+        'J’ai également réalisé la homepage ainsi que les six modules e-learning, en intégrant différentes interactions pédagogiques pour rythmer l’apprentissage : activités interactives, quiz de validation des connaissances et contenus multimédias.',
+        'Une vidéo d’introduction mettant en scène un skipper sponsorisé par Nexans venait compléter le parcours pour donner le ton de cette semaine de sensibilisation.',
+        'Concernant les illustrations présentes dans le projet, j’ai fait appel à un prestataire externe afin de les produire en fonction de nos besoins, cela nous a permis également de reproduire le bateau qui a été construit par Nexans.',
+        'L’ensemble du dispositif a été décliné en 12 langues afin de garantir son accessibilité auprès des collaborateurs internationaux.',
+      ],
       note: '',
       results: [
         { value: '6', label: 'modules e-learning' },
         { value: '12', label: 'langues' },
-        { value: '1', label: 'semaine de formation' },
+        { value: '7 800', label: 'apprenants' },
       ],
     },
     {
       slug: 'climate-training',
       category: 'learning',
-      title: 'Climate Training : Let’s Act',
+      title: 'Climate Training – Let’s Act',
       client: 'Nexans',
-      year: '',
-      format: 'E-learning, partie 2',
-      role: 'Conception et réalisation',
+      year: '2024',
+      format: 'Module e-learning interactif et supports de communication',
+      role: 'Conception pédagogique, design interactif et création des animations',
       tags: ['E-learning', 'Interactions', 'Motion design'],
       gallery: [
         'L’écran d’accueil de la partie 2',
         'L’affiche de lancement',
-        'Interaction « cliquer pour découvrir »',
+        'Interaction « cliquer pour découvrir »',
         'Interaction en carrousel',
         'Interaction en glisser-déposer',
         'Une séquence en motion design',
       ],
       summary:
-        'La seconde partie d’une formation sur le climat, après une première partie très concluante suivie par plus de 1 700 apprenants.',
-      challenge:
-        'Synthétiser des sujets complexes : la réduction des émissions de gaz à effet de serre, et les actions possibles à chaque niveau.',
-      solution:
-        'De nouvelles interactions pour engager l’apprenant : cliquer pour découvrir, carrousel de témoignages de collègues, cartes à glisser-déposer et séquences en motion design pour rendre les chiffres concrets.',
+        'La seconde partie d’une formation sur le climat, après une première partie très concluante suivie par plus de 1 700 apprenants.',
+      challenge: [
+        'À la suite du succès de la première partie du programme Climate Training, qui avait déjà sensibilisé plus de 1 700 collaborateurs, Nexans souhaitait poursuivre cette démarche avec un second volet consacré aux actions concrètes contre le changement climatique.',
+        'L’enjeu était de rendre compréhensibles des sujets complexes, notamment la réduction des émissions de gaz à effet de serre, tout en encourageant les collaborateurs à s’impliquer personnellement dans cette démarche.',
+      ],
+      solution: [
+        'J’ai participé à la conception de cette seconde partie en travaillant sur la structuration des contenus et la création d’interactions pédagogiques variées.',
+        'Pour rendre l’expérience plus dynamique, j’ai développé plusieurs formats d’interaction :',
+        [
+          'Des interactions « Click to discover » pour explorer progressivement les informations.',
+          'Des carrousels pour présenter des témoignages et des exemples concrets.',
+          'Des activités de glisser-déposer pour distinguer les différentes actions de réduction et de compensation des émissions.',
+          'Des séquences en motion design pour illustrer des notions techniques et des données chiffrées.',
+        ],
+        'J’ai également travaillé sur la cohérence graphique des différents écrans afin de conserver une identité visuelle homogène avec la première partie du programme.',
+        'Résultat : plus de 2 400 complétions dans les 6 mois après le lancement.',
+      ],
       note: '',
       results: [
-        { value: '1 700+', label: 'apprenants sur la première partie' },
-        { value: '4', label: 'types d’interactions' },
+        { value: '2 400+', label: 'apprenants en 6 mois' },
+        { value: '8', label: 'nouvelles animations / interactions' },
+        { value: '4', label: 'langues' },
       ],
     },
     {
       slug: 'onboarding-artisans',
       category: 'learning',
       title: 'Onboarding Artisans',
-      client: 'Chanel',
-      year: '',
-      format: 'Programme d’accueil',
-      role: 'Initiative et réalisation en autonomie',
+      client: 'CHANEL',
+      year: '2026',
+      format: 'Parcours d’intégration digital et supports pédagogiques',
+      role: 'Initiative, conception pédagogique, UX Design et réalisation',
       tags: ['Onboarding', 'Plateforme', 'Badges'],
       gallery: [
-        'La vidéo « Collect all the badges »',
+        'La vidéo « Collect all the badges »',
         'L’accueil de la plateforme',
         'Un tutoriel des premiers pas',
         'Les premiers pas sur la plateforme et le module vidéo',
       ],
       summary:
         'Un programme d’accueil pour les nouveaux artisans, que j’ai proposé puis réalisé en autonomie.',
-      challenge:
-        'En arrivant chez Chanel, je me suis rendu compte qu’il n’y avait pas de programme d’accueil pour les nouveaux artisans.',
-      solution:
-        'Après avoir suggéré l’idée à mon manager, j’ai conçu ce programme qui présente l’écosystème de formation et sa plateforme dédiée, avec des tutoriels pour faire ses premiers pas. À la fin, chaque apprenant obtient un badge d’accueil : son tout premier badge.',
+      challenge: [
+        'À mon arrivée chez CHANEL, j’ai constaté qu’il n’existait pas de parcours d’accueil spécifiquement dédié aux nouveaux artisans pour leur permettre de découvrir leur environnement de formation.',
+        'L’objectif était de créer un programme d’intégration clair et accessible, leur permettant de comprendre le fonctionnement de l’écosystème Learning, de découvrir les ressources disponibles et de prendre rapidement en main la plateforme digitale.',
+      ],
+      solution: [
+        'Après avoir proposé cette initiative à mon manager, j’ai pris en charge la conception et la réalisation du programme en autonomie.',
+        'J’ai structuré le parcours autour des premières étapes essentielles à connaître pour utiliser la plateforme : création et personnalisation du profil, navigation, découverte des contenus pédagogiques et compréhension du système de badges.',
+        'Une attention particulière a été portée à la clarté des consignes et à la progression des étapes afin de faciliter la prise en main de l’outil, même pour les nouveaux utilisateurs.',
+        'Enfin, j’ai intégré une dimension de gamification au parcours : à son issue, chaque artisan obtenait un premier badge d’accueil, symbolisant son intégration dans la communauté Learning.',
+      ],
       note: '',
-      results: [],
+      results: [
+        { value: '18', label: 'témoignages recueillis' },
+        { value: '1er', label: 'badge d’accueil' },
+        {
+          value: '15',
+          label:
+            'pays concernés par le programme de développement des artisans',
+        },
+      ],
     },
     {
       slug: 'kit-chanel-25',
       category: 'learning',
-      title: 'Kit Chanel 25',
-      client: 'Chanel',
-      year: '',
-      format: '6 modules e-learning',
-      role: 'Conception, tournage et montage',
+      title: 'Kit CHANEL 25',
+      client: 'CHANEL',
+      year: '2025',
+      format: '6 modules e-learning avec vidéos de démonstration',
+      role: 'Gestion de projet, coordination audiovisuelle, montage vidéo et conception e-learning',
       tags: ['E-learning', 'Vidéo', 'Délais serrés'],
       gallery: ['La carte des 6 modules et de leurs prérequis'],
       summary:
         '6 modules e-learning pour les artisans, réalisés en un mois pour accompagner la sortie d’un nouveau sac.',
-      challenge:
-        'L’un des projets les plus compliqués de mes années d’alternance : produire 6 modules en seulement un mois, pour coller à la sortie du nouveau sac.',
-      solution:
-        'Chaque module contient une vidéo de démonstration : il a fallu organiser le tournage, réaliser le montage puis mettre le tout en forme dans le module sur la plateforme, en variant les interactions pour éviter les répétitions.',
+      challenge: [
+        'Dans le cadre du lancement du nouveau sac CHANEL 25, les artisans devaient être formés aux différentes techniques de réparation et aux gestes spécifiques liés à ce modèle.',
+        'Le principal défi était de concevoir six modules de formation en seulement un mois, afin de les rendre disponibles en cohérence avec le lancement du produit.',
+        'Chaque module devait présenter des démonstrations techniques précises, tout en proposant une expérience pédagogique claire et suffisamment variée pour maintenir l’attention des apprenants.',
+      ],
+      solution: [
+        'J’ai piloté les différentes étapes de production des six modules, de la préparation des contenus jusqu’à leur intégration sur la plateforme de formation.',
+        'Mes missions ont notamment consisté à :',
+        [
+          'Organiser et préparer les tournages des vidéos de démonstration.',
+          'Réaliser le montage vidéo pour illustrer les différentes techniques de réparation.',
+          'Concevoir et intégrer les modules e-learning sur la plateforme.',
+          'Développer des interactions pédagogiques variées pour éviter la répétition entre les modules.',
+          'Structurer les contenus afin de faciliter l’assimilation des gestes techniques.',
+        ],
+        'Ce projet m’a demandé une organisation rigoureuse et une coordination efficace pour respecter un calendrier particulièrement court, sans compromettre la qualité des supports pédagogiques.',
+      ],
       note: 'Par souci de confidentialité, les extraits des modules ne peuvent pas être partagés.',
       results: [
-        { value: '6', label: 'modules e-learning' },
-        { value: '1 mois', label: 'pour tout produire' },
-        { value: '6', label: 'vidéos de démonstration' },
+        { value: '6', label: 'modules e-learning conçus' },
+        { value: '12', label: 'heures de tournage' },
+        { value: '1', label: 'mois de production' },
       ],
     },
     {
       slug: 'campagne-municipale',
       category: 'design',
-      title: 'Campagne municipale 2026',
-      client: 'Liste Ensemble pour Thorigny',
+      title: 'Campagne municipale – Communication print',
+      client: 'Ensemble pour Thorigny – Campagne électorale municipale',
       year: '2026',
-      format: 'Supports print',
-      role: 'Designer indépendant',
+      format: 'Supports de communication print et documents électoraux',
+      role: 'Direction artistique, design graphique et production des supports',
       tags: ['Print', 'Communication', 'Freelance'],
       gallery: [
         'L’affiche de campagne',
@@ -189,24 +236,33 @@ export const fr = {
       ],
       summary:
         'Les supports print d’une liste aux élections municipales et communautaires de mars 2026 : affiche, tracts, circulaires et bulletin de vote.',
-      challenge:
-        'Une campagne en deux tours, avec des supports à produire vite, lisibles d’un coup d’œil et cohérents du premier au dernier document.',
-      solution:
-        'En indépendant, j’ai conçu les visuels de communication et réalisé les supports print de la campagne, dans une identité commune : affiche, tracts, circulaires des deux tours et bulletin de vote.',
-      note: '',
-      results: [
-        { value: '5', label: 'supports print' },
-        { value: '2', label: 'tours de campagne' },
+      challenge: [
+        'Dans le cadre d’une campagne électorale municipale, le client avait besoin de supports de communication visuelle permettant de présenter son projet et de renforcer sa visibilité auprès des habitants.',
+        'L’enjeu était de développer une communication cohérente et facilement identifiable, capable de transmettre les messages de la campagne tout en respectant les contraintes propres aux différents formats de diffusion.',
+        'Les supports devaient notamment répondre aux exigences de la communication électorale officielle, avec une attention particulière portée à leur lisibilité et à leur mise en page.',
       ],
+      solution: [
+        'J’ai accompagné le projet sur la conception graphique et la réalisation de plusieurs supports de communication print, en assurant leur cohérence visuelle sur l’ensemble de la campagne.',
+        'Mes missions ont notamment consisté à :',
+        [
+          'La conception d’affiche : création de l’affiche officielle de campagne destinée à être affichée sur les panneaux électoraux municipaux.',
+          'Les supports de communication : réalisation de différents visuels print destinés à accompagner la diffusion des messages de campagne.',
+          'Le bulletin de vote : conception et mise en page du bulletin utilisé pour le second tour des élections municipales.',
+          'La préparation des fichiers : adaptation des créations aux différents formats et contraintes techniques d’impression.',
+        ],
+        'Ce projet m’a permis de travailler sur des supports à forte visibilité, avec des enjeux de lisibilité, de cohérence graphique et de respect des contraintes de production propres à la communication électorale.',
+      ],
+      note: '',
+      results: [{ value: '5', label: 'supports print réalisés' }],
     },
     {
       slug: 'ico',
       category: 'design',
-      title: 'ICO! : un jeu de cartes de pirates',
-      client: 'Workshop',
-      year: '',
-      format: 'Charte graphique et packaging',
-      role: '',
+      title: 'ICO – Création d’identité graphique',
+      client: 'ICO – Client réel (Workshop école)',
+      year: '2025',
+      format: 'Identité visuelle, design graphique et présentation de concept',
+      role: 'Direction artistique, identité visuelle et conception graphique',
       tags: ['Branding', 'Illustration', 'Packaging'],
       gallery: [
         'La couverture de la charte graphique',
@@ -219,43 +275,70 @@ export const fr = {
       ],
       summary:
         'L’identité complète d’un jeu de cartes à rôles cachés dans l’univers des pirates : logo, couleurs, typographies, cartes, boîte et réseaux sociaux.',
-      challenge:
-        'Perdus dans la mer des Caraïbes, des marins doivent démasquer les pirates cachés dans leur équipage. Face aux Loups-Garous de Thiercelieux, le jeu devait se démarquer par un univers plus accueillant.',
-      solution:
-        'Une charte graphique complète : logo au gouvernail, palette vive, typographies, illustrations de chaque carte, boîte, pion capitaine et posts Instagram, avec un benchmark des jeux concurrents.',
+      challenge: [
+        'Dans le cadre d’un workshop organisé par mon école, nous avons été amenés à travailler sur un brief proposé par un client réel : ICO.',
+        'L’objectif était d’imaginer et de développer l’identité graphique d’un jeu, en proposant un univers visuel cohérent, identifiable et adapté à son concept.',
+        'Le défi consistait à traduire les intentions du brief en un langage graphique fort, tout en imaginant une présentation créative permettant de mettre en valeur le projet et de faciliter sa compréhension par le client.',
+      ],
+      solution: [
+        'J’ai pris en charge la création de l’identité graphique complète du jeu, de la recherche créative jusqu’à la réalisation des différents éléments visuels.',
+        'J’ai notamment travaillé sur :',
+        [
+          'La direction artistique : définition de l’univers graphique, des inspirations et des intentions visuelles.',
+          'L’identité visuelle : création des codes graphiques, choix des couleurs, des typographies et des éléments distinctifs du jeu.',
+          'Le design des cartes : conception des différents éléments graphiques et mise en page des cartes dans une logique de cohérence visuelle.',
+          'Le système graphique : déclinaison de l’identité sur les différents supports pour garantir une continuité esthétique.',
+          'La présentation client : conception d’un support de présentation original reprenant les codes visuels du jeu, directement pensé comme un ensemble de cartes.',
+        ],
+        'Pour défendre mon concept, j’ai ainsi choisi de présenter mon travail sous la forme même du jeu : les cartes deviennent le support de présentation du projet. Une manière de rendre le concept plus concret et de proposer une expérience de découverte cohérente avec l’univers imaginé.',
+      ],
       note: '',
-      results: [],
+      results: [
+        { value: '15', label: 'cartes conçues' },
+        { value: '1', label: 'semaine de workshop' },
+      ],
     },
     {
       slug: 'minute-metier',
       category: 'design',
-      title: 'La Minute Métier',
+      title: 'Minute Métier',
       client: 'Nexans',
-      year: '',
-      format: 'Série vidéo',
-      role: 'Tournage, montage et identité graphique',
+      year: '2023',
+      format: 'Série audiovisuelle de 14 vidéos',
+      role: 'Direction artistique, tournage, montage vidéo et motion design',
       tags: ['Vidéo', 'Motion design', 'Marque employeur'],
       gallery: [
-        'Un épisode : Responsable Supply Chain',
+        'Un épisode : Responsable Supply Chain',
         'L’affiche de la série',
       ],
       summary:
         'Une série de 14 vidéos qui présente les métiers de Nexans, pour attirer de nouveaux talents.',
-      challenge:
-        'Faire découvrir à l’extérieur la diversité des métiers de Nexans, pour donner envie à de nouveaux talents de rejoindre le groupe.',
-      solution:
-        'J’ai réalisé le tournage et tout le montage, en créant un motion design et une identité graphique propres à la série.',
+      challenge: [
+        'Nexans souhaitait valoriser la diversité de ses métiers et faire découvrir ses différentes expertises auprès d’un public externe, notamment dans le cadre de ses actions de recrutement.',
+        'L’objectif était de donner la parole aux collaborateurs, de présenter leur quotidien professionnel et de rendre les différents métiers de l’entreprise plus accessibles et attractifs pour de futurs candidats.',
+      ],
+      solution: [
+        'J’ai participé à la création complète de cette série vidéo, en intervenant sur les différentes étapes de production, du tournage jusqu’à la réalisation finale.',
+        'J’ai également conçu une identité graphique spécifique pour le projet, permettant d’assurer une cohérence visuelle entre les 14 épisodes et de rendre la série immédiatement identifiable.',
+        'Pour dynamiser les vidéos et renforcer leur impact, j’ai développé des animations en motion design afin de rythmer les séquences, mettre en valeur les informations importantes et accompagner les prises de parole des collaborateurs.',
+        'L’ensemble du dispositif a été pensé pour proposer un format court, dynamique et facilement identifiable, adapté aux usages de la communication digitale et des réseaux sociaux.',
+      ],
       note: '',
-      results: [{ value: '14', label: 'vidéos métier' }],
+      results: [
+        { value: '14', label: 'vidéos réalisées' },
+        { value: '1', label: 'identité graphique créée' },
+        { value: '2', label: 'usines visitées' },
+      ],
     },
     {
       slug: 'nymphe-essentials',
       category: 'design',
       title: 'Nymphe Essentials',
-      client: 'Projet de fin d’études',
-      year: '',
-      format: 'Identité de marque',
-      role: 'Direction artistique',
+      client: 'Nymphe Essentials (projet école)',
+      year: '2025',
+      format:
+        'Identité de marque, direction artistique et supports de communication',
+      role: 'Chef de projet, gestion de la relation client et direction artistique',
       tags: ['Branding', 'Packaging', 'Direction artistique'],
       gallery: [
         'Le sérum hydratant',
@@ -266,13 +349,29 @@ export const fr = {
         'Les trois gammes',
       ],
       summary:
-        'La création d’une marque de cosmétiques fictive : toute sa direction artistique et son identité.',
-      challenge:
-        'Pour mon projet de fin d’études, imaginer une marque de cosmétiques de A à Z.',
-      solution:
-        'Logo, palette, déclinaison en trois gammes, packagings et mises en situation : toute l’identité de la marque Nymphe.',
+        'L’identité visuelle d’une marque de cosmétiques, imaginée pour mon projet de fin d’études, du logo aux packagings.',
+      challenge: [
+        'Dans le cadre de mon projet de fin d’études, j’ai eu l’opportunité d’accompagner Nymphe Essentials, une marque de cosmétiques mise en scène par d’anciens élèves de l’école.',
+        'L’objectif était de répondre à une véritable demande client en imaginant et développant l’identité visuelle de la marque, depuis la réflexion créative jusqu’à la réalisation des différents supports.',
+        'Au-delà de l’aspect créatif, ce projet reproduisait les conditions d’une véritable collaboration professionnelle : comprendre les attentes du client, proposer des orientations créatives, respecter les délais et assurer le suivi de la production.',
+      ],
+      solution: [
+        'J’ai assuré la gestion du projet dans son ensemble, en adoptant une posture de prestataire et en étant l’interlocuteur privilégié du client.',
+        'J’ai notamment pris en charge :',
+        [
+          'La relation client : organisation et animation des réunions pour recueillir les besoins, présenter les propositions et valider les orientations créatives.',
+          'Le pilotage du projet : définition des étapes de production, planification des livrables et suivi de l’avancement.',
+          'La direction artistique : conception de l’univers graphique, définition des codes visuels et création de l’identité de marque.',
+          'La production graphique : réalisation du logo, conception des packagings et déclinaison de l’identité sur différents supports.',
+          'Le suivi et les ajustements : prise en compte des retours client, adaptation des propositions et accompagnement jusqu’à la livraison des éléments.',
+        ],
+        'Cette expérience m’a permis de gérer un projet dans des conditions proches de celles d’une agence ou d’un studio indépendant, en conciliant exigences créatives, attentes client et contraintes de production.',
+      ],
       note: '',
-      results: [],
+      results: [
+        { value: '23', label: 'supports et livrables réalisés' },
+        { value: '4', label: 'réunions organisées avec le client' },
+      ],
     },
   ],
   projectsPage: {
